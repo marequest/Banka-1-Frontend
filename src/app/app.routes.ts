@@ -4,6 +4,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ListUserComponent } from './list-user/list-user.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
+import { SecurityListComponent } from './security-list/security-list.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -15,5 +16,9 @@ export const routes: Routes = [
       { path: 'list', component: ListUserComponent },
       { path: 'set-password/:id', component: SetPasswordComponent },
     ],
+  },
+  {
+    path: 'security',
+    children: [{ path: 'all', component: SecurityListComponent }],
   },
 ];
