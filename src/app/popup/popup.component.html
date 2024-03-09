@@ -1,8 +1,6 @@
 <div class="popup-container" *ngIf="isVisible" (click)="closePopup()">
-  <!-- Stop click events from within the content from propagating to the container -->
-  <div class="popup-content" (click)="$event.stopPropagation()">
+  <div [ngClass]="{'popup-content': true, 'warning': type === 'warning', 'error': type === 'error', 'info': type === 'info'}" (click)="$event.stopPropagation()">
     <p>{{ message }}</p>
-    <!-- The close button still calls closePopup() directly -->
     <button (click)="closePopup()">Close</button>
   </div>
 </div>

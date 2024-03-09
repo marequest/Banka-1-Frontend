@@ -21,8 +21,6 @@ export class LoginPageComponent {
   constructor(private authService: AuthService, private popupService: PopupService) {}
 
   onSubmit() {
-    this.popupService.show('This is an error message!', 'error');
-
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
         localStorage.setItem('jwt', token);
@@ -31,5 +29,9 @@ export class LoginPageComponent {
         console.error(error);
       }
     );
+  }
+
+  showCaseButton() {
+    this.popupService.show('This is an popup message!', 'warning');
   }
 }
