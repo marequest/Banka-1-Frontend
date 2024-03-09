@@ -1,12 +1,31 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from "../auth.service";
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule,
+    HttpClientModule
+  ],
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+  styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent {
+  model: any = {};
 
+  constructor(private authService: AuthService) {}
+
+  onSubmit() {
+    this.authService.login(this.model.email, this.model.password).subscribe(
+      (token) => {
+        localStorage.setItem('jwt', token);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 }

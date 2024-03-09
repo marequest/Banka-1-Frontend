@@ -1,1 +1,13 @@
 <p>login-page works!</p>
+<form (submit)="onSubmit()">
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="model.email" name="email" required>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="model.password" name="password" required>
+  </div>
+  <button type="submit">Login</button>
+</form>
+<a href="/reset-password">Forgot Password?</a>
