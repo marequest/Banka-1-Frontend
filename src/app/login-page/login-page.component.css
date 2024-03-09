@@ -1,21 +1,28 @@
-body {
-  height: 100%;
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%; /* This ensures the body takes the full height of the viewport */
+  width: 100%; /* This ensures the body takes the full width of the viewport */
 }
+
+/* Apply the background styles to the element with the specified id */
 #login-background {
   background-image: url('../../assets/backgroundLogin.png');
-  background-size: cover; /* Cover the entire area of the element */
-  background-position: center; /* Center the image within the element */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  height: 100vh; /* Adjust the height as needed, this example takes the full viewport height */
-  width: 100%; /* Assuming you want it to span the full width of the viewport */
-  /* Add any other styling for this container here */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* This will take the full height of the viewport */
+  width: 100%; /* This will take the full width of the viewport */
+  position: absolute; /* This will position it in relation to the nearest positioned ancestor */
+  top: 0; /* This positions the top edge of the element at the top of the viewport */
+  left: 0; /* This positions the left edge of the element at the left of the viewport */
+  z-index: -1; /* This ensures it stays behind other content */
 }
 
 .login-container {
   max-width: 300px;
-  margin: 50px auto;
+  margin: auto;
+  margin-top: 100px;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.1); /* Optional: semi-transparent white background for the form to enhance readability */
   border-radius: 8px; /* Optional: rounded corners for the form */
