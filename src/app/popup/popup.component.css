@@ -1,0 +1,47 @@
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center; /* This centers the popup vertically */
+  justify-content: center; /* This centers the popup horizontally */
+  background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+  z-index: 1000; /* High z-index to be on top */
+}
+
+.popup-content {
+  width: auto; /* Width can adjust to content up to max-width */
+  max-width: 90%; /* Maximum width of popup, can adjust to your design */
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Style for close button inside popup, adjust as needed */
+.close-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #f44336; /* Red color for the close button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.warning {
+  color: darkorange; /* Dark yellowish text for warning */
+  background-color: rgba(0, 0, 0, 0.2); /* Light yellow background */
+}
+.error {
+  color: darkred; /* Dark reddish text for error */
+  background-color: rgba(0, 0, 0, 0.2); /* Light red background */
+}
+.info {
+  color: darkblue; /* Dark blueish text for info */
+  background-color: rgba(0, 0, 0, 0.2); /* Light blue background */
+}
+
+/* Add specific styling for each type based on your design requirements */
