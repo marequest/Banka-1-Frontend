@@ -1,1 +1,63 @@
-<p>update-user works!</p>
+<div class="popup-container">
+    <div class="popup-header">
+      <span>Update User</span>
+      <span class="close-icon" (click)="onCloseUpdateUserPopup()">X</span>
+    </div>
+
+    <div class="form-container">
+      <div class="left-section">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" id="email" [(ngModel)]="updateUserData.email" />
+        </div>
+  
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" [(ngModel)]="updateUserData.name" />
+        </div>
+  
+        <div class="form-group">
+          <label for="surname">Surname:</label>
+          <input type="text" id="surname" [(ngModel)]="updateUserData.surname" />
+        </div>
+  
+        <div class="form-group">
+          <label for="jmbg">JMBG:</label>
+          <input type="text" id="jmbg" [(ngModel)]="updateUserData.jmbg" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" [(ngModel)]="updateUserData.password" />
+          </div>
+      </div>
+  
+      <div class="right-section">
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="text" id="phone" [(ngModel)]="updateUserData.phone" />
+        </div>
+  
+        <div class="form-group">
+          <label for="position">Position:</label>
+          <select id="position" [(ngModel)]="updateUserData.position">
+            <option value="Manager">Manager</option>
+            <option value="Director">Director</option>
+          </select>
+        </div>
+  
+        <div class="form-group active-checkbox">
+            <label for="active">Active:</label>
+            <input type="checkbox" id="active" [(ngModel)]="updateUserData.active" />
+        </div>
+
+        <div class="form-group buttonSl">
+            <button (click)="onCancelUpdateUserPopup()">Cancel</button>
+      <button (click)="onCreateUpdateUserPopup()">Update</button>
+          </div>
+    
+      </div>
+
+      
+    </div>
+  </div>
