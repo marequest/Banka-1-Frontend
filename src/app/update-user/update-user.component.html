@@ -7,36 +7,57 @@
     <div class="form-container">
       <div class="left-section">
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="text" id="email" [(ngModel)]="updateUserData.email" />
+            <label for="email">Email:</label>
+            <input type="text" id="email" [(ngModel)]="updateUserData.email" name="email" required #emailModel="ngModel" />
+            <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="error-message">
+            <div *ngIf="emailModel.hasError('required')">Email is required.</div>
+            <div *ngIf="emailModel.hasError('email')">Invalid email format.</div>
+             </div>
         </div>
   
         <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" id="name" [(ngModel)]="updateUserData.name" />
-        </div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" [(ngModel)]="updateUserData.name" name="name" required #nameModel="ngModel" />
+            <div *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)" class="error-message">
+              <div *ngIf="nameModel.hasError('required')">Name is required.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" [(ngModel)]="updateUserData.surname" name="surname" required #surnameModel="ngModel" />
+            <div *ngIf="surnameModel.invalid && (surnameModel.dirty || surnameModel.touched)" class="error-message">
+              <div *ngIf="surnameModel.hasError('required')">Surname is required.</div>
+            </div>
+          </div>
   
         <div class="form-group">
-          <label for="surname">Surname:</label>
-          <input type="text" id="surname" [(ngModel)]="updateUserData.surname" />
-        </div>
-  
-        <div class="form-group">
-          <label for="jmbg">JMBG:</label>
-          <input type="text" id="jmbg" [(ngModel)]="updateUserData.jmbg" />
-        </div>
+            <label for="jmbg">JMBG:</label>
+            <input type="text" id="jmbg" [(ngModel)]="updateUserData.jmbg" name="jmbg" required pattern="^\d{13}$" #jmbgModel="ngModel" />
+            <div *ngIf="jmbgModel.invalid && (jmbgModel.dirty || jmbgModel.touched)" class="error-message">
+              <div *ngIf="jmbgModel.hasError('required')">JMBG is required.</div>
+              <div *ngIf="jmbgModel.hasError('pattern')">Invalid JMBG format (must be 13 digits).</div>
+            </div>
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" id="password" [(ngModel)]="updateUserData.password" />
+            <input type="password" id="password" [(ngModel)]="updateUserData.password" name="password" required #passwordModel="ngModel" />
+            <div *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)" class="error-message">
+              <div *ngIf="passwordModel.hasError('required')">Password is required.</div>
+            </div>
           </div>
       </div>
   
       <div class="right-section">
         <div class="form-group">
-          <label for="phone">Phone Number:</label>
-          <input type="text" id="phone" [(ngModel)]="updateUserData.phone" />
-        </div>
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" [(ngModel)]="updateUserData.phone" name="phone" required pattern="^\d+$" #phoneModel="ngModel" />
+            <div *ngIf="phoneModel.invalid && (phoneModel.dirty || phoneModel.touched)" class="error-message">
+              <div *ngIf="phoneModel.hasError('required')">Phone Number is required.</div>
+              <div *ngIf="phoneModel.hasError('pattern')">Invalid Phone Number format (must contain only digits).</div>
+            </div>
+          </div>
   
         <div class="form-group">
           <label for="position">Position:</label>
@@ -55,7 +76,7 @@
             <button (click)="onCancelUpdateUserPopup()">Cancel</button>
       <button (click)="onCreateUpdateUserPopup()">Update</button>
           </div>
-    
+          
       </div>
 
       
