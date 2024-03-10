@@ -1,1 +1,33 @@
-<router-outlet></router-outlet>
+<div>
+<!--  <div class="navbar" *ngIf="userInitials!=''">-->
+  <div class="navbar">
+    <div class="hamburger" (click)="toggleSideNav()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <img class="logo" src="assets/logo.png" width="125px">
+    <div class="sidenav-container"  [class.show-sidebar]="showSideNav">
+
+      <div class="sidenav">
+        <div class="btn-box" [routerLink]="'/user/list'" >
+          <img src="assets/admin.png" width="45px">
+          <a class="lbl-btn">Admin panel</a>
+        </div>
+
+        <div class="btn-box" [routerLink]="'/security/all'" >
+          <img src="assets/security.png" width="45px">
+          <a>Security</a>
+        </div>
+      </div>
+    </div>
+    <span class="remaining-space"></span>
+    <div class="circle" *ngIf="userInitials!=''">{{ userInitials }}</div>
+    <a class="logout-btn" (click)="logout()"> Logout </a>
+  </div>
+
+  <div class="content" [class.show-content]="showSideNav">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
