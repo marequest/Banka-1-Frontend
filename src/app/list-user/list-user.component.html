@@ -1,11 +1,16 @@
-<div class="search-bar">
+<div style="margin-left: 5%; margin-right: 5%;">
+<div class="glavni">
+  <div class="search-bar">
     <input type="text" placeholder="Show all" />
     <input type="text" placeholder="Search by email" />
     <input type="text" placeholder="By name" />
     <input type="text" placeholder="By surname" />
     <button class="search-icon" (click)="search()">🔍</button>
+  </div>
+  <div>
     <button class="add-user-button" (click)="togglePopupAddUser()">Add new User</button>
   </div>
+</div>
   
   <h2>Users</h2>
   <table class="users-table">
@@ -62,6 +67,8 @@
       </tr>
     </tbody>
   </table>
+
+</div>
   
   
   

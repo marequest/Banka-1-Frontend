@@ -1,116 +1,119 @@
-/* CSS for SearchBar and Table*/
+body {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background: #f40000;
+}
 
-.search-bar {
-    display: flex;
-    align-items: center;
-    margin-bottom: 50px;
-  }
-  
-  .search-bar input {
-    width: 120px;
-    margin-right: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .search-icon,
-  .add-user-button {
-    padding: 10px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .users-table {
-    position: relative;
-    z-index: 1; 
-    width: 80%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.9);
-  }
-  
-  .users-table caption {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .users-table th {
-    padding: 10px;
-    text-align: left;
-  
-  }
-  
-   .users-table td {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-  
-  
-    border-left: 1px dashed #ccc;
-    text-align: left;
-  }
-  
-  .users-table td:last-child {
-    border-right: 1px solid #ccc;
-  }
-  .users-table td:first-child {
-    border-left: 1px solid #ccc;
-  }
-  
-  
-  .options-menu {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .options-dropdown {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 120px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  
-  .options-dropdown button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    text-align: left;
-    border: none;
-    background: none;
-    cursor: pointer;
-  }
-  
-  .options-dropdown button:hover {
-    background-color: #ddd;
-  }
-  
-  .options-menu:hover .options-dropdown {
-    display: block;
-  }
-  
-  
-  /* Dodat media upit za responsivnost  TODO */
-  @media only screen and (max-width: 768px) {
-    .search-bar {
-      flex-direction:column;
-      align-items: center;
-    }
-  
-    .search-bar input {
-      width: 50%;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-  
-    .search-icon,
-    .add-user-button {
-      width: 30%;
-      margin-top: 10px;
-    }
-  }
-  
+
+
+
+.search-bar input[type="text"] {
+  padding: 8px;
+  margin-right: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.glavni button  {
+  cursor: pointer;
+  background: #19B5C7;
+  text-transform: uppercase;
+  /* float: right; */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.glavni{
+  display: flex;
+  justify-content: space-between;
+
+  background: #fff;
+  padding: 10px 20px;
+  /* display: flex;
+  justify-content: space-around; */
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-bar .search-icon {
+  background: transparent;
+  margin-right: 8px;
+}
+
+.users-table {
+  width: 100%;
+  background: #fff;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.users-table thead {
+  background: #eee;
+}
+
+.users-table th, .users-table td {
+  text-align: left;
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.options-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.options-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.options-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* .options-dropdown button:hover {
+  background-color: #ddd;
+} */
+
+.options-menu:hover .options-dropdown {
+  display: block;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+.activity-indicator {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.activity-indicator.active {
+  background: #28a745;
+}
+
+.activity-indicator.unactive {
+  background: #dc3545;
+}
