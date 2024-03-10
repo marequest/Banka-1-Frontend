@@ -1,0 +1,116 @@
+/* CSS for SearchBar and Table*/
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+  
+  .search-bar input {
+    width: 120px;
+    margin-right: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search-icon,
+  .add-user-button {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .users-table {
+    position: relative;
+    z-index: 1; 
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .users-table caption {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .users-table th {
+    padding: 10px;
+    text-align: left;
+  
+  }
+  
+   .users-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+  
+  
+    border-left: 1px dashed #ccc;
+    text-align: left;
+  }
+  
+  .users-table td:last-child {
+    border-right: 1px solid #ccc;
+  }
+  .users-table td:first-child {
+    border-left: 1px solid #ccc;
+  }
+  
+  
+  .options-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .options-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .options-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .options-dropdown button:hover {
+    background-color: #ddd;
+  }
+  
+  .options-menu:hover .options-dropdown {
+    display: block;
+  }
+  
+  
+  /* Dodat media upit za responsivnost  TODO */
+  @media only screen and (max-width: 768px) {
+    .search-bar {
+      flex-direction:column;
+      align-items: center;
+    }
+  
+    .search-bar input {
+      width: 50%;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  
+    .search-icon,
+    .add-user-button {
+      width: 30%;
+      margin-top: 10px;
+    }
+  }
+  

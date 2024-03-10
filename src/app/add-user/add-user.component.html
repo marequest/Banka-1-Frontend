@@ -1,1 +1,58 @@
-<p>add-user works!</p>
+<div class="popup-container">
+    <div class="popup-header">
+      <span>Add User</span>
+      <span class="close-icon" (click)="onCloseAddUserPopup()">X</span>
+    </div>
+
+    <div class="form-container">
+      <div class="left-section">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" id="email" [(ngModel)]="addUserData.email" />
+        </div>
+  
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" [(ngModel)]="addUserData.name" />
+        </div>
+  
+        <div class="form-group">
+          <label for="surname">Surname:</label>
+          <input type="text" id="surname" [(ngModel)]="addUserData.surname" />
+        </div>
+  
+        <div class="form-group">
+          <label for="jmbg">JMBG:</label>
+          <input type="text" id="jmbg" [(ngModel)]="addUserData.jmbg" />
+        </div>
+      </div>
+  
+      <div class="right-section">
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="text" id="phone" [(ngModel)]="addUserData.phone" />
+        </div>
+  
+        <div class="form-group">
+          <label for="position">Position:</label>
+          <select id="position" [(ngModel)]="addUserData.position">
+            <option value="Manager">Manager</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+  
+        <div class="form-group active-checkbox">
+            <label for="active">Active:</label>
+            <input type="checkbox" id="active" [(ngModel)]="addUserData.active" />
+        </div>
+
+        <div class="form-group buttonSl">
+            <button (click)="onCancelAddUserPopup()">Cancel</button>
+      <button (click)="onCreateAddUserPopup()">Create</button>
+          </div>
+    
+      </div>
+
+      
+    </div>
+  </div>

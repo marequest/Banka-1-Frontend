@@ -1,1 +1,69 @@
-<p>list-user works!</p>
+<div class="search-bar">
+    <input type="text" placeholder="Show all" />
+    <input type="text" placeholder="Search by email" />
+    <input type="text" placeholder="By name" />
+    <input type="text" placeholder="By surname" />
+    <button class="search-icon" (click)="search()">🔍</button>
+    <button class="add-user-button" (click)="togglePopupAddUser()">Add new User</button>
+  </div>
+  
+  <h2>Users</h2>
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Jmbg</th>
+        <th>Position</th>
+        <th>PhoneNumber</th>
+        <th>Activity</th>
+        <th></th>
+  
+      </tr>
+    </thead>
+    <tbody>
+  
+      <tr>
+        <td>John Doe</td>
+        <td>john.doe&#64;example.com</td>
+        <td>123456789</td>
+        <td>Manager</td>
+        <td>(555) 123-4567</td>
+        <td>Active</td>
+        <td>
+          <div class="options-menu">
+            <button id="options-button">&#8286;</button>
+            <div class="options-dropdown">
+              <button id="editProfile-button" (click)="search()">Edit Profile</button>
+              <button id="delete-button" (click)="search()">Delete</button>
+            </div>
+          </div>
+        </td>
+  
+        <!-- <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.jmbg }}</td>
+          <td>{{ user.position}}</td>
+          <td>{{ user.phone_number }}</td>
+          <td>{{ user.activity }}</td>
+  
+          <td>
+          <div class="options-menu">
+            <button id="options-button">&#8286;</button>
+            <div class="options-dropdown">
+              <button id="editProfile-button" (click)="search()">Edit Profile</button>
+              <button id="delete-button" (click)="search()">Delete</button>
+            </div>
+          </div>
+        </td>
+        </tr> -->
+        
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  
+  

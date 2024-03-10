@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class ListUserComponent {
 
+  togglePopupAddUser() {
+    
+  }
+
+  search(){
+    
+  }
+
 }
