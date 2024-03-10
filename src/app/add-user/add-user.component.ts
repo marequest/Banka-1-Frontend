@@ -26,24 +26,28 @@ export class AddUserComponent {
   constructor(private router: Router) {}
 
   onCreateAddUserPopup() {
-
     if (this.validateForm()) {
-      console.log('Uspesno kreiran korisnik:', this.addUserData);
-
-      // this.createUserData(this.addUserData);
+      alert('Successfully created user ' + JSON.stringify(this.addUserData));
       this.router.navigate(['/user/list']);
     } else {
-      console.error('Forma nije validna.');
+      alert('The form is not valid.');
     }
   }
 
   onCancelAddUserPopup() {
-    this.router.navigate(['/user/list']);
+    const confirmResult = confirm('Are you sure you want to cancel adding the user?');
+     if (confirmResult) {
+      this.router.navigate(['/user/list']);
+     }
   }
 
   onCloseAddUserPopup() {
-    this.router.navigate(['/user/list']);
-  }
+    const confirmResult = confirm('Are you sure you want to cancel adding the user?');
+    if (confirmResult) {
+      this.router.navigate(['/user/list']);
+    } 
+   }
+
 
   private validateForm(): boolean {
    
