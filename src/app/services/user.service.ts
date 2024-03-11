@@ -10,6 +10,8 @@ export class UserService {
 
   private apiUrl = 'http://localhost:3000/users';
 
+  private userToEdit: User | undefined;
+
   constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<User[]>{
@@ -18,5 +20,16 @@ export class UserService {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt')
       }
     });
+  }
+
+  
+
+  public setUserToEdit(user: User): void {
+    this.userToEdit = user;
+    console.log('User to edit: ', this.userToEdit);
+  }
+
+  public getUserToEdit(): User | undefined {
+    return this.userToEdit;
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model';
 import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-user',
@@ -41,7 +42,7 @@ export class ListUserComponent implements OnInit{
     }
   ];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     // this.userService.getUsers().subscribe({
@@ -60,7 +61,16 @@ export class ListUserComponent implements OnInit{
   }
 
   search(){
-    
+
+  }
+
+  editUser(user: User){
+    this.userService.setUserToEdit(user);
+    this.router.navigate(['/user/update']);
+  }
+
+  deleteUser(user: User){
+    console.log(user);
   }
 
 }
