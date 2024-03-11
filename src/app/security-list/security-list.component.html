@@ -17,11 +17,18 @@
     <div class="table-content">
       <div class="filter-row">
         <div class="left-row">
-          <div class="filter-dropdown"></div>
-          <div class="filter-input">
-            <input class="security-filter-input" placeholder="Search by email" />
+          <div class="filter-dropdown">
+            <select class="security-filter-select">
+              <option>Show all</option>
+            </select>
           </div>
-          <div class="filter-input" style="">
+          <div class="filter-input">
+            <input
+              class="security-filter-input"
+              placeholder="Search by email"
+            />
+          </div>
+          <div class="filter-input">
             <input class="security-filter-input" placeholder="By name" />
           </div>
           <div class="filter-input">
@@ -33,10 +40,38 @@
         </div>
 
         <div class="right-row">
-            <div class="add-new-btn">
-                ADD NEW USER
-            </div>
+          <div class="add-new-btn">ADD NEW USER</div>
         </div>
+      </div>
+
+      <div class="security-table-wrapper">
+        <div class="wrapper-header">Users</div>
+        <table class="user-table" cellpadding="2px" cellspacing="0">
+          <thead class="table-head-custom">
+            <tr class="tr-rows">
+              <th class="table-head">NAME</th>
+              <th class="table-head">EMAIL</th>
+              <th class="table-head">JMBG</th>
+              <th class="table-head">POSITION</th>
+              <th class="table-head">PHONE NUMBER</th>
+              <th class="table-head">ACTIVITY</th>
+              <th class="table-head"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users" class="tr-rows">
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.jmbg }}</td>
+              <td>{{ user.position }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.activity }}</td>
+              <td>
+                <span class="material-symbols-outlined"> more_vert </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
