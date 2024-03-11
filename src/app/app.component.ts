@@ -1,6 +1,5 @@
-import {Component, HostListener, ViewChild} from '@angular/core';
-import {MatSidenav} from "@angular/material/sidenav";
-import {BreakpointObserver} from "@angular/cdk/layout";
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import {Router} from "@angular/router";
 import {UserService} from "./services/user.service";
 
@@ -25,7 +24,9 @@ export class AppComponent {
     // this.userInitials = "/"
     this.userService.getUser(localStorage.getItem("jwt")).subscribe(
       response => {
-        this.userInitials = response.ime.charAt(0) + response.prezime.charAt(0);
+        this.userInitials = response.name.charAt(0) + response.lastName.charAt(0);
+      }, (e) => {
+        this.userInitials = "/"
       }
     )
   }
