@@ -27,14 +27,13 @@
       </tr>
     </thead>
     <tbody>
-  
-      <tr>
-        <td>John Doe</td>
-        <td>john.doe&#64;example.com</td>
-        <td>123456789</td>
-        <td>Manager</td>
-        <td>(555) 123-4567</td>
-        <td>Active</td>
+      <tr *ngFor="let user of users">
+        <td>{{ user.first_name }} {{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.jmbg }}</td>
+        <td>{{ user.position }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.active ? 'Active' : 'Inactive' }}</td>
         <td>
           <div class="options-menu">
             <button id="options-button">&#8286;</button>
@@ -44,30 +43,11 @@
             </div>
           </div>
         </td>
-  
-        <!-- <tr *ngFor="let user of users">
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.jmbg }}</td>
-          <td>{{ user.position}}</td>
-          <td>{{ user.phone_number }}</td>
-          <td>{{ user.activity }}</td>
-  
-          <td>
-          <div class="options-menu">
-            <button id="options-button">&#8286;</button>
-            <div class="options-dropdown">
-              <button id="editProfile-button" (click)="search()">Edit Profile</button>
-              <button id="delete-button" (click)="search()">Delete</button>
-            </div>
-          </div>
-        </td>
-        </tr> -->
-        
       </tr>
+
+        
     </tbody>
   </table>
-
 </div>
   
   
