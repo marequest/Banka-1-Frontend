@@ -1,0 +1,92 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.security-title {
+    color: #263238;
+    font-size: 35px;
+    font-weight: 700;
+
+    margin-bottom: 3rem;
+}
+
+.security-tabs {
+    display: flex;
+    width: 19.5vw;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-right: auto;
+    cursor: pointer;
+    background-color: #dbe2e7;
+    width: 5vw;
+    height: 3vh;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: 400;
+}
+
+.active-tab {
+    background-color: white;
+}
+
+.table-content {
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 50vw;
+}
+
+.search-icon {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.filter-row {
+    display: flex;
+}
+
+.left-row {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+.filter-input {
+    margin-left: 10px;
+}
+
+.security-filter-input {
+    /* border-color: #263238; */
+    border-radius: 5px;
+
+    height: 3vh;
+    border: 1.3px solid #263238;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.right-row {
+    display: flex;
+    align-items: center;
+
+    margin-right: auto;
+}
+
+.add-new-btn {
+    padding: 12px;
+    background-color: #19b5c7;
+    border-radius: 5px;
+    color: white;
+    font-weight: 400;
+}
