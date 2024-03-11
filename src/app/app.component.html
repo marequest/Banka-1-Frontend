@@ -1,6 +1,6 @@
 <div>
-<!--  <div class="navbar" *ngIf="userInitials!=''">-->
-  <div class="navbar">
+  <div class="navbar" *ngIf="userIsLoggedIn()">
+<!--  <div class="navbar">-->
     <div class="hamburger" (click)="toggleSideNav()">
       <div class="bar"></div>
       <div class="bar"></div>

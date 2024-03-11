@@ -40,6 +40,9 @@ export class AppComponent {
     this.router.navigate(['login'])
   }
 
+  userIsLoggedIn(){
+    return !!localStorage.getItem("jwt");
+  }
 
 
 }
