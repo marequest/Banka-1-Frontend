@@ -2,6 +2,8 @@ import { Component, OnInit  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
+import { User, UserToEdit } from '../model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-update-user',
@@ -14,47 +16,48 @@ import { CommonModule } from '@angular/common';
 
 export class UpdateUserComponent implements OnInit {
 
-  updateUserData = {
-    email: '',
-    name: '',
-    surname: '',
-    jmbg: '',
-    phone: '',
-    password: '',
-    position: 'Manager',
-    active: true
-  };
+  userToEdit: User| undefined;
+  password: string = '';
 
   ngOnInit(): void {
-    const userIdToUpdate = '123'; 
-    this.fetchUserData(userIdToUpdate);
+    this.userToEdit = this.userService.getUserToEdit();
   }
   
-  private fetchUserData(userId: string): void {
-    // Simulacija dohvatanja podataka od servisa
-    // Zamijenite ovaj deo sa stvarnim kodom za dohvat podataka
-    const userData = {
-      email: 'user@example.com',
-      name: 'John',
-      surname: 'Doe',
-      jmbg: '1234567890123',
-      phone: '123456789',
-      password: '', 
-      position: 'Manager',
-      active: true,
-    };
 
-    // Postavite vrednosti u updateUserData objektu
-    this.updateUserData = { ...this.updateUserData, ...userData };
+  constructor(private userService: UserService,private router: Router) {
   }
-
- 
-
-  constructor(private router: Router) {}
 
   onCreateUpdateUserPopup() {
     if (this.validateForm()) {
-      alert('Successfully modified user: ' + JSON.stringify(this.updateUserData));
+      // alert('Successfully modified user: ' + JSON.stringify(this.userToEdit));
+      if (!this.userToEdit) {
+        console.error('User to edit is not defined.');
+        return;
+      }
+      const updatedUserRequest: UserToEdit = {
+        id: this.userToEdit.id,
+        first_name: this.userToEdit.first_name,
+        last_name: this.userToEdit.last_name,
+        email: this.userToEdit.email,
+        password: this.password,
+        position: this.userToEdit.position,
+        status: this.userToEdit.status,
+        jmbg: this.userToEdit.jmbg,
+        brlk: this.userToEdit.brlk,
+        phone: this.userToEdit.phone,
+        active: this.userToEdit.active,
+        birth_date: this.userToEdit.birth_date
+      };
+
+      this.userService.updateUser(updatedUserRequest).subscribe({
+        next: (user: User) => {
+          alert('Successfully modified user!');
+        },
+        error: (error: any) => {
+          console.error(error);
+        }
+      });
+
       this.router.navigate(['/user/list']);
     } else {
       alert('The form is not valid.');
@@ -76,34 +79,38 @@ export class UpdateUserComponent implements OnInit {
   }
 
   private validateForm(): boolean {
-   
+    if (!this.userToEdit) {
+      console.error('User to edit is not defined.');
+      return false;
+    }
+  
 
-    if (!this.updateUserData.email || !this.isValidEmail(this.updateUserData.email)) {
+    if (!this.userToEdit.email || !this.isValidEmail(this.userToEdit.email)) {
       console.error('Email nije validan.');
       return false;
     }
 
-    if (!this.updateUserData.name) {
+    if (!this.userToEdit.first_name ) {
       console.error('Name nije validan.');
       return false;
     }
 
-    if (!this.updateUserData.password) {
+    if (this.password && this.password.length < 8) {
       console.error('Password nije validan.');
       return false;
     }
 
-    if (!this.updateUserData.surname) {
+    if (!this.userToEdit.last_name) {
       console.error('Surname nije validan.');
       return false;
     }
 
-    if (!this.updateUserData.jmbg || !this.isValidJMBG(this.updateUserData.jmbg)) {
+    if (!this.userToEdit.jmbg || !this.isValidJMBG(this.userToEdit.jmbg)) {
       console.error('JMBG nije validan.');
       return false;
     }
 
-    if (!this.updateUserData.phone || !this.isValidPhoneNumber(this.updateUserData.phone)) {
+    if (!this.userToEdit.phone || !this.isValidPhoneNumber(this.userToEdit.phone)) {
       console.error('Broj telefona nije validan.');
       return false;
     }

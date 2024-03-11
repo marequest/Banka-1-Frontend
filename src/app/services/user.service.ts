@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../model';
+import { User, UserToEdit } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,22 @@ export class UserService {
     });
   }
 
+
+  public getUserById(userId: number): Observable<User> {
+    return this.http.get<User>(this.apiUrl + '/' + userId,{
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      }
+    });
+  }
+
+  public updateUser(user: UserToEdit): Observable<any> {
+    return this.http.post<User>(this.apiUrl + '/updateUser', user,{
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      }
+    });
+  }
 
   public setUserToEdit(user: User): void {
     this.userToEdit = user;

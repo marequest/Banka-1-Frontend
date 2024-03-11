@@ -25,7 +25,7 @@ export class ListUserComponent implements OnInit{
       brlk: '12345678',
       phone: '1234567890',
       active: true,
-      birth_date: '1990-01-01'
+      birth_date: '1990-01-01',
     },
     {
       id: 2,
