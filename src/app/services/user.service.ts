@@ -22,7 +22,14 @@ export class UserService {
     });
   }
 
-  
+  public deleteUser(userId: number): Observable<any> {
+    return this.http.delete(this.apiUrl + '/' + userId,{
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      }
+    });
+  }
+
 
   public setUserToEdit(user: User): void {
     this.userToEdit = user;

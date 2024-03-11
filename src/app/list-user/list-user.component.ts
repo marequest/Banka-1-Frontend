@@ -71,6 +71,16 @@ export class ListUserComponent implements OnInit{
 
   deleteUser(user: User){
     console.log(user);
+
+    // this.userService.deleteUser(user.id).subscribe({
+    //   next: (response: any) => {
+    //     this.users = this.users.filter(u => u.id !== user.id);
+    //   },
+    //   error: (error: any) => {
+    //     console.error('Error deleting user: ', error);
+    //   }
+    // });
+
   }
 
 }
