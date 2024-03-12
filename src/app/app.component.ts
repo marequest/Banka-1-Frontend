@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {Router} from "@angular/router";
@@ -21,7 +22,7 @@ export class AppComponent {
 
   constructor(private userService : UserService, private router: Router) {
     this.showSideNav = false
-    // this.userInitials = "/"
+    this.userInitials = "/"
     this.userService.getUser(localStorage.getItem("jwt")).subscribe(
       response => {
         this.userInitials = response.name.charAt(0) + response.lastName.charAt(0);

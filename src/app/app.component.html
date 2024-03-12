@@ -1,6 +1,6 @@
 <div>
-  <div class="navbar" *ngIf="userIsLoggedIn()">
-<!--  <div class="navbar">-->
+<!--  <div class="navbar" *ngIf="userIsLoggedIn()">-->
+  <div class="navbar">
     <div class="hamburger" (click)="toggleSideNav()">
       <div class="bar"></div>
       <div class="bar"></div>
@@ -10,7 +10,8 @@
 
     <span class="remaining-space"></span>
     <div class="circle" *ngIf="userInitials!=''">{{ userInitials }}</div>
-    <a class="logout-btn" (click)="logout()"> Logout </a>
+    <a class="logout-btn" (click)="logout()" *ngIf="userIsLoggedIn()"> Logout </a>
+    <a class="logout-btn" [routerLink]="'login'" *ngIf="!userIsLoggedIn()"> Login </a>
   </div>
 
   <div class="sidenav"  [class.show-sidebar]="showSideNav">
@@ -26,7 +27,6 @@
   </div>
 
   <div class="content" [class.show-content]="showSideNav">
-    <div class="backdrop" [class.show-backdrop]="showSideNav" (click)="toggleSideNav()"></div>
     <router-outlet></router-outlet>
   </div>
 </div>
