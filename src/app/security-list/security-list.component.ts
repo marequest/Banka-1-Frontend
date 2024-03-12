@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SecurityService, UserSecurity } from '../security.service';
+import { SecurityService, UserSecurity } from '../service/security.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 

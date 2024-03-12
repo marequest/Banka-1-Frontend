@@ -1,29 +1,27 @@
-import { CommonModule } from '@angular/common';
+
 import {Component, ViewChild} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {Router} from "@angular/router";
 import {UserService} from "./services/user.service";
 import {MatSidenav} from "@angular/material/sidenav";
-
-
+import {PopupComponent} from "./popup/popup.component";
+import {PopupService} from "./service/popup.service";
 
 @Component({
   selector: 'app-root',
-  // standalone: true,
-  // imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'banka-frontend';
+
   @ViewChild('sidenav') sidenav: MatSidenav | undefined = undefined;
 
-  // showSideNav: boolean;
   userInitials: string = "";
-  //
-  //
+
+
   constructor(private userService : UserService, private router: Router) {
-  //   this.showSideNav = false
     this.userInitials = "/"
     this.userService.getUser(localStorage.getItem("jwt")).subscribe(
       response => {
@@ -49,8 +47,5 @@ export class AppComponent {
   userIsLoggedIn(){
     return !!localStorage.getItem("jwt");
   }
-
-
-
 
 }
