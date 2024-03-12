@@ -6,6 +6,8 @@ import { ListUserComponent } from './list-user/list-user.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { SecurityListComponent } from './security-list/security-list.component';
 import { NgModule } from "@angular/core";
+import {employeeGuard} from "./guards/employee.guard";
+import {adminGuard} from "./guards/admin.guard";
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -17,10 +19,13 @@ export const routes: Routes = [
       { path: 'list', component: ListUserComponent },
       { path: 'set-password/:id', component: SetPasswordComponent },
     ],
+    canActivateChild: [adminGuard]
   },
   {
     path: 'security',
-    children: [{ path: 'all', component: SecurityListComponent }],
+    children: [{ path: 'all', component: SecurityListComponent },],
+    canActivateChild: [employeeGuard],
+    canActivate: [employeeGuard]
   },
 ];
 
