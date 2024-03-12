@@ -1,1 +1,37 @@
-<router-outlet></router-outlet>
+<!--ToDo: Kako se navbar ne bi pojavljivao na login stranici, odkomentarisati ovu liniju i zakomentariati liniju ispod, odkomentarisati poslednja tri reda-->
+<!--<div class="app-container" *ngIf="userIsLoggedIn()">-->
+<div class="app-container">
+  <mat-toolbar>
+    <button mat-icon-button class="menu-button" (click)="toggleSideNav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img class="logo" src="assets/logo.png" width="200px" alt=""/>
+    <span class="remaining-space"></span>
+    <div class="user-info">
+      <div class="circle">{{ userInitials }}</div>
+      <span color="warn"  (click)="logout()" *ngIf="userIsLoggedIn()" class="logout-button">Logout</span>
+      <span color="warn"   [routerLink]="'login'" *ngIf="!userIsLoggedIn()" class="logout-button">Login</span>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" class="sidenav">
+      <div class="sidebar-btn" [routerLink]="'/user/list'">
+        <img src="assets/admin.png"/>
+        <span>Admin panel</span>
+      </div>
+      <div class="sidebar-btn" [routerLink]="'/security/all'">
+        <img src="assets/security.png"/>
+        <span>Security</span>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!--<div *ngIf="!userIsLoggedIn()">-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->
+
