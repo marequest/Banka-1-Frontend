@@ -3,13 +3,12 @@ import {Component, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {PopupComponent} from "./popup/popup.component";
-import {PopupService} from "./popup.service";
+import {PopupService} from "./service/popup.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  // imports: [RouterOutlet, PopupComponent],
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, PopupComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

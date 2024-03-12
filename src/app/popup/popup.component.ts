@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {PopupService} from "../popup.service";
+import {PopupService} from "../service/popup.service";
 import {CommonModule} from "@angular/common";
 
 @Component({
@@ -21,5 +21,18 @@ export class PopupComponent {
 
   closePopup() {
     this.isVisible = false;
+  }
+
+  getIconPath(): string {
+    switch (this.type) {
+      case 'error':
+        return 'assets/error.png';
+      case 'warning':
+        return 'assets/warning.png';
+      case 'info':
+        return 'assets/info.png';
+      default:
+        return ''; // Default icon or empty if none
+    }
   }
 }

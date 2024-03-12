@@ -1,12 +1,12 @@
 import {Component, ViewChild} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from "../auth.service";
+import { AuthService } from "../service/auth.service";
 import { HttpClientModule } from '@angular/common/http';
-import {PopupService} from "../popup.service";
+import {PopupService} from "../service/popup.service";
 import {PopupComponent} from "../popup/popup.component";
-
 import {z} from "zod";
-import {ValidationService} from "../validation.service";
+import {ValidationService} from "../service/validation.service";
+
 @Component({
   selector: 'app-login-page',
   standalone: true,
@@ -36,12 +36,8 @@ export class LoginPageComponent {
         localStorage.setItem('jwt', token);
       },
       (error) => {
-        console.error(error);
+        this.popupService.show('Incorrect credentials!', 'error');
       }
     );
-  }
-
-  showCaseButton() {
-    this.popupService.show('This is an popup message!', 'warning');
   }
 }

@@ -1,6 +1,6 @@
 // popup.service.ts
 import { Injectable } from '@angular/core';
-import {PopupComponent} from "./popup/popup.component";
+import {PopupComponent} from "../popup/popup.component";
 
 @Injectable({
   providedIn: 'root'
