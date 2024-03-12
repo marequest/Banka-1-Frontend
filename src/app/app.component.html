@@ -1,33 +1,36 @@
-<div>
-<!--  <div class="navbar" *ngIf="userIsLoggedIn()">-->
-  <div class="navbar">
-    <div class="hamburger" (click)="toggleSideNav()">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-    </div>
-    <img class="logo" src="assets/logo.png" width="125px">
-
+<!--ToDo: Kako se navbar ne bi pojavljivao na login stranici, odkomentarisati ovu liniju i zakomentariati liniju ispod, odkomentarisati poslednja tri reda-->
+<!--<div class="app-container" *ngIf="userIsLoggedIn()">-->
+<div class="app-container">
+  <mat-toolbar>
+    <button mat-icon-button class="menu-button" (click)="toggleSideNav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img class="logo" src="assets/logo.png" width="200px" alt=""/>
     <span class="remaining-space"></span>
-    <div class="circle" *ngIf="userInitials!=''">{{ userInitials }}</div>
-    <a class="logout-btn" (click)="logout()" *ngIf="userIsLoggedIn()"> Logout </a>
-    <a class="logout-btn" [routerLink]="'login'" *ngIf="!userIsLoggedIn()"> Login </a>
-  </div>
+    <div class="user-info">
+      <div class="circle">{{ userInitials }}</div>
+      <span color="warn"  (click)="logout()" *ngIf="userIsLoggedIn()" class="logout-button">Logout</span>
+      <span color="warn"   [routerLink]="'login'" *ngIf="!userIsLoggedIn()" class="logout-button">Login</span>
+    </div>
+  </mat-toolbar>
 
-  <div class="sidenav"  [class.show-sidebar]="showSideNav">
-      <div class="btn-box" [routerLink]="'/user/list'" >
-        <img src="assets/admin.png" width="45px">
-        <a class="lbl-btn">Admin panel</a>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" class="sidenav">
+      <div class="sidebar-btn" [routerLink]="'/user/list'">
+        <img src="assets/admin.png"/>
+        <span>Admin panel</span>
       </div>
-
-      <div class="btn-box" [routerLink]="'/security/all'" >
-        <img src="assets/security.png" width="45px">
-        <a>Security</a>
+      <div class="sidebar-btn" [routerLink]="'/security/all'">
+        <img src="assets/security.png"/>
+        <span>Security</span>
       </div>
-  </div>
-
-  <div class="content" [class.show-content]="showSideNav">
-    <router-outlet></router-outlet>
-  </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
 
+<!--<div *ngIf="!userIsLoggedIn()">-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->

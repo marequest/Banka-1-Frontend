@@ -19,7 +19,7 @@ export class UserService {
     //   'Authorization': `Bearer ${localStorage.getItem("jwt")}`
     // });
 
-    //ToDo: Da li treba metod PUT da bude
+    //ToDo: Da li treba metod PUT da bude, posto postoji body
     return this.httpClient.put<{name: string, lastName: string}>(url, jwt, {});
   }
 }
