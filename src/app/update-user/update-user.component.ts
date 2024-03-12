@@ -25,6 +25,19 @@ export class UpdateUserComponent implements OnInit {
   
 
   constructor(private userService: UserService,private router: Router) {
+    this.userToEdit = {
+      id: 0,
+      first_name: '',
+      last_name: '',
+      email: '',
+      position: '',
+      status: '',
+      jmbg: '',
+      brlk: '',
+      phone: '',
+      active: false,
+      birth_date: ''
+    };
   }
 
   onCreateUpdateUserPopup() {
