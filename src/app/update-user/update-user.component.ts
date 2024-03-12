@@ -16,11 +16,11 @@ import { UserService } from '../services/user.service';
 
 export class UpdateUserComponent implements OnInit {
 
-  userToEdit: User| undefined;
-  password: string = '';
+  userToEdit: User;
+  password: string;
 
   ngOnInit(): void {
-    this.userToEdit = this.userService.getUserToEdit();
+    this.userToEdit = this.userService.getUserToEdit() as User;
   }
   
 
@@ -38,6 +38,7 @@ export class UpdateUserComponent implements OnInit {
       active: false,
       birth_date: ''
     };
+    this.password = '';
   }
 
   onCreateUpdateUserPopup() {
