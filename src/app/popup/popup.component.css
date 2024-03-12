@@ -1,0 +1,134 @@
+/* Overlay covering the entire screen, appearing when the popup is active */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center; /* Center the popup vertically */
+  justify-content: center; /* Center the popup horizontally */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for dimming effect */
+  z-index: 1000; /* Ensure the popup is on top of other content */
+}
+
+/* The actual popup box */
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+  max-width: 400px; /* Maximum width, adjust as needed */
+  width: 90%; /* Responsive width */
+  text-align: left;
+}
+
+/* Paragraph styling inside the popup for larger text */
+.popup-content p {
+  font-size: 18px; /* Larger text */
+  color: #333; /* Dark gray for text */
+  margin-bottom: 20px; /* Space below the paragraph */
+}
+
+/* Styling for the close button */
+.popup-content button {
+  padding: 10px 20px; /* Padding for a larger button */
+  background-color: #007bff; /* Bootstrap primary blue */
+  color: white; /* White text */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners for the button */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  float: right; /* Align the button to the right */
+}
+
+/* Hover effect for the button */
+.popup-content button:hover {
+  background-color: #0056b3; /* A darker shade of blue for the hover state */
+}
+
+/* Ensure the button doesn't have outline when focused for cleaner look */
+.popup-content button:focus {
+  outline: none;
+}
+/* Base styles for the text inside the popup */
+.popup-content p {
+  font-size: 18px; /* Larger text */
+  margin-bottom: 20px; /* Space below the paragraph */
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  float: right; /* Keeps the button at the bottom right */
+  margin-top: 20px; /* Adjusts space above the button if needed */
+}
+
+
+
+/* Type-specific styles for warning */
+.popup-content.warning p {
+  color: #ffc107; /* Dark yellowish text for warning */
+}
+
+.popup-content.warning button {
+  background-color: #ffc107; /* Button background for warning */
+  color: white; /* White text for the button */
+}
+
+/* Type-specific styles for error */
+.popup-content.error p {
+  color: #dc3545; /* Dark reddish text for error */
+}
+
+.popup-content.error button {
+  background-color: #dc3545; /* Button background for error */
+  color: white; /* White text for the button */
+}
+
+/* Type-specific styles for info */
+.popup-content.info p {
+  color: #0d6efd; /* Dark blueish text for info */
+}
+
+.popup-content.info button {
+  background-color: #0d6efd; /* Button background for info */
+  color: white; /* White text for the button */
+}
+/* Styles for the icon images */
+/* Styles for the icon images */
+.popup-content .icon {
+  width: 20px; /* Set the icon size to be small */
+  height: 20px; /* Maintain aspect ratio */
+  vertical-align: middle; /* Aligns the icon with the middle of the text */
+  margin-right: 10px; /* Space between the icon and the message */
+}
+
+/* Styles for the message container */
+.popup-content .message-container {
+  margin-bottom: 20px; /* Adds some room below the message container */
+}
+
+/* Styles for the paragraph */
+.popup-content p {
+  display: inline-block; /* Makes the paragraph inline-block to align with the icon */
+  vertical-align: middle; /* Aligns the text with the middle of the icon */
+  margin: 0; /* Removes default margins */
+  font-size: 18px; /* Ensures the message text size */
+}
+
+/* Styling for the close button */
+.popup-content button:hover {
+  background-color: #727072;
+}
+
+.popup-content button:focus {
+  outline: none;
+}
+
+
