@@ -57,7 +57,7 @@ export class ListUserComponent implements OnInit{
   }
 
   togglePopupAddUser() {
-    
+    this.router.navigate(['/user/add']);
   }
 
   search(){
