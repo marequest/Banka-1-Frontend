@@ -154,11 +154,16 @@ td {
   padding: 10px;
   border-bottom: 1px solid gray;
   border-right: 1px dotted gray;
-
-
 }
 
+.option-td {
+  text-align: center;
+  cursor: pointer;
+}
 
+.tab-active {
+  background-color: white;
+}
 
 
 

@@ -24,8 +24,8 @@ export const routes: Routes = [
   {
     path: 'security',
     children: [{ path: 'all', component: SecurityListComponent },],
-    canActivateChild: [employeeGuard],
-    canActivate: [employeeGuard]
+    // canActivateChild: [employeeGuard],
+    // canActivate: [employeeGuard]
   },
 ];
 
