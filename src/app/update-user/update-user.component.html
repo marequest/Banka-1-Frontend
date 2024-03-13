@@ -1,1 +1,84 @@
-<p>update-user works!</p>
+<div class="popup-container">
+    <div class="popup-header">
+      <span>Update User</span>
+      <span class="close-icon" (click)="onCloseUpdateUserPopup()">X</span>
+    </div>
+
+    <div class="form-container">
+      <div class="left-section">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" [(ngModel)]="userToEdit.email" name="email" required #emailModel="ngModel" />
+            <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="error-message">
+            <div *ngIf="emailModel.hasError('required')">Email is required.</div>
+            <div *ngIf="emailModel.hasError('email')">Invalid email format.</div>
+             </div>
+        </div>
+  
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" [(ngModel)]="userToEdit.first_name" name="name" required #nameModel="ngModel" />
+            <div *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)" class="error-message">
+              <div *ngIf="nameModel.hasError('required')">Name is required.</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="surname">Last name:</label>
+            <input type="text" id="surname" [(ngModel)]="userToEdit.last_name" name="surname" required #surnameModel="ngModel" />
+            <div *ngIf="surnameModel.invalid && (surnameModel.dirty || surnameModel.touched)" class="error-message">
+              <div *ngIf="surnameModel.hasError('required')">Surname is required.</div>
+            </div>
+          </div>
+  
+        <div class="form-group">
+            <label for="jmbg">JMBG:</label>
+            <input type="text" id="jmbg" [(ngModel)]="userToEdit.jmbg" name="jmbg" required pattern="^\d{13}$" #jmbgModel="ngModel" />
+            <div *ngIf="jmbgModel.invalid && (jmbgModel.dirty || jmbgModel.touched)" class="error-message">
+              <div *ngIf="jmbgModel.hasError('required')">JMBG is required.</div>
+              <div *ngIf="jmbgModel.hasError('pattern')">Invalid JMBG format (must be 13 digits).</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" [(ngModel)]="password" name="password" required #passwordModel="ngModel" />
+            <div *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)" class="error-message">
+              <div *ngIf="passwordModel.hasError('required')">Password is required.</div>
+            </div>
+          </div>
+      </div>
+  
+      <div class="right-section">
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" [(ngModel)]="userToEdit.phone" name="phone" required pattern="^\d+$" #phoneModel="ngModel" />
+            <div *ngIf="phoneModel.invalid && (phoneModel.dirty || phoneModel.touched)" class="error-message">
+              <div *ngIf="phoneModel.hasError('required')">Phone Number is required.</div>
+              <div *ngIf="phoneModel.hasError('pattern')">Invalid Phone Number format (must contain only digits).</div>
+            </div>
+          </div>
+  
+        <div class="form-group">
+          <label for="position">Position:</label>
+          <select id="position" [(ngModel)]="userToEdit.position">
+            <option value="Manager">Manager</option>
+            <option value="Director">Director</option>
+          </select>
+        </div>
+  
+        <div class="form-group active-checkbox">
+            <label for="active" style="font-size:large">Active:</label>
+            <input type="checkbox" id="active" [(ngModel)]="userToEdit.active" />
+        </div>
+
+        <div class="form-group buttonSl">
+            <button (click)="onCancelUpdateUserPopup()">Cancel</button>
+      <button (click)="onCreateUpdateUserPopup()">Update</button>
+          </div>
+
+      </div>
+
+      
+    </div>
+  </div>
