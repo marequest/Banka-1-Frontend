@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User, UserToEdit } from '../model';
@@ -54,5 +54,20 @@ export class UserService {
 
   public getUserToEdit(): User | undefined {
     return this.userToEdit;
+  }
+
+  private readonly apiUrl1 = 'http://localhost:8080'
+
+
+  getUser(jwt: string | null): Observable<{name: string, lastName: string}> {
+    let url = `${this.apiUrl1}/user/getUser`;
+
+    //ToDo: Da li treba autorizacija
+    // const headers = new HttpHeaders({
+    //   'Authorization': `Bearer ${localStorage.getItem("jwt")}`
+    // });
+
+    //ToDo: Da li treba metod PUT da bude, posto postoji body
+    return this.http.put<{name: string, lastName: string}>(url, jwt, {});
   }
 }

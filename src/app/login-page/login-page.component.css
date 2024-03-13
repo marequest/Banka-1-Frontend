@@ -1,0 +1,92 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* This ensures the body takes the full height of the viewport */
+  width: 100%; /* This ensures the body takes the full width of the viewport */
+}
+
+/* Apply the background styles to the element with the specified id */
+#login-background {
+  background-image: url('../../assets/backgroundLogin.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* This will take the full height of the viewport */
+  width: 100%; /* This will take the full width of the viewport */
+  position: absolute; /* This will position it in relation to the nearest positioned ancestor */
+  top: 0; /* This positions the top edge of the element at the top of the viewport */
+  left: 0; /* This positions the left edge of the element at the left of the viewport */
+  z-index: -1; /* This ensures it stays behind other content */
+}
+
+.login-container {
+  max-width: 300px;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1); /* Optional: semi-transparent white background for the form to enhance readability */
+  border-radius: 8px; /* Optional: rounded corners for the form */
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* So that width includes padding */
+}
+
+.submit-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.submit-container button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  display: block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.logo-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+.logo-container img {
+  display: block; /* This ensures each image takes up the full width of its line */
+  margin-bottom: 5px; /* Adjust the space between the images as needed */
+  max-width: 100%; /* This makes sure the image is responsive and doesn't overflow its container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Last image should not have a margin-bottom */
+.logo-container img:last-child {
+  margin-bottom: 0;
+}
