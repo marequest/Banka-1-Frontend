@@ -3,13 +3,24 @@
 
   <div class="table-wrapper">
     <div class="security-tabs">
-      <div class="tab active-tab">
+      <div
+        [ngClass]="selectedTab === 'actions' ? 'tab tab-active' : 'tab'"
+        (click)="setSelectedTab('actions')"
+      >
         <div class="tab-content">Actions</div>
       </div>
-      <div class="tab">
+      <div
+        [ngClass]="selectedTab === 'future' ? 'tab tab-active' : 'tab'"
+        class="tab"
+        (click)="setSelectedTab('future')"
+      >
         <div class="tab-content">Future</div>
       </div>
-      <div class="tab">
+      <div
+        [ngClass]="selectedTab === 'forex' ? 'tab tab-active' : 'tab'"
+        class="tab"
+        (click)="setSelectedTab('forex')"
+      >
         <div class="tab-content">Forex</div>
       </div>
     </div>
@@ -49,24 +60,22 @@
         <table class="user-table" cellpadding="2px" cellspacing="0">
           <thead class="table-head-custom">
             <tr class="tr-rows">
-              <th class="table-head">NAME</th>
-              <th class="table-head">EMAIL</th>
-              <th class="table-head">JMBG</th>
-              <th class="table-head">POSITION</th>
-              <th class="table-head">PHONE NUMBER</th>
-              <th class="table-head">ACTIVITY</th>
+              <th class="table-head">Ticker</th>
+              <th class="table-head">Price</th>
+              <th class="table-head">Change</th>
+              <th class="table-head">Volume</th>
+              <th class="table-head">Margin Cost</th>
               <th class="table-head"></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let user of users" class="tr-rows">
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.jmbg }}</td>
-              <td>{{ user.position }}</td>
-              <td>{{ user.phone }}</td>
-              <td>{{ user.activity }}</td>
-              <td>
+              <td>{{ user.ticker }}</td>
+              <td>{{ user.price }}</td>
+              <td>{{ user.change }}</td>
+              <td>{{ user.volume }}</td>
+              <td>{{ user.initial_margin_cost }}</td>
+              <td class="option-td">
                 <span class="material-symbols-outlined"> more_vert </span>
               </td>
             </tr>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SecurityService, UserSecurity } from '../service/security.service';
+import { Security, SecurityService } from '../service/security.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './security-list.component.css'
 })
 export class SecurityListComponent {
-  users: UserSecurity[] = [];
+  users: Security[] = [];
+  selectedTab: string = "actions";
 
   constructor(private securityService: SecurityService) {
 
@@ -23,12 +24,17 @@ export class SecurityListComponent {
 
   loadUsers(): void {
     this.securityService.getUsers().subscribe(
-      (users: UserSecurity[]) => {
+      (users: Security[]) => {
         this.users = users;
       },
       (error: HttpErrorResponse) => {
         console.error('Error loading users:', error);
       }
     );
+  }
+
+  setSelectedTab(tab: string) {
+    console.log(tab)
+    this.selectedTab = tab;
   }
 }
