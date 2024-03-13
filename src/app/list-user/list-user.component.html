@@ -1,56 +1,83 @@
-<div style="margin-left: 5%; margin-right: 5%;">
-<div class="glavni">
-  <div class="search-bar">
-    <input type="text" placeholder="Show all" />
-    <input type="text" placeholder="Search by email" />
-    <input type="text" placeholder="By name" />
-    <input type="text" placeholder="By surname" />
-    <button class="search-icon" (click)="search()">🔍</button>
-  </div>
-  <div>
-    <button class="add-user-button" (click)="togglePopupAddUser()">Add new User</button>
-  </div>
-</div>
-  
-  <h2>Users</h2>
-  <table class="users-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Jmbg</th>
-        <th>Position</th>
-        <th>PhoneNumber</th>
-        <th>Activity</th>
-        <th></th>
-  
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.first_name }} {{ user.last_name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.jmbg }}</td>
-        <td>{{ user.position }}</td>
-        <td>{{ user.phone }}</td>
-        <td>{{ user.active ? 'Active' : 'Inactive' }}</td>
-        <td>
-          <div class="options-menu">
-            <button id="options-button">&#8286;</button>
-            <div class="options-dropdown">
-              <button id="editProfile-button" (click)="editUser(user)">Edit Profile</button>
-              <button id="delete-button" (click)="deleteUser(user)">Delete</button>
+<div class="content">
+    <div class="security-title">TITLE</div>
+    <div class="table-wrapper">
+      <div class="table-content">
+        <div class="filter-row">
+          <div class="left-row">
+            <div class="filter-dropdown">
+              <select class="security-filter-select">
+                <option>Show all</option>
+              </select>
+            </div>
+            <div class="filter-input">
+              <input
+                class="security-filter-input"
+                placeholder="Search by email"
+              />
+            </div>
+            <div class="filter-input">
+              <input class="security-filter-input" placeholder="By name" />
+            </div>
+            <div class="filter-input">
+              <input class="security-filter-input" placeholder="By surname" />
+            </div>
+            <div class="search-icon">
+              <button (click)="search()">🔍</button>
             </div>
           </div>
-        </td>
-      </tr>
-
-        
-    </tbody>
-  </table>
+  
+          <div class="right-row">
+            <button class="add-new-btn" (click)="togglePopupAddUser()">Add new User</button>
+          </div>
+        </div>
+  
+        <div class="security-table-wrapper">
+          <div class="wrapper-header">Users</div>
+          <table class="user-table" cellpadding="2px" cellspacing="0">
+            <thead class="table-head-custom">
+              <tr class="tr-rows">
+                <th class="table-head">NAME</th>
+                <th class="table-head">EMAIL</th>
+                <th class="table-head">JMBG</th>
+                <th class="table-head">POSITION</th>
+                <th class="table-head">PHONE NUMBER</th>
+                <th class="table-head">ACTIVITY</th>
+                <th class="table-head"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users" class="tr-rows">
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.position }}</td>
+                <td>{{ user.phone }}</td>
+                <td [ngStyle]="{'color': user.active ? 'green' : 'red'}">
+                      {{ user.active ? 'Active' : 'Inactive' }}
+                </td>
+                <td>
+                  <div class="options-menu">
+                    <button id="options-button">&#8286;</button>
+                    <div class="options-dropdown">
+                      <button id="editProfile-button" (click)="editUser(user)">Edit Profile</button>
+                      <button id="delete-button" (click)="deleteUser(user)">Delete</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 </div>
   
+
+
   
-  
-  
-  
+
+
+
+
+
+   
