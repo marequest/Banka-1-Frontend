@@ -13,34 +13,11 @@ import { Router } from '@angular/router';
 })
 export class ListUserComponent implements OnInit{
 
-  public users: User[] = [
-    {
-      id: 1,
-      first_name: 'John',
-      last_name: 'Doe',
-      email: 'john@example.com',
-      position: 'Manager',
-      status: 'Active',
-      jmbg: '1234567890123',
-      brlk: '12345678',
-      phone: '1234567890',
-      active: true,
-      birth_date: '1990-01-01',
-    },
-    {
-      id: 2,
-      first_name: 'Jane',
-      last_name: 'Doe',
-      email: 'jane@example.com',
-      position: 'Director',
-      status: 'Inactive',
-      jmbg: '9876543210987',
-      brlk: '87654321',
-      phone: '0987654321',
-      active: false,
-      birth_date: '1995-05-05'
-    }
-  ];
+  position: string = '';
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -61,7 +38,7 @@ export class ListUserComponent implements OnInit{
   }
 
   search(){
-
+      this.userService.searchUser(this.position,this.email,this.firstName,this.lastName);
   }
 
   editUser(user: User){

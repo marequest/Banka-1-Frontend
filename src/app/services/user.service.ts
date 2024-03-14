@@ -1,14 +1,15 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders,  HttpParams} from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User, UserToEdit } from '../model';
+import { environment } from "../../../enviroment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = environment.baseUrl;
 
   private userToEdit: User | undefined;
 
@@ -28,6 +29,23 @@ export class UserService {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt')
       }
     });
+  }
+
+  public searchUser(position: string, email: string, firstName: string, lastName:string): Observable<any> {
+    
+    const params = new HttpParams().set('firstName', firstName).set('lastName', lastName).set('email',email).set('position',position);
+    const jwt = localStorage.getItem('jwt');
+  
+    if (!jwt) {
+      throw new Error('JWT not found in localStorage');
+    }
+
+    // Setting up the headers
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + jwt
+    });
+  
+    return this.http.get(this.apiUrl + '/user/search' ,{ headers, params });
   }
 
 
