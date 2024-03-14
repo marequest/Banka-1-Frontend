@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../enviroment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private loginUrl = 'assets/testLogin.json'; // Set your API endpoint here
+
+  private loginUrl = environment.baseUrl+"/auth/login"; // Set your API endpoint here
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +17,7 @@ export class AuthService {
     return this.http.post(this.loginUrl, { email, password }).pipe(
       map((response: any) => {
         // Assuming the response contains the JWT token
-        return response.token;
+        return response.jwt;
       })
     );
     // const url = 'assets/testLogin.json';

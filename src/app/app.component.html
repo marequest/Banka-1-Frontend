@@ -15,14 +15,18 @@
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container" >
-    <mat-sidenav #sidenav mode="side" class="sidenav" *ngIf="userIsLoggedIn()"s>
-      <div class="sidebar-btn" [routerLink]="'/user/list'">
+    <mat-sidenav #sidenav mode="side" class="sidenav" *ngIf="userIsLoggedIn()">
+      <div class="sidebar-btn" [routerLink]="'/welcome'" >
         <img src="assets/admin.png"/>
+        <span>Welcome</span>
+      </div>
+      <div class="sidebar-btn" [routerLink]="'/user/list'" >
+        <img src="assets/admin.png" />
         <span>Admin panel</span>
       </div>
       <div class="sidebar-btn" [routerLink]="'/security/all'">
         <img src="assets/security.png"/>
-        <span>Security</span>
+        <span>Securities</span>
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
