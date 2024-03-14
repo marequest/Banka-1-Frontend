@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import {PopupService} from "../service/popup.service";
+import { UserService } from '../services/user.service';
 
 
 
@@ -25,12 +26,20 @@ export class AddUserComponent {
   };
 
   constructor(private router: Router,
-    private popupService: PopupService,) {}
+    private popupService: PopupService,
+    private userService: UserService) {}
 
   onCreateAddUserPopup() {
     if (this.validateForm()) {
-      alert('Successfully created user ' + JSON.stringify(this.addUserData));
-      this.router.navigate(['/user/list']);
+      this.userService.addUser(this.addUserData).subscribe(
+        response => {
+          alert('Successfully created user ' + JSON.stringify(this.addUserData));
+          this.router.navigate(['/user/list']);
+        },
+        error => {
+          alert('Error creating user:' + JSON.stringify(this.addUserData));
+          // Handle error
+        });
     } 
   }
 

@@ -38,7 +38,7 @@ export class ListUserComponent implements OnInit{
   }
 
   search(){
-      this.userService.searchUser(this.position,this.email,this.firstName,this.lastName);
+      this.userService.searchUser(this.position,this.email,this.firstName,this.lastName).subscribe();
   }
 
   editUser(user: User){

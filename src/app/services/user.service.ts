@@ -31,6 +31,10 @@ export class UserService {
     });
   }
 
+  public addUser(userData: any): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/createUser`, userData);
+  }
+
   public searchUser(position: string, email: string, firstName: string, lastName:string): Observable<any> {
     
     const params = new HttpParams().set('firstName', firstName).set('lastName', lastName).set('email',email).set('position',position);
