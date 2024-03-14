@@ -16,7 +16,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(this.apiUrl, {
+    return this.http.get<User[]>(this.apiUrl+"/user/getAll", {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt')
       }

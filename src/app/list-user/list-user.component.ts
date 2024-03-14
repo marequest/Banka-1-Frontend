@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 })
 export class ListUserComponent implements OnInit{
 
-  position: string = '';
-  email: string = '';
-  firstName: string = '';
-  lastName: string = '';
-
+  public users: User[] = [];
+  public position:string='';
+  public firstName:string='';
+  public lastName:string='';
+  public email:string='';
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -38,7 +38,9 @@ export class ListUserComponent implements OnInit{
   }
 
   search(){
-      this.userService.searchUser(this.position,this.email,this.firstName,this.lastName).subscribe();
+    this.userService.searchUser(this.position,this.email,this.firstName,this.lastName).subscribe(
+      
+      );
   }
 
   editUser(user: User){
