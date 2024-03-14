@@ -32,7 +32,10 @@ export class UserService {
   }
 
   public addUser(userData: any): Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/createUser`, userData);
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+    });
+    return this.http.post<any>(`${this.apiUrl}/createUser`, userData, { headers });
   }
 
   public searchUser(position: string, email: string, firstName: string, lastName:string): Observable<any> {

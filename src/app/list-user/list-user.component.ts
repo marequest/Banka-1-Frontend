@@ -22,14 +22,14 @@ export class ListUserComponent implements OnInit{
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.userService.getUsers().subscribe({
-    //   next: (users: User[]) => {
-    //     this.users = users;
-    //   },
-    //   error: (error: any) => {
-    //     console.error(error);
-    //   }
-    // });
+    this.userService.getUsers().subscribe({
+      next: (users: User[]) => {
+        this.users = users;
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
 
   }
 
@@ -38,9 +38,14 @@ export class ListUserComponent implements OnInit{
   }
 
   search(){
-    this.userService.searchUser(this.position,this.email,this.firstName,this.lastName).subscribe(
-      
-      );
+    this.userService.searchUser(this.position,this.email,this.firstName,this.lastName).subscribe({
+      next: (users: User[]) => {
+        this.users = users;
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
   }
 
   editUser(user: User){
