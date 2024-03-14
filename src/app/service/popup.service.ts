@@ -1,20 +1,19 @@
 // popup.service.ts
 import { Injectable } from '@angular/core';
 import {PopupComponent} from "../popup/popup.component";
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PopupService {
-  private popupComponent!: PopupComponent;
 
-  register(popupComponent: PopupComponent) {
-    this.popupComponent = popupComponent;
-  }
+  constructor(private dialog: MatDialog) { }
 
-  show(message: string, type: 'warning' | 'error' | 'info') {
-    this.popupComponent.message = message;
-    this.popupComponent.type = type;
-    this.popupComponent.show();
+  openPopup(message: string, text: string): void {
+    this.dialog.open(PopupComponent, {
+      width: '250px',
+      data: { message, text }
+    });
   }
 }

@@ -19,7 +19,7 @@ export const routes: Routes = [
       { path: 'list', component: ListUserComponent },
       { path: 'set-password/:id', component: SetPasswordComponent },
     ],
-    canActivateChild: [adminGuard]
+    // canActivateChild: [adminGuard]
   },
   {
     path: 'security',

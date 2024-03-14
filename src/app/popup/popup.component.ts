@@ -1,38 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit , Inject} from '@angular/core';
 import {PopupService} from "../service/popup.service";
 import {CommonModule} from "@angular/common";
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-popup',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './popup.component.html',
-  styleUrl: './popup.component.css'
+  styleUrls: ['./popup.component.css']
 })
-export class PopupComponent {
-  @Input() message!: string;
-  @Input() type!: 'warning' | 'error' | 'info';
+export class PopupComponent implements OnInit {
+  message!: string;
+  text!: string;
 
-  isVisible = false;
+  constructor(
+    public dialogRef: MatDialogRef<PopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { message: string, text: string }
+  ) { }
 
-  show() {
-    this.isVisible = true;
+  ngOnInit(): void {
+    this.message = this.data.message;
+    this.text = this.data.text;
   }
 
-  closePopup() {
-    this.isVisible = false;
-  }
-
-  getIconPath(): string {
-    switch (this.type) {
-      case 'error':
-        return 'assets/error.png';
-      case 'warning':
-        return 'assets/warning.png';
-      case 'info':
-        return 'assets/info.png';
-      default:
-        return ''; // Default icon or empty if none
-    }
+  closePopup(): void {
+    this.dialogRef.close();
   }
 }

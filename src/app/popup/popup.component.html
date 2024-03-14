@@ -1,10 +1,8 @@
-<div class="popup-container" *ngIf="isVisible" (click)="closePopup()">
-  <div [ngClass]="{'popup-content': true, 'warning': type === 'warning', 'error': type === 'error', 'info': type === 'info'}" (click)="$event.stopPropagation()">
-    <!-- Wrap icon and message in a container -->
-    <div class="message-container">
-      <img class="icon" [src]="getIconPath()" alt="Icon">
-      <p>{{ message }}</p>
-    </div>
-    <button (click)="closePopup()">Close</button>
-  </div>
+<!-- popup.component.html -->
+
+<div class="popup-container">
+  <h2 class="popup-header">{{ message }}</h2>
+  <p class="popup-message">{{ text }}</p>
+
+  <button mat-button class="popup-button" (click)="closePopup()">Close</button>
 </div>

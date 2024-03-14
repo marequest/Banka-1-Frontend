@@ -1,12 +1,14 @@
 <div class="content">
-    <div class="security-title">TITLE</div>
+    <div class="security-title">Admin panel</div>
     <div class="table-wrapper">
       <div class="table-content">
         <div class="filter-row">
           <div class="left-row">
             <div class="filter-dropdown">
               <select class="security-filter-select">
-                <option>Show all</option>
+                <option>All</option>
+                <option>Employee</option>
+                <option>Admin</option>
               </select>
             </div>
             <div class="filter-input">
@@ -22,12 +24,14 @@
               <input class="security-filter-input" placeholder="By surname" />
             </div>
             <div class="search-icon">
-              <button (click)="search()">🔍</button>
+              <button (click)="search()" class="button-image">
+                <img src="assets/search.png" alt="search" >
+              </button>
             </div>
           </div>
   
           <div class="right-row">
-            <button class="add-new-btn" (click)="togglePopupAddUser()">Add new User</button>
+            <button class="add-new-btn" (click)="togglePopupAddUser() ">Add new User</button>
           </div>
         </div>
   

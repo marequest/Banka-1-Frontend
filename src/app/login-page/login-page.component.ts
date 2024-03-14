@@ -6,6 +6,10 @@ import {PopupService} from "../service/popup.service";
 import {PopupComponent} from "../popup/popup.component";
 import {z} from "zod";
 import {ValidationService} from "../service/validation.service";
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-login-page',
@@ -19,11 +23,14 @@ import {ValidationService} from "../service/validation.service";
 })
 export class LoginPageComponent {
   model: any = {};
+  showErrorModal: boolean = false;
 
   constructor(
     private authService: AuthService,
+    public dialog: MatDialog,
+    private validator: ValidationService,
     private popupService: PopupService,
-    private validator: ValidationService
+    private router: Router,
   ) {}
   loginFormSchema = z.object({
     email: z.string().email(),
@@ -34,10 +41,15 @@ export class LoginPageComponent {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
         localStorage.setItem('jwt', token);
+        this.router.navigate(['/security/all']);
       },
       (error) => {
-        this.popupService.show('Incorrect credentials!', 'error');
-      }
-    );
+        this.popupService.openPopup("Error", "Wrong credentials!");
+      });
+
+      
   }
+
+
+
 }
