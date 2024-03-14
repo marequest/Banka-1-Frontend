@@ -8,9 +8,11 @@ import { SecurityListComponent } from './security-list/security-list.component';
 import { NgModule } from "@angular/core";
 import {employeeGuard} from "./guards/employee.guard";
 import {adminGuard} from "./guards/admin.guard";
+import { WelcomeComponent } from './welcome/welcome.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
+  { path: 'welcome', component: WelcomeComponent },
   {
     path: 'user',
     children: [

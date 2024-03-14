@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { User, UserToEdit } from '../model';
 import { UserService } from '../services/user.service';
+import { PopupService } from '../service/popup.service';
 
 @Component({
   selector: 'app-update-user',
@@ -24,7 +25,8 @@ export class UpdateUserComponent implements OnInit {
   }
   
 
-  constructor(private userService: UserService,private router: Router) {
+  constructor(private userService: UserService,private router: Router,
+              private popupService: PopupService) {
     this.userToEdit = {
       id: 0,
       first_name: '',
@@ -94,38 +96,38 @@ export class UpdateUserComponent implements OnInit {
 
   private validateForm(): boolean {
     if (!this.userToEdit) {
-      console.error('User to edit is not defined.');
+      this.popupService.openPopup("Error", "User to edit is not defined.");
       return false;
     }
   
 
     if (!this.userToEdit.email || !this.isValidEmail(this.userToEdit.email)) {
-      console.error('Email nije validan.');
+      this.popupService.openPopup("Error", "Email nije validan.");
       return false;
     }
 
     if (!this.userToEdit.first_name ) {
-      console.error('Name nije validan.');
+      this.popupService.openPopup("Error", "Name nije validan.");
       return false;
     }
 
     if (this.password && this.password.length < 8) {
-      console.error('Password nije validan.');
+      this.popupService.openPopup("Error", "Password nije validan.");
       return false;
     }
 
     if (!this.userToEdit.last_name) {
-      console.error('Surname nije validan.');
+      this.popupService.openPopup("Error", "Surname nije validan.");
       return false;
     }
 
     if (!this.userToEdit.jmbg || !this.isValidJMBG(this.userToEdit.jmbg)) {
-      console.error('JMBG nije validan.');
+      this.popupService.openPopup("Error", "JMBG nije validan.");
       return false;
     }
 
     if (!this.userToEdit.phone || !this.isValidPhoneNumber(this.userToEdit.phone)) {
-      console.error('Broj telefona nije validan.');
+      this.popupService.openPopup("Error", "Broj telefona nije validan.");
       return false;
     }
     return true;

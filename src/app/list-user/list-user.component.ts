@@ -66,7 +66,7 @@ export class ListUserComponent implements OnInit{
 
   editUser(user: User){
     this.userService.setUserToEdit(user);
-    this.router.navigate(['/user/update']);
+    this.router.navigate(['/welcome']);
   }
 
   deleteUser(user: User){
