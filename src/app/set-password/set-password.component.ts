@@ -2,6 +2,10 @@ import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
+import {environment} from "../../../enviroment";
+import {HttpHeaders, HttpParams} from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-set-password',
@@ -20,14 +24,31 @@ export class SetPasswordComponent {
   confirmPassVisible: boolean = false;
   password: string = '';
   confirmedPassword: string = '';
+
+  constructor(private http: HttpClient) {
+
+
+  }
+
+  // @ts-ignore
   confirmPassword() {
-    if(this.password !== this.confirmedPassword) {
+    if (this.password !== this.confirmedPassword) {
       alert('Incorrect input. Entered passwords must match');
     } else {
-      fetch('api/password', {
-        method: 'POST',
-        body: JSON.stringify({id: this.activatedRoute.snapshot.params['id'], password: this.password})
-      }).then(r => r.ok? alert('Successfully created password') : r.text().then(txt => alert(txt)));
+      // Assuming environment.baseUrl is correctly defined
+
+      const requestBody = {
+        password: this.password
+      };
+
+      // Set HTTP headers, including Content-Type for JSON
+      const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+      // Execute the POST request
+      // Make sure to replace '/user/activate' with '/user/activate/{token}' if your API requires the token in the URL
+      return this.http.post(environment.baseUrl + '/user/activate/' + this.activatedRoute.snapshot.params['token'], requestBody, { headers });
+
     }
   }
+
 }

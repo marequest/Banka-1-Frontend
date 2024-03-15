@@ -41,13 +41,13 @@ export class LoginPageComponent {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
         localStorage.setItem('jwt', token);
-        this.router.navigate(['/security/all']);
+        this.router.navigate(['/welcome']);
       },
       (error) => {
         this.popupService.openPopup("Error", "Wrong credentials!");
       });
 
-      
+
   }
 
 

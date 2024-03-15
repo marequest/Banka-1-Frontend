@@ -1,7 +1,7 @@
 import { Component, OnInit  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { User, UserToEdit } from '../model';
 import { UserService } from '../services/user.service';
 import { PopupService } from '../service/popup.service';
@@ -17,28 +17,36 @@ import { PopupService } from '../service/popup.service';
 
 export class UpdateUserComponent implements OnInit {
 
-  userToEdit: User;
+  userToEdit: {
+    firstName: string;
+    lastName: string;
+    password: string;
+    phoneNumber: string;
+    jmbg: string;
+    active: boolean;
+    position: string;
+    userId: number;
+    email: string
+  };
   password: string;
 
   ngOnInit(): void {
     this.userToEdit = this.userService.getUserToEdit() as User;
   }
-  
+
 
   constructor(private userService: UserService,private router: Router,
               private popupService: PopupService) {
     this.userToEdit = {
-      id: 0,
-      first_name: '',
-      last_name: '',
+      userId: 0,
+      firstName: '',
+      lastName: '',
       email: '',
       position: '',
-      status: '',
       jmbg: '',
-      brlk: '',
-      phone: '',
+      phoneNumber: '',
+      password: '',
       active: false,
-      birth_date: ''
     };
     this.password = '';
   }
@@ -50,19 +58,26 @@ export class UpdateUserComponent implements OnInit {
         console.error('User to edit is not defined.');
         return;
       }
-      const updatedUserRequest: UserToEdit = {
-        id: this.userToEdit.id,
-        first_name: this.userToEdit.first_name,
-        last_name: this.userToEdit.last_name,
+      const updatedUserRequest: {
+        userId: number;
+        email: string
+        password: string;
+        firstName: string;
+        lastName: string;
+        jmbg: string;
+        position: string;
+        phoneNumber: string;
+        isActive: boolean;
+      } = {
+        userId: this.userToEdit.userId,
+        firstName: this.userToEdit.firstName,
+        lastName: this.userToEdit.lastName,
         email: this.userToEdit.email,
         password: this.password,
         position: this.userToEdit.position,
-        status: this.userToEdit.status,
         jmbg: this.userToEdit.jmbg,
-        brlk: this.userToEdit.brlk,
-        phone: this.userToEdit.phone,
-        active: this.userToEdit.active,
-        birth_date: this.userToEdit.birth_date
+        phoneNumber: this.userToEdit.phoneNumber,
+        isActive: this.userToEdit.active,
       };
 
       this.userService.updateUser(updatedUserRequest).subscribe({
@@ -99,14 +114,14 @@ export class UpdateUserComponent implements OnInit {
       this.popupService.openPopup("Error", "User to edit is not defined.");
       return false;
     }
-  
+
 
     if (!this.userToEdit.email || !this.isValidEmail(this.userToEdit.email)) {
       this.popupService.openPopup("Error", "Email nije validan.");
       return false;
     }
 
-    if (!this.userToEdit.first_name ) {
+    if (!this.userToEdit.firstName ) {
       this.popupService.openPopup("Error", "Name nije validan.");
       return false;
     }
@@ -116,7 +131,7 @@ export class UpdateUserComponent implements OnInit {
       return false;
     }
 
-    if (!this.userToEdit.last_name) {
+    if (!this.userToEdit.lastName) {
       this.popupService.openPopup("Error", "Surname nije validan.");
       return false;
     }
@@ -126,7 +141,7 @@ export class UpdateUserComponent implements OnInit {
       return false;
     }
 
-    if (!this.userToEdit.phone || !this.isValidPhoneNumber(this.userToEdit.phone)) {
+    if (!this.userToEdit.phoneNumber || !this.isValidPhoneNumber(this.userToEdit.phoneNumber)) {
       this.popupService.openPopup("Error", "Broj telefona nije validan.");
       return false;
     }

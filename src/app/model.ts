@@ -1,15 +1,30 @@
 export interface User{
-    id: number;
-    first_name: string;
-    last_name: string;
+    userId: number;
+    username:string;
+    password:string;
     email: string;
-    position: string;
-    status: string;
+    firstName: string;
+    lastName: string;
     jmbg: string;
-    brlk: string;
-    phone: string;
+    position: string;
+    phoneNumber: string;
     active: boolean;
-    birth_date: string;
+    permissions:[Permissions]
+}
+export interface Permissions{
+    permission_id:number;
+    name:string;
+    description:string;
+}
+
+export interface CreateUserRequest{
+  email: string;
+  firstName:string;
+  lastName:string;
+  jmbg:string;
+  position:string;
+  phoneNumber:string;
+  active:boolean;
 }
 
 export interface UserToEdit{

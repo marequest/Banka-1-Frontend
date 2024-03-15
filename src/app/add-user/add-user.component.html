@@ -14,24 +14,24 @@
             <div *ngIf="emailModel.hasError('email')">Invalid email format.</div>
              </div>
         </div>
-  
+
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" id="name" [(ngModel)]="addUserData.name" name="name" required #nameModel="ngModel" />
+            <input type="text" id="name" [(ngModel)]="addUserData.firstName" name="name" required #nameModel="ngModel" />
             <div *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)" class="error-message">
               <div *ngIf="nameModel.hasError('required')">Name is required.</div>
             </div>
           </div>
-          
+
           <!-- Surname -->
           <div class="form-group">
             <label for="surname">Surname:</label>
-            <input type="text" id="surname" [(ngModel)]="addUserData.surname" name="surname" required #surnameModel="ngModel" />
+            <input type="text" id="surname" [(ngModel)]="addUserData.lastName" name="surname" required #surnameModel="ngModel" />
             <div *ngIf="surnameModel.invalid && (surnameModel.dirty || surnameModel.touched)" class="error-message">
               <div *ngIf="surnameModel.hasError('required')">Surname is required.</div>
             </div>
           </div>
-  
+
         <div class="form-group">
             <label for="jmbg">JMBG:</label>
             <input type="text" id="jmbg" [(ngModel)]="addUserData.jmbg" name="jmbg" required pattern="^\d{13}$" #jmbgModel="ngModel" />
@@ -41,17 +41,17 @@
             </div>
           </div>
       </div>
-  
+
       <div class="right-section">
         <div class="form-group">
             <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" [(ngModel)]="addUserData.phone" name="phone" required pattern="^\d+$" #phoneModel="ngModel" />
+            <input type="text" id="phone" [(ngModel)]="addUserData.phoneNumber" name="phone" required pattern="^\d+$" #phoneModel="ngModel" />
             <div *ngIf="phoneModel.invalid && (phoneModel.dirty || phoneModel.touched)" class="error-message">
               <div *ngIf="phoneModel.hasError('required')">Phone Number is required.</div>
               <div *ngIf="phoneModel.hasError('pattern')">Invalid Phone Number format (must contain only digits).</div>
             </div>
           </div>
-  
+
         <div class="form-group">
           <label for="position">Position:</label>
           <select id="position" [(ngModel)]="addUserData.position">
@@ -59,7 +59,7 @@
             <option value="Admin">Admin</option>
           </select>
         </div>
-  
+
         <div class="form-group active-checkbox">
             <label for="active" style="font-size:large">Active:</label>
             <input type="checkbox" id="active" [(ngModel)]="addUserData.active" />
@@ -69,9 +69,9 @@
             <button (click)="onCancelAddUserPopup()">Cancel</button>
       <button (click)="onCreateAddUserPopup()">Create</button>
           </div>
-    
+
       </div>
 
-      
+
     </div>
   </div>

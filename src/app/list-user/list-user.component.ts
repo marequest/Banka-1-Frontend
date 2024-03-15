@@ -3,11 +3,13 @@ import { User } from '../model';
 import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import {PopupService} from "../service/popup.service";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-list-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './list-user.component.html',
   styleUrl: './list-user.component.css'
 })
@@ -19,9 +21,9 @@ export class ListUserComponent implements OnInit{
   public lastName:string='';
   public email:string='';
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router,private popup:PopupService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.userService.getUsers().subscribe({
       next: (users: User[]) => {
         this.users = users;
@@ -30,7 +32,6 @@ export class ListUserComponent implements OnInit{
         console.error(error);
       }
     });
-
   }
 
   togglePopupAddUser() {
@@ -41,6 +42,7 @@ export class ListUserComponent implements OnInit{
     this.userService.searchUser(this.position,this.email,this.firstName,this.lastName).subscribe({
       next: (users: User[]) => {
         this.users = users;
+
       },
       error: (error: any) => {
         console.error(error);
@@ -50,20 +52,19 @@ export class ListUserComponent implements OnInit{
 
   editUser(user: User){
     this.userService.setUserToEdit(user);
-    this.router.navigate(['/welcome']);
+    this.router.navigate(['/user/update']);
   }
 
   deleteUser(user: User){
-    console.log(user);
 
-    // this.userService.deleteUser(user.id).subscribe({
-    //   next: (response: any) => {
-    //     this.users = this.users.filter(u => u.id !== user.id);
-    //   },
-    //   error: (error: any) => {
-    //     console.error('Error deleting user: ', error);
-    //   }
-    // });
+     // this.userService.deleteUser(user.email).subscribe({
+     //   next: (response: any) => {
+     //     this.users = this.users.filter(u => u.email !== user.email);
+     //   },
+     //   error: (error: any) => {
+     //     console.error('Error deleting user: ', error);
+     //   }
+     // });
 
   }
 
