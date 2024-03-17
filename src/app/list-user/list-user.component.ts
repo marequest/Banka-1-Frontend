@@ -20,10 +20,16 @@ export class ListUserComponent implements OnInit{
   public firstName:string='';
   public lastName:string='';
   public email:string='';
+  public searchEmail:string='';
+  selectedTab: string = "permissions";
 
   constructor(private userService: UserService, private router: Router,private popup:PopupService) { }
 
   ngOnInit() {
+    this.loadUsersFromDataBase();
+  }
+
+  loadUsersFromDataBase(){
     this.userService.getUsers().subscribe({
       next: (users: User[]) => {
         this.users = users;
@@ -32,6 +38,11 @@ export class ListUserComponent implements OnInit{
         console.error(error);
       }
     });
+  }
+
+  setSelectedTab(tab: string) {
+    console.log(tab)
+    this.selectedTab = tab;
   }
 
   togglePopupAddUser() {
@@ -66,6 +77,24 @@ export class ListUserComponent implements OnInit{
      //   }
      // });
 
+  }
+
+  removePermission(user: any, index: number) {
+    console.log("Removed perm: ");
+    console.log(user.permissions[index]);
+    user.permissions.splice(index, 1);
+
+    // TODO update permissions in database
+  }
+
+  deleteAllPermissions(user: User){
+    user.permissions = [];
+    // TODO update permissions in database
+  }
+
+  filter(){
+    if(this.searchEmail === '' || this.searchEmail === null) this.loadUsersFromDataBase();
+    else this.users = this.users.filter(user => user.email === this.searchEmail)
   }
 
 }

@@ -9,7 +9,7 @@ export interface User{
     position: string;
     phoneNumber: string;
     active: boolean;
-    permissions:[Permissions]
+    permissions:Permissions[]
 }
 export interface Permissions{
     permission_id:number;
