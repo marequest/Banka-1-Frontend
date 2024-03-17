@@ -23,9 +23,11 @@ export class AppComponent {
 
   constructor(private userService : UserService, private router: Router) {
     this.userInitials = "/"
+
     this.userService.getUser(localStorage.getItem("jwt")).subscribe(
       response => {
-        this.userInitials = response.name.charAt(0) + response.lastName.charAt(0);
+        console.log(response)
+        this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
       }, (e) => {
         this.userInitials = "/"
       }

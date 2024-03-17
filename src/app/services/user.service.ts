@@ -2,7 +2,7 @@ import {HttpClient, HttpHeaders,  HttpParams} from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User, UserToEdit } from '../model';
-import { environment } from "../../../enviroment";
+import { environment } from "../../../environment";
 import {PopupService} from "../service/popup.service";
 
 @Injectable({
@@ -93,16 +93,18 @@ export class UserService {
     return this.userToEdit;
   }
 
+  getUser(jwt: string | null): Observable<any> {
+    const url = `${this.apiUrl}/user/getUser`;
 
-  getUser(jwt: string | null): Observable<{name: string, lastName: string}> {
-    let url = `${this.apiUrl}/user/getUser`;
+    if (!jwt) {
+      throw new Error('JWT token is missing');
+    }
 
-    //ToDo: Da li treba autorizacija
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${localStorage.getItem("jwt")}`
-    // });
-
-    //ToDo: Da li treba metod PUT da bude, posto postoji body
-    return this.http.put<{name: string, lastName: string}>(url, jwt, {});
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+    return this.http.get<any>(url, httpOptions);
   }
 }
