@@ -22,7 +22,6 @@ import {PopupService} from "../service/popup.service";
 export class SetPasswordComponent {
   private route = inject(ActivatedRoute);
   passVisible: boolean = false;
-  // confirmPassVisible: boolean = false;
   password: string = '';
   confirmedPassword: string = '';
   token: string = '';
@@ -36,26 +35,6 @@ export class SetPasswordComponent {
     this.token = this.route.snapshot.paramMap.get('token') || '';
   }
 
-  // @ts-ignore
-  // confirmPassword() {
-  //   if (this.password !== this.confirmedPassword) {
-  //     alert('Incorrect input. Entered passwords must match');
-  //   } else {
-  //     // Assuming environment.baseUrl is correctly defined
-  //
-  //     const requestBody = {
-  //       password: this.password
-  //     };
-  //
-  //     // Set HTTP headers, including Content-Type for JSON
-  //     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-  //
-  //     // Execute the POST request
-  //     // Make sure to replace '/user/activate' with '/user/activate/{token}' if your API requires the token in the URL
-  //     return this.http.post(environment.baseUrl + '/user/activate/' + this.activatedRoute.snapshot.params['token'], requestBody, { headers });
-  //
-  //   }
-  // }
   confirmPassword() {
     if(this.password.length < 3 || this.confirmedPassword.length < 3) {
       this.popupService.openPopup("Error", "Password has to be longer than 3 characters!");
@@ -63,17 +42,14 @@ export class SetPasswordComponent {
       if (this.password === this.confirmedPassword) {
         const url = `${environment.baseUrl}/user/activate/${this.token}`;
 
-        // Assuming the body of the request just needs the password
         const body = { password: this.password };
 
         this.http.post<{ userId: number }>(url, body).subscribe({
           next: (response) => {
-            console.log('User activated with ID:', response.userId); // TODO Zakomentarisi
-            // Redirect to /login on success
+            // console.log('User activated with ID:', response.userId); // Ovde imate userId ako zatreba
             this.router.navigate(['/login']);
           },
           error: (error) => {
-            console.error('Activation failed:', error); // TODO Zakomentarisi
             this.popupService.openPopup("Error", "Activation failed!");
           }
         });
