@@ -26,7 +26,6 @@ export class AppComponent {
 
     this.userService.getUser(localStorage.getItem("jwt")).subscribe(
       response => {
-        console.log(response)
         this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
       }, (e) => {
         this.userInitials = "/"
