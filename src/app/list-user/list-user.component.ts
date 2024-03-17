@@ -35,7 +35,7 @@ export class ListUserComponent implements OnInit{
   }
 
   togglePopupAddUser() {
-    this.router.navigate(['/user/add']);
+    this.popup.openAddUserPopup();
   }
 
   search(){
@@ -52,7 +52,8 @@ export class ListUserComponent implements OnInit{
 
   editUser(user: User){
     this.userService.setUserToEdit(user);
-    this.router.navigate(['/user/update']);
+    this.popup.openUpdateUserPopup();
+    // this.router.navigate(['/user/update']);
   }
 
   deleteUser(user: User){

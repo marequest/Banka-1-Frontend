@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { User, UserToEdit } from '../model';
 import { UserService } from '../services/user.service';
 import { PopupService } from '../service/popup.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-user',
@@ -36,7 +37,9 @@ export class UpdateUserComponent implements OnInit {
 
 
   constructor(private userService: UserService,private router: Router,
-              private popupService: PopupService) {
+              private popupService: PopupService,
+              private dialogRef: MatDialogRef<UpdateUserComponent>
+              ) {
     this.userToEdit = {
       userId: 0,
       firstName: '',
@@ -98,14 +101,16 @@ export class UpdateUserComponent implements OnInit {
   onCancelUpdateUserPopup() {
     const confirmResult = confirm('Are you sure you want to cancel adding the user?');
      if (confirmResult) {
-      this.router.navigate(['/user/list']);
+      this.dialogRef.close();
+      // this.router.navigate(['/user/list']);
      }
   }
 
   onCloseUpdateUserPopup() {
     const confirmResult = confirm('Are you sure you want to cancel adding the user?');
      if (confirmResult) {
-      this.router.navigate(['/user/list']);
+      this.dialogRef.close();
+      // this.router.navigate(['/user/list']);
      }
   }
 

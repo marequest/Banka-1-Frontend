@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {PopupService} from "../service/popup.service";
 import { UserService } from '../services/user.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 
@@ -27,7 +28,10 @@ export class AddUserComponent {
 
   constructor(private router: Router,
     private popupService: PopupService,
-    private userService: UserService) {}
+    private userService: UserService,
+    public dialogRef: MatDialogRef<AddUserComponent>
+    ) {      
+    }
 
   onCreateAddUserPopup() {
     if (this.validateForm()) {
@@ -46,17 +50,19 @@ export class AddUserComponent {
   }
 
   onCancelAddUserPopup() {
-    const confirmResult = confirm('Are you sure you want to cancel adding the user?');
-     if (confirmResult) {
-      this.router.navigate(['/user/list']);
-     }
+    this.dialogRef.close();
+    // const confirmResult = confirm('Are you sure you want to cancel adding the user?');
+    //  if (confirmResult) {
+    //   this.router.navigate(['/user/list']);
+    //  }
   }
 
   onCloseAddUserPopup() {
-    const confirmResult = confirm('Are you sure you want to cancel adding the user?');
-    if (confirmResult) {
-      this.router.navigate(['/user/list']);
-    }
+    this.dialogRef.close();
+    // const confirmResult = confirm('Are you sure you want to cancel adding the user?');
+    // if (confirmResult) {
+    //   this.router.navigate(['/user/list']);
+    // }
    }
 
 
