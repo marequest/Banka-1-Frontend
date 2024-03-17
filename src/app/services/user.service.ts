@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User, UserToEdit } from '../model';
 import { environment } from "../../../environment";
 import {PopupService} from "../service/popup.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,10 @@ export class UserService {
 
   private userToEdit: User | undefined;
 
-  constructor(private http: HttpClient
-             ) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   public getUsers(): Observable<User[]>{
     return this.http.get<User[]>(this.apiUrl+"/user/getAll", {
@@ -97,7 +100,7 @@ export class UserService {
     const url = `${this.apiUrl}/user/getUser`;
 
     if (!jwt) {
-      throw new Error('JWT token is missing');
+      this.router.navigate(['/login']);
     }
 
     const httpOptions = {

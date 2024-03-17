@@ -22,15 +22,18 @@ export class AppComponent {
 
 
   constructor(private userService : UserService, private router: Router) {
-    this.userInitials = "/"
+    this.userInitials = "/";
+    const jwt = localStorage.getItem("jwt");
 
-    this.userService.getUser(localStorage.getItem("jwt")).subscribe(
-      response => {
-        this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
-      }, (e) => {
-        this.userInitials = "/"
-      }
-    )
+    if (jwt !== null && jwt.length > 0) {
+      this.userService.getUser(jwt).subscribe(
+        response => {
+          this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+        }, (e) => {
+          this.userInitials = "/";
+        }
+      );
+    }
   }
 
   toggleSideNav() {
