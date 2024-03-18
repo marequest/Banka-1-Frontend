@@ -2,8 +2,9 @@ import {HttpClient, HttpHeaders,  HttpParams} from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User, UserToEdit } from '../model';
-import { environment } from "../../../enviroment";
+import { environment } from "../../../environment";
 import {PopupService} from "../service/popup.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,10 @@ export class UserService {
 
   private userToEdit: User | undefined;
 
-  constructor(private http: HttpClient
-             ) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   public getUsers(): Observable<User[]>{
     return this.http.get<User[]>(this.apiUrl+"/user/getAll", {
@@ -97,16 +100,27 @@ export class UserService {
     return this.userToEdit;
   }
 
+  getUser(jwt: string | null): Observable<any> {
+    const url = `${this.apiUrl}/user/getUser`;
 
-  getUser(jwt: string | null): Observable<{name: string, lastName: string}> {
-    let url = `${this.apiUrl}/user/getUser`;
+  //getUser(jwt: string | null): Observable<{name: string, lastName: string}> {
+   // let url = `${this.apiUrl}/user/getUser`;
 
     //ToDo: Da li treba autorizacija
     // const headers = new HttpHeaders({
     //   'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`
     // });
+    
+//     if (!jwt) {
+//       this.router.navigate(['/login']);
+//     }
 
-    //ToDo: Da li treba metod PUT da bude, posto postoji body
-    return this.http.put<{name: string, lastName: string}>(url, jwt, {});
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+    return this.http.get<any>(url, httpOptions);
   }
 }

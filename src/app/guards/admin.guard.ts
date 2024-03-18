@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-
-
   constructor(
     private http: HttpClient,
     private jwtService: JwtService,
@@ -46,7 +44,6 @@ export class AdminGuard implements CanActivate {
   }
 
     userIsAdmin(): Observable<boolean> {
-
     const token = sessionStorage.getItem("jwt");
     if (!token || !this.jwtService.isTokenFormatValid(token)) {
       return of(false);

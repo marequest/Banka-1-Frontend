@@ -29,13 +29,16 @@ export class AppComponent {
 
   constructor(private userService : UserService, private router: Router) {
     this.userInitials = "/"
-    this.userService.getUser(sessionStorage.getItem("jwt")).subscribe(
+    const jwt = sessionStorage.getItem("jwt");
+     if (jwt !== null && jwt.length > 0) {
+    this.userService.getUser(jwt).subscribe(
       response => {
         this.userInitials = response.name.charAt(0) + response.lastName.charAt(0);
       }, (e) => {
         this.userInitials = "/"
       }
     );
+     }
   }
 
   toggleSideNav() {
