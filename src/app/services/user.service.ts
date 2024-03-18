@@ -25,12 +25,12 @@ export class UserService {
     });
   }
 
-  public deleteUser(email: string): Observable<any> {
-    return this.http.delete(this.apiUrl + '/usesr' ,{
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
-      }
+  public  deleteUser(userId: number): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
     });
+
+    return this.http.delete<boolean>(`${this.apiUrl}/user/delete/${userId}`, { headers});
   }
 
   public addUser(userData: any): Observable<any>{

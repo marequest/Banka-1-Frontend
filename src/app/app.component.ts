@@ -1,5 +1,5 @@
 
-import {Component, ViewChild} from '@angular/core';
+import {Component, HostListener, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {Router} from "@angular/router";
@@ -8,18 +8,24 @@ import {MatSidenav} from "@angular/material/sidenav";
 import {PopupComponent} from "./popup/popup.component";
 import {PopupService} from "./service/popup.service";
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  
   title = 'banka-frontend';
+
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined = undefined;
 
   userInitials: string = "";
+  isAdmin: boolean = false; 
 
+  
 
   constructor(private userService : UserService, private router: Router) {
     this.userInitials = "/"
@@ -29,7 +35,7 @@ export class AppComponent {
       }, (e) => {
         this.userInitials = "/"
       }
-    )
+    );
   }
 
   toggleSideNav() {
@@ -46,6 +52,16 @@ export class AppComponent {
 
   userIsLoggedIn(){
     return !!localStorage.getItem("jwt");
+  }
+
+  checkIsAdmin(): boolean {
+    const isAdminValue = localStorage.getItem('isAdmin');
+    if (isAdminValue=="true") {
+         return true;
+    }
+    else{
+      return false;
+    }
   }
 
 }

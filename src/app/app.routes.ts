@@ -7,21 +7,21 @@ import { SetPasswordComponent } from './set-password/set-password.component';
 import { SecurityListComponent } from './security-list/security-list.component';
 import { NgModule } from "@angular/core";
 import {employeeGuard} from "./guards/employee.guard";
-// import {adminGuard} from "./guards/admin.guard";
 import { WelcomeComponent } from './welcome/welcome.component';
-import { adminGuard } from './guards/admin.guard';
+import { AdminGuard } from './guards/admin.guard';
+
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'welcome', component: WelcomeComponent },
   {
     path: 'user',
+    canActivate: [AdminGuard],
     children: [
       { path: 'add', component: AddUserComponent },
       { path: 'update', component: UpdateUserComponent },
       { path: 'list', component: ListUserComponent },
-    ],
-    canActivateChild: [adminGuard]
+    ]
   },
   {path:'user/set-password/:token', component: SetPasswordComponent},
   {
