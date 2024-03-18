@@ -1,0 +1,62 @@
+[
+  {
+    "listingId": 1,
+    "listingType": "Stock",
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "exchange": "NASDAQ",
+    "lastRefresh": 1647590400,
+    "price": 175.32,
+    "high": 180.25,
+    "low": 172.45,
+    "priceChange": -1.67,
+    "volume": 2304567,
+    "outstandingShares": 123456789,
+    "dividendYield": 1.25
+  },
+  {
+    "listingId": 2,
+    "listingType": "Stock",
+    "ticker": "MSFT",
+    "name": "Microsoft Corporation",
+    "exchange": "NASDAQ",
+    "lastRefresh": 1647590400,
+    "price": 250.10,
+    "high": 255.20,
+    "low": 247.90,
+    "priceChange": 2.55,
+    "volume": 1854321,
+    "outstandingShares": 987654321,
+    "dividendYield": 1.5
+  },
+  {
+    "listingId": 3,
+    "listingType": "Stock",
+    "ticker": "GOOGL",
+    "name": "Alphabet Inc.",
+    "exchange": "NASDAQ",
+    "lastRefresh": 1647590400,
+    "price": 3005.75,
+    "high": 3020.00,
+    "low": 2980.50,
+    "priceChange": -15.25,
+    "volume": 543210,
+    "outstandingShares": 135792468,
+    "dividendYield": 0.75
+  },
+  {
+    "listingId": 4,
+    "listingType": "Stock",
+    "ticker": "AMZN",
+    "name": "Amazon.com Inc.",
+    "exchange": "NASDAQ",
+    "lastRefresh": 1647590400,
+    "price": 3315.20,
+    "high": 3332.50,
+    "low": 3290.75,
+    "priceChange": 8.10,
+    "volume": 987654,
+    "outstandingShares": 246813579,
+    "dividendYield": 0.5
+  }
+]
