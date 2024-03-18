@@ -26,7 +26,7 @@ export class AddUserComponent {
     position: string,
     phoneNumber: string,
     active: boolean,
-    permissions: Permissions[]
+    // permissions: Permissions[]
   } = {
     email: '',
     firstName: '',
@@ -35,36 +35,36 @@ export class AddUserComponent {
     position: '',
     phoneNumber: '',
     active: true,
-    permissions: [],
+    // permissions: [],
   };
 
-  permissions: Permissions[] = [
-    {
-      permissionId: 1,
-      name: 'addUser',
-      description: ''
-    },
-    {
-      permissionId: 2,
-      name: 'modifyUser',
-      description: ''
-    },
-    {
-      permissionId: 3,
-      name: 'deleteUser',
-      description: ''
-    },
-    {
-      permissionId: 4,
-      name: 'readUser',
-      description: ''
-    },
-  ];
+  // permissions: Permissions[] = [
+  //   {
+  //     permissionId: 1,
+  //     name: 'addUser',
+  //     description: ''
+  //   },
+  //   {
+  //     permissionId: 2,
+  //     name: 'modifyUser',
+  //     description: ''
+  //   },
+  //   {
+  //     permissionId: 3,
+  //     name: 'deleteUser',
+  //     description: ''
+  //   },
+  //   {
+  //     permissionId: 4,
+  //     name: 'readUser',
+  //     description: ''
+  //   },
+  // ];
 
   constructor(private router: Router,
     private popupService: PopupService,
     private userService: UserService,
-    private permissionService: PermissionService,
+    // private permissionService: PermissionService,
     public dialogRef: MatDialogRef<AddUserComponent>
     ) {    
       // TODO: Uncomment this when backend is ready
@@ -77,16 +77,16 @@ export class AddUserComponent {
       //   });
     }
 
-  onPermissionChange(permission: Permissions, event: any) {
-    if (event.target.checked) {
-      this.addUserData.permissions.push(permission);
-    } else {
-      const index = this.addUserData.permissions.findIndex(p => p.permissionId === permission.permissionId);
-      if (index !== -1) {
-        this.addUserData.permissions.splice(index, 1);
-      }
-    }
-  }
+  // onPermissionChange(permission: Permissions, event: any) {
+  //   if (event.target.checked) {
+  //     this.addUserData.permissions.push(permission);
+  //   } else {
+  //     const index = this.addUserData.permissions.findIndex(p => p.permissionId === permission.permissionId);
+  //     if (index !== -1) {
+  //       this.addUserData.permissions.splice(index, 1);
+  //     }
+  //   }
+  // }
 
   onCreateAddUserPopup() {
     if (this.validateForm()) {
