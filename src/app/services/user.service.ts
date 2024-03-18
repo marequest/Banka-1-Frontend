@@ -20,22 +20,26 @@ export class UserService {
   public getUsers(): Observable<User[]>{
     return this.http.get<User[]>(this.apiUrl+"/user/getAll", {
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
     });
   }
 
   public  deleteUser(userId: number): Observable<boolean> {
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     return this.http.delete<boolean>(`${this.apiUrl}/user/delete/${userId}`, { headers});
+    // Ovako pise da treba po fajlu koji je radjen sa endpointovima, ali ja kad sam preuzeo back
+    // kod je napisan tako da se koristila putanja sa /delete
+    //return this.http.delete<boolean>(`${this.apiUrl}/user/remove/${userId}`, { headers});
+
   }
 
   public addUser(userData: any): Observable<any>{
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
     return this.http.post<any>(`${this.apiUrl}/user/createUser`, userData, { headers });
   }
@@ -43,10 +47,10 @@ export class UserService {
   public searchUser(position: string, email: string, firstName: string, lastName:string): Observable<any> {
     console.log('Search user: ', position, email, firstName, lastName);
     const params = new HttpParams().set('firstName', firstName).set('lastName', lastName).set('email',email).set('position',position);
-    const jwt = localStorage.getItem('jwt');
+    const jwt = sessionStorage.getItem('jwt');
 
     if (!jwt) {
-      throw new Error('JWT not found in localStorage');
+      throw new Error('JWT not found in sessionStorage');
     }
 
     // Setting up the headers
@@ -61,7 +65,7 @@ export class UserService {
   public getUserById(userId: number): Observable<User> {
     return this.http.get<User>(this.apiUrl + '/' + userId,{
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
     });
   }
@@ -79,7 +83,7 @@ export class UserService {
   }): Observable<any> {
     return this.http.put<User>(this.apiUrl + '/user', user,{
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
     });
   }
@@ -99,7 +103,7 @@ export class UserService {
 
     //ToDo: Da li treba autorizacija
     // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${localStorage.getItem("jwt")}`
+    //   'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`
     // });
 
     //ToDo: Da li treba metod PUT da bude, posto postoji body

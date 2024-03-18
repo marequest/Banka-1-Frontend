@@ -56,20 +56,23 @@ export class ListUserComponent implements OnInit{
   }
 
   deleteUser(user: User): void {
-    // console.log(user); // Dodajte ovu liniju
     user.userId=2;
-    this.userService.deleteUser(user.userId).subscribe({
-      next: (response: boolean) => {
-        if (response) {
-          this.users = this.users.filter(u => u.userId !== user.userId);
-        } else {
-          console.error('Error deleting user: Response was false');
+    const confirmResult = confirm('Are you sure you want to delete this user?');
+     if (confirmResult) {
+      this.userService.deleteUser(user.userId).subscribe({
+        next: (response: boolean) => {
+          if (response) {
+            this.users = this.users.filter(u => u.userId !== user.userId);
+          } else {
+            console.error('Error deleting user: Response was false');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error deleting user: ', error);
         }
-      },
-      error: (error: any) => {
-        console.error('Error deleting user: ', error);
-      }
-    });
+      });
+     }
+    
   }
 
 }

@@ -29,7 +29,7 @@ export class AppComponent {
 
   constructor(private userService : UserService, private router: Router) {
     this.userInitials = "/"
-    this.userService.getUser(localStorage.getItem("jwt")).subscribe(
+    this.userService.getUser(sessionStorage.getItem("jwt")).subscribe(
       response => {
         this.userInitials = response.name.charAt(0) + response.lastName.charAt(0);
       }, (e) => {
@@ -46,16 +46,16 @@ export class AppComponent {
   }
 
   logout(){
-    localStorage.removeItem("jwt")
+    sessionStorage.removeItem("jwt")
     this.router.navigate(['login'])
   }
 
   userIsLoggedIn(){
-    return !!localStorage.getItem("jwt");
+    return !!sessionStorage.getItem("jwt");
   }
 
   checkIsAdmin(): boolean {
-    const isAdminValue = localStorage.getItem('isAdmin');
+    const isAdminValue = sessionStorage.getItem('isAdmin');
     if (isAdminValue=="true") {
          return true;
     }

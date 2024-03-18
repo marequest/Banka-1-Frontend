@@ -21,13 +21,13 @@ export class AdminGuard implements CanActivate {
   ) {}
 
   canActivate(route: any, state: any): Observable<boolean | UrlTree> {
-    const token = localStorage.getItem("jwt");
+    const token = sessionStorage.getItem("jwt");
     if (!token || !this.jwtService.isTokenFormatValid(token)) {
       return of(this.router.parseUrl('/login'));
     }
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     return this.http.get<User>(`${environment.baseUrl}/user/getUser`, { headers }).pipe(
@@ -47,12 +47,12 @@ export class AdminGuard implements CanActivate {
 
     userIsAdmin(): Observable<boolean> {
 
-    const token = localStorage.getItem("jwt");
+    const token = sessionStorage.getItem("jwt");
     if (!token || !this.jwtService.isTokenFormatValid(token)) {
       return of(false);
     }
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     return this.http.get<User>(`${environment.baseUrl}/user/getUser`, { headers }).pipe(

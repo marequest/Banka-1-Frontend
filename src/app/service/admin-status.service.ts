@@ -12,7 +12,7 @@ export class AdminStatusService {
 
   setIsAdmin(isAdmin: boolean): void {
     this.isAdminSubject.next(isAdmin);
-    localStorage.setItem('isAdmin', isAdmin.toString());
+    sessionStorage.setItem('isAdmin', isAdmin.toString());
   }
 
   getIsAdmin(): boolean {

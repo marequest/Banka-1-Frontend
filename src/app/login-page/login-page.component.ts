@@ -45,7 +45,7 @@ export class LoginPageComponent {
   onSubmit() {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
-        localStorage.setItem('jwt', token);
+        sessionStorage.setItem('jwt', token);
 
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
