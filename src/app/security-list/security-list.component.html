@@ -4,10 +4,10 @@
   <div class="table-wrapper">
     <div class="security-tabs">
       <div
-        [ngClass]="selectedTab === 'actions' ? 'tab tab-active' : 'tab'"
-        (click)="setSelectedTab('actions')"
+        [ngClass]="selectedTab === 'stocks' ? 'tab tab-active' : 'tab'"
+        (click)="setSelectedTab('stocks')"
       >
-        <div class="tab-content">Actions</div>
+        <div class="tab-content">Stocks</div>
       </div>
       <div
         [ngClass]="selectedTab === 'future' ? 'tab tab-active' : 'tab'"
@@ -25,34 +25,40 @@
       </div>
     </div>
 
-    <div class="table-content">
-      <div class="security-table-wrapper">
-        <div class="wrapper-header">Securities</div>
-        <table class="user-table" cellpadding="2px" cellspacing="0">
-          <thead class="table-head-custom">
-            <tr class="tr-rows">
-              <th class="table-head">Ticker</th>
-              <th class="table-head">Price</th>
-              <th class="table-head">Change</th>
-              <th class="table-head">Volume</th>
-              <th class="table-head">Margin Cost</th>
-              <th class="table-head"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of users" class="tr-rows">
-              <td>{{ user.ticker }}</td>
-              <td>{{ user.price }}</td>
-              <td>{{ user.change }}</td>
-              <td>{{ user.volume }}</td>
-              <td>{{ user.initial_margin_cost }}</td>
-              <td class="option-td">
-                <span class="material-symbols-outlined"> more_vert </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+
+    <div class="tab-stocks" *ngIf="selectedTab == 'stocks'">
+      <app-stock-table></app-stock-table>
     </div>
+
+
+<!--    <div class="table-content">-->
+<!--      <div class="security-table-wrapper">-->
+<!--        <div class="wrapper-header">Securities</div>-->
+<!--        <table class="user-table" cellpadding="2px" cellspacing="0">-->
+<!--          <thead class="table-head-custom">-->
+<!--            <tr class="tr-rows">-->
+<!--              <th class="table-head">Ticker</th>-->
+<!--              <th class="table-head">Price</th>-->
+<!--              <th class="table-head">Change</th>-->
+<!--              <th class="table-head">Volume</th>-->
+<!--              <th class="table-head">Margin Cost</th>-->
+<!--              <th class="table-head"></th>-->
+<!--            </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--            <tr *ngFor="let user of users" class="tr-rows">-->
+<!--              <td>{{ user.ticker }}</td>-->
+<!--              <td>{{ user.price }}</td>-->
+<!--              <td>{{ user.change }}</td>-->
+<!--              <td>{{ user.volume }}</td>-->
+<!--              <td>{{ user.initial_margin_cost }}</td>-->
+<!--              <td class="option-td">-->
+<!--                <span class="material-symbols-outlined"> more_vert </span>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
