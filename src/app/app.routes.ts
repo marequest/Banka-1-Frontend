@@ -10,10 +10,12 @@ import {employeeGuard} from "./guards/employee.guard";
 // import {adminGuard} from "./guards/admin.guard";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { adminGuard } from './guards/admin.guard';
+import {loginGuard} from "./guards/login.guard";
+import {welcomeGuard} from "./guards/welcome.guard";
 
 export const routes: Routes = [
-  { path: 'login', component: LoginPageComponent },
-  { path: 'welcome', component: WelcomeComponent },
+  { path: 'login', component: LoginPageComponent, canActivate: [loginGuard] },
+  { path: 'welcome', component: WelcomeComponent, canActivate: [welcomeGuard] },
   {
     path: 'user',
     children: [
