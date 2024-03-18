@@ -13,12 +13,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from "./popup/popup.component";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-  
+
   ],
   imports: [
     HttpClientModule,
@@ -32,7 +33,8 @@ import { PopupComponent } from "./popup/popup.component";
     MatSidenavModule,
     MatTooltipModule,
     MatDialogModule,
-    
+    FormsModule
+
   ],
   providers: [
     provideAnimationsAsync()
