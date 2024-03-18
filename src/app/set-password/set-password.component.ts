@@ -2,7 +2,7 @@ import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
-import {environment} from "../../../enviroment";
+import {environment} from "../../../environment";
 import {HttpHeaders, HttpParams} from "@angular/common/http";
 import { HttpClient } from '@angular/common/http';
 

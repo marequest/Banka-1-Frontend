@@ -25,6 +25,10 @@
       </div>
     </div>
 
+    <ng-container *ngIf="selectedTab === 'forex'; else default_table;">
+      <app-forex-table/>
+    </ng-container>
+    <ng-template #default_table>
     <div class="table-content">
       <div class="security-table-wrapper">
         <div class="wrapper-header">Securities</div>
@@ -54,5 +58,6 @@
         </table>
       </div>
     </div>
+    </ng-template>
   </div>
 </div>

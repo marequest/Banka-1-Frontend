@@ -41,3 +41,28 @@ export interface UserToEdit{
     active: boolean;
     birth_date: string;
 }
+export interface Forex {
+  listingId: number;
+  listingType: "Forex";
+  ticker: string;
+  name: string;
+  exchange: string;
+  lastRefresh: number;
+  price: number;
+  high: number;
+  low: number;
+  priceChange: number;
+  volume: number;
+  baseCurrency: string;
+  quoteCurrency: string;
+}
+
+export interface ListingHistory {
+  listingId: number;
+  date: number;
+  price: number;
+  high: number;
+  low: number;
+  change: number;
+  volume: number;
+}

@@ -4,7 +4,7 @@ import {inject} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, Observable, of} from "rxjs";
 import {JwtService} from "../jwt.service";
-import {environment} from "../../../enviroment";
+import {environment} from "../../../environment";
 import {User} from "../model";
 import {map} from "rxjs/operators";
 

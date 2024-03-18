@@ -2,7 +2,7 @@ import {HttpClient, HttpHeaders,  HttpParams} from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User, UserToEdit } from '../model';
-import { environment } from "../../../enviroment";
+import { environment } from "../../../environment";
 import {PopupService} from "../service/popup.service";
 
 @Injectable({

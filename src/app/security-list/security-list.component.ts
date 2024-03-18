@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Security, SecurityService } from '../service/security.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import {ForexTableComponent} from "../forex-table/forex-table.component";
 
 @Component({
   selector: 'app-security-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ForexTableComponent],
   templateUrl: './security-list.component.html',
   styleUrl: './security-list.component.css'
 })
