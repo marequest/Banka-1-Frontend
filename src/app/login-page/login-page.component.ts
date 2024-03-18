@@ -41,6 +41,13 @@ export class LoginPageComponent {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
         localStorage.setItem('jwt', token);
+
+        //Mihail added all users permissions to local storage
+        //So to merge conflict be easier, this line can be removed
+        //And in list-user.component.ts (line 42 to modify) read from Mihail's local storage
+        //For testing purposes i mocked it:
+        localStorage.setItem('mockedPermission',"modifyUser");
+
         this.router.navigate(['/welcome']);
       },
       (error) => {

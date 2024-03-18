@@ -115,7 +115,6 @@
   border: 1px solid #406581;
   margin-top: 2rem;
   border-radius: 5px;
-
 }
 
 .wrapper-header {
@@ -261,11 +260,8 @@ td {
   user-select: none; /* Prevents selecting the 'x' on double click */
 }
 
-#helperDiv { /* Assuming this div is the new container for permission elements */
+#helperDiv { 
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
-
-
-

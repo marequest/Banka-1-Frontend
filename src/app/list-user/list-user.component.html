@@ -139,16 +139,16 @@
                       <div *ngFor="let permission of user.permissions; let i = index" class="permission-element">
                         <span>⠀</span>
                         {{ permission.name }}
-                        <span class="close-icon" (click)="removePermission(user, i)">✖ </span>
+                        <span *ngIf="hasPermission" class="close-icon" (click)="removePermission(user, i)">✖ </span>
                         <span>⠀</span>
                       </div>
                     </div>
                   </td>
-                  <td>
+                  <td *ngIf="hasPermission">
                     <div class="options-menu">
                       <span id="options-button" class="material-symbols-outlined">more_vert</span>
                       <div class="options-dropdown">
-                        <button id="editProfile-button" (click)="editUser(user)">Add permission</button>
+                        <button id="editProfile-button" (click)="editUserPermissions(user)">Add permission</button>
                       <button id="delete-button" (click)="deleteAllPermissions(user)">Delete all</button>
                       </div>
                     </div>
@@ -160,6 +160,8 @@
       </div>
     </div>
     
+    
+
 </div>
 
 

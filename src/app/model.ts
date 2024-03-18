@@ -12,9 +12,9 @@ export interface User{
     permissions:Permissions[]
 }
 export interface Permissions{
-    permission_id:number;
+    permission_id?:number;
     name:string;
-    description:string;
+    description?:string;
 }
 
 export interface CreateUserRequest{
