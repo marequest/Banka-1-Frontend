@@ -46,10 +46,5 @@ export class LoginPageComponent {
       (error) => {
         this.popupService.openPopup("Error", "Wrong credentials!");
       });
-
-
   }
-
-
-
 }
