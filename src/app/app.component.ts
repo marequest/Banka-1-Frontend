@@ -46,8 +46,9 @@ export class AppComponent {
   }
 
   logout(){
-    sessionStorage.removeItem("jwt")
-    this.router.navigate(['login'])
+    // sessionStorage.removeItem("jwt")
+    sessionStorage.clear();
+    this.router.navigate(['login']);
   }
 
   userIsLoggedIn(){
