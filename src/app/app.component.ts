@@ -33,6 +33,8 @@ export class AppComponent {
           this.userInitials = "/";
         }
       );
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 
