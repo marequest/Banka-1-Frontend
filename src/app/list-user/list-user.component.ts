@@ -56,7 +56,9 @@ export class ListUserComponent implements OnInit{
   }
 
   deleteUser(user: User): void {
-    user.userId=2;
+     user.userId=2; 
+    // userId sam ovde rucno zadao jer kada se uradi ovaj poziv this.userService.getUsers() u ngOnInit()
+    // za usera se ne vraca userId (videti sa backend stranom)
     const confirmResult = confirm('Are you sure you want to delete this user?');
      if (confirmResult) {
       this.userService.deleteUser(user.userId).subscribe({
