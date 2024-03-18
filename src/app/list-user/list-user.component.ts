@@ -69,4 +69,16 @@ export class ListUserComponent implements OnInit{
 
   }
 
+  canAddUser(){
+    return localStorage.getItem('permissions')?.includes('addUser');
+  }
+
+  canEditUser(){
+    return localStorage.getItem('permissions')?.includes('modifyUser');
+  }
+
+  canDeleteUser(){
+    return localStorage.getItem('permissions')?.includes('deleteUser');
+  }
+
 }
