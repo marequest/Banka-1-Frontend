@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import {PopupService} from "../service/popup.service";
 import { UserService } from '../services/user.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { PermissionService } from '../service/permission.service';
+import { Permissions } from '../model';
 
 
 
@@ -26,17 +28,25 @@ export class AddUserComponent {
     active: true
   };
 
+  permission: Permissions[] = [];
+
   constructor(private router: Router,
     private popupService: PopupService,
     private userService: UserService,
+    private permissionService: PermissionService,
     public dialogRef: MatDialogRef<AddUserComponent>
-    ) {      
+    ) {    
+      this.permissionService.getAllPermissions().subscribe(
+        response => {
+          this.permission = response;
+        },
+        error => {
+          // Handle error
+        });
     }
 
   onCreateAddUserPopup() {
     if (this.validateForm()) {
-
-
       this.userService.addUser(this.addUserData).subscribe(
         response => {
           alert('Successfully created user ' + JSON.stringify(this.addUserData));

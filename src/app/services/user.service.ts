@@ -14,8 +14,7 @@ export class UserService {
 
   private userToEdit: User | undefined;
 
-  constructor(private http: HttpClient
-             ) { }
+  constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<User[]>{
     return this.http.get<User[]>(this.apiUrl+"/user/getAll", {
