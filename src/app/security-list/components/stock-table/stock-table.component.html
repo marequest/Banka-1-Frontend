@@ -1,0 +1,40 @@
+<div class="table-content" >
+  <input [(ngModel)]="searchString" (ngModelChange)="searchStocks()" type="text" class="security-filter-input" placeholder="Search Symbol">
+  <div class="security-table-wrapper">
+    <div class="wrapper-header">Stocks</div>
+    <table class="user-table" cellpadding="2px" cellspacing="0">
+      <thead class="table-head-custom">
+      <tr class="tr-rows">
+        <th class="table-head">Ticker</th>
+        <th class="table-head">Name</th>
+        <th class="table-head">Exchange</th>
+        <th class="table-head">Last Refresh</th>
+        <th class="table-head">Price</th>
+        <th class="table-head">Price (high)</th>
+        <th class="table-head">Price (low)</th>
+        <th class="table-head">Change</th>
+        <th class="table-head">Volume</th>
+        <th class="table-head">Outstanding Shares</th>
+        <!--            <th class="table-head"></th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let stock of filteredStocks" class="tr-rows text-center">
+        <td>{{ stock.ticker }}</td>
+        <td>{{ stock.name }}</td>
+        <td>{{ stock.exchange }}</td>
+        <td>{{ stock.lastRefresh }}</td>
+        <td>{{ stock.price }}</td>
+        <td>{{ stock.high }}</td>
+        <td>{{ stock.low }}</td>
+        <td>{{ stock.priceChange }}</td>
+        <td>{{ stock.volume }}</td>
+        <td>{{ stock.outstandingShares }}</td>
+        <!--            <td class="option-td">-->
+        <!--              <span class="material-symbols-outlined"> more_vert </span>-->
+        <!--            </td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
