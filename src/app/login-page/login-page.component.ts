@@ -41,7 +41,7 @@ export class LoginPageComponent {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (response) => {
         localStorage.setItem('jwt', response.jwt);
-        localStorage.setItem('permissions', response.permissions)
+        localStorage.setItem('permissions', response.permissions);
         this.router.navigate(['/welcome']);
       },
       (error) => {

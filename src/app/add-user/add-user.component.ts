@@ -18,17 +18,48 @@ import { Permissions } from '../model';
   styleUrl: './add-user.component.css'
 })
 export class AddUserComponent {
-  addUserData = {
+  addUserData: {
+    email: string,
+    firstName: string,
+    lastName: string,
+    jmbg: string,
+    position: string,
+    phoneNumber: string,
+    active: boolean,
+    permissions: Permissions[]
+  } = {
     email: '',
     firstName: '',
     lastName: '',
     jmbg: '',
     position: '',
     phoneNumber: '',
-    active: true
+    active: true,
+    permissions: [],
   };
 
-  permission: Permissions[] = [];
+  permissions: Permissions[] = [
+    {
+      permissionId: 1,
+      name: 'addUser',
+      description: ''
+    },
+    {
+      permissionId: 2,
+      name: 'modifyUser',
+      description: ''
+    },
+    {
+      permissionId: 3,
+      name: 'deleteUser',
+      description: ''
+    },
+    {
+      permissionId: 4,
+      name: 'readUser',
+      description: ''
+    },
+  ];
 
   constructor(private router: Router,
     private popupService: PopupService,
@@ -36,14 +67,26 @@ export class AddUserComponent {
     private permissionService: PermissionService,
     public dialogRef: MatDialogRef<AddUserComponent>
     ) {    
-      this.permissionService.getAllPermissions().subscribe(
-        response => {
-          this.permission = response;
-        },
-        error => {
-          // Handle error
-        });
+      // TODO: Uncomment this when backend is ready
+      // this.permissionService.getAllPermissions().subscribe(
+      //   response => {
+      //     this.permissions = response;
+      //   },
+      //   error => {
+      //     // Handle error
+      //   });
     }
+
+  onPermissionChange(permission: Permissions, event: any) {
+    if (event.target.checked) {
+      this.addUserData.permissions.push(permission);
+    } else {
+      const index = this.addUserData.permissions.findIndex(p => p.permissionId === permission.permissionId);
+      if (index !== -1) {
+        this.addUserData.permissions.splice(index, 1);
+      }
+    }
+  }
 
   onCreateAddUserPopup() {
     if (this.validateForm()) {
