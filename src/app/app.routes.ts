@@ -10,6 +10,8 @@ import {employeeGuard} from "./guards/employee.guard";
 // import {adminGuard} from "./guards/admin.guard";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { adminGuard } from './guards/admin.guard';
+import {ForexViewComponent} from "./forex-view/forex-view.component";
+import {StockViewComponent} from "./stock-view/stock-view.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -26,10 +28,13 @@ export const routes: Routes = [
   {path:'user/set-password/:token', component: SetPasswordComponent},
   {
     path: 'security',
-    children: [{ path: 'all', component: SecurityListComponent },],
+    children: [
+      { path: 'all', component: SecurityListComponent },
+      { path: "stock/:id", component: StockViewComponent }],
      canActivateChild: [employeeGuard],
      canActivate: [employeeGuard]
   },
+  {path: 'forex/:id', component: ForexViewComponent},
 ];
 
 @NgModule({

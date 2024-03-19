@@ -2,6 +2,7 @@ import { Component, Input, OnInit , Inject} from '@angular/core';
 import {PopupService} from "../service/popup.service";
 import {CommonModule} from "@angular/common";
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-popup',
