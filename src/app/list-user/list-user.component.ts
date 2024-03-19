@@ -25,14 +25,15 @@ export class ListUserComponent implements OnInit{
   public email:string='';
   public searchEmail:string='';
   selectedTab: string = "permissions";
-  hasPermission: boolean = false;
+  hasPermission?: boolean = false;
 
   constructor(private userService: UserService, private router: Router,private popup:PopupService, private dialog: MatDialog, private apiService: PermissionsService) { }
 
   ngOnInit() {
     //get permission
     const permission = this.getPermission();
-    this.hasPermission = permission === 'modifyUser';
+    //this.hasPermission = permission === 'modifyUser';
+    this.hasPermission = this.canEditUser();
 
     //load data from database
     this.loadUsersFromDataBase();
