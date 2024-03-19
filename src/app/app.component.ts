@@ -25,15 +25,15 @@ export class AppComponent {
     this.userInitials = "/";
     const jwt = localStorage.getItem("jwt");
 
-    if (jwt !== null && jwt.length > 0) {
-      this.userService.getUser(jwt).subscribe(
-        response => {
-          this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
-        }, (e) => {
-          this.userInitials = "/";
-        }
-      );
-    }
+    // Ne bi trebalo da mora da se proverava korektnost jwt-a jer guard vec to radi
+    this.userService.getUser(jwt).subscribe(
+      response => {
+        console.log(response)
+        this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+      }, (e) => {
+        this.userInitials = "/";
+      }
+    );
   }
 
   toggleSideNav() {
