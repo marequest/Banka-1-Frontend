@@ -22,14 +22,18 @@ export class AppComponent {
 
 
   constructor(private userService : UserService, private router: Router) {
-    this.userInitials = "/"
-    this.userService.getUser(localStorage.getItem("jwt")).subscribe(
+    this.userInitials = "/";
+    const jwt = localStorage.getItem("jwt");
+
+    // Ne bi trebalo da mora da se proverava korektnost jwt-a jer guard vec to radi
+    this.userService.getUser(jwt).subscribe(
       response => {
-        this.userInitials = response.name.charAt(0) + response.lastName.charAt(0);
+        console.log(response)
+        this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
       }, (e) => {
-        this.userInitials = "/"
+        this.userInitials = "/";
       }
-    )
+    );
   }
 
   toggleSideNav() {

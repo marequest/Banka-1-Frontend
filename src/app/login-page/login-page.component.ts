@@ -31,7 +31,13 @@ export class LoginPageComponent {
     private validator: ValidationService,
     private popupService: PopupService,
     private router: Router,
-  ) {}
+  ) {
+    // const jwt = localStorage.getItem("jwt");
+    //
+    // if (jwt !== null && jwt.length > 0) {
+    //   this.router.navigate(['/welcome']);
+    // }
+  }
   loginFormSchema = z.object({
     email: z.string().email(),
     password: z.string()
@@ -46,10 +52,5 @@ export class LoginPageComponent {
       (error) => {
         this.popupService.openPopup("Error", "Wrong credentials!");
       });
-
-
   }
-
-
-
 }
