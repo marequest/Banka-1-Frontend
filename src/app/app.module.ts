@@ -13,7 +13,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from "./popup/popup.component";
-import { PermissionPopUpComponent } from "./permissions-popup/permission-pop-up/permission-pop-up.component";import {provideCharts, withDefaultRegisterables} from "ng2-charts";
+import { PermissionPopUpComponent } from "./permissions-popup/permission-pop-up/permission-pop-up.component";
+import {provideCharts, withDefaultRegisterables} from "ng2-charts";
 import {FormsModule} from "@angular/forms";
 
 
