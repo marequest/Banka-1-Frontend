@@ -1,7 +1,7 @@
 [
   {
     "listingId": 1,
-    "listingType": "Stock",
+    "listingType": "stock",
     "ticker": "AAPL",
     "name": "Apple Inc.",
     "exchange": "NASDAQ",
@@ -16,7 +16,7 @@
   },
   {
     "listingId": 2,
-    "listingType": "Stock",
+    "listingType": "stock",
     "ticker": "MSFT",
     "name": "Microsoft Corporation",
     "exchange": "NASDAQ",
@@ -31,7 +31,7 @@
   },
   {
     "listingId": 3,
-    "listingType": "Stock",
+    "listingType": "stock",
     "ticker": "GOOGL",
     "name": "Alphabet Inc.",
     "exchange": "NASDAQ",
@@ -46,7 +46,7 @@
   },
   {
     "listingId": 4,
-    "listingType": "Stock",
+    "listingType": "stock",
     "ticker": "AMZN",
     "name": "Amazon.com Inc.",
     "exchange": "NASDAQ",
