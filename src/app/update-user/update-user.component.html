@@ -46,8 +46,10 @@
             <label for="password">Password:</label>
             <input type="password" id="password" [(ngModel)]="password" name="password" required #passwordModel="ngModel" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" [ngClass]="{ 'invalid-input': passwordModel.invalid && (passwordModel.dirty || passwordModel.touched) }" />
             <div *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)" class="error-message">
-              <div *ngIf="jmbgModel.hasError('required')" style="color: red;">Password is required.</div>
-              <div *ngIf="jmbgModel.hasError('pattern')" style="color: red;">Invalid password format (must be 8 chars long, UC,LC).</div>
+              <div *ngIf="passwordModel.hasError('required')" style="color: red;">Password is required.</div>
+              <div *ngIf="passwordModel.hasError('pattern')" style="color: red;">Invalid password format.</div>
+              <div *ngIf="passwordModel.hasError('pattern')" style="color: red;">Must have at least 1 digit, uppercase and lowercase letter.</div>
+
             </div>
           </div>
       </div>

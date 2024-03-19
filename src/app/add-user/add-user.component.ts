@@ -93,7 +93,8 @@ export class AddUserComponent {
       this.userService.addUser(this.addUserData).subscribe(
         response => {
           alert('Successfully created user ' + JSON.stringify(this.addUserData));
-          this.router.navigate(['/user/list']);
+          this.dialogRef.close();
+          // this.router.navigate(['/user/list']);
         },
         error => {
           alert('Error creating user:' + JSON.stringify(this.addUserData));

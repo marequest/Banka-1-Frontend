@@ -86,6 +86,7 @@ export class UpdateUserComponent implements OnInit {
       this.userService.updateUser(updatedUserRequest).subscribe({
         next: (user: User) => {
           alert('Successfully modified user!');
+          this.dialogRef.close();
         },
         error: (error: any) => {
           console.error(error);
