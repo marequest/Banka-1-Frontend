@@ -29,7 +29,7 @@ export const adminGuard: (route: any, state: any) => Promise<boolean | Observabl
 
       if (user.position.toLowerCase() === 'admin') {
         return true;
-     
+
 
       } else {
         return false;

@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {PopupService} from "../service/popup.service";
 import { UserService } from '../services/user.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { PermissionService } from '../service/permission.service';
+import { Permissions } from '../model';
 
 
 
@@ -15,28 +18,83 @@ import { UserService } from '../services/user.service';
   styleUrl: './add-user.component.css'
 })
 export class AddUserComponent {
-  addUserData = {
+  addUserData: {
+    email: string,
+    firstName: string,
+    lastName: string,
+    jmbg: string,
+    position: string,
+    phoneNumber: string,
+    active: boolean,
+    // permissions: Permissions[]
+  } = {
     email: '',
     firstName: '',
     lastName: '',
     jmbg: '',
     position: '',
     phoneNumber: '',
-    active: true
+    active: true,
+    // permissions: [],
   };
+
+  // permissions: Permissions[] = [
+  //   {
+  //     permissionId: 1,
+  //     name: 'addUser',
+  //     description: ''
+  //   },
+  //   {
+  //     permissionId: 2,
+  //     name: 'modifyUser',
+  //     description: ''
+  //   },
+  //   {
+  //     permissionId: 3,
+  //     name: 'deleteUser',
+  //     description: ''
+  //   },
+  //   {
+  //     permissionId: 4,
+  //     name: 'readUser',
+  //     description: ''
+  //   },
+  // ];
 
   constructor(private router: Router,
     private popupService: PopupService,
-    private userService: UserService) {}
+    private userService: UserService,
+    // private permissionService: PermissionService,
+    public dialogRef: MatDialogRef<AddUserComponent>
+    ) {    
+      // TODO: Uncomment this when backend is ready
+      // this.permissionService.getAllPermissions().subscribe(
+      //   response => {
+      //     this.permissions = response;
+      //   },
+      //   error => {
+      //     // Handle error
+      //   });
+    }
+
+  // onPermissionChange(permission: Permissions, event: any) {
+  //   if (event.target.checked) {
+  //     this.addUserData.permissions.push(permission);
+  //   } else {
+  //     const index = this.addUserData.permissions.findIndex(p => p.permissionId === permission.permissionId);
+  //     if (index !== -1) {
+  //       this.addUserData.permissions.splice(index, 1);
+  //     }
+  //   }
+  // }
 
   onCreateAddUserPopup() {
     if (this.validateForm()) {
-
-
       this.userService.addUser(this.addUserData).subscribe(
         response => {
           alert('Successfully created user ' + JSON.stringify(this.addUserData));
-          this.router.navigate(['/user/list']);
+          this.dialogRef.close();
+          // this.router.navigate(['/user/list']);
         },
         error => {
           alert('Error creating user:' + JSON.stringify(this.addUserData));
@@ -46,17 +104,19 @@ export class AddUserComponent {
   }
 
   onCancelAddUserPopup() {
-    const confirmResult = confirm('Are you sure you want to cancel adding the user?');
-     if (confirmResult) {
-      this.router.navigate(['/user/list']);
-     }
+    this.dialogRef.close();
+    // const confirmResult = confirm('Are you sure you want to cancel adding the user?');
+    //  if (confirmResult) {
+    //   this.router.navigate(['/user/list']);
+    //  }
   }
 
   onCloseAddUserPopup() {
-    const confirmResult = confirm('Are you sure you want to cancel adding the user?');
-    if (confirmResult) {
-      this.router.navigate(['/user/list']);
-    }
+    this.dialogRef.close();
+    // const confirmResult = confirm('Are you sure you want to cancel adding the user?');
+    // if (confirmResult) {
+    //   this.router.navigate(['/user/list']);
+    // }
    }
 
 

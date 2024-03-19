@@ -14,6 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from "./popup/popup.component";
 import {provideCharts, withDefaultRegisterables} from "ng2-charts";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {provideCharts, withDefaultRegisterables} from "ng2-charts";
     MatSidenavModule,
     MatTooltipModule,
     MatDialogModule,
+    FormsModule
 
   ],
   providers: [

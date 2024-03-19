@@ -12,7 +12,7 @@ export interface User{
     permissions:[Permissions]
 }
 export interface Permissions{
-    permission_id:number;
+    permissionId:number;
     name:string;
     description:string;
 }

@@ -1,10 +1,11 @@
 import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
 import {environment} from "../../../environment";
 import {HttpHeaders, HttpParams} from "@angular/common/http";
 import { HttpClient } from '@angular/common/http';
+import {PopupService} from "../service/popup.service";
 
 
 @Component({
@@ -19,36 +20,42 @@ import { HttpClient } from '@angular/common/http';
   encapsulation: ViewEncapsulation.None
 })
 export class SetPasswordComponent {
-  private activatedRoute = inject(ActivatedRoute);
+  private route = inject(ActivatedRoute);
   passVisible: boolean = false;
-  confirmPassVisible: boolean = false;
   password: string = '';
   confirmedPassword: string = '';
+  token: string = '';
 
-  constructor(private http: HttpClient) {
 
-
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private popupService: PopupService
+  ) {
+    this.token = this.route.snapshot.paramMap.get('token') || '';
   }
 
-  // @ts-ignore
   confirmPassword() {
-    if (this.password !== this.confirmedPassword) {
-      alert('Incorrect input. Entered passwords must match');
+    if(this.password.length < 3 || this.confirmedPassword.length < 3) {
+      this.popupService.openPopup("Error", "Password has to be longer than 3 characters!");
     } else {
-      // Assuming environment.baseUrl is correctly defined
+      if (this.password === this.confirmedPassword) {
+        const url = `${environment.baseUrl}/user/activate/${this.token}`;
 
-      const requestBody = {
-        password: this.password
-      };
+        const body = { password: this.password };
 
-      // Set HTTP headers, including Content-Type for JSON
-      const headers = new HttpHeaders({'Content-Type': 'application/json'});
-
-      // Execute the POST request
-      // Make sure to replace '/user/activate' with '/user/activate/{token}' if your API requires the token in the URL
-      return this.http.post(environment.baseUrl + '/user/activate/' + this.activatedRoute.snapshot.params['token'], requestBody, { headers });
-
+        this.http.post<{ userId: number }>(url, body).subscribe({
+          next: (response) => {
+            // console.log('User activated with ID:', response.userId); // Ovde imate userId ako zatreba
+            this.router.navigate(['/login']);
+          },
+          error: (error) => {
+            this.popupService.openPopup("Error", "Activation failed!");
+          }
+        });
+      } else {
+        this.popupService.openPopup("Error", "Passwords do not match!");
+      }
     }
   }
-
 }

@@ -35,7 +35,7 @@ export class ListUserComponent implements OnInit{
   }
 
   togglePopupAddUser() {
-    this.router.navigate(['/user/add']);
+    this.popup.openAddUserPopup();
   }
 
   search(){
@@ -52,7 +52,8 @@ export class ListUserComponent implements OnInit{
 
   editUser(user: User){
     this.userService.setUserToEdit(user);
-    this.router.navigate(['/user/update']);
+    this.popup.openUpdateUserPopup();
+    // this.router.navigate(['/user/update']);
   }
 
   deleteUser(user: User){
@@ -66,6 +67,18 @@ export class ListUserComponent implements OnInit{
      //   }
      // });
 
+  }
+
+  canAddUser(){
+    return localStorage.getItem('permissions')?.includes('addUser');
+  }
+
+  canEditUser(){
+    return localStorage.getItem('permissions')?.includes('modifyUser');
+  }
+
+  canDeleteUser(){
+    return localStorage.getItem('permissions')?.includes('deleteUser');
   }
 
 }
