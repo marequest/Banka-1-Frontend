@@ -13,12 +13,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from "./popup/popup.component";
+import { PermissionPopUpComponent } from "./permissions-popup/permission-pop-up/permission-pop-up.component";
+import {provideCharts, withDefaultRegisterables} from "ng2-charts";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-  
+
   ],
   imports: [
     HttpClientModule,
@@ -32,10 +35,12 @@ import { PopupComponent } from "./popup/popup.component";
     MatSidenavModule,
     MatTooltipModule,
     MatDialogModule,
-    
+    FormsModule
+
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [AppComponent]
 })

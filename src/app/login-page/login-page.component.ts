@@ -36,7 +36,13 @@ export class LoginPageComponent {
     private validator: ValidationService,
     private popupService: PopupService,
     private router: Router,
-  ) {}
+  ) {
+    // const jwt = localStorage.getItem("jwt");
+    //
+    // if (jwt !== null && jwt.length > 0) {
+    //   this.router.navigate(['/welcome']);
+    // }
+  }
   loginFormSchema = z.object({
     email: z.string().email(),
     password: z.string()
@@ -46,7 +52,7 @@ export class LoginPageComponent {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
         sessionStorage.setItem('jwt', token);
-
+        localStorage.setItem('permissions', response.permissions);
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
             this.adminSatusService.setIsAdmin(isAdmin);
@@ -54,12 +60,8 @@ export class LoginPageComponent {
           (error) => {
             console.error("Error occurred while checking admin status:", error);
             this.adminSatusService.setIsAdmin(false); 
-          }
-        );
+          });
         this.router.navigate(['/welcome']);
-      },
-      (error) => {
-        this.popupService.openPopup("Error", "Wrong credentials!");
-      });
+      }
   }
 }

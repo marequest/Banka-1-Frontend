@@ -28,6 +28,7 @@ export class AppComponent {
   
 
   constructor(private userService : UserService, private router: Router) {
+
     this.userInitials = "/"
     const jwt = sessionStorage.getItem("jwt");
      if (jwt !== null && jwt.length > 0) {
@@ -39,6 +40,7 @@ export class AppComponent {
       }
     );
      }
+
   }
 
   toggleSideNav() {

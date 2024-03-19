@@ -133,7 +133,7 @@ thead {
   border-bottom: 1px solid #406581 !important;
   margin-bottom: 5px;
   text-align: center;
-  
+
 }
 
 .table-head {
@@ -147,7 +147,7 @@ thead {
 
 table {
   border-collapse: collapse;
-    
+
 }
 
 td {
@@ -165,6 +165,9 @@ td {
   background-color: white;
 }
 
+.text-center {
+  text-align: center;
+}
 
 
 

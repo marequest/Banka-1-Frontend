@@ -8,12 +8,18 @@ import { SecurityListComponent } from './security-list/security-list.component';
 import { NgModule } from "@angular/core";
 import {employeeGuard} from "./guards/employee.guard";
 import { WelcomeComponent } from './welcome/welcome.component';
-import { AdminGuard } from './guards/admin.guard';
+
+import { adminGuard } from './guards/admin.guard';
+import {ForexViewComponent} from "./forex-view/forex-view.component";
+import {StockViewComponent} from "./stock-view/stock-view.component";
+import {loginGuard} from "./guards/login.guard";
+import {welcomeGuard} from "./guards/welcome.guard";
+
 
 
 export const routes: Routes = [
-  { path: 'login', component: LoginPageComponent },
-  { path: 'welcome', component: WelcomeComponent },
+  { path: 'login', component: LoginPageComponent, canActivate: [loginGuard] },
+  { path: 'welcome', component: WelcomeComponent, canActivate: [welcomeGuard] },
   {
     path: 'user',
     canActivate: [AdminGuard],
@@ -26,10 +32,13 @@ export const routes: Routes = [
   {path:'user/set-password/:token', component: SetPasswordComponent},
   {
     path: 'security',
-    children: [{ path: 'all', component: SecurityListComponent },],
+    children: [
+      { path: 'all', component: SecurityListComponent },
+      { path: "stock/:id", component: StockViewComponent }],
      canActivateChild: [employeeGuard],
      canActivate: [employeeGuard]
   },
+  {path: 'forex/:id', component: ForexViewComponent},
 ];
 
 @NgModule({
