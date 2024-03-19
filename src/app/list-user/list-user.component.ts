@@ -81,17 +81,26 @@ export class ListUserComponent implements OnInit{
     // this.router.navigate(['/user/update']);
   }
 
-  deleteUser(user: User){
-
-     // this.userService.deleteUser(user.email).subscribe({
-     //   next: (response: any) => {
-     //     this.users = this.users.filter(u => u.email !== user.email);
-     //   },
-     //   error: (error: any) => {
-     //     console.error('Error deleting user: ', error);
-     //   }
-     // });
-
+  deleteUser(user: User): void {
+     user.userId=2; 
+    // userId sam ovde rucno zadao jer kada se uradi ovaj poziv this.userService.getUsers() u ngOnInit()
+    // za usera se ne vraca userId (videti sa backend stranom)
+    const confirmResult = confirm('Are you sure you want to delete this user?');
+     if (confirmResult) {
+      this.userService.deleteUser(user.userId).subscribe({
+        next: (response: boolean) => {
+          if (response) {
+            this.users = this.users.filter(u => u.userId !== user.userId);
+          } else {
+            console.error('Error deleting user: Response was false');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error deleting user: ', error);
+        }
+      });
+     }
+    
   }
 
   /** 
