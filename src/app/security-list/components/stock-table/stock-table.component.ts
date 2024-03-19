@@ -3,6 +3,7 @@ import {SecurityService} from "../../../service/security.service";
 import {StockListing, StockService} from "../../../service/stock.service";
 import {NgForOf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-stock-table',
@@ -19,7 +20,7 @@ export class StockTableComponent {
   stocks: StockListing[] = [];
   filteredStocks: StockListing[] = [];
   searchString = ""
-  constructor(private stockService: StockService) {
+  constructor(private stockService: StockService, private router: Router) {
   }
 
   async ngOnInit() {
@@ -43,4 +44,9 @@ export class StockTableComponent {
       return stock.ticker.toLowerCase().includes(this.searchString.toLowerCase()) || stock.name.toLowerCase().includes(this.searchString.toLowerCase())
     })
   }
+
+  async navigateToStock(id: number) {
+    await this.router.navigate(["security", "stock", id]);
+  }
+
 }

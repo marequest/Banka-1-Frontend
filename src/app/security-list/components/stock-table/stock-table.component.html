@@ -19,7 +19,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let stock of filteredStocks" class="tr-rows text-center">
+      <tr *ngFor="let stock of filteredStocks" class="tr-rows text-center" (click)="navigateToStock(stock.listingId)">
         <td>{{ stock.ticker }}</td>
         <td>{{ stock.name }}</td>
         <td>{{ stock.exchange }}</td>
