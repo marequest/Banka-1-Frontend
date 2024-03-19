@@ -108,6 +108,9 @@
       margin-top: 10px;
     }
   
-  
+    .invalid-input {
+      border: 2px solid red;
+    }
+
     /* Dodati media upit za responsivnost tabele TODO */
   

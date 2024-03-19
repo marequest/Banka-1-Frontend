@@ -17,7 +17,7 @@ export class AuthService {
     return this.http.post(this.loginUrl, { email, password }).pipe(
       map((response: any) => {
         // Assuming the response contains the JWT token
-        return response.jwt;
+        return response;
       })
     );
     // const url = 'assets/testLogin.json';
