@@ -17,7 +17,6 @@ import {provideCharts, withDefaultRegisterables} from "ng2-charts";
 import {FormsModule} from "@angular/forms";
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +35,6 @@ import {FormsModule} from "@angular/forms";
     MatTooltipModule,
     MatDialogModule,
     FormsModule
-
 
   ],
   providers: [

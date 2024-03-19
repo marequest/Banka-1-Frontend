@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Security, SecurityService } from '../service/security.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import {ForexTableComponent} from "../forex-table/forex-table.component";
 import {StockListing, StockService} from "../service/stock.service";
 import {FormsModule} from "@angular/forms";
 import {StockTableComponent} from "./components/stock-table/stock-table.component";
@@ -9,7 +10,7 @@ import {StockTableComponent} from "./components/stock-table/stock-table.componen
 @Component({
   selector: 'app-security-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, StockTableComponent],
+  imports: [CommonModule, FormsModule, StockTableComponent, ForexTableComponent],
   templateUrl: './security-list.component.html',
   styleUrl: './security-list.component.css'
 })
