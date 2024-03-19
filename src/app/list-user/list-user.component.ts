@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User, Permissions } from '../model';
-import { UserService } from '../services/user.service';
+import { User, Permissions } from '../model/model';
+import { UserService } from '../service/user.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {PopupService} from "../service/popup.service";

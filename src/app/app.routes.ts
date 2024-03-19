@@ -9,7 +9,7 @@ import { NgModule } from "@angular/core";
 import {employeeGuard} from "./guards/employee.guard";
 import { WelcomeComponent } from './welcome/welcome.component';
 
-import { adminGuard } from './guards/admin.guard';
+import { AdminGuard } from './guards/admin.guard';
 import {ForexViewComponent} from "./forex-view/forex-view.component";
 import {StockViewComponent} from "./stock-view/stock-view.component";
 import {loginGuard} from "./guards/login.guard";

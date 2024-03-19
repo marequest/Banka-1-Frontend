@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Forex, ListingHistory} from "../model";
+import {Forex, ListingHistory} from "../model/model";
 import {ForexService} from "../service/forex.service";
 import {ActivatedRoute} from "@angular/router";
 import {BaseChartDirective} from "ng2-charts";

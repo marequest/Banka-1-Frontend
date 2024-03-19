@@ -2,8 +2,8 @@ import { Component, OnInit  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { User, UserToEdit } from '../model';
-import { UserService } from '../services/user.service';
+import { User, UserToEdit } from '../model/model';
+import { UserService } from '../service/user.service';
 import { PopupService } from '../service/popup.service';
 import { MatDialogRef } from '@angular/material/dialog';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
-import {Forex, ListingHistory} from "../model";
+import {Forex, ListingHistory} from "../model/model";
 
 @Injectable({
   providedIn: 'root'

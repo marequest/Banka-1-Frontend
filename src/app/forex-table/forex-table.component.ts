@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {environment} from "../../../environment";
 import {HttpClient} from "@angular/common/http";
-import {Forex} from "../model";
+import {Forex} from "../model/model";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 

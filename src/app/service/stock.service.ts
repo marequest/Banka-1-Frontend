@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
-import {environment} from "../../../enviroment";
+import {environment} from "../../../environment";
 
 export interface ListingHistory {
   listingId: number;

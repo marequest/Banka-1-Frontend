@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import {AdminGuard} from "./admin.guard";
 import {ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
-import { environment } from '../../../enviroment';
+import { environment } from '../../../environment';
 
 describe('adminGuard', () => {
   let httpMock: HttpTestingController;

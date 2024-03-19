@@ -52,16 +52,16 @@ export class LoginPageComponent {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
         sessionStorage.setItem('jwt', token);
-        localStorage.setItem('permissions', response.permissions);
+        localStorage.setItem('permissions', token.permissions);
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
             this.adminSatusService.setIsAdmin(isAdmin);
+            this.router.navigate(['/welcome']);
           },
           (error) => {
             console.error("Error occurred while checking admin status:", error);
             this.adminSatusService.setIsAdmin(false); 
           });
-        this.router.navigate(['/welcome']);
-      }
+      });
   }
 }
