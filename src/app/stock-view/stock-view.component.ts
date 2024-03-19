@@ -78,7 +78,7 @@ export class StockViewComponent {
         break;
     }
 
-    this.stockHistory = await this.stockService.getStockHistory(this.stockId, null, graphFilterValue);
+    this.stockHistory = await this.stockService.getStockHistory(this.stockId, graphFilterValue, null);
     this.generateChartData();
   }
 
