@@ -9,12 +9,12 @@ export interface User{
     position: string;
     phoneNumber: string;
     active: boolean;
-    permissions:[Permissions]
+    permissions:Permissions[]
 }
 export interface Permissions{
-    permissionId:number;
+    permission_id?:number;
     name:string;
-    description:string;
+    description?:string;
 }
 
 export interface CreateUserRequest{

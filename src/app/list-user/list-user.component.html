@@ -1,80 +1,167 @@
 <div class="content">
     <div class="security-title">Admin panel</div>
-    <div class="table-wrapper">
-      <div class="table-content">
-        <div class="filter-row">
-          <div class="left-row">
-            <div class="filter-dropdown">
-              <select class="security-filter-select" [(ngModel)]="position">
-                <option value="">All</option>
-                <option value="Employee">Employee</option>
-                <option value="Admin">Admin</option>
-              </select>
-            </div>
-            <div class="filter-input">
-              <input
-                class="security-filter-input"
-                placeholder="Search by email"
-                [(ngModel)]="email"
-              />
-            </div>
-            <div class="filter-input">
-              <input class="security-filter-input" placeholder="By name" [(ngModel)]="firstName" />
-            </div>
-            <div class="filter-input">
-              <input class="security-filter-input" placeholder="By surname" [(ngModel)]="lastName"/>
-            </div>
-            <div class="search-icon">
-              <button (click)="search()" class="button-image">
-                <img src="assets/search.png" alt="search" >
-              </button>
-            </div>
-          </div>
 
-         <div class="right-row">
-            <button *ngIf="canAddUser()" class="add-new-btn" (click)="togglePopupAddUser() ">Add new User</button>
-          </div>
-        </div>
-
-        <div class="security-table-wrapper">
-          <div class="wrapper-header">Users</div>
-          <table class="user-table" cellpadding="2px" cellspacing="0">
-            <thead class="table-head-custom">
-              <tr class="tr-rows">
-                <th class="table-head">NAME</th>
-                <th class="table-head">EMAIL</th>
-                <th class="table-head">JMBG</th>
-                <th class="table-head">POSITION</th>
-                <th class="table-head">PHONE NUMBER</th>
-                <th class="table-head">ACTIVITY</th>
-                <th class="table-head"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of users" class="tr-rows">
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.jmbg }}</td>
-                <td>{{ user.position }}</td>
-                <td>{{ user.phoneNumber }}</td>
-                <td [ngStyle]="{'color': user.active ? 'green' : 'red'}">
-                      {{ user.active ? 'Active' : 'Inactive' }}
-                </td>
-                <td>
-                  <div class="options-menu">
-                    <button id="options-button">&#8286;</button>
-                    <div class="options-dropdown">
-                      <button *ngIf="canEditUser()" id="editProfile-button" (click)="editUser(user)">Edit Profile</button>
-                     <button *ngIf="canDeleteUser()" id="delete-button" (click)="deleteUser(user)">Delete</button>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="security-tabs">
+      <div
+        [ngClass]="selectedTab === 'users' ? 'tab tab-active' : 'tab'"
+        (click)="setSelectedTab('users')"
+      >
+        <div class="tab-content">Users</div>
+      </div>
+      <div
+        [ngClass]="selectedTab === 'permissions' ? 'tab tab-active' : 'tab'"
+        class="tab"
+        (click)="setSelectedTab('permissions')"
+      >
+        <div class="tab-content">Permissions</div>
       </div>
     </div>
+
+    <!-- Switch/Case for rendering by tabs value -->
+    <div [ngSwitch]="selectedTab">
+
+      <!-- Display content for 'users' tab -->
+      <div *ngSwitchCase="'users'">
+        <div class="table-wrapper">
+          <div class="table-content">
+            <div class="filter-row">
+              <div class="left-row">
+                <div class="filter-dropdown">
+                  <select class="security-filter-select" [(ngModel)]="position">
+                    <option value="">All</option>
+                    <option value="Employee">Employee</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
+                <div class="filter-input">
+                  <input
+                    class="security-filter-input"
+                    placeholder="Search by email"
+                    [(ngModel)]="email"
+                  />
+                </div>
+                <div class="filter-input">
+                  <input class="security-filter-input" placeholder="By name" [(ngModel)]="firstName" />
+                </div>
+                <div class="filter-input">
+                  <input class="security-filter-input" placeholder="By surname" [(ngModel)]="lastName"/>
+                </div>
+                <div class="search-icon">
+                  <button (click)="search()" class="button-image">
+                    <img src="assets/search.png" alt="search" >
+                  </button>
+                </div>
+              </div>
+
+            <div class="right-row">
+                <button *ngIf="canAddUser()" class="add-new-btn" (click)="togglePopupAddUser() ">Add new User</button>
+              </div>
+            </div>
+
+            <div class="security-table-wrapper">
+              <div class="wrapper-header">Users</div>
+              <table class="user-table" cellpadding="2px" cellspacing="0">
+                <thead class="table-head-custom">
+                  <tr class="tr-rows">
+                    <th class="table-head">NAME</th>
+                    <th class="table-head">EMAIL</th>
+                    <th class="table-head">JMBG</th>
+                    <th class="table-head">POSITION</th>
+                    <th class="table-head">PHONE NUMBER</th>
+                    <th class="table-head">ACTIVITY</th>
+                    <th class="table-head"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users" class="tr-rows">
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.jmbg }}</td>
+                    <td>{{ user.position }}</td>
+                    <td>{{ user.phoneNumber }}</td>
+                    <td [ngStyle]="{'color': user.active ? 'green' : 'red'}">
+                          {{ user.active ? 'Active' : 'Inactive' }}
+                    </td>
+                    <td>
+                      <div class="options-menu">
+                        <button id="options-button">&#8286;</button>
+                        <div class="options-dropdown">
+                          <button *ngIf="canEditUser()" id="editProfile-button" (click)="editUser(user)">Edit Profile</button>
+                        <button *ngIf="canDeleteUser()" id="delete-button" (click)="deleteUser(user)">Delete</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Display content for 'permissions' tab -->
+      <div *ngSwitchCase="'permissions'">
+
+        <!-- Filer by mail above the table -->
+        <div class="table-content">
+          <div class="filter-row">
+            <div class="left-row">
+              <div class="filter-input">
+                <input
+                  class="security-filter-input"
+                  placeholder="Filter by email"
+                  [(ngModel)]="searchEmail"
+                />
+              </div>
+              <div class="search-icon">
+                <button (click)="filter()" class="button-image">
+                  <img src="assets/search.png" alt="search" >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Permissions table -->
+          <div class="security-table-wrapper">
+            <div class="wrapper-header">Users</div>
+            <table class="user-table" cellpadding="2px" cellspacing="0">
+              <thead class="table-head-custom">
+                <tr class="tr-rows">
+                  <th class="table-head">Email</th>
+                  <th class="table-head">Permissions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users" class="tr-rows">
+                  <td>{{ user.email }}</td>
+                  <td class="permmissions-td">
+                    <div id="helperDiv">
+                      <div *ngFor="let permission of user.permissions; let i = index" class="permission-element">
+                        <span>⠀</span>
+                        {{ permission.name }}
+                        <span *ngIf="hasPermission" class="close-icon" (click)="removePermission(user, i)">✖ </span>
+                        <span>⠀</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td *ngIf="hasPermission">
+                    <div class="options-menu">
+                      <span id="options-button" class="material-symbols-outlined">more_vert</span>
+                      <div class="options-dropdown">
+                        <button id="editProfile-button" (click)="editUserPermissions(user)">Add permission</button>
+                      <button id="delete-button" (click)="deleteAllPermissions(user)">Delete all</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+
 </div>
 
 
