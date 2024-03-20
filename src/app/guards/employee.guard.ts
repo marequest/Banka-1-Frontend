@@ -1,6 +1,6 @@
 import { CanActivateFn } from '@angular/router';
 import {inject} from "@angular/core";
-import {JwtService} from "../jwt.service";
+import {JwtService} from "../service/jwt.service";
 
 export const employeeGuard: CanActivateFn = (route, state) => {
   const jwtService = inject(JwtService);

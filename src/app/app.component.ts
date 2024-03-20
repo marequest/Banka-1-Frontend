@@ -3,7 +3,7 @@ import {Component, HostListener, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {Router} from "@angular/router";
-import {UserService} from "./services/user.service";
+import {UserService} from "./service/user.service";
 import {MatSidenav} from "@angular/material/sidenav";
 import {PopupComponent} from "./popup/popup.component";
 import {PopupService} from "./service/popup.service";

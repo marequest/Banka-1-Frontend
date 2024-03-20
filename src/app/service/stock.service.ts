@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
-import {environment} from "../../../enviroment";
+import {environment} from "../../../environment";
 
 export interface ListingHistory {
   listingId: number;
@@ -38,12 +38,12 @@ export class StockService {
 
   async getStocks(): Promise<StockListing[]>  {
 
-    const jwt = localStorage.getItem("jwt");
+    const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return [];
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     let resp;
@@ -59,12 +59,12 @@ export class StockService {
   }
 
   async getStockHistory(listingId: number, from: number | null = null, to: number | null = null) {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return [];
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     let query = "?";
@@ -91,12 +91,12 @@ export class StockService {
   }
 
   async getStockById(listingId: number) {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return null;
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     let resp;

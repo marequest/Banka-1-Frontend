@@ -44,8 +44,8 @@ describe('StockService', () => {
         },
       ];
 
-      // Spy on localStorage.getItem to return a mock JWT
-      spyOn(localStorage, 'getItem').and.returnValue('mockJWT');
+      // Spy on sessionStorage.getItem to return a mock JWT
+      spyOn(sessionStorage, 'getItem').and.returnValue('mockJWT');
 
       service.getStocks().then(stocks => {
         expect(stocks).toEqual(mockStocks); // Assert that returned stocks match mock data
@@ -62,7 +62,7 @@ describe('StockService', () => {
 
 
     it('should return an empty array if JWT is missing', (done: DoneFn) => {
-      spyOn(localStorage, 'getItem').and.returnValue(null);
+      spyOn(sessionStorage, 'getItem').and.returnValue(null);
 
       service.getStocks().then(stocks => {
         expect(stocks).toEqual([]);
@@ -73,7 +73,7 @@ describe('StockService', () => {
     });
 
     it('should return an empty array if HTTP request fails', (done: DoneFn) => {
-      spyOn(localStorage, 'getItem').and.returnValue('mockJWT');
+      spyOn(sessionStorage, 'getItem').and.returnValue('mockJWT');
 
       service.getStocks().then(stocks => {
         expect(stocks).toEqual([]);

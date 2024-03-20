@@ -3,9 +3,9 @@ import { UrlTree, CanActivate } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { JwtService } from "../jwt.service";
-import { environment } from "../../../enviroment";
-import { User } from "../model";
+import { JwtService } from "../service/jwt.service";
+import { environment } from "../../../environment";
+import { User } from "../model/model";
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -34,7 +34,8 @@ export class AdminGuard implements CanActivate {
         if (user.position.toLowerCase() === 'admin') {
           return true;
         } else {
-          return this.router.parseUrl('/welcome');        }
+          return this.router.parseUrl('/welcome');        
+        }
       }),
       catchError((error: any) => {
         console.error("Error occurred:", error);
