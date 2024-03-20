@@ -5,7 +5,7 @@ import {JwtService} from "../service/jwt.service";
 export const loginGuard: CanActivateFn = (route, state) => {
   const jwtService = inject(JwtService);
   const router = inject(Router); // Correctly access Router
-  const token = localStorage.getItem("jwt");
+  const token = sessionStorage.getItem("jwt");
 
   if(!token) return true;
 

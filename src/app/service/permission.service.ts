@@ -16,7 +16,7 @@ export class PermissionService {
   public getAllPermissions(): Observable<Permissions[]>{
     return this.http.get<Permissions[]>(this.apiUrl, {
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
     });
   }

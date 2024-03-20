@@ -11,12 +11,12 @@ export class ForexService {
   constructor(private http: HttpClient) { }
 
   async getForexHistory(listingId: number, from: number | null = null, to: number | null = null) {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return [];
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     let query = "?";
@@ -43,12 +43,12 @@ export class ForexService {
   }
 
   async getForexById(listingId: number) {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return null;
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
     let resp;

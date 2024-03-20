@@ -37,7 +37,7 @@ export class LoginPageComponent {
     private popupService: PopupService,
     private router: Router,
   ) {
-    // const jwt = localStorage.getItem("jwt");
+    // const jwt = sessionStorage.getItem("jwt");
     //
     // if (jwt !== null && jwt.length > 0) {
     //   this.router.navigate(['/welcome']);
@@ -51,8 +51,8 @@ export class LoginPageComponent {
   onSubmit() {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
-        sessionStorage.setItem('jwt', token);
-        localStorage.setItem('permissions', token.permissions);
+        sessionStorage.setItem('jwt', token.jwt);
+        sessionStorage.setItem('permissions', token.permissions);
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
             this.adminSatusService.setIsAdmin(isAdmin);

@@ -40,7 +40,7 @@ export class ListUserComponent implements OnInit{
   }
 
   getPermission(): string | null {
-    return localStorage.getItem('mockedPermission');
+    return sessionStorage.getItem('permissions');
   }
 
   loadUsersFromDataBase(){
@@ -121,10 +121,10 @@ export class ListUserComponent implements OnInit{
     console.log(flag);
 
     this.apiService.modifyUserPermissions(userId, permissionsToModify, flag).subscribe(
-      response => {
+      (response: any) => {
         console.log('Success:', response);
       },
-      error => {
+      (error: any) => {
         console.error('Error:', error);
       }
     );
@@ -179,15 +179,15 @@ export class ListUserComponent implements OnInit{
   }
 
   canAddUser(){
-    return localStorage.getItem('permissions')?.includes('addUser');
+    return sessionStorage.getItem('permissions')?.includes('addUser');
   }
 
   canEditUser(){
-    return localStorage.getItem('permissions')?.includes('modifyUser');
+    return sessionStorage.getItem('permissions')?.includes('modifyUser');
   }
 
   canDeleteUser(){
-    return localStorage.getItem('permissions')?.includes('deleteUser');
+    return sessionStorage.getItem('permissions')?.includes('deleteUser');
   }
 
 }

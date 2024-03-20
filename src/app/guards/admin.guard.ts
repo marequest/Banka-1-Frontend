@@ -34,7 +34,8 @@ export class AdminGuard implements CanActivate {
         if (user.position.toLowerCase() === 'admin') {
           return true;
         } else {
-          return this.router.parseUrl('/welcome');        }
+          return this.router.parseUrl('/welcome');        
+        }
       }),
       catchError((error: any) => {
         console.error("Error occurred:", error);
