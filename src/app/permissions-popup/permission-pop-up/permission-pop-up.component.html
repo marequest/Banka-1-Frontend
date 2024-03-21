@@ -19,6 +19,9 @@
                   placeholder="Add permission"
                   [(ngModel)]="addedPermission"
                 />
+                <select>
+                    <option *ngFor="let permission of availablePermissions" value="{{permission.name}}">{{permission.description}}</option>
+                </select>
             </div>
             <img (click)="addPermission()" src="assets/ButtonMedium.png" alt="+">
         </div>
