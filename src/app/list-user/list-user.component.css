@@ -23,7 +23,7 @@
 .tab {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
   margin-right: auto;
   cursor: pointer;
   background-color: #dbe2e7;
@@ -35,7 +35,7 @@
   font-weight: 400;
 }
 
-.active-tab {
+.tab-active {
   background-color: white;
 }
 

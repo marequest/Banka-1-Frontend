@@ -25,8 +25,6 @@ export class AppComponent {
   userInitials: string = "";
   isAdmin: boolean = false; 
 
-  
-
   constructor(private userService : UserService, private router: Router) {
 
     this.userInitials = "/"

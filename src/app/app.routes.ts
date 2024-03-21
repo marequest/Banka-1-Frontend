@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent, canActivate: [welcomeGuard] },
   {
     path: 'user',
-    canActivate: [AdminGuard],
+    // canActivate: [AdminGuard],
     children: [
       { path: 'add', component: AddUserComponent },
       { path: 'update', component: UpdateUserComponent },
