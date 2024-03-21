@@ -5,11 +5,10 @@ import { Observable, of } from 'rxjs';
 import { User, Permissions } from '../model/model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PermissionsService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /** 
     Api call.
@@ -20,23 +19,27 @@ export class PermissionsService {
 
     Api returns boolean.
    **/
-  modifyUserPermissions(userId: number, permissionsToModify: string[], flag: boolean){
-    let url = environment.baseUrl+`/user/permission/${userId}`;
+  modifyUserPermissions(
+    userId: number,
+    permissionsToModify: string[],
+    flag: boolean
+  ) {
+    let url = environment.baseUrl + `/user/permission/${userId}`;
 
     const jsonData = {
-      permissions: permissionsToModify, 
-      add: flag 
+      permissions: permissionsToModify,
+      add: flag,
     };
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+      Authorization: 'Bearer ' + sessionStorage.getItem('jwt'),
     });
 
-    console.log("modifyUserPermissions api log:");
+    console.log('modifyUserPermissions api log:');
     console.log(url);
     console.log(jsonData);
 
-    return this.http.post<boolean>(url, jsonData, {headers});
-  
+    return this.http.post<boolean>(url, jsonData, { headers });
+
     // Simulating API call with setTimeout
     // return new Observable<boolean>(observer => {
     //   setTimeout(() => {
@@ -45,31 +48,34 @@ export class PermissionsService {
     //     observer.complete();
     //   }, 1000); // Simulating a delay of 1 second
     // });
-
   }
 
-  addUserPermissions(user:User){
-    let id =  user.userId;
+  public getPermissions(): Observable<Permissions[]> {
+    return this.http.get<Permissions[]>(`${environment.baseUrl}/permission/getAll`);
+  }
+
+  addUserPermissions(user: User) {
+    let id = user.userId;
     let permissionsToModify = user.permissions;
-    let url = environment.baseUrl+"/user";
+    let url = environment.baseUrl + '/user';
 
     let userToSend = {
       userId: id,
-      permissions: permissionsToModify
-    }
-
-    const jsonData = {
-      user: userToSend
+      permissions: permissionsToModify,
     };
 
-    console.log("addUserPermissions api log:");
+    const jsonData = {
+      user: userToSend,
+    };
+
+    console.log('addUserPermissions api log:');
     console.log(url);
     console.log(jsonData);
 
     //return this.http.put<number>(url, jsonData, {headers: {'Content-Type': 'application/json'}});
-  
+
     // Simulating API call with setTimeout
-    return new Observable<boolean>(observer => {
+    return new Observable<boolean>((observer) => {
       setTimeout(() => {
         // Simulating a successful response for demonstration
         observer.next(true);

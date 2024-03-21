@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { User, Permissions } from '../../model/model';
 import { CommonModule } from '@angular/common';
@@ -12,9 +12,10 @@ import { PermissionsService } from '../../service/permissions.service';
   templateUrl: './permission-pop-up.component.html',
   styleUrl: './permission-pop-up.component.css'
 })
-export class PermissionPopUpComponent {
+export class PermissionPopUpComponent implements OnInit {
 
   public addedPermission:string='';
+  public availablePermissions:Permissions[] = [];
 
   /*Modify the permission-dialog.component.ts file to 
   accept data (the user object) passed into the dialog. Import MAT_DIALOG_DATA and MatDialogRef to facilitate this.*/
@@ -24,7 +25,14 @@ export class PermissionPopUpComponent {
     public apiService:PermissionsService) {}
 
     ngOnInit() {
-      console.log(this.user);
+      this.apiService.getPermissions().subscribe(
+        perms => {
+          this.availablePermissions = perms
+        },
+        error => {
+          
+        }
+      )
     }
 
     removePermission(index: number) {
