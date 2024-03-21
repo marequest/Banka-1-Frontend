@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
-import {environment} from "../../../environment";
+import {environmentMarket} from "../../../environment";
 import {HttpClient} from "@angular/common/http";
 import {Forex} from "../model/model";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import { HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-forex-table',
@@ -36,8 +37,11 @@ export class ForexTableComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.http.get<Forex[]>('assets/mock-forex.json')
-    // this.http.get<Forex[]>(environment.baseUrl + '/market/listing/forex')
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    // this.http.get<Forex[]>('assets/mock-forex.json')
+    this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/forex', {headers})
       .subscribe(res => this.forexBackup = this.forex = res );
   }
 

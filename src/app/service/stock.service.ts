@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
-import {environment} from "../../../environment";
+import {environmentMarket} from "../../../environment";
 
 export interface ListingHistory {
   listingId: number;
@@ -49,8 +49,8 @@ export class StockService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        // this.http.get(environment.baseUrl + "/api/market/listing/stock", {headers})
-        this.http.get("/assets/stocks.json")
+        this.http.get(environmentMarket.baseUrl + "/market/listing/stock", {headers})
+        // this.http.get("/assets/stocks.json")
       )) as StockListing[];
     } catch (e) {
       return [];

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environment';
 import { Observable, of } from 'rxjs';
 import { User, Permissions } from '../model/model';
@@ -27,21 +27,24 @@ export class PermissionsService {
       permissions: permissionsToModify, 
       add: flag 
     };
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
 
     console.log("modifyUserPermissions api log:");
     console.log(url);
     console.log(jsonData);
 
-    //return this.http.post<boolean>(url, jsonData, {headers: {'Content-Type': 'application/json'}});
+    return this.http.post<boolean>(url, jsonData, {headers});
   
     // Simulating API call with setTimeout
-    return new Observable<boolean>(observer => {
-      setTimeout(() => {
-        // Simulating a successful response for demonstration
-        observer.next(true);
-        observer.complete();
-      }, 1000); // Simulating a delay of 1 second
-    });
+    // return new Observable<boolean>(observer => {
+    //   setTimeout(() => {
+    //     // Simulating a successful response for demonstration
+    //     observer.next(true);
+    //     observer.complete();
+    //   }, 1000); // Simulating a delay of 1 second
+    // });
 
   }
 
