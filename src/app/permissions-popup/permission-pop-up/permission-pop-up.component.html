@@ -14,11 +14,11 @@
     <div class="add-save-perm-div">
         <div class="left">
             <div class="filter-input">
-                <input
+                <!-- <input
                   class="security-filter-input"
                   placeholder="Add permission"
                   [(ngModel)]="addedPermission"
-                />
+                /> -->
                 <select>
                     <option *ngFor="let permission of availablePermissions" value="{{permission.name}}">{{permission.description}}</option>
                 </select>
