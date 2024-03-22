@@ -39,12 +39,14 @@ export class ForexViewComponent {
 
   constructor(private forexService: ForexService, private route: ActivatedRoute) {
     this.route.params.subscribe(params =>
-      this.forexId = params["id"]
+      this.forexId = params["ticker"]
     )
+    
   }
 
   async ngOnInit() {
     this.forex = await this.forexService.getForexById(this.forexId);
+   
     await this.handleGraphFilter("d");
   }
 
@@ -55,24 +57,24 @@ export class ForexViewComponent {
     switch(input) {
       case "d":
         date.setDate(date.getDate() - 1)
-        graphFilterValue = date.getTime();
+        graphFilterValue = Math.floor(date.getTime() / 1000);
         this.chartData.labels = ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "23:59"]
         this.chart?.chart?.update()
         break;
       case "m":
         date.setMonth(date.getMonth() - 1)
-        graphFilterValue = date.getTime();
+        graphFilterValue = Math.floor(date.getTime() / 1000);
         this.chartData.labels = ["1.", "5.", "10.", "15.", "20.", "25.", "30."]
         this.chart?.chart?.update()
         break;
       case "y":
         date.setFullYear(date.getFullYear() - 1)
-        graphFilterValue = date.getTime();
+        graphFilterValue = Math.floor(date.getTime() / 1000);
         this.chartData.labels = ['January', 'March', 'June', 'September', "December"]
         break;
       case "5y":
         date.setFullYear(date.getFullYear() - 5)
-        graphFilterValue = date.getTime();
+        graphFilterValue = Math.floor(date.getTime() / 1000);
         this.chartData.labels = [date.getFullYear(), date.getFullYear() + 1, date.getFullYear() + 2, date.getFullYear() + 3, date.getFullYear() + 4, date.getFullYear() + 5]
         break;
       case "all":

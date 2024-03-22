@@ -23,6 +23,7 @@ export class ForexTableComponent implements OnInit {
   buyingFilter: string = '';
   sellingFilter: string = '';
   _router: Router;
+this: any;
   constructor(private http: HttpClient, router: Router) {
     this._router = router;
   }
@@ -41,8 +42,14 @@ export class ForexTableComponent implements OnInit {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
     // this.http.get<Forex[]>('assets/mock-forex.json')
-    this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/forex', {headers})
+    this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/get/forex', {headers})
       .subscribe(res => this.forexBackup = this.forex = res );
+    
+  }
+
+  navigateToForex(forexId: number): void {
+   
+    this._router.navigateByUrl(`/forex/${forexId}`);
   }
 
 }

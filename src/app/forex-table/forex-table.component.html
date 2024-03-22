@@ -15,7 +15,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let row of forex" class="tr-rows" (click)="this._router.navigateByUrl('forex/' + row.listingId)">
+      <tr *ngFor="let row of forex" class="tr-rows" (click)="navigateToForex(row.listingId)">
         <td>{{ row.baseCurrency }}</td>
         <td>{{ row.quoteCurrency }}</td>
         <td>{{ row.price }}</td>

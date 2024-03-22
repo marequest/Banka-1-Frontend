@@ -45,8 +45,8 @@ export class StockTableComponent {
     })
   }
 
-  async navigateToStock(id: number) {
-    await this.router.navigate(["security", "stock", id]);
+  async navigateToStock(stockId: number) {
+    await this.router.navigate(["security", "stock", stockId]);
   }
 
 }

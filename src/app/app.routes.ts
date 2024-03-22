@@ -34,11 +34,11 @@ export const routes: Routes = [
     path: 'security',
     children: [
       { path: 'all', component: SecurityListComponent },
-      { path: "stock/:id", component: StockViewComponent }],
+      { path: "stock/:ticker", component: StockViewComponent }],
      canActivateChild: [employeeGuard],
      canActivate: [employeeGuard]
   },
-  {path: 'forex/:id', component: ForexViewComponent},
+  {path: 'forex/:ticker', component: ForexViewComponent},
 ];
 
 @NgModule({

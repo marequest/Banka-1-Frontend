@@ -49,7 +49,7 @@ export class StockService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        this.http.get(environmentMarket.baseUrl + "/market/listing/stock", {headers})
+        this.http.get(environmentMarket.baseUrl + "/market/listing/get/stock", {headers})
         // this.http.get("/assets/stocks.json")
       )) as StockListing[];
     } catch (e) {
@@ -58,7 +58,7 @@ export class StockService {
     return resp;
   }
 
-  async getStockHistory(listingId: number, from: number | null = null, to: number | null = null) {
+  async getStockHistory(stockId: number, from: number | null = null, to: number | null = null) {
     const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return [];
@@ -81,8 +81,8 @@ export class StockService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        // this.http.get(environment.baseUrl + `/api/market/listing/history/${listingId}` + query, {headers})
-        this.http.get("/assets/listing-history.json" + query)
+        this.http.get(environmentMarket.baseUrl + `/market/listing/history/stock/${stockId}` + query, {headers})
+        //this.http.get("/assets/listing-history.json" + query)
       )) as ListingHistory[];
     } catch (e) {
       return [];
@@ -90,7 +90,7 @@ export class StockService {
     return resp;
   }
 
-  async getStockById(listingId: number) {
+  async getStockByTicker(stockId: number): Promise<StockListing | null> {
     const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return null;
@@ -102,18 +102,12 @@ export class StockService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        // this.http.get(environment.baseUrl + `/api/market/listing/history/${listingId}`, {headers})
-        this.http.get("/assets/stocks.json")
-      )) as StockListing[];
+        this.http.get(environmentMarket.baseUrl + `/market/listing/stock/${stockId}`, {headers})
+        //his.http.get("/assets/stocks.json")
+      )) as StockListing;
     } catch (e) {
       return null;
     }
-
-    for(let stock of resp) {
-      if(stock.listingId == listingId) {
-        return stock;
-      }
-    }
-    return null;
+    return resp;
   }
 }

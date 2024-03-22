@@ -32,7 +32,7 @@ export class AppComponent {
      if (jwt !== null && jwt.length > 0) {
     this.userService.getUser(jwt).subscribe(
       response => {
-        this.userInitials = response.name.charAt(0) + response.lastName.charAt(0);
+        this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
       }, (e) => {
         this.userInitials = "/"
       }

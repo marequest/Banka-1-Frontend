@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {Forex, ListingHistory} from "../model/model";
+import { environmentMarket } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ForexService {
 
   constructor(private http: HttpClient) { }
 
-  async getForexHistory(listingId: number, from: number | null = null, to: number | null = null) {
+  async getForexHistory(forexId: number, from: number | null = null, to: number | null = null) {
     const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return [];
@@ -31,10 +32,12 @@ export class ForexService {
     }
 
     let resp;
+
     try {
       resp = (await firstValueFrom(
-        // this.http.get(environment.baseUrl + `/api/market/listing/history/${listingId}` + query, {headers})
-        this.http.get("/assets/listing-history.json" + query)
+        
+        this.http.get(environmentMarket.baseUrl + `/market/listing/history/forex/${forexId}` + query, {headers})
+        // this.http.get("/assets/listing-history.json" + query)
       )) as ListingHistory[];
     } catch (e) {
       return [];
@@ -42,7 +45,7 @@ export class ForexService {
     return resp;
   }
 
-  async getForexById(listingId: number) {
+  async getForexById(forexId: number) : Promise<Forex | null>{
     const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return null;
@@ -50,22 +53,17 @@ export class ForexService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
-
     let resp;
     try {
       resp = (await firstValueFrom(
-        // this.http.get(environment.baseUrl + `/api/market/listing/forex/${listingId}`, {headers})
-        this.http.get("/assets/mock-forex.json")
-      )) as Forex[];
+        this.http.get(environmentMarket.baseUrl + `/market/listing/forex/${forexId}`, {headers})
+        // this.http.get("/assets/mock-forex.json")
+      )) as Forex;
     } catch (e) {
       return null;
     }
 
-    for(let forex of resp) {
-      if(forex.listingId == listingId) {
-        return forex;
-      }
-    }
-    return null;
+    return resp;
+
   }
 }
