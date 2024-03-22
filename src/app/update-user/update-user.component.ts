@@ -2,9 +2,10 @@ import { Component, OnInit  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { User, UserToEdit } from '../model';
-import { UserService } from '../services/user.service';
+import { User, UserToEdit } from '../model/model';
+import { UserService } from '../service/user.service';
 import { PopupService } from '../service/popup.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-user',
@@ -36,7 +37,9 @@ export class UpdateUserComponent implements OnInit {
 
 
   constructor(private userService: UserService,private router: Router,
-              private popupService: PopupService) {
+              private popupService: PopupService,
+              private dialogRef: MatDialogRef<UpdateUserComponent>
+              ) {
     this.userToEdit = {
       userId: 0,
       firstName: '',
@@ -83,6 +86,7 @@ export class UpdateUserComponent implements OnInit {
       this.userService.updateUser(updatedUserRequest).subscribe({
         next: (user: User) => {
           alert('Successfully modified user!');
+          this.dialogRef.close();
         },
         error: (error: any) => {
           console.error(error);
@@ -98,14 +102,16 @@ export class UpdateUserComponent implements OnInit {
   onCancelUpdateUserPopup() {
     const confirmResult = confirm('Are you sure you want to cancel adding the user?');
      if (confirmResult) {
-      this.router.navigate(['/user/list']);
+      this.dialogRef.close();
+      // this.router.navigate(['/user/list']);
      }
   }
 
   onCloseUpdateUserPopup() {
     const confirmResult = confirm('Are you sure you want to cancel adding the user?');
      if (confirmResult) {
-      this.router.navigate(['/user/list']);
+      this.dialogRef.close();
+      // this.router.navigate(['/user/list']);
      }
   }
 

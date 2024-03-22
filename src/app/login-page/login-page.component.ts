@@ -8,6 +8,9 @@ import {z} from "zod";
 import {ValidationService} from "../service/validation.service";
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AdminStatusService } from '../service/admin-status.service';
+import { AdminGuard } from '../guards/admin.guard';
+
 
 
 
@@ -27,12 +30,14 @@ export class LoginPageComponent {
 
   constructor(
     private authService: AuthService,
+    private adminGuard:AdminGuard,
+    private adminSatusService:AdminStatusService,
     public dialog: MatDialog,
     private validator: ValidationService,
     private popupService: PopupService,
     private router: Router,
   ) {
-    // const jwt = localStorage.getItem("jwt");
+    // const jwt = sessionStorage.getItem("jwt");
     //
     // if (jwt !== null && jwt.length > 0) {
     //   this.router.navigate(['/welcome']);
@@ -46,11 +51,17 @@ export class LoginPageComponent {
   onSubmit() {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
-        localStorage.setItem('jwt', token);
-        this.router.navigate(['/welcome']);
-      },
-      (error) => {
-        this.popupService.openPopup("Error", "Wrong credentials!");
+        sessionStorage.setItem('jwt', token.jwt);
+        sessionStorage.setItem('permissions', token.permissions);
+        this.adminGuard.userIsAdmin().subscribe(
+          (isAdmin) => {
+            this.adminSatusService.setIsAdmin(isAdmin);
+            this.router.navigate(['/welcome']);
+          },
+          (error) => {
+            console.error("Error occurred while checking admin status:", error);
+            this.adminSatusService.setIsAdmin(false); 
+          });
       });
   }
 }

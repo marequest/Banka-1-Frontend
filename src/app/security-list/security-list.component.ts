@@ -2,23 +2,28 @@ import { Component } from '@angular/core';
 import { Security, SecurityService } from '../service/security.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import {ForexTableComponent} from "../forex-table/forex-table.component";
+import {StockListing, StockService} from "../service/stock.service";
+import {FormsModule} from "@angular/forms";
+import {StockTableComponent} from "./components/stock-table/stock-table.component";
 
 @Component({
   selector: 'app-security-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, StockTableComponent, ForexTableComponent],
   templateUrl: './security-list.component.html',
   styleUrl: './security-list.component.css'
 })
 export class SecurityListComponent {
   users: Security[] = [];
-  selectedTab: string = "actions";
+  selectedTab: string = "stocks";
 
-  constructor(private securityService: SecurityService) {
+  constructor(private securityService: SecurityService,
+              private stockService: StockService) {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.loadUsers();
   }
 

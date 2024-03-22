@@ -4,18 +4,18 @@
   <div class="table-wrapper">
     <div class="security-tabs">
       <div
-        [ngClass]="selectedTab === 'actions' ? 'tab tab-active' : 'tab'"
-        (click)="setSelectedTab('actions')"
+        [ngClass]="selectedTab === 'stocks' ? 'tab tab-active' : 'tab'"
+        (click)="setSelectedTab('stocks')"
       >
-        <div class="tab-content">Actions</div>
+        <div class="tab-content">Stocks</div>
       </div>
-      <div
+      <!-- <div
         [ngClass]="selectedTab === 'future' ? 'tab tab-active' : 'tab'"
         class="tab"
         (click)="setSelectedTab('future')"
       >
         <div class="tab-content">Future</div>
-      </div>
+      </div> -->
       <div
         [ngClass]="selectedTab === 'forex' ? 'tab tab-active' : 'tab'"
         class="tab"
@@ -25,6 +25,13 @@
       </div>
     </div>
 
+    <div class="tab-stocks" *ngIf="selectedTab === 'stocks'">
+      <app-stock-table></app-stock-table>
+    </div>
+    <ng-container *ngIf="selectedTab === 'forex';">
+      <app-forex-table/>
+    </ng-container>
+    <ng-container *ngIf="selectedTab !== 'forex' && selectedTab !== 'stocks'">
     <div class="table-content">
       <div class="security-table-wrapper">
         <div class="wrapper-header">Securities</div>
@@ -54,5 +61,6 @@
         </table>
       </div>
     </div>
+    </ng-container>
   </div>
 </div>
