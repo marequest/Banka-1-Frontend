@@ -32,7 +32,11 @@ export class AppComponent {
      if (jwt !== null && jwt.length > 0) {
     this.userService.getUser(jwt).subscribe(
       response => {
+        console.log(response);
         this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+
+        sessionStorage.setItem('loggedUserID', response.userId.toString());
+
       }, (e) => {
         this.userInitials = "/"
       }

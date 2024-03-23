@@ -17,6 +17,15 @@ export interface Permissions{
     description?:string;
 }
 
+export interface BankAccount {
+  accountType?: string;
+  accountNumber?: string;
+  accountStatus?: string;
+  currency?: string;
+  balance?: number;
+  availableBalance?: number;
+}
+
 export interface CreateUserRequest{
   email: string;
   firstName:string;

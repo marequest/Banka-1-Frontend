@@ -1,0 +1,27 @@
+<div class="bank-accs-main-container">
+    <div class="title-div">Bank accounts</div>
+    <div class="bank-accs-div">
+
+        <div class="row-with-two-bank-accs" ></div>
+
+        <div class="bank-accs-div">
+            <div class="grid-container">
+                <div *ngFor="let account of userBankAccounts" class="grid-item">
+                    <div class="accType">{{ account.accountType || 'N/A' }}</div>
+                    <div class="accNumber">Account Number: {{ account.accountNumber || 'N/A' }}</div>
+                    <div class="accActive" [ngStyle]="{'color': account.accountStatus === 'active' ? 'green' : 'red'}">{{ account.accountStatus === 'active' ? 'Active' : 'Inactive' }}</div>
+                    <div class="accBalance">Balance: {{ account.balance | currency:account.currency:'symbol':'1.2-2' }}</div>
+
+
+                    <!-- <h5 class="card-title">{{ account.accountType || 'N/A' }}</h5>
+                    <p class="card-text">Account Number: {{ account.accountNumber || 'N/A' }}</p>
+                    <p class="card-text">Status: {{ account.accountStatus ? 'Active' : 'Inactive' }}</p>
+                    <p class="card-text">Currency: {{ account.currency || 'N/A' }}</p>
+                    <p class="card-text">Balance: {{ account.balance | currency:account.currency:'symbol':'1.2-2' }}</p>
+                    <p class="card-text">Available Balance: {{ account.availableBalance | currency:account.currency:'symbol':'1.2-2' }}</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+      
+</div>

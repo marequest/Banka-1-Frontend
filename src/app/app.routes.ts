@@ -8,6 +8,7 @@ import { SecurityListComponent } from './security-list/security-list.component';
 import { NgModule } from "@angular/core";
 import {employeeGuard} from "./guards/employee.guard";
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
 
 import { AdminGuard } from './guards/admin.guard';
 import {ForexViewComponent} from "./forex-view/forex-view.component";
@@ -39,6 +40,8 @@ export const routes: Routes = [
      canActivate: [employeeGuard]
   },
   {path: 'forex/:ticker', component: ForexViewComponent},
+  //TODO: Add customer guard
+  { path: 'bank-accounts', component: BankAccountsComponent},
 ];
 
 @NgModule({

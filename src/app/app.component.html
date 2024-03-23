@@ -1,6 +1,11 @@
+<!-- 23.03.2024 Da li komentari iz linije 2 i 3 mogu da se brisu, ako da obrisati ih @FrontLead @TeamLead -->
 <!--ToDo: Kako se navbar ne bi pojavljivao na login stranici, odkomentarisati ovu liniju i zakomentariati liniju ispod, odkomentarisati poslednja tri reda-->
 <!--<div class="app-container" *ngIf="userIsLoggedIn()">-->
+
+<!-- Main page html that contains <A bar with title and logout button>, navigation bar and shows other pages. -->
 <div class="app-container">
+
+  <!-- Ribbon bar with A1 title, user credientals img and logout button. -->
   <mat-toolbar *ngIf="userIsLoggedIn()">
     <button mat-icon-button class="menu-button" (click)="toggleSideNav()">
       <mat-icon>menu</mat-icon>
@@ -14,30 +19,38 @@
     </div>
   </mat-toolbar>
 
+  <!-- Navigation side bar. -->
   <mat-sidenav-container class="sidenav-container" >
     <mat-sidenav #sidenav mode="side" class="sidenav" *ngIf="userIsLoggedIn()">
+
+      <!-- Navigation button to Welcome page. -->
       <div class="sidebar-btn" [routerLink]="'/welcome'" >
         <img src="assets/admin.png"/>
         <span>Welcome</span>
       </div>
-      <!-- <div  *ngIf="userIsLoggedIn()"> -->
+      
+      <!-- Navigation button to Admin panel page. -->
       <div class="sidebar-btn" [routerLink]="'/user/list'" *ngIf="checkIsAdmin()" >
         <img src="assets/admin.png" />
         <span>Admin panel</span>
-      <!-- </div> -->
-    </div>
+      </div>
+
+      <!-- Navigation button to Securities page. -->
       <div class="sidebar-btn" [routerLink]="'/security/all'">
         <img src="assets/security.png"/>
         <span>Securities</span>
       </div>
+
+      <!-- Navigation button to Bank accounts page. -->
+      <div class="sidebar-btn" [routerLink]="'/bank-accounts'">
+        <img src="assets/admin.png"/>
+        <span>Bank accounts</span>
+      </div>
+
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
-<!--<div *ngIf="!userIsLoggedIn()">-->
-<!--  <router-outlet></router-outlet>-->
-<!--</div>-->
 

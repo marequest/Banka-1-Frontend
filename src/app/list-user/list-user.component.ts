@@ -24,7 +24,7 @@ export class ListUserComponent implements OnInit{
   public lastName:string='';
   public email:string='';
   public searchEmail:string='';
-  selectedTab: string = "permissions";
+  selectedTab: string = "users";
   hasPermission?: boolean = false;
 
   constructor(private userService: UserService, private router: Router,private popup:PopupService, private dialog: MatDialog, private apiService: PermissionsService) { }
