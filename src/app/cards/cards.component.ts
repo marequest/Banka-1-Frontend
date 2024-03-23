@@ -17,8 +17,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CardsComponent {
   public userCards: Card[] = [];
   loggedUserId:number = -1;
+  loggedUserPosition:string = '';
 
   constructor(private cardService: CardService, private router: Router) {
+    let loggedUserPositionFromStorage = sessionStorage.getItem('userPosition');
     let loggedUserIdAsString = sessionStorage.getItem('loggedUserID');
     
     if (loggedUserIdAsString !== null) {
@@ -27,10 +29,21 @@ export class CardsComponent {
       console.log('Error occurred: logged user id cannot be null!');
     }
 
+    if (loggedUserPositionFromStorage !== null) {
+      this.loggedUserPosition = loggedUserPositionFromStorage;
+    } else {
+      console.log('Error occurred: logged user position is null!');
+    }
+
    }
 
    ngOnInit() {
     this.loadUserCards();
+    console.log('User position:');
+    console.log(sessionStorage.getItem('userPosition'));
+    console.log('User id:');
+    console.log(sessionStorage.getItem('loggedUserID'));
+
   }
 
   loadUserCards() {

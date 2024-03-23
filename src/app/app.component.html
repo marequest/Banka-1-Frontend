@@ -42,13 +42,13 @@
       </div>
 
       <!-- Navigation button to Bank accounts page. -->
-      <div class="sidebar-btn" [routerLink]="'/bank-accounts'">
+      <div class="sidebar-btn" [routerLink]="'/bank-accounts'" *ngIf="loggedUserPosition === 'customer'">
         <img src="assets/admin.png"/>
         <span>Bank accounts</span>
       </div>
 
       <!-- Navigation button to Card page. -->
-      <div class="sidebar-btn" [routerLink]="'/cards'">
+      <div class="sidebar-btn" [routerLink]="'/cards'" *ngIf="loggedUserPosition === 'customer'">
         <img src="assets/admin.png"/>
         <span>Cards</span>
       </div>
