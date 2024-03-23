@@ -9,6 +9,7 @@ import { NgModule } from "@angular/core";
 import {employeeGuard} from "./guards/employee.guard";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
+import { CardsComponent } from './cards/cards.component';
 
 import { AdminGuard } from './guards/admin.guard';
 import {ForexViewComponent} from "./forex-view/forex-view.component";
@@ -42,6 +43,7 @@ export const routes: Routes = [
   {path: 'forex/:ticker', component: ForexViewComponent},
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent},
+  { path: 'cards', component: CardsComponent}
 ];
 
 @NgModule({
