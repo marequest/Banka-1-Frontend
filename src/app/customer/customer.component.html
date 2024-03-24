@@ -58,7 +58,7 @@
                     <div class="options-dropdown">
                         <button  id="view-button" (click)="viewCustomer(customer)">View Profile</button>
                         <button  id="editProfile-button" (click)="editCustomer(customer)">Edit Profile</button>
-                        <button  id="delete-button">Delete</button>
+                        <button  id="delete-button" (click)="deleteCustomer(customer.id)">Delete</button>
                     </div>
                     </div>
                 </td>

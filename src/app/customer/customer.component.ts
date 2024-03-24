@@ -56,14 +56,14 @@ export class CustomerComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.customerService.getAllCustomers().subscribe(
-      (response) => {
-        this.customers = response;
+    this.customerService.getAllCustomers().subscribe({
+      next: (customers: Customer[]) => {
+        this.customers = customers;
       },
-      (error) => {
+      error: (error: any) => {
         this.popup.openPopup("Error", "Failed to load customers.");
       }
-    );
+    });
   }
   
   public position:string='';
@@ -98,5 +98,23 @@ export class CustomerComponent implements OnInit{
     );
     this.popup.openUpdateCustomerPopup();
   }
+
+  deleteCustomer(customerId: number) {
+    this.customerService.deleteCustomer(customerId).subscribe(
+      (response) => {
+        if (response) {
+          this.popup.openPopup("Success", "Customer successfully deleted.");
+          this.customers = this.customers.filter((customer) => customer.id !== customerId);
+        } else {
+          this.popup.openPopup("Error", "Failed to delete customer.");
+        }
+      },
+      (error) => {
+        console.error('Error while deleting customer: ', error);
+        this.popup.openPopup("Error", "Failed to delete customer.");
+      }
+    );
+  }
+
 
 }

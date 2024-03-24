@@ -49,7 +49,14 @@ export class CustomerService {
     });
     return this.http.put<any>(`${this.apiUrl}/edit`, customer, { headers });
   }
+  
+  public  deleteCustomer(customerId: number): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
 
+    return this.http.delete<boolean>(`${this.apiUrl}/remove/${customerId}`, { headers});
+  }
 
   public setSelectedCustomer(customer: Customer): void {
     this.selectedCustomer = customer;
