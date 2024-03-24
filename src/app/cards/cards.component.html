@@ -1,0 +1,24 @@
+<div class="cards-main-container">
+    <div class="title-div">Cards</div>
+    <div class="bank-accs-div">
+        <div class="grid-container">
+            <div *ngFor="let card of userCards" class="grid-item">
+                <div class="cardType">{{card.cardType}}</div>
+
+                <div class="numbersDiv">
+                    <div>Card number: {{card.cardNumber}}</div>
+                    <div class="accNumber">Account number: {{card.accountNumber}}</div>
+                </div>
+
+                <div class="cardActive" [ngStyle]="{'color': card.isActivated ? 'green' : 'red'}">{{ card.isActivated ? 'Active' : 'Inactive' }}</div>
+                
+                <div class="cardLimitAndCVV">
+                    <div>Limit: {{ card.limit}}</div>
+                    <div></div>
+                    <div class="CVV">CVV: {{card.cvv}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+</div>
