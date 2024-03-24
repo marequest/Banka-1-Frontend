@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Customer, User } from '../model/model';
 import { CustomerService } from '../service/customer.service';
 import { Router } from '@angular/router';
+import { PopupService } from '../service/popup.service';
 
 @Component({
   selector: 'app-customer',
@@ -50,6 +51,7 @@ export class CustomerComponent {
   constructor(
     private customerService: CustomerService, 
     private router:Router,
+    private popup:PopupService
     ) { }
   
   public position:string='';
@@ -59,7 +61,9 @@ export class CustomerComponent {
 
   search(){}
 
-  togglePopupAddUser(){}
+  togglePopupAddCustomer(){
+    this.popup.openAddCustomerPopup();
+  }
 
   viewCustomer(customer: Customer) {
     this.customerService.setSelectedCustomer(customer);

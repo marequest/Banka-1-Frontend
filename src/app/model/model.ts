@@ -77,3 +77,13 @@ export interface Customer{
   gender: string;
   address: string;
 }
+
+export interface CreateCustomerRequest{
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+}
