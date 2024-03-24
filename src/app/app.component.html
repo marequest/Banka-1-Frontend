@@ -30,6 +30,16 @@
         <img src="assets/security.png"/>
         <span>Securities</span>
       </div>
+
+      <div class="sidebar-btn" [routerLink]="'/transaction'" *ngIf="checkIsCustomerAndBankAccounts()">
+        <img src="assets/security.png"/>
+        <span>Transaction</span>
+      </div>
+
+      <div class="sidebar-btn" [routerLink]="'/exchange-rate'" *ngIf="checkIsCustomer()">
+        <img src="assets/security.png"/>
+        <span>Exchange rate</span>
+      </div>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

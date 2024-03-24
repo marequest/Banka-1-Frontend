@@ -26,6 +26,11 @@ export interface CreateUserRequest{
   phoneNumber:string;
   active:boolean;
 }
+export interface TransactionBasics{
+  outflow:string;
+  inflow:string;
+  amount:string;
+}
 
 export interface UserToEdit{
     id: number;
@@ -66,3 +71,17 @@ export interface ListingHistory {
   change: number;
   volume: number;
 }
+
+export interface Account {
+  accountNumber: string;
+  accountType: AccountType;
+  currencyName: string;
+  maintenanceCost: number;
+}
+
+export enum AccountType {
+  FOREIGN_CURRENCY = "FOREIGN_CURRENCY",
+  CURRENT = "CURRENT",
+  BUSINESS = "BUSINESS"
+}
+
