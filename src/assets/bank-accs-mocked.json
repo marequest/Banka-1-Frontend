@@ -1,0 +1,43 @@
+[
+    {
+      "accountType": "Foregin account",
+      "accountNumber": "1234567890",
+      "accountStatus": "active",
+      "currency": "USD",
+      "balance": 1000.00,
+      "availableBalance": 950.00
+    },
+    {
+      "accountType": "Exchange account",
+      "accountNumber": "9876543210",
+      "accountStatus": "active",
+      "currency": "EUR",
+      "balance": 5000.00,
+      "availableBalance": 5000.00
+    },
+    {
+      "accountType": "Foregin account",
+      "accountNumber": "4567890123",
+      "accountStatus": "inactive",
+      "currency": "GBP",
+      "balance": 75000.00,
+      "availableBalance": 75000.00
+    },
+    {
+      "accountType": "Exchange account",
+      "accountNumber": "7890123456",
+      "accountStatus": "active",
+      "currency": "USD",
+      "balance": -500.00,
+      "availableBalance": 1000.00
+    },
+    {
+      "accountType": "Exchange account",
+      "accountNumber": "2345678901",
+      "accountStatus": "inactive",
+      "currency": "CAD",
+      "balance": 3000.00,
+      "availableBalance": 3000.00
+    }
+  ]
+  

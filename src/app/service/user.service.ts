@@ -100,7 +100,7 @@ export class UserService {
     return this.userToEdit;
   }
 
-  getUser(jwt: string | null): Observable<any> {
+  getUser(jwt: string): Observable<User> {
     const url = `${this.apiUrl}/user/getUser`;
 
   //getUser(jwt: string | null): Observable<{name: string, lastName: string}> {

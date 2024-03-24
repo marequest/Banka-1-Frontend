@@ -16,6 +16,7 @@ export class PermissionPopUpComponent implements OnInit {
 
   public addedPermission:string='';
   public availablePermissions:Permissions[] = [];
+  public allPermissionFromDb:Permissions[] = [];
 
   /*Modify the permission-dialog.component.ts file to 
   accept data (the user object) passed into the dialog. Import MAT_DIALOG_DATA and MatDialogRef to facilitate this.*/
@@ -27,7 +28,10 @@ export class PermissionPopUpComponent implements OnInit {
     ngOnInit() {
       this.apiService.getPermissions().subscribe(
         perms => {
-          this.availablePermissions = perms
+
+          this.allPermissionFromDb = perms;
+
+          this.setDropDownToPermissionUserDoNotHave();
         },
         error => {
           
@@ -35,13 +39,28 @@ export class PermissionPopUpComponent implements OnInit {
       )
     }
 
+    onSelectPermission() {
+      this.setDropDownToPermissionUserDoNotHave();
+    }
+
+    setDropDownToPermissionUserDoNotHave(){
+      const permissionsUserDoNotHave = this.allPermissionFromDb.filter(pFromDB =>
+        !this.user.permissions.some(pFromUser => pFromDB.name === pFromUser.name)
+      );
+
+      this.availablePermissions = permissionsUserDoNotHave;
+    }
+
     removePermission(index: number) {
       console.log("Removed perm: ");
       console.log(this.user.permissions[index]);
       this.user.permissions.splice(index, 1);
+      this.setDropDownToPermissionUserDoNotHave();
     }
 
     addPermission(){
+      console.log('Add permission clicked.');
+      console.log(this.addedPermission);
       if(this.isStringNotBlank(this.addedPermission) && !this.isUserContainingPerm(this.addedPermission)){
         const newPermission: Permissions = {
           name: this.addedPermission,
@@ -49,6 +68,7 @@ export class PermissionPopUpComponent implements OnInit {
         };
         
         this.user.permissions.push(newPermission);
+        this.setDropDownToPermissionUserDoNotHave();
       }
     }
 
