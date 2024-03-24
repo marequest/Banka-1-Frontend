@@ -35,6 +35,8 @@ export class AddCustomerComponent {
     if(this.validateForm()) {
       console.log(this.addCustomerData);
       this.customerService.setCustomerForCreation(this.addCustomerData);
+      this.popupService.openAddBankAccountPopup();
+      this.dialogRef.close();
     }
   }
 

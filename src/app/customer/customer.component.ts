@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Customer, User } from '../model/model';
 import { CustomerService } from '../service/customer.service';
@@ -62,7 +62,7 @@ export class CustomerComponent {
   search(){}
 
   togglePopupAddCustomer(){
-    this.popup.openAddBankAccountPopup();
+    this.popup.openAddCustomerPopup();
   }
 
   viewCustomer(customer: Customer) {
