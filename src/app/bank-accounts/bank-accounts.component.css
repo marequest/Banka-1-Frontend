@@ -1,0 +1,87 @@
+/* Whole page container css */
+.bank-accs-main-container{
+    background-color: #ebf6f9;
+}
+
+/* Css of div where title Bank Accounts is. */
+.title-div{
+    height: 70px;
+    font-size: 3rem;
+    align-items: center;
+    font-weight: bold;
+    padding-left: 20px;
+    line-height: 70px;
+}
+
+/*
+Inside bank-accs-div is a grid-container div that has grid display. For bigger monitors
+grid will have 2 columns with same size (1fr 1fr) and for smaller monitors just one cloumn.
+Grid elements are individual bank accounts of user (grid-item class elements).
+ */
+.bank-accs-div{
+    padding-bottom: 25px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates two columns of equal width */
+    gap: 1.5rem; /* Adjust the gap between items */
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 2rem;
+    overflow-y: auto;
+  }
+  
+.grid-item {
+    /* Style for each item */
+    border: 2px solid black; /* Example styling */
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    height: 150px;
+    min-width: 200px;
+}
+
+/* 
+    Css of elements inside grid-item 
+*/
+.accType{
+    height: 20%;
+    font-size: 2rem;
+}
+
+.accNumber{
+    height: 20%;
+    font-size: 1.5rem;
+    line-height: 120%;
+}
+
+.accActive{
+    height: 40%;
+}
+
+.accBalance{
+    height: 20%;
+    font-size: 1.5rem;
+}
+
+
+/* Media query for screens smaller than 600px */
+@media (max-width: 1000px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Change to one column */
+    }
+
+    .accType{
+        font-size: 1.5rem;
+    }
+    
+    .accNumber{
+        font-size: 1rem;
+        line-height: 120%;
+    }
+
+    .accBalance{
+        font-size: 1rem;
+    }
+}

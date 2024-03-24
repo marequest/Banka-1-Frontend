@@ -17,6 +17,28 @@ export interface Permissions{
     description?:string;
 }
 
+export interface BankAccount {
+  accountType?: string;
+  accountNumber?: string;
+  accountStatus?: string;
+  currency?: string;
+  balance?: number;
+  availableBalance?: number;
+}
+
+export interface Card {
+  id?: number;
+  cardNumber?: string;
+  cardType?: string;
+  cardName?: string;
+  creationDate?: number;
+  expirationDate?: number;
+  accountNumber?: string;
+  cvv?: string;
+  limit?: number;
+  isActivated?: boolean;
+}
+
 export interface CreateUserRequest{
   email: string;
   firstName:string;

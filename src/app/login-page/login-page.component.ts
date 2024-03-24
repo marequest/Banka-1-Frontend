@@ -10,9 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AdminStatusService } from '../service/admin-status.service';
 import { AdminGuard } from '../guards/admin.guard';
-
-
-
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -36,6 +34,7 @@ export class LoginPageComponent {
     private validator: ValidationService,
     private popupService: PopupService,
     private router: Router,
+    private userService: UserService
   ) {
     // const jwt = sessionStorage.getItem("jwt");
     //
@@ -51,8 +50,11 @@ export class LoginPageComponent {
   onSubmit() {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
+
         sessionStorage.setItem('jwt', token.jwt);
         sessionStorage.setItem('permissions', token.permissions);
+        this.setUserPropertiesInSessionStorage(token.jwt);
+
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
             this.adminSatusService.setIsAdmin(isAdmin);
@@ -64,5 +66,21 @@ export class LoginPageComponent {
             this.adminSatusService.setIsAdmin(false);
           });
       });
+  }
+
+  setUserPropertiesInSessionStorage(jwt:string){
+    this.userService.getUser(jwt).subscribe(
+      response => {
+
+        console.log("User in login:");
+        console.log(response);
+        
+        sessionStorage.setItem('userPosition', response.position);
+        sessionStorage.setItem('loggedUserID', response.userId.toString());
+
+      }, (e) => {
+        console.log('Error happend while getting user');
+      }
+    );
   }
 }
