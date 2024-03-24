@@ -1,0 +1,72 @@
+<div class="content">
+    <div class="security-title">Customers</div>
+
+    <div class="table-wrapper">
+        <div class="table-content">
+        <div class="filter-row">
+            <div class="left-row">
+            <div class="filter-input">
+                <input
+                class="security-filter-input"
+                placeholder="Search by email"
+                [(ngModel)]="email"
+                />
+            </div>
+            <div class="filter-input">
+                <input class="security-filter-input" placeholder="By name" [(ngModel)]="firstName" />
+            </div>
+            <div class="filter-input">
+                <input class="security-filter-input" placeholder="By surname" [(ngModel)]="lastName"/>
+            </div>
+            <div class="search-icon">
+                <button (click)="search()" class="button-image">
+                <img src="assets/search.png" alt="search" >
+                </button>
+            </div>
+            </div>
+
+        <div class="right-row">
+            <button class="add-new-btn" (click)="togglePopupAddUser() ">Add new Customer</button>
+            </div>
+        </div>
+
+        <div class="security-table-wrapper">
+            <div class="wrapper-header">Customers</div>
+            <table class="user-table" cellpadding="2px" cellspacing="0">
+            <thead class="table-head-custom">
+                <tr class="tr-rows">
+                <th class="table-head">NAME</th>
+                <th class="table-head">EMAIL</th>
+                <th class="table-head">JMBG</th>
+                <th class="table-head">ADDRESS</th>
+                <th class="table-head">PHONE NUMBER</th>
+                <th class="table-head">GENDER</th>
+                <th class="table-head"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers" class="tr-rows">
+                <td>{{ customer.firstName }} {{customer.lastName}}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.jmbg }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.phoneNumber }}</td>
+                <td>{{ customer.gender }}</td>
+                <td>
+                    <div class="options-menu">
+                    <button id="options-button">&#8286;</button>
+                    <div class="options-dropdown">
+                        <button  id="view-button">View Profile</button>
+                        <button  id="editProfile-button">Edit Profile</button>
+                        <button  id="delete-button">Delete</button>
+                    </div>
+                    </div>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+</div>
