@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateBankAccountRequest, CreateCustomerRequest, Customer } from '../model/model';
+import { CreateBankAccountRequest, CreateCustomerRequest, Customer, EditCustomerRequest } from '../model/model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,7 +16,7 @@ export class CustomerService {
   private customerForCreation: CreateCustomerRequest | undefined;
 
   // Used when editing a customer
-  private customerForEdit: CreateCustomerRequest | undefined;
+  private customerForEdit: EditCustomerRequest | undefined;
 
 
   private apiUrl = environment.baseUrl + '/customer';
@@ -68,11 +68,11 @@ export class CustomerService {
     return this.customerForCreation;
   }
 
-  public setCustomerForEdit(customer: CreateCustomerRequest|undefined): void {
+  public setCustomerForEdit(customer: EditCustomerRequest|undefined): void {
     this.customerForEdit = customer;
   }
 
-  public getCustomerForEdit(): CreateCustomerRequest | undefined {
+  public getCustomerForEdit(): EditCustomerRequest | undefined {
     return this.customerForEdit;
   }
 }

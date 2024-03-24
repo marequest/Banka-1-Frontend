@@ -89,6 +89,7 @@ export interface CreateCustomerRequest{
 }
 
 export interface EditCustomerRequest{
+  id: number;
   firstName: string;
   lastName: string;
   email: string;

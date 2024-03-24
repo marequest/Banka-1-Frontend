@@ -16,6 +16,7 @@ import { PopupService } from '../service/popup.service';
 export class EditCustomerComponent implements OnInit{
 
   editCustomerData: EditCustomerRequest = {
+    id: 0,
     email: '',
     firstName: '',
     lastName: '',
@@ -36,6 +37,7 @@ export class EditCustomerComponent implements OnInit{
     console.log('Edit customer component initialized', this.customerService.getCustomerForEdit());
     const userToEdit = this.customerService.getCustomerForEdit();
     this.editCustomerData = {
+      id: userToEdit?.id || 0,
       email: userToEdit?.email || '',
       firstName: userToEdit?.firstName || '',
       lastName: userToEdit?.lastName || '',

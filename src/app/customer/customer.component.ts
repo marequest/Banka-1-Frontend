@@ -13,7 +13,7 @@ import { PopupService } from '../service/popup.service';
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
-export class CustomerComponent {
+export class CustomerComponent implements OnInit{
 
   customers: Customer[] = [
     {
@@ -53,6 +53,18 @@ export class CustomerComponent {
     private router:Router,
     private popup:PopupService
     ) { }
+
+
+  ngOnInit(): void {
+    this.customerService.getAllCustomers().subscribe(
+      (response) => {
+        this.customers = response;
+      },
+      (error) => {
+        this.popup.openPopup("Error", "Failed to load customers.");
+      }
+    );
+  }
   
   public position:string='';
   public firstName:string='';
@@ -71,7 +83,19 @@ export class CustomerComponent {
   }
 
   editCustomer(customer: Customer) {
-    this.customerService.setCustomerForEdit(customer);
+    this.customerService.setCustomerForEdit(
+      {
+        id: customer.id,
+        firstName: customer.firstName,
+        lastName: customer.lastName,
+        email: customer.email,
+        jmbg: customer.jmbg,
+        phoneNumber: customer.phoneNumber,
+        address: customer.address,
+        gender: customer.gender,
+        password: ''
+      }
+    );
     this.popup.openUpdateCustomerPopup();
   }
 
