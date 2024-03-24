@@ -1,1 +1,62 @@
-<p>activate-account works!</p>
+<div class="page-wrapper">
+  <img ngSrc="/assets/logo-full.png" alt="Bank-logo" height="234" width="221" class="logo">
+  <div class="main-window">
+    <div class="window-header">
+      <h1 class="window-title">Account Activation</h1>
+    </div>
+    <hr>
+    <div class="window-content">
+      <div class="stage" *ngIf="stage === 1" #stage1>
+        <div class="input-field">
+          <label for="email-input">Email</label>
+          <input id="email-input" type="text" class="text-input" required />
+        </div>
+
+        <div class="input-field">
+          <label for="account-number-input">Account number</label>
+          <input id="account-number-input" type="text" class="text-input" required />
+        </div>
+
+        <div class="input-field">
+          <label for="phone-number-input">Phone number</label>
+          <input id="phone-number-input" type="text" class="text-input" required />
+        </div>
+        <div class="have-account-link-wrapper">
+          <a href="/login">Already have an account?</a>
+        </div>
+      </div>
+
+      <div class="stage" *ngIf="stage === 2" #stage2>
+        <div class="generate-button-container">
+          <label class="generate-code-button-label">By pressing the button an activation code will be sent to your email.</label>
+          <button class="generate-code-button">Generate activation code</button>
+        </div>
+
+        <div class="input-field" style="margin-top: 50px">
+          <label for="activation-code-input">Activation code</label>
+          <input id="activation-code-input" type="text" class="text-input" required />
+        </div>
+      </div>
+
+      <div class="stage" *ngIf="stage === 3" #stage3>
+        <div class="input-field">
+          <label for="password-input">Set password</label>
+          <input id="password-input" type="text" class="text-input" required />
+        </div>
+
+        <div class="input-field">
+          <label for="confirm-password-input">Repeat password</label>
+          <input id="confirm-password-input" type="text" class="text-input" required />
+        </div>
+      </div>
+
+    </div>
+    <hr>
+    <div class="window-footer">
+      <button class="back-button" *ngIf="stage > 1" (click)="previousStage()">Back</button>
+      <button class="next-button" (click)="nextStage()">Next</button>
+
+    </div>
+
+  </div>
+</div>
