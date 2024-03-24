@@ -51,7 +51,8 @@ export class LoginPageComponent {
   onSubmit() {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
-        sessionStorage.setItem('jwt', token.jwt);
+        // Koristimo ovaj pristup da bi mogao da saceka jwt od beka pa da apdejtuje inicijale
+        this.authService.setJwt(token.jwt)
         sessionStorage.setItem('permissions', token.permissions);
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
@@ -60,7 +61,7 @@ export class LoginPageComponent {
           },
           (error) => {
             console.error("Error occurred while checking admin status:", error);
-            this.adminSatusService.setIsAdmin(false); 
+            this.adminSatusService.setIsAdmin(false);
           });
       });
   }
