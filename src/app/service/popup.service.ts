@@ -6,6 +6,7 @@ import { AddUserComponent } from '../add-user/add-user.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
+import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,11 @@ export class PopupService {
 
   openAddBankAccountPopup(): void {
     this.dialog.open(AddBankAccountComponent, {
+    });
+  }
+
+  openUpdateCustomerPopup(): void {
+    this.dialog.open(EditCustomerComponent, {
     });
   }
 }

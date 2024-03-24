@@ -88,6 +88,17 @@ export interface CreateCustomerRequest{
   address: string;
 }
 
+export interface EditCustomerRequest{
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+  password: string;
+}
+
 export interface CreateBankAccountRequest{
   status: string;
   currency: string;

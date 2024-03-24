@@ -23,7 +23,7 @@ export class CustomerComponent {
       email: "john.doe@example.com",
       jmbg: "1234567890123",
       phoneNumber: "+1234567890",
-      gender: "male",
+      gender: "Male",
       address: "123 Main Street"
     },
     {
@@ -33,7 +33,7 @@ export class CustomerComponent {
       email: "jane.smith@example.com",
       jmbg: "9876543210987",
       phoneNumber: "+1987654321",
-      gender: "female",
+      gender: "Female",
       address: "456 Elm Street"
     },
     {
@@ -43,7 +43,7 @@ export class CustomerComponent {
       email: "alice.johnson@example.com",
       jmbg: "5555555555555",
       phoneNumber: "+1555555555",
-      gender: "female",
+      gender: "Female",
       address: "789 Oak Avenue"
     }
   ];
@@ -68,6 +68,11 @@ export class CustomerComponent {
   viewCustomer(customer: Customer) {
     this.customerService.setSelectedCustomer(customer);
     // this.router.navigate(['/customer/view']);
+  }
+
+  editCustomer(customer: Customer) {
+    this.customerService.setCustomerForEdit(customer);
+    this.popup.openUpdateCustomerPopup();
   }
 
 }

@@ -15,6 +15,10 @@ export class CustomerService {
   // Used when creating a new customer and bank account at the same time
   private customerForCreation: CreateCustomerRequest | undefined;
 
+  // Used when editing a customer
+  private customerForEdit: CreateCustomerRequest | undefined;
+
+
   private apiUrl = environment.baseUrl + '/customer';
 
 
@@ -47,5 +51,13 @@ export class CustomerService {
 
   public getCustomerForCreation(): CreateCustomerRequest | undefined {
     return this.customerForCreation;
+  }
+
+  public setCustomerForEdit(customer: CreateCustomerRequest|undefined): void {
+    this.customerForEdit = customer;
+  }
+
+  public getCustomerForEdit(): CreateCustomerRequest | undefined {
+    return this.customerForEdit;
   }
 }
