@@ -61,6 +61,13 @@ html, body {
   background-color: #0056b3;
 }
 
+.submit-container button:disabled {
+  background-color: #A2D9FF; /* Lighter shade of blue or any color indicating it's disabled */
+  color: #F9F9F9; /* Light gray color for the text to indicate it's disabled */
+  cursor: not-allowed; /* Change cursor to indicate the button is not clickable */
+  opacity: 0.7; /* Optional: reduce opacity to enhance the disabled look */
+}
+
 a {
   display: block;
   margin-top: 10px;
