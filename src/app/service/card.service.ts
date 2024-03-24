@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Card } from '../model/model';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,15 @@ export class CardService {
   }
 
   getUsersCards(userId: number): Observable<Card[]> {
-    return this.httpClient.get<Card[]>('/assets/cards-mocked.json'); //TODO change this with actual api
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    console.log(headers);
+
+    //Vanja treba da doda ovu rutu
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/account/getCards/${userId}`;
+
+    return this.httpClient.get<Card[]>(url, options); 
   }
 }

@@ -46,6 +46,7 @@ export class CardsComponent {
 
   }
 
+  // REPLACE MOCKED WITH getUsersCards - see the function it is in same file as getUsersCardsMocked
   loadUserCards() {
     this.cardService.getUsersCardsMocked(this.loggedUserId).subscribe(
       (userCardsFromDB: Card[]) => {
