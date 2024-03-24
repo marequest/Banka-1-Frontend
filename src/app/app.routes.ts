@@ -48,7 +48,7 @@ export const routes: Routes = [
     children: [
       {path: 'all', component: CustomerComponent},
     ]
-  }
+  },
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]}
