@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Customer, User } from '../model/model';
+import { CustomerService } from '../service/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
@@ -44,6 +46,11 @@ export class CustomerComponent {
       address: "789 Oak Avenue"
     }
   ];
+
+  constructor(
+    private customerService: CustomerService, 
+    private router:Router,
+    ) { }
   
   public position:string='';
   public firstName:string='';
@@ -53,5 +60,10 @@ export class CustomerComponent {
   search(){}
 
   togglePopupAddUser(){}
+
+  viewCustomer(customer: Customer) {
+    this.customerService.setSelectedCustomer(customer);
+    // this.router.navigate(['/customer/view']);
+  }
 
 }
