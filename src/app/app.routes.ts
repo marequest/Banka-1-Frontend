@@ -16,6 +16,7 @@ import {ForexViewComponent} from "./forex-view/forex-view.component";
 import {StockViewComponent} from "./stock-view/stock-view.component";
 import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
+import { CustomerGuard } from './guards/customer.guard';
 
 
 
@@ -42,8 +43,8 @@ export const routes: Routes = [
   },
   {path: 'forex/:ticker', component: ForexViewComponent},
   //TODO: Add customer guard
-  { path: 'bank-accounts', component: BankAccountsComponent},
-  { path: 'cards', component: CardsComponent}
+  { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
+  { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]}
 ];
 
 @NgModule({
