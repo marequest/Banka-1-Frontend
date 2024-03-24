@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CreateBankAccountRequest, CreateCustomerRequest, Customer, EditCustomerRequest } from '../model/model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +57,24 @@ export class CustomerService {
 
     return this.http.delete<boolean>(`${this.apiUrl}/remove/${customerId}`, { headers});
   }
+
+  public searchCustomer(email: string, firstName: string, lastName:string): Observable<any> {
+    console.log('Search user: ', email, firstName, lastName);
+    const params = new HttpParams().set('firstName', firstName).set('lastName', lastName).set('email',email);
+    const jwt = sessionStorage.getItem('jwt');
+
+    if (!jwt) {
+      throw new Error('JWT not found in sessionStorage');
+    }
+
+    // Setting up the headers
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + jwt
+    });
+
+    return this.http.get(this.apiUrl + '/search' , { headers, params });
+  }
+
 
   public setSelectedCustomer(customer: Customer): void {
     this.selectedCustomer = customer;
