@@ -32,7 +32,7 @@ export class CardsComponent {
     if (loggedUserPositionFromStorage !== null) {
       this.loggedUserPosition = loggedUserPositionFromStorage;
     } else {
-      console.log('Error occurred: logged user position is null!');
+      //console.log('Error occurred: logged user position is null!');
     }
 
    }

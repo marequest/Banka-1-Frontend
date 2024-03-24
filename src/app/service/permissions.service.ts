@@ -56,31 +56,36 @@ export class PermissionsService {
 
   addUserPermissions(user: User) {
     let id = user.userId;
-    let permissionsToModify = user.permissions;
+    const permissionsToModify: string[] = user.permissions.map(permission => permission.name);
     let url = environment.baseUrl + '/user';
 
     let userToSend = {
       userId: id,
       permissions: permissionsToModify,
+      email: user.email
     };
 
-    const jsonData = {
-      user: userToSend,
-    };
+    const jsonData = userToSend;
 
     console.log('addUserPermissions api log:');
     console.log(url);
     console.log(jsonData);
 
-    //return this.http.put<number>(url, jsonData, {headers: {'Content-Type': 'application/json'}});
-
-    // Simulating API call with setTimeout
-    return new Observable<boolean>((observer) => {
-      setTimeout(() => {
-        // Simulating a successful response for demonstration
-        observer.next(true);
-        observer.complete();
-      }, 1000); // Simulating a delay of 1 second
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
+
+    console.log(headers);
+
+    return this.http.put<number>(url, jsonData, {headers});
+
+    // // Simulating API call with setTimeout
+    // return new Observable<boolean>((observer) => {
+    //   setTimeout(() => {
+    //     // Simulating a successful response for demonstration
+    //     observer.next(true);
+    //     observer.complete();
+    //   }, 1000); // Simulating a delay of 1 second
+    // });
   }
 }

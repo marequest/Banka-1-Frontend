@@ -153,6 +153,9 @@ export class ListUserComponent implements OnInit{
     else this.users = this.users.filter(user => user.email === this.searchEmail)
   }
 
+  /*
+    Opens pop up dialog for edditing permission and when dialog is closed it handles result.
+  */
   editUserPermissions(user: User){
 
     // We want to pass a copy and not direct reference of user to dialog
