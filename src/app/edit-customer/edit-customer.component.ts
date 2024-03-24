@@ -62,6 +62,10 @@ export class EditCustomerComponent implements OnInit{
         } else {
           this.popupService.openPopup("Error", "Failed to update customer data.");
         }
+      },
+      (error) => {
+        console.error('Error while editing customer data: ', error);
+        this.popupService.openPopup("Error", "Failed to update customer data.");
       }
     );
   }
