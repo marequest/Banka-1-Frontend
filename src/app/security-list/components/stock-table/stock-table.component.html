@@ -23,7 +23,7 @@
         <td>{{ stock.ticker }}</td>
         <td>{{ stock.name }}</td>
         <td>{{ stock.exchange }}</td>
-        <td>{{ stock.lastRefresh }}</td>
+        <td>{{ stock.lastRefresh | date:'medium' }}</td>
         <td>{{ stock.price }}</td>
         <td>{{ stock.high }}</td>
         <td>{{ stock.low }}</td>

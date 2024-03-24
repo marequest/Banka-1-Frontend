@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Security, SecurityService } from '../service/security.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import {ForexTableComponent} from "../forex-table/forex-table.component";
+import {ForexTableComponent} from "./components/forex-table/forex-table.component";
 import {StockListing, StockService} from "../service/stock.service";
 import {FormsModule} from "@angular/forms";
 import {StockTableComponent} from "./components/stock-table/stock-table.component";
