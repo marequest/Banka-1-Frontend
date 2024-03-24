@@ -36,6 +36,21 @@ export class CustomerService {
     }, { headers }); 
   }
 
+  public getAllCustomers(): Observable<Customer[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.http.get<Customer[]>(`${this.apiUrl}/getAll`, { headers });
+  }
+
+  public editCustomer(customer: CreateCustomerRequest): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.http.put<any>(`${this.apiUrl}/edit`, customer, { headers });
+  }
+
+
   public setSelectedCustomer(customer: Customer): void {
     this.selectedCustomer = customer;
     console.log('Selected customer: ', this.selectedCustomer);
