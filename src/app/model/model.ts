@@ -87,3 +87,10 @@ export interface CreateCustomerRequest{
   gender: string;
   address: string;
 }
+
+export interface CreateBankAccountRequest{
+  status: string;
+  currency: string;
+  accountType: string;
+  maintenanceCost: number;
+}

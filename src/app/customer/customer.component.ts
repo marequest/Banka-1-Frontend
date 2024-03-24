@@ -62,7 +62,7 @@ export class CustomerComponent {
   search(){}
 
   togglePopupAddCustomer(){
-    this.popup.openAddCustomerPopup();
+    this.popup.openAddBankAccountPopup();
   }
 
   viewCustomer(customer: Customer) {

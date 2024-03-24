@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
+import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,11 @@ export class PopupService {
 
   openAddCustomerPopup(): void {
     this.dialog.open(AddCustomerComponent, {
+    });
+  }
+
+  openAddBankAccountPopup(): void {
+    this.dialog.open(AddBankAccountComponent, {
     });
   }
 }
