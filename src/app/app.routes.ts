@@ -16,6 +16,8 @@ import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {UserResetPasswordComponent} from "./user-reset-password/user-reset-password.component";
+import {resetPasswordGuard} from "./guards/reset-password.guard";
+import {userResetPasswordGuard} from "./guards/user-reset-password.guard";
 
 
 
@@ -32,8 +34,8 @@ export const routes: Routes = [
     ]
   },
   {path:'user/set-password/:token', component: SetPasswordComponent},
-  {path:'reset-password', component: ResetPasswordComponent},
-  {path:'user/set-password/:token', component: UserResetPasswordComponent},
+  {path:'reset-password', component: ResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'user/reset-password/:token', component: UserResetPasswordComponent, canActivate: [userResetPasswordGuard]},
   {
     path: 'security',
     children: [
