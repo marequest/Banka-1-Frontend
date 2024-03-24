@@ -14,6 +14,8 @@ import {ForexViewComponent} from "./forex-view/forex-view.component";
 import {StockViewComponent} from "./stock-view/stock-view.component";
 import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
+import {ResetPasswordComponent} from "./reset-password/reset-password.component";
+import {UserResetPasswordComponent} from "./user-reset-password/user-reset-password.component";
 
 
 
@@ -30,6 +32,8 @@ export const routes: Routes = [
     ]
   },
   {path:'user/set-password/:token', component: SetPasswordComponent},
+  {path:'reset-password', component: ResetPasswordComponent},
+  {path:'user/set-password/:token', component: UserResetPasswordComponent},
   {
     path: 'security',
     children: [
