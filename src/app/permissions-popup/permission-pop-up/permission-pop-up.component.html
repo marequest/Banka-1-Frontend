@@ -19,7 +19,7 @@
                   placeholder="Add permission"
                   [(ngModel)]="addedPermission"
                 /> -->
-                <select>
+                <select [(ngModel)]="addedPermission" (change)="onSelectPermission()">
                     <option *ngFor="let permission of availablePermissions" value="{{permission.name}}">{{permission.description}}</option>
                 </select>
             </div>

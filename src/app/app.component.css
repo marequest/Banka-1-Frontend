@@ -41,6 +41,7 @@
   color: red;
   margin-left: 8px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .sidenav-container {
@@ -58,6 +59,7 @@
 
 mat-sidenav-content {
   padding: 16px;
+  background-color: #ebf6f9;
 }
 
 .remaining-space {

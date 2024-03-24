@@ -24,7 +24,7 @@ export class ListUserComponent implements OnInit{
   public lastName:string='';
   public email:string='';
   public searchEmail:string='';
-  selectedTab: string = "permissions";
+  selectedTab: string = "users";
   hasPermission?: boolean = false;
 
   constructor(private userService: UserService, private router: Router,private popup:PopupService, private dialog: MatDialog, private apiService: PermissionsService) { }
@@ -153,6 +153,9 @@ export class ListUserComponent implements OnInit{
     else this.users = this.users.filter(user => user.email === this.searchEmail)
   }
 
+  /*
+    Opens pop up dialog for edditing permission and when dialog is closed it handles result.
+  */
   editUserPermissions(user: User){
 
     // We want to pass a copy and not direct reference of user to dialog
