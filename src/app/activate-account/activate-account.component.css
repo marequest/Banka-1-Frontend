@@ -35,6 +35,13 @@
   padding-bottom: 37px;
 }
 
+.window-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 hr {
   width: 85%;
 }
@@ -140,4 +147,19 @@ hr {
   align-items: center;
 }
 
+.alert {
+  height: 60px;
+  width: 80%;
+  background: #F8D7DA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: #F1AEB5;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 16px;
+  color: #7B1559;
+
+  font-size: 20px;
+}
 

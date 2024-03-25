@@ -3,23 +3,26 @@
   <div class="main-window">
     <div class="window-header">
       <h1 class="window-title">Account Activation</h1>
+      <div class="alert" *ngIf="error.length > 0">
+        {{ error }}
+      </div>
     </div>
     <hr>
     <div class="window-content">
       <div class="stage" *ngIf="stage === 1" #stage1>
         <div class="input-field">
           <label for="email-input">Email</label>
-          <input id="email-input" type="text" class="text-input" required />
+          <input id="email-input" type="text" class="text-input" [(ngModel)]="email" name="email" required />
         </div>
 
         <div class="input-field">
           <label for="account-number-input">Account number</label>
-          <input id="account-number-input" type="text" class="text-input" required />
+          <input id="account-number-input" [(ngModel)]="accountNumber" name="accountNumber" type="text" class="text-input" required />
         </div>
 
         <div class="input-field">
           <label for="phone-number-input">Phone number</label>
-          <input id="phone-number-input" type="text" class="text-input" required />
+          <input id="phone-number-input" [(ngModel)]="phoneNumber" name="phoneNumber" type="text" class="text-input" required />
         </div>
         <div class="have-account-link-wrapper">
           <a href="/login">Already have an account?</a>
@@ -34,19 +37,19 @@
 
         <div class="input-field" style="margin-top: 50px">
           <label for="activation-code-input">Activation code</label>
-          <input id="activation-code-input" type="text" class="text-input" required />
+          <input id="activation-code-input" [(ngModel)]="activationCode" name="activationCode" type="text" class="text-input" required />
         </div>
       </div>
 
       <div class="stage" *ngIf="stage === 3" #stage3>
         <div class="input-field">
           <label for="password-input">Set password</label>
-          <input id="password-input" type="text" class="text-input" required />
+          <input id="password-input" [(ngModel)]="password" name="password" type="password" class="text-input" required />
         </div>
 
         <div class="input-field">
           <label for="confirm-password-input">Repeat password</label>
-          <input id="confirm-password-input" type="text" class="text-input" required />
+          <input id="confirm-password-input" [(ngModel)]="confirmPassword" name="confirmPassword" type="password" class="text-input" required />
         </div>
       </div>
 
