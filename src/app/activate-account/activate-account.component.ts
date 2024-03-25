@@ -41,7 +41,7 @@ export class ActivateAccountComponent {
   })
 
   secondStageSchema = z.object({
-    activationCode: z.string().min(1)
+    activationCode: z.string().uuid()
   })
 
   thirdStageSchema = z.object({
@@ -56,7 +56,7 @@ export class ActivateAccountComponent {
     }
   });
 
-  constructor(private customerService: CustomerService, private router: Router) {
+  constructor(public customerService: CustomerService, public router: Router) {
     this.stage = 1;
   }
 
