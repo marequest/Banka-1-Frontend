@@ -6,11 +6,12 @@ import {ForexTableComponent} from "./components/forex-table/forex-table.componen
 import {StockListing, StockService} from "../service/stock.service";
 import {FormsModule} from "@angular/forms";
 import {StockTableComponent} from "./components/stock-table/stock-table.component";
+import {FutureTableComponent} from "./components/future-table/future-table.component";
 
 @Component({
   selector: 'app-security-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, StockTableComponent, ForexTableComponent],
+  imports: [CommonModule, FormsModule, StockTableComponent, ForexTableComponent, FutureTableComponent],
   templateUrl: './security-list.component.html',
   styleUrl: './security-list.component.css'
 })
