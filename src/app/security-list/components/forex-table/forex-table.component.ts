@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
-import {environmentMarket} from "../../../environment";
+import {DatePipe, NgForOf} from "@angular/common";
+import {environmentMarket} from "../../../../../environment";
 import {HttpClient} from "@angular/common/http";
-import {Forex} from "../model/model";
+import {Forex} from "../../../model/model";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import { HttpHeaders} from "@angular/common/http";
@@ -12,16 +12,17 @@ import { HttpHeaders} from "@angular/common/http";
   standalone: true,
   imports: [
     NgForOf,
-    FormsModule
+    FormsModule,
+    DatePipe
   ],
   templateUrl: './forex-table.component.html',
-  styleUrl: '../security-list/security-list.component.css'
+  styleUrl: '../../security-list.component.css'
 })
 export class ForexTableComponent implements OnInit {
   forex: Forex[] = [];
   forexBackup: Forex[] = [];
-  buyingFilter: string = '';
-  sellingFilter: string = '';
+  quoteCurrencyFilter: string = '';
+  baseCurrencyFilter: string = '';
   _router: Router;
 this: any;
   constructor(private http: HttpClient, router: Router) {
@@ -31,9 +32,8 @@ this: any;
   search() {
     this.forex = this.forexBackup.filter(value =>
     {
-      debugger;
-      return value.baseCurrency.toLowerCase().includes(this.sellingFilter.toLowerCase())
-      && value.quoteCurrency.toLowerCase().includes(this.buyingFilter.toLowerCase())
+      return value.baseCurrency.toLowerCase().includes(this.baseCurrencyFilter.toLowerCase())
+      && value.quoteCurrency.toLowerCase().includes(this.quoteCurrencyFilter.toLowerCase())
     });
   }
 
@@ -43,12 +43,10 @@ this: any;
     });
     // this.http.get<Forex[]>('assets/mock-forex.json')
     this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/get/forex', {headers})
-      .subscribe(res => this.forexBackup = this.forex = res );
-    
+      .subscribe(res => this.forexBackup = this.forex = res.map(val => { val.lastRefresh *= 1000; return val; }));
   }
 
   navigateToForex(forexId: number): void {
-   
     this._router.navigateByUrl(`/forex/${forexId}`);
   }
 

@@ -55,6 +55,7 @@ export class StockService {
     } catch (e) {
       return [];
     }
+    resp.forEach(val => val.lastRefresh *= 1000);
     return resp;
   }
 

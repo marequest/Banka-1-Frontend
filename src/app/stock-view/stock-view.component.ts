@@ -40,8 +40,11 @@ export class StockViewComponent {
     )
   }
 
+  refresh() {
+    this.ngOnInit().then();
+  }
+
   async ngOnInit() {
-    
     this.stock = await this.stockService.getStockByTicker(this.stockId);
     console.log(this.stock);
     await this.handleGraphFilter("d");

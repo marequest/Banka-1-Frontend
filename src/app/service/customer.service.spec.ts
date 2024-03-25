@@ -18,6 +18,10 @@ describe('CustomerService', () => {
   afterEach(() => {
     httpMock.verify();
   });
+  // beforeEach(() => {
+  //   TestBed.configureTestingModule({});
+  //   service = TestBed.inject(CustomerService);
+  // });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

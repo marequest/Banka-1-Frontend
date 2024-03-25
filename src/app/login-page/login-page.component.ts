@@ -62,7 +62,8 @@ export class LoginPageComponent {
           },
           (error) => {
             console.error("Error occurred while checking admin status:", error);
-            this.adminSatusService.setIsAdmin(false); 
+            // TODO POPUP
+            this.adminSatusService.setIsAdmin(false);
           });
       });
   }
