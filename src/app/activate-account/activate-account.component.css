@@ -163,3 +163,14 @@ hr {
   font-size: 20px;
 }
 
+
+@media only screen and (max-width: 1000px) {
+  .main-window {
+    width: 90%;
+  }
+
+  .alert {
+    width: 90%;
+    height: 100px;
+  }
+}

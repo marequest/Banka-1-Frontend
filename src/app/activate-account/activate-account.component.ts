@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {z, ZodError, ZodIssue} from "zod";
 import {FormsModule} from "@angular/forms";
+import {CustomerService} from "../service/customer.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-activate-account',
@@ -54,6 +56,10 @@ export class ActivateAccountComponent {
     }
   });
 
+  constructor(private customerService: CustomerService, private router: Router) {
+    this.stage = 1;
+  }
+
   validateData() {
     if(this.stage === 1) {
       const parseResp = this.firstStageSchema.safeParse(
@@ -95,16 +101,31 @@ export class ActivateAccountComponent {
     return false;
   }
 
-  constructor() {
-    this.stage = 1;
+  async generateCode() {
+    const resp = await this.customerService.initialActivation(this.email, this.accountNumber, this.phoneNumber);
+    console.log(resp);
+    if(!resp) {
+      this.error = "Error while activating account. Please contact support or try again.";
+    }
   }
 
-  public nextStage() {
+  async finishActivation() {
+    const resp = await this.customerService.finalActivation(this.activationCode, this.password);
+    if(!resp) {
+      this.previousStage();
+      this.error = "Activation code is not correct. Please try again";
+    }
+
+    await this.router.navigate(["login"])
+  }
+
+  public async nextStage() {
     if(!this.validateData()) return;
     this.error = ""
     this.stage++;
 
     if(this.stage > 3) {
+      await this.finishActivation();
       this.stage = 3;
     }
   }

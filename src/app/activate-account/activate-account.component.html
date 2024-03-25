@@ -32,7 +32,7 @@
       <div class="stage" *ngIf="stage === 2" #stage2>
         <div class="generate-button-container">
           <label class="generate-code-button-label">By pressing the button an activation code will be sent to your email.</label>
-          <button class="generate-code-button">Generate activation code</button>
+          <button class="generate-code-button" (click)="generateCode()">Generate activation code</button>
         </div>
 
         <div class="input-field" style="margin-top: 50px">
