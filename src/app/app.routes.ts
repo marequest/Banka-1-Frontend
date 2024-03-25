@@ -17,6 +17,10 @@ import {StockViewComponent} from "./stock-view/stock-view.component";
 import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
 import { CustomerComponent } from './customer/customer.component';
+import {ResetPasswordComponent} from "./reset-password/reset-password.component";
+import {UserResetPasswordComponent} from "./user-reset-password/user-reset-password.component";
+import {resetPasswordGuard} from "./guards/reset-password.guard";
+import {userResetPasswordGuard} from "./guards/user-reset-password.guard";
 import { CustomerGuard } from './guards/customer.guard';
 
 
@@ -34,6 +38,8 @@ export const routes: Routes = [
     ]
   },
   {path:'user/set-password/:token', component: SetPasswordComponent},
+  {path:'reset-password', component: ResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'user/reset-password/:token', component: UserResetPasswordComponent, canActivate: [userResetPasswordGuard]},
   {
     path: 'security',
     children: [
