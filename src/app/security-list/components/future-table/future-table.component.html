@@ -21,7 +21,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let future of futures" class="tr-rows text-center">
+      <tr *ngFor="let future of futures" class="tr-rows text-center" (click)="navigateToFuture(future.listingId)">
         <td>{{ future.ticker }}</td>
         <td>{{ future.name }}</td>
         <td>{{ future.exchange }}</td>

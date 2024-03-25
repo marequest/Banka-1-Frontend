@@ -39,4 +39,8 @@ export class FutureTableComponent {
     this.futures = this.futuresBackup.filter(val => val.ticker.toLowerCase().includes(this.searchString.toLowerCase())
       || val.name.toLowerCase().includes(this.searchString.toLowerCase()));
   }
+
+  navigateToFuture(listingId: any) {
+    this._router.navigateByUrl(`/future/${listingId}`);
+  }
 }

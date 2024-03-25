@@ -17,6 +17,7 @@ import {StockViewComponent} from "./stock-view/stock-view.component";
 import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
 import { CustomerGuard } from './guards/customer.guard';
+import {FutureViewComponent} from "./future-view/future-view.component";
 
 
 
@@ -42,6 +43,7 @@ export const routes: Routes = [
      canActivate: [employeeGuard]
   },
   {path: 'forex/:ticker', component: ForexViewComponent},
+  {path: 'future/:ticker', component: FutureViewComponent},
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]}
