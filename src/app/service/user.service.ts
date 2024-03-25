@@ -66,7 +66,7 @@ export class UserService {
 
 
   public getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(this.apiUrl + '/' + userId,{
+    return this.http.get<User>(this.apiUrl + '/user/' + userId,{
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
@@ -110,7 +110,7 @@ export class UserService {
     // const headers = new HttpHeaders({
     //   'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`
     // });
-    
+
 //     if (!jwt) {
 //       this.router.navigate(['/login']);
 //     }
