@@ -49,9 +49,20 @@ export class LoginPageComponent {
   })
 
   onSubmit() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple regex for email validation
+    if (!this.model.email || !this.model.password) {
+      this.popupService.openPopup("Error", "Fields can't be empty")
+      return;
+    }
+    // if (!emailRegex.test(email)) {
+    //   this.popupService.openPopup("Error", "Invalid email format")
+    //   return;
+    // }
+
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
-        sessionStorage.setItem('jwt', token.jwt);
+        // Koristimo ovaj pristup da bi mogao da saceka jwt od beka pa da apdejtuje inicijale
+        this.authService.setJwt(token.jwt)
         sessionStorage.setItem('permissions', token.permissions);
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
@@ -60,8 +71,11 @@ export class LoginPageComponent {
           },
           (error) => {
             console.error("Error occurred while checking admin status:", error);
-            this.adminSatusService.setIsAdmin(false); 
+            this.adminSatusService.setIsAdmin(false);
           });
+      },
+      error => {
+        this.popupService.openPopup("Error", "Wrong email or password")
       });
   }
 }
