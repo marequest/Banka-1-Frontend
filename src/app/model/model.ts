@@ -88,3 +88,43 @@ export interface ListingHistory {
   change: number;
   volume: number;
 }
+
+export interface Customer{
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+}
+
+export interface CreateCustomerRequest{
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+}
+
+export interface EditCustomerRequest{
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+  password: string;
+}
+
+export interface CreateBankAccountRequest{
+  status: string;
+  currency: string;
+  accountType: string;
+  maintenanceCost: number;
+}

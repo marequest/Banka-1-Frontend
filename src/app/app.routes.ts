@@ -16,6 +16,7 @@ import {ForexViewComponent} from "./forex-view/forex-view.component";
 import {StockViewComponent} from "./stock-view/stock-view.component";
 import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
+import { CustomerComponent } from './customer/customer.component';
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {UserResetPasswordComponent} from "./user-reset-password/user-reset-password.component";
 import {resetPasswordGuard} from "./guards/reset-password.guard";
@@ -48,6 +49,12 @@ export const routes: Routes = [
      canActivate: [employeeGuard]
   },
   {path: 'forex/:ticker', component: ForexViewComponent},
+  {
+    path: 'customer',
+    children: [
+      {path: 'all', component: CustomerComponent},
+    ]
+  },
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]}
