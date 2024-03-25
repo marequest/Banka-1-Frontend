@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {SecurityService} from "../../../service/security.service";
 import {StockListing, StockService} from "../../../service/stock.service";
-import {NgForOf} from "@angular/common";
+import {DatePipe, NgForOf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -11,7 +11,8 @@ import {Router} from "@angular/router";
   imports: [
     NgForOf,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DatePipe
   ],
   templateUrl: './stock-table.component.html',
   styleUrl: './stock-table.component.css'

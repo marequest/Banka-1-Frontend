@@ -1,4 +1,7 @@
-<h1 class="title">{{forex?.name}}</h1>
+<div style="display: flex; flex-direction: row; gap: 8px">
+  <h1 class="title">{{forex?.name}}</h1>
+  <img src="assets/refresh.svg" class="refresh-button" width="36px" height="36px;" (click)="refresh()">
+</div>
 <div class="page-flex">
   <div class="col-left">
     <div class="forex-info-table">
