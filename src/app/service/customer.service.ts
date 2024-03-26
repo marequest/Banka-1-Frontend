@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {firstValueFrom} from "rxjs";
 import { CreateBankAccountRequest, CreateCustomerRequest, Customer, EditCustomerRequest } from '../model/model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment';
@@ -11,7 +12,7 @@ export class CustomerService {
 
   // Use this when you select a customer from the list and want to display his details
   private selectedCustomer: Customer | undefined;
-  
+
   // Used when creating a new customer and bank account at the same time
   private customerForCreation: CreateCustomerRequest | undefined;
 
@@ -26,6 +27,40 @@ export class CustomerService {
     private http: HttpClient,
   ) { }
 
+  async initialActivation(email: string, accountNumber: string, phoneNumber: string) {
+    const data =  {
+      email,
+      accountNumber,
+      phoneNumber
+    }
+    let resp;
+    try {
+      resp = (await firstValueFrom(
+        //this.http.post(environment.baseUrl + "/customer/initialActivation", data)
+        this.http.get("/assets/initialActivation.json")
+      )) as boolean;
+    } catch (e) {
+      return false;
+    }
+    return resp;
+  }
+
+  async finalActivation(token: string, password: string) {
+    const data =  {
+      password
+    }
+    let resp;
+    try {
+      resp = (await firstValueFrom(
+        //this.http.post(environment.baseUrl + `/customer/activate/${token}`, data)
+        this.http.get("/assets/finalActivation.json")
+      )) as number;
+    } catch (e) {
+      return false;
+    }
+    return true;
+  }
+
   public createCustomerAndBankAccount(customer: CreateCustomerRequest, bankAcc: CreateBankAccountRequest): Observable<boolean> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
@@ -33,7 +68,7 @@ export class CustomerService {
     return this.http.post<any>(`${this.apiUrl}/createNewCustomer`, {
       customer: customer,
       account: bankAcc
-    }, { headers }); 
+    }, { headers });
   }
 
   public getAllCustomers(): Observable<Customer[]> {
@@ -49,7 +84,7 @@ export class CustomerService {
     });
     return this.http.put<any>(`${this.apiUrl}/edit`, customer, { headers });
   }
-  
+
   public  deleteCustomer(customerId: number): Observable<boolean> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
