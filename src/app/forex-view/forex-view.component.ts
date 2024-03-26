@@ -41,12 +41,15 @@ export class ForexViewComponent {
     this.route.params.subscribe(params =>
       this.forexId = params["ticker"]
     )
-    
+  }
+
+  refresh() {
+    this.ngOnInit().then();
   }
 
   async ngOnInit() {
     this.forex = await this.forexService.getForexById(this.forexId);
-   
+
     await this.handleGraphFilter("d");
   }
 

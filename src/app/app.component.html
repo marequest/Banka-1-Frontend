@@ -40,6 +40,10 @@
         <img src="assets/security.png"/>
         <span>Securities</span>
       </div>
+      <div class="sidebar-btn" [routerLink]="'/customer/all'">
+        <img src="assets/admin.png"/>
+        <span>Customer</span>
+      </div>
 
       <!-- Navigation button to Bank accounts page. -->
       <div class="sidebar-btn" [routerLink]="'/bank-accounts'" *ngIf="loggedUserPosition === 'customer'">
@@ -52,7 +56,6 @@
         <img src="assets/admin.png"/>
         <span>Cards</span>
       </div>
-
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {ForexTableComponent} from "../forex-table/forex-table.component";
-import {CommonModule, NgForOf, NgIf} from "@angular/common";
-import {StockTableComponent} from "../security-list/components/stock-table/stock-table.component";
+import {CommonModule} from "@angular/common";
 import {BankAccountService} from "../service/bank-account.service";
 import {BankAccount, Card} from "../model/model";
 import {ActivatedRoute} from "@angular/router";
@@ -59,7 +57,7 @@ export class UserDetailComponent {
 
   loadBankAccountTable() {
     if (this.userId != -1) {
-      this.bankAccountService.getUsersBankAccountsMocked(this.userId).subscribe(
+      this.bankAccountService.getUsersBankAccounts(this.userId).subscribe(
         response => {
           this.bankAccounts = response;
         }
@@ -69,7 +67,7 @@ export class UserDetailComponent {
 
   loadCardsTable(){
     if (this.userId != -1) {
-      this.cardService.getUsersCardsMocked(this.userId).subscribe(
+      this.cardService.getUsersCards(this.userId).subscribe(
         response => {
           this.cards = response;
         }

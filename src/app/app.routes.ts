@@ -16,8 +16,16 @@ import {ForexViewComponent} from "./forex-view/forex-view.component";
 import {StockViewComponent} from "./stock-view/stock-view.component";
 import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
+import { CustomerComponent } from './customer/customer.component';
+import {ResetPasswordComponent} from "./reset-password/reset-password.component";
+import {UserResetPasswordComponent} from "./user-reset-password/user-reset-password.component";
+import {resetPasswordGuard} from "./guards/reset-password.guard";
+import {userResetPasswordGuard} from "./guards/user-reset-password.guard";
 import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
+import {ActivateAccountComponent} from "./activate-account/activate-account.component";
+import {FutureViewComponent} from "./future-view/future-view.component";
+
 
 
 
@@ -34,6 +42,8 @@ export const routes: Routes = [
     ]
   },
   {path:'user/set-password/:token', component: SetPasswordComponent},
+  {path:'reset-password', component: ResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'user/reset-password/:token', component: UserResetPasswordComponent, canActivate: [userResetPasswordGuard]},
   {
     path: 'security',
     children: [
@@ -43,13 +53,21 @@ export const routes: Routes = [
      canActivate: [employeeGuard]
   },
   {path: 'forex/:ticker', component: ForexViewComponent},
+  {path: 'future/:ticker', component: FutureViewComponent},
+  {
+    path: 'customer',
+    children: [
+      {path: 'all', component: CustomerComponent},
+    ]
+  },
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
-  {
-    path: 'users/:userId',
-    component: UserDetailComponent
-  }
+
+  { path: 'users/:userId', component: UserDetailComponent},
+
+  { path: 'activate-account', component: ActivateAccountComponent }
+
 ];
 
 @NgModule({

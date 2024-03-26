@@ -1,0 +1,63 @@
+<div style="display: flex; flex-direction: row; gap: 8px">
+  <h1 class="title">{{future?.name}}</h1>
+  <img src="assets/refresh.svg" class="refresh-button" width="36px" height="36px;" (click)="refresh()">
+</div>
+<div class="page-flex">
+  <div class="col-left">
+    <div class="future-info-table">
+      <div class="future-info-table-row">
+        <h4 class="future-info-table-key">FUTURE</h4>
+        <p class="future-info-table-value">{{future?.ticker}}</p>
+      </div>
+      <hr>
+      <div class="future-info-table-row">
+        <h4 class="future-info-table-key">EXCHANGE</h4>
+        <p class="future-info-table-value">{{future?.exchange}}</p>
+      </div>
+      <div class="future-info-table-row">
+        <h4 class="future-info-table-key">CONTRACT SIZE</h4>
+        <p class="future-info-table-value">{{future?.contractSize}}</p>
+      </div>
+      <div class="future-info-table-row">
+        <h4 class="future-info-table-key">CONTRACT UNIT</h4>
+        <p class="future-info-table-value">{{future?.contractUnit}}</p>
+      </div>
+      <hr>
+      <div class="future-info-table-row">
+        <h4 class="future-info-table-key">HIGH</h4>
+        <p class="future-info-table-value">{{future?.high}}</p>
+      </div>
+      <div class="future-info-table-row">
+        <h4 class="future-info-table-key">LOW</h4>
+        <p class="future-info-table-value">{{future?.low}}</p>
+      </div>
+      <hr>
+      <div class="future-info-table-row">
+        <h4 class="future-info-table-key">CHANGE</h4>
+        <p class="future-info-table-value">{{future?.priceChange}}</p>
+      </div>
+      <div class="future-info-table-row">
+        <h4 class="future-info-table-key">VOLUME</h4>
+        <p class="future-info-table-value">{{future?.volume}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-right">
+    <div class="graph-filter-buttons">
+      <button (click)="handleGraphFilter('d')" class="filter-button curved-start {{graphFilter === 'd' && 'active'}}">Day</button>
+      <button (click)="handleGraphFilter('m')" class="filter-button {{graphFilter === 'm' && 'active'}}">Month</button>
+      <button (click)="handleGraphFilter('y')" class="filter-button {{graphFilter === 'y' && 'active'}}">Year</button>
+      <button (click)="handleGraphFilter('5y')" class="filter-button {{graphFilter === '5y' && 'active'}}">5 Years</button>
+      <button (click)="handleGraphFilter('all')" class="filter-button curved-end {{graphFilter === 'all' && 'active'}}" >All</button>
+    </div>
+    <div>
+      <canvas
+        baseChart
+        [data]="chartData"
+        [type]="lineChartType"
+        [options]="lineChartOptions"
+      ></canvas>
+    </div>
+  </div>
+</div>
