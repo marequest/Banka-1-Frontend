@@ -16,6 +16,8 @@ import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
 import { ExchangeRateComponent } from './exchange-rate/exchange-rate.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { TransactionGuard } from './guards/transaction.guard';
+import { ExchangeRateGuard } from './guards/exchange-rate.guard';
 
 
 
@@ -44,7 +46,7 @@ export const routes: Routes = [
 
   {path:'transaction', component: TransactionComponent},
 
-  {path:'exchange-rate', component: ExchangeRateComponent},
+  {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
 
 
 ];
