@@ -23,6 +23,8 @@ import {resetPasswordGuard} from "./guards/reset-password.guard";
 import {userResetPasswordGuard} from "./guards/user-reset-password.guard";
 import { CustomerGuard } from './guards/customer.guard';
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
+import {FutureViewComponent} from "./future-view/future-view.component";
+
 
 
 
@@ -50,6 +52,7 @@ export const routes: Routes = [
      canActivate: [employeeGuard]
   },
   {path: 'forex/:ticker', component: ForexViewComponent},
+  {path: 'future/:ticker', component: FutureViewComponent},
   {
     path: 'customer',
     children: [

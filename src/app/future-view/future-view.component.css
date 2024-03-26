@@ -1,0 +1,96 @@
+.title {
+  font-size: 40px;
+  font-weight: bold;
+}
+.future-info-table {
+  min-width: 200px;
+  width: 400px;
+  display: inline;
+}
+.future-info-table-key {
+  display: inline;
+  color: #999999;
+}
+.future-info-table-value {
+  display: inline;
+  float: right;
+  margin-bottom: 0px;
+}
+
+.future-info-table-row {
+  min-width: 200px;
+  width: 400px;
+}
+
+hr {
+  margin: 0px;
+  min-width: 200px;
+  width: 400px;
+}
+
+.title-futures {
+  color: #19B5C7;
+  margin-bottom: 5px;
+}
+
+.future-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 53px;
+}
+
+.future-btn {
+  background: #19B5C7;
+  border-radius: 4px;
+  padding: 16px 20px;
+  border-width: 0px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (width>400px) {
+  .page-flex {
+    display: flex;
+    gap: 30px;
+    flex-direction: row;
+  }
+}
+
+.col-right {
+  flex-grow: 1;
+}
+
+.graph-filter-buttons {
+  display: flex;
+}
+
+.filter-button {
+  background-color: white;
+  border: solid 1px #DBE2E7;
+  padding: 15px;
+  cursor: pointer;
+}
+.curved-start {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.curved-end {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.active {
+  background: #DBE2E7;
+}
+
+.refresh-button {
+  background: lightgray;
+  border: black 2px solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.refresh-button:hover {
+  background: whitesmoke;
+}
