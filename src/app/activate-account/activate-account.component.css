@@ -1,0 +1,178 @@
+* {
+  color: #263238;
+}
+
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/backgroundLogin.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.main-window {
+  height: 90%;
+  width: 45%;
+  position: absolute;
+
+  background: #EBF6F9;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 45px;
+}
+
+.window-title {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 700;
+
+  margin-top: 47px;
+  margin-bottom: 0;
+  padding-bottom: 37px;
+}
+
+.window-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+hr {
+  width: 85%;
+}
+
+.window-content {
+  height: 75%;
+}
+
+.stage {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.text-input {
+  border-radius: 16px;
+  height: 60px;
+  width: 100%;
+  background: #B3D3DF;
+
+  font-size: 24px;
+}
+
+.input-field {
+  width: 70%;
+}
+
+.input-field label {
+  display: block;
+  margin-left: 10px;
+}
+
+.have-account-link-wrapper {
+  width: 70%;
+}
+
+.window-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 45px;
+}
+
+.next-button {
+  width: 211px;
+  height: 60px;
+  background: #103145;
+  border-radius: 16px;
+  color: white;
+
+  font-weight: 400;
+  font-size: 32px;
+
+  cursor: pointer;
+
+  border: none;
+}
+
+.back-button {
+  width: 211px;
+  height: 60px;
+  background: transparent;
+  border-color: #19B5C7;
+  border-radius: 16px;
+  color: #19B5C7;
+
+  font-weight: 400;
+  font-size: 32px;
+
+  box-shadow: transparent;
+
+  cursor: pointer;
+
+  border-width: 1px;
+  border-style: solid;
+
+}
+
+.generate-code-button {
+  width: 70%;
+  height: 90px;
+  border-radius: 16px;
+  color: white;
+  background: #103145;
+
+  font-size: 32px;
+  font-weight: 400;
+
+  cursor: pointer;
+}
+
+.generate-code-button-label {
+  font-size: 20px;
+  font-weight: 400;
+  padding-bottom: 25px;
+}
+
+.generate-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert {
+  height: 60px;
+  width: 80%;
+  background: #F8D7DA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: #F1AEB5;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 16px;
+  color: #7B1559;
+
+  font-size: 20px;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .main-window {
+    width: 90%;
+  }
+
+  .alert {
+    width: 90%;
+    height: 100px;
+  }
+}

@@ -4,7 +4,13 @@ import {PopupComponent} from "../popup/popup.component";
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
+
 import { TransactionPopupComponent } from '../transaction-popup/transaction-popup.component';
+
+import { AddCustomerComponent } from '../add-customer/add-customer.component';
+import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
+import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +36,23 @@ export class PopupService {
     });
   }
 
+
   openTransactionPopup(): void {
     this.dialog.open(TransactionPopupComponent, {
+
+  openAddCustomerPopup(): void {
+    this.dialog.open(AddCustomerComponent, {
+    });
+  }
+
+  openAddBankAccountPopup(): void {
+    this.dialog.open(AddBankAccountComponent, {
+    });
+  }
+
+  openUpdateCustomerPopup(): void {
+    this.dialog.open(EditCustomerComponent, {
+
     });
   }
 }

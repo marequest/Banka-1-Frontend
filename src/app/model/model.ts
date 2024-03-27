@@ -17,6 +17,28 @@ export interface Permissions{
     description?:string;
 }
 
+export interface BankAccount {
+  accountType?: string;
+  accountNumber?: string;
+  accountStatus?: string;
+  currency?: string;
+  balance?: number;
+  availableBalance?: number;
+}
+
+export interface Card {
+  id?: number;
+  cardNumber?: string;
+  cardType?: string;
+  cardName?: string;
+  creationDate?: number;
+  expirationDate?: number;
+  accountNumber?: string;
+  cvv?: string;
+  limit?: number;
+  isActivated?: boolean;
+}
+
 export interface CreateUserRequest{
   email: string;
   firstName:string;
@@ -62,6 +84,24 @@ export interface Forex {
   quoteCurrency: string;
 }
 
+export interface Future {
+  listingId: number;
+  listingType: string;
+  ticker: string;
+  name: string;
+  exchange: string;
+  lastRefresh : number;
+  price: number;
+  high: number;
+  low: number;
+  priceChange: number;
+  volume : number;
+  contractSize: number;
+  contractUnit: string;
+  openInterest: number;
+  settlementDate: number;
+}
+
 export interface ListingHistory {
   listingId: number;
   date: number;
@@ -71,6 +111,7 @@ export interface ListingHistory {
   change: number;
   volume: number;
 }
+
 
 export interface Account {
   accountNumber: string;
@@ -83,5 +124,46 @@ export enum AccountType {
   FOREIGN_CURRENCY = "FOREIGN_CURRENCY",
   CURRENT = "CURRENT",
   BUSINESS = "BUSINESS"
+}
+
+=======
+export interface Customer{
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+}
+
+export interface CreateCustomerRequest{
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+}
+
+export interface EditCustomerRequest{
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+  password: string;
+}
+
+export interface CreateBankAccountRequest{
+  status: string;
+  currency: string;
+  accountType: string;
+  maintenanceCost: number;
 }
 

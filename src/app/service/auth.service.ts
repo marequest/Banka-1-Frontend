@@ -17,6 +17,7 @@ export class AuthService {
     return this.http.post(this.loginUrl, { email, password }).pipe(
       map((response: any) => {
         // Assuming the response contains the JWT token
+        console.log(response)
         return response;
 
       })
