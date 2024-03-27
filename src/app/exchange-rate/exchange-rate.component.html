@@ -1,0 +1,30 @@
+
+<div class="content">
+<div class="security-title">Exchange rate</div>
+<div class="table-content">
+    <div style="display: flex; height: 30px; gap: 16px;">
+      <input placeholder="Selling symbol" [(ngModel)]="sellingFilter">
+      <input placeholder="Buying symbol" [(ngModel)]="buyingFilter">
+      <img height="30px" width="20px" src="assets/search.svg" (click)="search()"/>
+    </div>
+    <div class="security-table-wrapper">
+      <div class="wrapper-header">Forex</div>
+      <table class="user-table" cellpadding="2px" cellspacing="0">
+        <thead class="table-head-custom">
+        <tr class="tr-rows">
+          <th class="table-head">Selling symbol</th>
+          <th class="table-head">Buying symbol</th>
+          <th class="table-head">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of forex" class="tr-rows">
+          <td>{{ row.baseCurrency }}</td>
+          <td>{{ row.quoteCurrency }}</td>
+          <td>{{ row.price }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,8 @@ import {UserService} from "./service/user.service";
 import {MatSidenav} from "@angular/material/sidenav";
 import {PopupComponent} from "./popup/popup.component";
 import {PopupService} from "./service/popup.service";
+import { Account, AccountType } from './model/model';
+import { AccountService } from './service/account.service';
 
 import { OnInit, OnDestroy } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
@@ -27,12 +29,37 @@ export class AppComponent {
   @ViewChild('sidenav') sidenav: MatSidenav | undefined = undefined;
 
   userInitials: string = "";
-  isAdmin: boolean = false;
+
+  isAdmin: boolean = false; 
+  isCustomer:boolean =false;
+  hasRequiredAccounts: boolean = false;
+
+  //Izbrisati kada bek odradi
+  accounts: Account[] = [
+    { accountNumber: '12345', accountType: AccountType.CURRENT, currencyName: 'EUR', maintenanceCost: 10.0 },
+    { accountNumber: '54321', accountType: AccountType.FOREIGN_CURRENCY, currencyName: 'USD', maintenanceCost: 15.0 }
+  ];
+
+  //Izbrisati kada bek odradi
+  testcheckRequiredAccounts(){
+    const currentAccount = this.accounts.find(acc => acc.accountType === AccountType.CURRENT);
+    const foreignCurrencyAccounts = this.accounts.filter(acc => acc.accountType === AccountType.FOREIGN_CURRENCY);
+    if (currentAccount && foreignCurrencyAccounts.length > 0 || foreignCurrencyAccounts.length>1) {
+      this.hasRequiredAccounts = true;
+    }
+  }
+
+
+  constructor(private userService : UserService, private router: Router,private accountService:AccountService) {
+
+
+
   loggedUserPosition:string = ''; 
 
-  constructor(private userService : UserService, private router: Router) {
+
     this.triggerEventForAlreadyLoadedPage();
     
+
     this.userInitials = "/"
     const jwt = sessionStorage.getItem("jwt");
      if (jwt !== null && jwt.length > 0) {
@@ -40,6 +67,14 @@ export class AppComponent {
       response => {
         console.log(response);
         this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+
+        this.isCustomer=response.position.toString().toLowerCase()=="customer";
+        if (this.isCustomer) {
+          this.testcheckRequiredAccounts();
+      // Otkomentarisati kada bek odradi (jedno od ova dva u zavisnosti od implementacije beka)
+      // this.checkRequiredAccounts(response.customerId);
+      // this.checkRequiredAccounts(response.userId);
+        }
 
       }, (e) => {
         this.userInitials = "/"
@@ -89,6 +124,34 @@ export class AppComponent {
     }
   }
 
+
+  checkRequiredAccounts(customerId: number) {
+
+    this.accountService.getCustomerAccounts(customerId).subscribe(
+      (accounts: Account[]) => {
+        const currentAccount = accounts.find(acc => acc.accountType === AccountType.CURRENT);
+        const foreignCurrencyAccounts = accounts.filter(acc => acc.accountType === AccountType.FOREIGN_CURRENCY);
+        if (currentAccount && foreignCurrencyAccounts.length > 0 || foreignCurrencyAccounts.length>1) {
+          this.hasRequiredAccounts = true;
+        }
+      },
+      (error: any) => {
+        console.error("Error while fetching accounts: ", error);
+      }
+    );
+  }
+
+  
+
+  checkIsCustomer(): boolean {
+    return this.isCustomer;
+  }
+
+  checkIsCustomerAndBankAccounts(): boolean {
+    return this.isCustomer && this.hasRequiredAccounts;
+  }
+
+
   readUserPositionFromStorage(){
     let loggedUserPositionFromStorage = sessionStorage.getItem('userPosition');
     console.log('Logged user poss')
@@ -113,4 +176,7 @@ export class AppComponent {
       this.readUserPositionFromStorage();
     });
   }
+
 }
+
+

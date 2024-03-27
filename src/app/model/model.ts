@@ -48,6 +48,11 @@ export interface CreateUserRequest{
   phoneNumber:string;
   active:boolean;
 }
+export interface TransactionBasics{
+  outflow:string;
+  inflow:string;
+  amount:string;
+}
 
 export interface UserToEdit{
     id: number;
@@ -107,6 +112,21 @@ export interface ListingHistory {
   volume: number;
 }
 
+
+export interface Account {
+  accountNumber: string;
+  accountType: AccountType;
+  currencyName: string;
+  maintenanceCost: number;
+}
+
+export enum AccountType {
+  FOREIGN_CURRENCY = "FOREIGN_CURRENCY",
+  CURRENT = "CURRENT",
+  BUSINESS = "BUSINESS"
+}
+
+=======
 export interface Customer{
   id: number;
   firstName: string;
@@ -146,3 +166,4 @@ export interface CreateBankAccountRequest{
   accountType: string;
   maintenanceCost: number;
 }
+

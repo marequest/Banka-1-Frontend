@@ -16,6 +16,10 @@ import {ForexViewComponent} from "./forex-view/forex-view.component";
 import {StockViewComponent} from "./stock-view/stock-view.component";
 import {loginGuard} from "./guards/login.guard";
 import {welcomeGuard} from "./guards/welcome.guard";
+import { ExchangeRateComponent } from './exchange-rate/exchange-rate.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { TransactionGuard } from './guards/transaction.guard';
+import { ExchangeRateGuard } from './guards/exchange-rate.guard';
 import { CustomerComponent } from './customer/customer.component';
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {UserResetPasswordComponent} from "./user-reset-password/user-reset-password.component";
@@ -52,6 +56,14 @@ export const routes: Routes = [
      canActivate: [employeeGuard]
   },
   {path: 'forex/:ticker', component: ForexViewComponent},
+
+
+  {path:'transaction', component: TransactionComponent},
+
+  {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
+
+
+
   {path: 'future/:ticker', component: FutureViewComponent},
   {
     path: 'customer',
@@ -63,6 +75,7 @@ export const routes: Routes = [
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
   { path: 'activate-account', component: ActivateAccountComponent }
+
 ];
 
 @NgModule({
