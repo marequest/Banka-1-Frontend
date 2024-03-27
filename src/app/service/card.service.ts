@@ -25,6 +25,18 @@ export class CardService {
     const options = { headers: headers };
     let url = environment.baseUrl + `/account/getCards/${userId}`;
 
-    return this.httpClient.get<Card[]>(url, options); 
+    return this.httpClient.get<Card[]>(url, options);
   }
+
+  getAllCards(userId: number): Observable<Card[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/account/getAllCards/${userId}`;
+
+    return this.httpClient.get<Card[]>(url, options);
+  }
+
 }

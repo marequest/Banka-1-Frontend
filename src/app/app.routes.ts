@@ -26,6 +26,7 @@ import {UserResetPasswordComponent} from "./user-reset-password/user-reset-passw
 import {resetPasswordGuard} from "./guards/reset-password.guard";
 import {userResetPasswordGuard} from "./guards/user-reset-password.guard";
 import { CustomerGuard } from './guards/customer.guard';
+import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
 
@@ -74,6 +75,9 @@ export const routes: Routes = [
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
+
+  { path: 'users/:userId', component: UserDetailComponent},
+
   { path: 'activate-account', component: ActivateAccountComponent }
 
 ];
