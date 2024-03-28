@@ -29,10 +29,11 @@ export class AppComponent {
   @ViewChild('sidenav') sidenav: MatSidenav | undefined = undefined;
 
   userInitials: string = "";
-
   isAdmin: boolean = false; 
-  isCustomer:boolean =false;
+  isEmployee: boolean = false;
+  isCustomer:boolean = false;
   hasRequiredAccounts: boolean = false;
+  loggedUserPosition: string = ""; 
 
   //Izbrisati kada bek odradi
   accounts: Account[] = [
@@ -51,44 +52,51 @@ export class AppComponent {
 
 
   constructor(private userService : UserService, private router: Router,private accountService:AccountService) {
-
-
-
-  loggedUserPosition:string = ''; 
-
-
     this.triggerEventForAlreadyLoadedPage();
-    
-
     this.userInitials = "/"
-    const jwt = sessionStorage.getItem("jwt");
-     if (jwt !== null && jwt.length > 0) {
-    this.userService.getUser(jwt).subscribe(
-      response => {
-        console.log(response);
-        this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+    
+    // const jwt = sessionStorage.getItem("jwt");
+    //  if (jwt !== null && jwt.length > 0) {
+    // this.userService.getUser(jwt).subscribe(
+    //   response => {
+    //     console.log(response);
+         
 
-        this.isCustomer=response.position.toString().toLowerCase()=="customer";
-        if (this.isCustomer) {
-          this.testcheckRequiredAccounts();
-      // Otkomentarisati kada bek odradi (jedno od ova dva u zavisnosti od implementacije beka)
-      // this.checkRequiredAccounts(response.customerId);
-      // this.checkRequiredAccounts(response.userId);
-        }
+    //     this.isCustomer=response.position.toString().toLowerCase()=="customer";
+    //     if (this.isCustomer) {
+    //       //his.testcheckRequiredAccounts();
+    //       // Otkomentarisati kada bek odradi (jedno od ova dva u zavisnosti od implementacije beka)
+    //       //this.checkRequiredAccounts(response.customerId);
+         
+    //     }
 
-      }, (e) => {
-        this.userInitials = "/"
-      }
-    );
-     }
-
+    //   }, (e) => {
+    //     this.userInitials = "/"
+    //   }
+    // );}
   }
 
   ngOnInit(){
-    this.readUserPositionFromStorage();
+    this.checkIsAdminOrEmployeeOrCustomer();
+    //this.readUserPositionFromStorage();
+  }
 
-    console.log('In app comp:')
-    console.log(this.loggedUserPosition);
+  checkIsAdminOrEmployeeOrCustomer(){
+    const jwt = sessionStorage.getItem("jwt");
+    if (jwt !== null && jwt.length > 0) {
+    this.userService.getUser(jwt).subscribe(
+     response => {
+        this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+        
+        this.isAdmin=response.position.toString().toLowerCase()=="admin";
+        this.isEmployee=response.position.toString().toLowerCase()=="employee";
+        this.isCustomer=response.position.toString().toLowerCase()=="customer";
+        this.checkRequiredAccounts(response.userId);
+     }, (e) => {
+       this.userInitials = "/"
+     }
+   );}
+   
   }
 
   ngOnDestroy() {
@@ -105,7 +113,6 @@ export class AppComponent {
   }
 
   logout(){
-    // sessionStorage.removeItem("jwt")
     sessionStorage.clear();
     this.router.navigate(['login']);
   }
@@ -115,15 +122,17 @@ export class AppComponent {
   }
 
   checkIsAdmin(): boolean {
-    const isAdminValue = sessionStorage.getItem('isAdmin');
-    if (isAdminValue=="true") {
-         return true;
-    }
-    else{
-      return false;
-    }
+    return this.isAdmin;
   }
 
+  checkIsEmployee(): boolean{
+    return this.isEmployee;
+  }
+
+  checkIsCustomer(): boolean{
+    
+    return this.isCustomer;
+  }
 
   checkRequiredAccounts(customerId: number) {
 
@@ -141,11 +150,6 @@ export class AppComponent {
     );
   }
 
-  
-
-  checkIsCustomer(): boolean {
-    return this.isCustomer;
-  }
 
   checkIsCustomerAndBankAccounts(): boolean {
     return this.isCustomer && this.hasRequiredAccounts;

@@ -80,14 +80,20 @@ export class TransactionComponent implements OnInit{
   onContinue() {
     if (this.validateForm()) {
       this.transactionService.setTransactionBasics(this.transaction);
-      this.userService.getUser(sessionStorage.getItem('jwt')).subscribe(
+      
+      let jwt = "";
+      const tempJwt = sessionStorage.getItem('jwt');
+      if(tempJwt !== null)
+        jwt = tempJwt; 
+      this.userService.getUser(jwt).subscribe(
         response => {
           this.transactionService.setTranscationUser(response);
           this.popup.openTransactionPopup();
         }, (e) => {
         }
       );
-    }
+    
+  }
   }
 
   onOutflowChange() {

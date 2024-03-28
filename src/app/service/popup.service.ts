@@ -38,7 +38,7 @@ export class PopupService {
 
 
   openTransactionPopup(): void {
-    this.dialog.open(TransactionPopupComponent, {
+    this.dialog.open(TransactionPopupComponent, {});}
 
   openAddCustomerPopup(): void {
     this.dialog.open(AddCustomerComponent, {

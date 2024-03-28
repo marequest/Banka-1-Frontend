@@ -126,7 +126,7 @@ export enum AccountType {
   BUSINESS = "BUSINESS"
 }
 
-=======
+
 export interface Customer{
   id: number;
   firstName: string;

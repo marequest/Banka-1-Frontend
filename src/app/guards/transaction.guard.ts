@@ -24,7 +24,7 @@ export class TransactionGuard implements CanActivate {
         switchMap(user => {
           this.isCustomer = user.position.toString().toLowerCase() === "customer";
           if (this.isCustomer) {
-            return this.checkRequiredAccounts(user.customerId); // Proveri potrebne naloge za korisnika ako je "customer"
+            return this.checkRequiredAccounts(user.userId); // Proveri potrebne naloge za korisnika ako je "customer"
           } else {
             return [true]; // Ako korisnik nije "customer", dozvoli pristup bez dodatne provere
           }
