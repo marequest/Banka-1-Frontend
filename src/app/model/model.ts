@@ -73,7 +73,7 @@ export interface Forex {
   listingType: "Forex";
   ticker: string;
   name: string;
-  exchange: string;
+  exchangeName : string;
   lastRefresh: number;
   price: number;
   high: number;
@@ -89,7 +89,7 @@ export interface Future {
   listingType: string;
   ticker: string;
   name: string;
-  exchange: string;
+  exchangeName: string;
   lastRefresh : number;
   price: number;
   high: number;

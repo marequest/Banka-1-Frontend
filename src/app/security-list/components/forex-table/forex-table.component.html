@@ -25,7 +25,7 @@
       <tr *ngFor="let row of forex" class="tr-rows" (click)="navigateToForex(row.listingId)">
         <td>{{ row.ticker }}</td>
         <td>{{ row.name }}</td>
-        <td>{{ row.exchange }}</td>
+        <td>{{ row.exchangeName  }}</td>
         <td>{{ row.lastRefresh | date:'medium' }}</td>
         <td>{{ row.price }}</td>
         <td>{{ row.low }}</td>
