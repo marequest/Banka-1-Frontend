@@ -70,13 +70,14 @@ export const routes: Routes = [
     path: 'customer',
     children: [
       {path: 'all', component: CustomerComponent},
+      {path: 'view', component: UserDetailComponent}
     ]
   },
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
 
-  { path: 'users/:userId', component: UserDetailComponent},
+  // { path: 'customer/:customerId', component: UserDetailComponent},
 
   { path: 'activate-account', component: ActivateAccountComponent }
 

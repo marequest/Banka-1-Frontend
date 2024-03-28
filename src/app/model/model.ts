@@ -128,7 +128,7 @@ export enum AccountType {
 
 
 export interface Customer{
-  id: number;
+  userId: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -146,6 +146,7 @@ export interface CreateCustomerRequest{
   phoneNumber: string;
   gender: string;
   address: string;
+  active:boolean;
 }
 
 export interface EditCustomerRequest{
@@ -158,6 +159,7 @@ export interface EditCustomerRequest{
   gender: string;
   address: string;
   password: string;
+  active:boolean
 }
 
 export interface CreateBankAccountRequest{

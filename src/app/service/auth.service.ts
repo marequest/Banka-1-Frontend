@@ -22,14 +22,8 @@ export class AuthService {
 
       })
     );
-    // const url = 'assets/testLogin.json';
-    //
-    // return this.http.get(url).pipe(
-    //   map((response: any) => {
-    //     console.log(response);
-    //     return response.token;
-    //   })
-    // );
   }
+
+  
 
 }

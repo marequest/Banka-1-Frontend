@@ -5,6 +5,7 @@ import { User, UserToEdit } from '../model/model';
 import { environment } from "../../../environment";
 import {PopupService} from "./popup.service";
 import {Router} from "@angular/router";
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,16 @@ export class UserService {
 
   private userToEdit: User | undefined;
 
+  private isAdminSubject = new BehaviorSubject<boolean>(false);
+  isAdmin$ = this.isAdminSubject.asObservable();
+  private isEmployeeSubject = new BehaviorSubject<boolean>(false);
+  isEmployee$ = this.isEmployeeSubject.asObservable();
+  private isCustomerSubject = new BehaviorSubject<boolean>(false);
+  isCustomer$ = this.isCustomerSubject.asObservable();
+
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) { }
 
   public getUsers(): Observable<User[]>{
@@ -122,5 +130,15 @@ export class UserService {
       })
     };
     return this.http.get<any>(url, httpOptions);
+  }
+
+
+  updateUserState(position: string) {
+    console.log("USAO");
+    this.isAdminSubject.next(position.toLowerCase() === "admin");
+    this.isEmployeeSubject.next(position.toLowerCase() === "employee");
+    this.isCustomerSubject.next(position.toLowerCase() === "customer");
+    let p = position.toLowerCase() === "admin";
+    console.log("Prosao"+p);
   }
 }

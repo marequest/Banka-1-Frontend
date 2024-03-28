@@ -8,6 +8,7 @@ import {UserService} from "../service/user.service";
 import {CardService} from "../service/card.service";
 import {objectUtil} from "zod";
 import addQuestionMarks = objectUtil.addQuestionMarks;
+import { CustomerService } from '../service/customer.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -18,7 +19,7 @@ import addQuestionMarks = objectUtil.addQuestionMarks;
 })
 export class UserDetailComponent {
   selectedTab: string = "bank-accounts";
-  userId: number = -1;
+  customerId: number | undefined = -1;
   userName: string = "";
   bankAccounts: BankAccount[] = [];
   cards: Card[] = [];
@@ -26,10 +27,12 @@ export class UserDetailComponent {
   constructor(private bankAccountService: BankAccountService,
               private userService: UserService,
               private route: ActivatedRoute,
-              private cardService: CardService) {
+              private cardService: CardService,
+              private customerService: CustomerService) {
     this.route.params.subscribe(params => {
-      this.userId = params['userId'];
+      this.customerId = this.customerService.getSelectedCustomer()?.userId
     });
+    console.log("ID"+this.customerId);
     this.loadName()
     this.loadBankAccountTable()
     this.loadCardsTable();
@@ -56,8 +59,8 @@ export class UserDetailComponent {
   }
 
   loadBankAccountTable() {
-    if (this.userId != -1) {
-      this.bankAccountService.getUsersBankAccounts(this.userId).subscribe(
+    if (this.customerId !== -1 && this.customerId !== undefined) {
+      this.bankAccountService.getUsersBankAccounts(this.customerId).subscribe(
         response => {
           this.bankAccounts = response;
         }
@@ -66,8 +69,8 @@ export class UserDetailComponent {
   }
 
   loadCardsTable(){
-    if (this.userId != -1) {
-      this.cardService.getUsersCards(this.userId).subscribe(
+    if (this.customerId !== -1 && this.customerId !== undefined) {
+      this.cardService.getUsersCards(this.customerId).subscribe(
         response => {
           this.cards = response;
         }

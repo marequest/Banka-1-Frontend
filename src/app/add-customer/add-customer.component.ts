@@ -21,7 +21,8 @@ export class AddCustomerComponent {
     jmbg: '',
     phoneNumber: '',
     address: '',
-    gender: ''
+    gender: '',
+    active:false,
     // permissions: [],
   };
 

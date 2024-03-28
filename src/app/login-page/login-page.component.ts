@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { AdminStatusService } from '../service/admin-status.service';
 import { AdminGuard } from '../guards/admin.guard';
 import { UserService } from '../service/user.service';
+import { StorageService } from '../service/storage.service';
 
 @Component({
   selector: 'app-login-page',
@@ -34,7 +35,8 @@ export class LoginPageComponent {
     private validator: ValidationService,
     private popupService: PopupService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private storageService: StorageService
   ) {
     // const jwt = sessionStorage.getItem("jwt");
     //
@@ -47,6 +49,8 @@ export class LoginPageComponent {
     password: z.string()
   })
 
+  
+
   onSubmit() {
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
@@ -55,6 +59,16 @@ export class LoginPageComponent {
         sessionStorage.setItem('permissions', token.permissions);
         this.setUserPropertiesInSessionStorage(token.jwt);
 
+        if (token.jwt !== null && token.jwt.length > 0) {
+          this.userService.getUser(token.jwt).subscribe(
+           response => {
+              //this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+             this.storageService.setRole(response.position.toString().toLowerCase());
+              console.log(response.position);
+           }
+         );
+        }
+        
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
             this.adminSatusService.setIsAdmin(isAdmin);

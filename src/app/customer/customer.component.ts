@@ -17,7 +17,7 @@ export class CustomerComponent implements OnInit{
 
   customers: Customer[] = [
     {
-      id: 1,
+      userId: 1,
       firstName: "John",
       lastName: "Doe",
       email: "john.doe@example.com",
@@ -27,7 +27,7 @@ export class CustomerComponent implements OnInit{
       address: "123 Main Street"
     },
     {
-      id: 2,
+      userId: 2,
       firstName: "Jane",
       lastName: "Smith",
       email: "jane.smith@example.com",
@@ -37,7 +37,7 @@ export class CustomerComponent implements OnInit{
       address: "456 Elm Street"
     },
     {
-      id: 3,
+      userId: 3,
       firstName: "Alice",
       lastName: "Johnson",
       email: "alice.johnson@example.com",
@@ -79,13 +79,13 @@ export class CustomerComponent implements OnInit{
 
   viewCustomer(customer: Customer) {
     this.customerService.setSelectedCustomer(customer);
-    // this.router.navigate(['/customer/view']);
+    this.router.navigate(['/customer/view']);
   }
 
   editCustomer(customer: Customer) {
     this.customerService.setCustomerForEdit(
       {
-        id: customer.id,
+        id: customer.userId,
         firstName: customer.firstName,
         lastName: customer.lastName,
         email: customer.email,
@@ -93,7 +93,8 @@ export class CustomerComponent implements OnInit{
         phoneNumber: customer.phoneNumber,
         address: customer.address,
         gender: customer.gender,
-        password: ''
+        password: '',
+        active:false,
       }
     );
     this.popup.openUpdateCustomerPopup();
@@ -104,7 +105,7 @@ export class CustomerComponent implements OnInit{
       (response) => {
         if (response) {
           this.popup.openPopup("Success", "Customer successfully deleted.");
-          this.customers = this.customers.filter((customer) => customer.id !== customerId);
+          this.customers = this.customers.filter((customer) => customer.userId !== customerId);
         } else {
           this.popup.openPopup("Error", "Failed to delete customer.");
         }

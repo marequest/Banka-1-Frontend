@@ -25,6 +25,7 @@ export class EditCustomerComponent implements OnInit{
     address: '',
     gender: '',
     password: '',
+    active:false,
   };
 
   constructor(
@@ -46,6 +47,7 @@ export class EditCustomerComponent implements OnInit{
       address: userToEdit?.address || '',
       gender: userToEdit?.gender as string ,
       password: '',
+      active:userToEdit?.active || false,
     }
   }
 

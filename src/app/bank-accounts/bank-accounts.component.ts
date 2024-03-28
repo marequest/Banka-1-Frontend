@@ -35,7 +35,7 @@ export class BankAccountsComponent {
 
   // REPLACE MOCKED WITH getUsersBankAccounts - see the function it is in same file as getUsersBankAccountsMocked
   loadUsersBankAccounts() {
-    this.bankAccountService.getUsersBankAccountsMocked(this.loggedUserId).subscribe(
+    this.bankAccountService.getUsersBankAccounts(this.loggedUserId).subscribe(
       (usersBankAccountsFromDB: BankAccount[]) => {
         this.userBankAccounts = usersBankAccountsFromDB;
 

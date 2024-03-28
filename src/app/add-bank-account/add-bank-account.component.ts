@@ -38,24 +38,24 @@ export class AddBankAccountComponent {
     const customer = this.customerService.getCustomerForCreation();
     // Uncomment this
 
-    // if(this.validateForm() && customer) {
-    //   console.log(this.accountToCreate);
-    //   this.customerService.createCustomerAndBankAccount( customer, this.accountToCreate).subscribe(
-    //     (response) => {
-    //       if (response) {
-    //         this.popupService.openPopup("Success", "Customer and bank account created successfully.");
-    //         this.dialogRef.close();
-    //       } else {
-    //         this.popupService.openPopup("Error", "Failed to create customer and bank account.");
-    //       }
-    //     },
-    //     (error) => {
-    //       console.error('Error creating customer and bank account: ', error);
-    //       this.popupService.openPopup("Error", "Failed to create customer and bank account.");
-    //     }
-    //   );
-    //   this.dialogRef.close();
-    // }
+    if(this.validateForm() && customer) {
+      console.log(this.accountToCreate);
+      this.customerService.createCustomerAndBankAccount( customer, this.accountToCreate).subscribe(
+        (response) => {
+          if (response) {
+            this.popupService.openPopup("Success", "Customer and bank account created successfully.");
+            this.dialogRef.close();
+          } else {
+            this.popupService.openPopup("Error", "Failed to create customer and bank account.");
+          }
+        },
+        (error) => {
+          console.error('Error creating customer and bank account: ', error);
+          this.popupService.openPopup("Error", "Failed to create customer and bank account.");
+        }
+      );
+      this.dialogRef.close();
+    }
   }
 
   private validateForm(): boolean {
