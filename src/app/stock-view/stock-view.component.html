@@ -1,5 +1,8 @@
 <h3 class="title-stocks">Stocks</h3>
-<h1 class="title">{{stock?.name}}</h1>
+<div style="display: flex; flex-direction: row; gap: 8px">
+  <h1 class="title">{{stock?.name}}</h1>
+  <img src="assets/refresh.svg" class="refresh-button" width="36px" height="36px;" (click)="refresh()">
+</div>
 <div class="page-flex">
   <div class="col-left">
     <div class="stock-info-table">
@@ -10,7 +13,7 @@
       <hr>
       <div class="stock-info-table-row">
         <h4 class="stock-info-table-key">EXCHANGE</h4>
-        <p class="stock-info-table-value">{{stock?.exchange}}</p>
+        <p class="stock-info-table-value">{{stock?.exchangeName}}</p>
       </div>
       <div class="stock-info-table-row">
         <h4 class="stock-info-table-key">PRICE</h4>

@@ -16,6 +16,7 @@ import { PopupComponent } from "./popup/popup.component";
 import { PermissionPopUpComponent } from "./permissions-popup/permission-pop-up/permission-pop-up.component";
 import {provideCharts, withDefaultRegisterables} from "ng2-charts";
 import {FormsModule} from "@angular/forms";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -35,8 +36,8 @@ import {FormsModule} from "@angular/forms";
     MatSidenavModule,
     MatTooltipModule,
     MatDialogModule,
-    FormsModule
-
+    FormsModule,
+    FlexLayoutModule
   ],
   providers: [
     provideAnimationsAsync(),

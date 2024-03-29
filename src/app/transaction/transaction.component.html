@@ -1,0 +1,42 @@
+<div class="content">
+    <div class="transaction-title">Transaction</div>
+    <div class="body-content">
+
+        <div class="form-group">
+            <label for="outflow">Outflow account number:</label>
+            <select [(ngModel)]="transaction.outflow" id="outflow" name="outflow" required (change)="onOutflowChange()" #outflowModel="ngModel" [ngClass]="{ 'invalid-input': outflowModel.invalid && (outflowModel.dirty || outflowModel.touched) }">
+                <option value="" disabled selected>Select Outflow Account</option>
+                <option *ngFor="let account of outflowAccounts" [value]="account.accountNumber">{{ account.accountNumber }}</option>
+            </select>
+            <div *ngIf="outflowModel.invalid && (outflowModel.dirty || outflowModel.touched)" class="error-message">
+                <div *ngIf="outflowModel.hasError('required')" style="color: red;">Outflow account number is required.</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="inflow">Inflow account number:</label>
+            <select [(ngModel)]="transaction.inflow" id="inflow" name="inflow" required #inflowModel="ngModel" [ngClass]="{ 'invalid-input': inflowModel.invalid && (inflowModel.dirty || inflowModel.touched) }">
+                <option value="" disabled selected>Select Inflow Account</option>
+                <option *ngFor="let account of inflowAccounts" [value]="account.accountNumber">{{ account.accountNumber }}</option>
+            </select>
+            <div *ngIf="inflowModel.invalid && (inflowModel.dirty || inflowModel.touched)" class="error-message">
+                <div *ngIf="inflowModel.hasError('required')" style="color: red;">Inflow account number is required.</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="text" [(ngModel)]="transaction.amount" id="amount" name="amount" required pattern="^\d+(\.\d+)?$" #amountModel="ngModel" [ngClass]="{ 'invalid-input': amountModel.invalid && (amountModel.dirty || amountModel.touched) }" />
+            <div *ngIf="amountModel.invalid && (amountModel.dirty || amountModel.touched)" class="error-message">
+                <div *ngIf="amountModel.hasError('required')" style="color: red;">Amount is required.</div>
+                <div *ngIf="amountModel.hasError('pattern')" style="color: red;">Invalid amount format (must be a number).</div>
+            </div>
+        </div>
+        
+        <div class="form-group buttonSl">
+            <button (click)="onCancel()">Cancel</button>
+            <button (click)="onContinue()">Continue</button>
+        </div>
+
+    </div>
+</div>

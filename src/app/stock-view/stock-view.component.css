@@ -77,3 +77,14 @@ hr {
 .active {
   background: #DBE2E7;
 }
+
+.refresh-button {
+  background: lightgray;
+  border: black 2px solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.refresh-button:hover {
+  background: whitesmoke;
+}

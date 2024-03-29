@@ -22,8 +22,8 @@
       <tr *ngFor="let stock of filteredStocks" class="tr-rows text-center" (click)="navigateToStock(stock.listingId)">
         <td>{{ stock.ticker }}</td>
         <td>{{ stock.name }}</td>
-        <td>{{ stock.exchange }}</td>
-        <td>{{ stock.lastRefresh }}</td>
+        <td>{{ stock.exchangeName }}</td>
+        <td>{{ stock.lastRefresh | date:'medium' }}</td>
         <td>{{ stock.price }}</td>
         <td>{{ stock.high }}</td>
         <td>{{ stock.low }}</td>

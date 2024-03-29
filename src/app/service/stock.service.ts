@@ -18,7 +18,7 @@ export interface StockListing {
   listingType: 'stock';
   ticker: string;
   name: string;
-  exchange: string;
+  exchangeName: string;
   lastRefresh: number; // UNIX timestamp
   price: number;
   high: number;
@@ -55,6 +55,7 @@ export class StockService {
     } catch (e) {
       return [];
     }
+    resp.forEach(val => val.lastRefresh *= 1000);
     return resp;
   }
 

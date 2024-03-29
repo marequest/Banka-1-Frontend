@@ -21,10 +21,13 @@ export class AuthService {
     return this.http.post(this.loginUrl, { email, password }).pipe(
       map((response: any) => {
         // Assuming the response contains the JWT token
+        console.log(response)
         return response;
+
       })
     );
   }
+
 
   // Call this method when the JWT token is set
   setJwt(token: string): void {
@@ -36,4 +39,8 @@ export class AuthService {
   getJwtObservable() {
     return this.jwtSubject.asObservable();
   }
+
+  
+
+
 }

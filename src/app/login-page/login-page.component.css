@@ -97,3 +97,14 @@ a:hover {
 .logo-container img:last-child {
   margin-bottom: 0;
 }
+
+.activate-account-link {
+  margin-top: -10px;
+  padding-bottom: 20px;
+  font-size: 12px;
+
+  display: block;
+  text-align: left;
+
+  width: 140px;
+}

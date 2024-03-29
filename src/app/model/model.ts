@@ -17,6 +17,28 @@ export interface Permissions{
     description?:string;
 }
 
+export interface BankAccount {
+  accountType?: string;
+  accountNumber?: string;
+  accountStatus?: string;
+  currency?: string;
+  balance?: number;
+  availableBalance?: number;
+}
+
+export interface Card {
+  id?: number;
+  cardNumber?: string;
+  cardType?: string;
+  cardName?: string;
+  creationDate?: number;
+  expirationDate?: number;
+  accountNumber?: string;
+  cvv?: string;
+  limit?: number;
+  isActivated?: boolean;
+}
+
 export interface CreateUserRequest{
   email: string;
   firstName:string;
@@ -25,6 +47,11 @@ export interface CreateUserRequest{
   position:string;
   phoneNumber:string;
   active:boolean;
+}
+export interface TransactionBasics{
+  outflow:string;
+  inflow:string;
+  amount:string;
 }
 
 export interface UserToEdit{
@@ -46,7 +73,7 @@ export interface Forex {
   listingType: "Forex";
   ticker: string;
   name: string;
-  exchange: string;
+  exchangeName : string;
   lastRefresh: number;
   price: number;
   high: number;
@@ -55,6 +82,24 @@ export interface Forex {
   volume: number;
   baseCurrency: string;
   quoteCurrency: string;
+}
+
+export interface Future {
+  listingId: number;
+  listingType: string;
+  ticker: string;
+  name: string;
+  exchangeName: string;
+  lastRefresh : number;
+  price: number;
+  high: number;
+  low: number;
+  priceChange: number;
+  volume : number;
+  contractSize: number;
+  contractUnit: string;
+  openInterest: number;
+  settlementDate: number;
 }
 
 export interface ListingHistory {
@@ -66,3 +111,61 @@ export interface ListingHistory {
   change: number;
   volume: number;
 }
+
+
+export interface Account {
+  accountNumber: string;
+  accountType: AccountType;
+  currencyName: string;
+  maintenanceCost: number;
+}
+
+export enum AccountType {
+  FOREIGN_CURRENCY = "FOREIGN_CURRENCY",
+  CURRENT = "CURRENT",
+  BUSINESS = "BUSINESS"
+}
+
+
+export interface Customer{
+  userId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+}
+
+export interface CreateCustomerRequest{
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+  active:boolean;
+}
+
+export interface EditCustomerRequest{
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+  password: string;
+  active:boolean
+}
+
+export interface CreateBankAccountRequest{
+  status: boolean;
+  currencyName: string;
+  accountType: string;
+  maintenanceCost: number;
+}
+

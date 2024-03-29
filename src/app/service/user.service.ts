@@ -5,6 +5,7 @@ import { User, UserToEdit } from '../model/model';
 import { environment } from "../../../environment";
 import {PopupService} from "./popup.service";
 import {Router} from "@angular/router";
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,16 @@ export class UserService {
 
   private userToEdit: User | undefined;
 
+  private isAdminSubject = new BehaviorSubject<boolean>(false);
+  isAdmin$ = this.isAdminSubject.asObservable();
+  private isEmployeeSubject = new BehaviorSubject<boolean>(false);
+  isEmployee$ = this.isEmployeeSubject.asObservable();
+  private isCustomerSubject = new BehaviorSubject<boolean>(false);
+  isCustomer$ = this.isCustomerSubject.asObservable();
+
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) { }
 
   public getUsers(): Observable<User[]>{
@@ -66,7 +74,7 @@ export class UserService {
 
 
   public getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(this.apiUrl + '/' + userId,{
+    return this.http.get<User>(this.apiUrl + '/user/' + userId,{
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
@@ -100,7 +108,7 @@ export class UserService {
     return this.userToEdit;
   }
 
-  getUser(jwt: string | null): Observable<any> {
+  getUser(jwt: string): Observable<User> {
     const url = `${this.apiUrl}/user/getUser`;
 
   //getUser(jwt: string | null): Observable<{name: string, lastName: string}> {
@@ -110,7 +118,7 @@ export class UserService {
     // const headers = new HttpHeaders({
     //   'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`
     // });
-    
+
 //     if (!jwt) {
 //       this.router.navigate(['/login']);
 //     }
@@ -122,5 +130,15 @@ export class UserService {
       })
     };
     return this.http.get<any>(url, httpOptions);
+  }
+
+
+  updateUserState(position: string) {
+    console.log("USAO");
+    this.isAdminSubject.next(position.toLowerCase() === "admin");
+    this.isEmployeeSubject.next(position.toLowerCase() === "employee");
+    this.isCustomerSubject.next(position.toLowerCase() === "customer");
+    let p = position.toLowerCase() === "admin";
+    console.log("Prosao"+p);
   }
 }
