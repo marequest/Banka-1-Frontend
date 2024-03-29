@@ -1,5 +1,6 @@
 
 import {Component, HostListener, OnChanges, ViewChild, SimpleChanges } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {Router} from "@angular/router";
@@ -7,6 +8,9 @@ import {UserService} from "./service/user.service";
 import {MatSidenav} from "@angular/material/sidenav";
 import {PopupComponent} from "./popup/popup.component";
 import {PopupService} from "./service/popup.service";
+
+import {AuthService} from "./service/auth.service";
+
 import { Account, AccountType } from './model/model';
 import { AccountService } from './service/account.service';
 
@@ -18,13 +22,16 @@ import { StorageService } from './service/storage.service';
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
+
   private routerSubscription!: Subscription;
+
   title = 'banka-frontend';
 
 
@@ -54,7 +61,8 @@ export class AppComponent implements OnInit{
   }
 
 
-  constructor(private userService : UserService, private router: Router,private accountService:AccountService,private cdr: ChangeDetectorRef,private storageService:StorageService) {
+  constructor(private authService : AuthService,
+    private userService : UserService, private router: Router,private accountService:AccountService,private cdr: ChangeDetectorRef,private storageService:StorageService) {
     this.triggerEventForAlreadyLoadedPage();
 
     this.userInitials = "/"
@@ -87,6 +95,18 @@ export class AppComponent implements OnInit{
     this.isEmployee = role === "employee";
     this.isCustomer = role === "customer";
   });
+     this.authService.getJwtObservable().subscribe(jwt => {
+      if (jwt) {
+        this.userService.getUser(jwt).subscribe({
+          next: (response) => {
+            this.userInitials = `${response.firstName.charAt(0)}${response.lastName.charAt(0)}`;
+          },
+          error: (e) => {
+            this.userInitials = "/";
+          }
+        });
+      }
+    });
   }
 
 
@@ -114,7 +134,9 @@ export class AppComponent implements OnInit{
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
     }
+
   }
+
 
   toggleSideNav() {
     if (this.sidenav?.opened) {
