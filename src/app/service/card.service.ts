@@ -23,7 +23,7 @@ export class CardService {
 
     //Vanja treba da doda ovu rutu
     const options = { headers: headers };
-    let url = environment.baseUrl + `/account/getCards/${userId}`;
+    let url = environment.baseUrl + `/account/getAllCards/${userId}`;
 
     return this.httpClient.get<Card[]>(url, options);
   }

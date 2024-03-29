@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {BankAccountService} from "../service/bank-account.service";
-import {BankAccount, Card} from "../model/model";
+import {BankAccount, Card, Customer} from "../model/model";
 import {ActivatedRoute} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {UserService} from "../service/user.service";
@@ -9,6 +9,7 @@ import {CardService} from "../service/card.service";
 import {objectUtil} from "zod";
 import addQuestionMarks = objectUtil.addQuestionMarks;
 import { CustomerService } from '../service/customer.service';
+import { PopupService } from '../service/popup.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -23,14 +24,17 @@ export class UserDetailComponent {
   userName: string = "";
   bankAccounts: BankAccount[] = [];
   cards: Card[] = [];
+  customer: Customer | undefined;
 
   constructor(private bankAccountService: BankAccountService,
               private userService: UserService,
               private route: ActivatedRoute,
               private cardService: CardService,
-              private customerService: CustomerService) {
+              private customerService: CustomerService,
+              private popup: PopupService) {
     this.route.params.subscribe(params => {
-      this.customerId = this.customerService.getSelectedCustomer()?.userId
+      this.customerId = this.customerService.getSelectedCustomer()?.userId;
+      this.customer = this.customerService.getSelectedCustomer();
     });
     console.log("ID"+this.customerId);
     this.loadName()
@@ -79,8 +83,6 @@ export class UserDetailComponent {
   }
 
   popupNewAccount(){
-    //ToDo: Otvoriti popup za Add New Bank Account
+    this.popup.openAddBankAccountPopup();
   }
-
-
 }

@@ -163,8 +163,8 @@ export interface EditCustomerRequest{
 }
 
 export interface CreateBankAccountRequest{
-  status: string;
-  currency: string;
+  status: boolean;
+  currencyName: string;
   accountType: string;
   maintenanceCost: number;
 }

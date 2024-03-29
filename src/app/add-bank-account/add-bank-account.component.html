@@ -12,8 +12,8 @@
                 <div class="form-group">
                     <label for="status">Status:</label>
                     <select id="status" [(ngModel)]="accountToCreate.status">
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
+                        <option value="false">Active</option>
+                        <option value="true">Inactive</option>
                     </select>
                 </div>
         
@@ -22,7 +22,7 @@
                     <select id="type" [(ngModel)]="accountToCreate.accountType" (change)="onAccountTypeChange()">
                         <option value="CURRENT">CURRENT</option>
                         <option value="FOREIGN_CURRENCY">FOREIGN_CURRENCY</option>
-                        <option value="BUSINESS">BUSINESS</option>
+                        <!-- <option value="BUSINESS">BUSINESS</option> -->
                     </select>
                 </div>
             </div>
@@ -39,7 +39,7 @@
       
             <div class="form-group">
                 <label for="jmbg">Currency:</label>
-                <input type="text" id="jmbg" [(ngModel)]="accountToCreate.currency" name="jmbg" [readOnly]="isCurrencyReadOnly" required  #currency="ngModel" [ngClass]="{ 'invalid-input': currency.invalid && (currency.dirty || currency.touched) }" />
+                <input type="text" id="jmbg" [(ngModel)]="accountToCreate.currencyName" name="jmbg" [readOnly]="isCurrencyReadOnly" required  #currency="ngModel" [ngClass]="{ 'invalid-input': currency.invalid && (currency.dirty || currency.touched) }" />
                 <div *ngIf="currency.invalid && (currency.dirty || currency.touched)" class="error-message">
                     <div *ngIf="currency.hasError('required')" style="color: red;">Currency is required.</div>
                 </div>

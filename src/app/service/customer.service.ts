@@ -36,8 +36,8 @@ export class CustomerService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        //this.http.post(environment.baseUrl + "/customer/initialActivation", data)
-        this.http.get("/assets/initialActivation.json")
+        this.http.post(environment.baseUrl + "/customer/initialActivation", data)
+        //this.http.get("/assets/initialActivation.json")
       )) as boolean;
     } catch (e) {
       return false;
@@ -52,8 +52,8 @@ export class CustomerService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        //this.http.post(environment.baseUrl + `/customer/activate/${token}`, data)
-        this.http.get("/assets/finalActivation.json")
+        this.http.post(environment.baseUrl + `/customer/activate/${token}`, data)
+        //this.http.get("/assets/finalActivation.json")
       )) as number;
     } catch (e) {
       return false;
@@ -70,7 +70,15 @@ export class CustomerService {
       account: bankAcc
     }, { headers });
   }
-
+  public addCustomerBankAccount(customerId: number, bankAcc: CreateBankAccountRequest): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.http.post<any>(`${environment.baseUrl }/account/create`, {
+      customerId: customerId,
+      account: bankAcc
+    }, { headers });
+  }
   public getAllCustomers(): Observable<Customer[]> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
