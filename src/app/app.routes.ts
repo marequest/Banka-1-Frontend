@@ -29,13 +29,16 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
+import {TestComponentsComponent} from "./test-components/test-components.component";
 
 
 
 
 export const routes: Routes = [
+
   { path: 'login', component: LoginPageComponent, canActivate: [loginGuard] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [welcomeGuard] },
+  { path: 'test', component: TestComponentsComponent },
   {
     path: 'user',
     // canActivate: [AdminGuard],

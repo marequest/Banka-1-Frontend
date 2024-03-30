@@ -17,12 +17,12 @@ import { PermissionPopUpComponent } from "./permissions-popup/permission-pop-up/
 import {provideCharts, withDefaultRegisterables} from "ng2-charts";
 import {FormsModule} from "@angular/forms";
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     HttpClientModule,
@@ -37,12 +37,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTooltipModule,
     MatDialogModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbModule
   ],
   providers: [
     provideAnimationsAsync(),
     provideCharts(withDefaultRegisterables())
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

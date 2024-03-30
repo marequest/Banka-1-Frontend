@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AppModule} from "../app.module";
 
 @Component({
   selector: 'app-welcome',
@@ -8,5 +9,4 @@ import { Component } from '@angular/core';
   styleUrl: './welcome.component.css'
 })
 export class WelcomeComponent {
-
 }

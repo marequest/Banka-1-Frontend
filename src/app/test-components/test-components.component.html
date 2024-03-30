@@ -1,0 +1,22 @@
+<p>test-components works!</p>
+<div>
+  <div>
+<!--    <app-orange-button-->
+<!--      [buttonName]="btnName">-->
+
+<!--    </app-orange-button>-->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <orange-button [buttonName]="btnName" (click)="handleClick()">
+            Click me
+          </orange-button>
+        </div>
+      </div>
+    </div>
+    <text-field [(text)]="fieldText">
+
+    </text-field>
+
+  </div>
+</div>
