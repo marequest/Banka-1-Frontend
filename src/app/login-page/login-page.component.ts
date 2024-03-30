@@ -49,7 +49,7 @@ export class LoginPageComponent {
     password: z.string()
   })
 
-  
+
 
   onSubmit() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple regex for email validation
@@ -83,7 +83,7 @@ export class LoginPageComponent {
            }
          );
         }
-        
+
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
             this.adminSatusService.setIsAdmin(isAdmin);
@@ -106,7 +106,7 @@ export class LoginPageComponent {
 
         console.log("User in login:");
         console.log(response);
-        
+
         sessionStorage.setItem('userPosition', response.position);
         sessionStorage.setItem('loggedUserID', response.userId.toString());
 
