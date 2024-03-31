@@ -47,8 +47,8 @@ export class AppComponent implements OnInit{
 
   //Izbrisati kada bek odradi
   accounts: Account[] = [
-    { accountNumber: '12345', accountType: AccountType.CURRENT, currencyName: 'EUR', maintenanceCost: 10.0 },
-    { accountNumber: '54321', accountType: AccountType.FOREIGN_CURRENCY, currencyName: 'USD', maintenanceCost: 15.0 }
+    { accountNumber: '12345', accountType: AccountType.CURRENT, currencyName: 'EUR', maintenanceCost: 10.0, balance: 1000.0},
+    { accountNumber: '54321', accountType: AccountType.FOREIGN_CURRENCY, currencyName: 'USD', maintenanceCost: 15.0, balance: 5000.0}
   ];
 
   //Izbrisati kada bek odradi

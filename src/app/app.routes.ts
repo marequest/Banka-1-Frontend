@@ -29,6 +29,7 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
+import { NewPaymentComponent } from './new-payment/new-payment.component';
 
 
 
@@ -60,6 +61,7 @@ export const routes: Routes = [
 
 
   {path:'exchange', component: TransactionComponent},
+  {path: 'payment', component: NewPaymentComponent},
 
   {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
 

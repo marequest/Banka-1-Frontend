@@ -118,6 +118,7 @@ export interface Account {
   accountType: AccountType;
   currencyName: string;
   maintenanceCost: number;
+  balance: number;
 }
 
 export enum AccountType {
@@ -169,3 +170,13 @@ export interface CreateBankAccountRequest{
   maintenanceCost: number;
 }
 
+export interface CreatePaymentRequest{
+  recipientName: string;
+  recipientAccountNumber: string;
+  amount: number;
+  referenceNumber: string;
+  paymentCode: number;
+  purposeOfPayment: string;
+  senderAccountNumber: string;
+  activationCode: string;
+}
