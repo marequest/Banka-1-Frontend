@@ -59,7 +59,7 @@ export const routes: Routes = [
   {path: 'forex/:ticker', component: ForexViewComponent},
 
 
-  {path:'transaction', component: TransactionComponent},
+  {path:'exchange', component: TransactionComponent},
 
   {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
 
