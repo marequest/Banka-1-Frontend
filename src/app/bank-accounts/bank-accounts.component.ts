@@ -15,6 +15,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class BankAccountsComponent {
 
+  // Initially set the first tab as active
+  activeTab: string = 'tab1';
+
+  // Function to change the active tab
+  setActiveTab(tabId: string): void {
+    this.activeTab = tabId;
+  }
+
   public userBankAccounts: BankAccount[] = [];
   loggedUserId:number = -1;
 

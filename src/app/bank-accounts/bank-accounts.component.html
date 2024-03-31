@@ -1,4 +1,4 @@
-<div class="bank-accs-main-container">
+<!-- <div class="bank-accs-main-container">
     <div class="title-div">Bank accounts</div>
     <div class="bank-accs-div">
         <div class="grid-container">
@@ -11,4 +11,84 @@
         </div>
     </div>
       
+</div> -->
+
+<!-- Page container -->
+<div class="container">
+
+    <!-- Page title -->
+    <div class="row pageTitle">
+        Bank Accounts
+    </div>
+
+    <!-- Slide bar for changing accounts -->
+    <div class="row">
+        <div class="col-8 offset-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 sliderDivWrapper">
+            <div class="row sliderDiv">
+
+                <!-- d-flex justify-content-center align-items-center ==> is for positioning text in the div center -->
+                <!-- Left slider button -->
+                <div class="col-md-1 col-sm-1 leftSliderButton d-flex justify-content-center align-items-center">&lt;</div>
+
+                <!-- Slider content in the middle -->
+                <div class="col-md-10 col-sm-10 sliderMidContent">
+
+                    <!-- Account number and account name -->
+                    <div class="row accNumAndTitle">
+                        <div class="accTitleDiv d-flex justify-content-center align-items-center">Dinarski racun tra la la</div>
+                        <div class="accNumDiv d-flex justify-content-center align-items-center">Acount number 24214325251514</div>
+                    </div>
+                    
+                    <!-- Account balance -->
+                    <div class="row accBalance d-flex justify-content-center align-items-center">120 000 000</div>
+
+                    <!-- Div with newPayment and moreInfo buttons -->
+                    <div class="row paymentAndInfoDiv">
+                        <div class="myBtnDiv col-4 offset-2"><button type="button" class="col-12 myBtn">New payment</button></div>
+                        <div class="myBtnDiv col-4"><button type="button" class="col-12 myBtn">More information</button></div>
+                    </div>
+
+                    <!-- Three dots -->
+                    <div class="row threeDots d-flex justify-content-center align-items-center">⚪⚪⚪</div>
+                </div>
+
+                <!-- d-flex justify-content-center align-items-center ==> is for positioning text in the div center -->
+                <!-- Right slider button -->
+                <div class="col-md-1 col-sm-1 rightSliderButton d-flex justify-content-center align-items-center">&gt;</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table with transactions and exchanges -->
+    <div class="row">
+        <div class="col-8 offset-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2">
+            
+            <!-- Table title, table headers, tabs and table div -->
+            <div class="transactionsContentContainer">
+
+                <!-- Title transactions overview -->
+                <div class="row transOverviewDiv d-flex align-items-center">
+                    Transactions overview
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <!-- Tab Headers -->
+                    <div class="tab-headers">
+                        <div class="tab-header active" [ngClass]="{'active': activeTab === 'tab1'}" (click)="setActiveTab('tab1')">Transactions</div>
+                        <div class="tab-header" [ngClass]="{'active': activeTab === 'tab2'}" (click)="setActiveTab('tab2')">Exchange</div>
+                    </div>
+                
+                    <!-- Tab Content -->
+                    <div class="tab-content" *ngIf="activeTab === 'tab1'">
+                        Transaction table
+                    </div>
+                    <div class="tab-content" *ngIf="activeTab === 'tab2'">
+                        Exchange table
+                    </div>
+                </div>
+        </div>
+            </div>
+        
+    </div>
 </div>

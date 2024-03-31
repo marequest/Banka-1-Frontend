@@ -60,10 +60,10 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     height: 40%;
 }
 
-.accBalance{
+/* .accBalance{
     height: 20%;
     font-size: 1.5rem;
-}
+} */
 
 
 /* Media query for screens smaller than 600px */
@@ -81,7 +81,168 @@ Grid elements are individual bank accounts of user (grid-item class elements).
         line-height: 120%;
     }
 
-    .accBalance{
+    /* .accBalance{
         font-size: 1rem;
-    }
+    } */
 }
+
+/* NEW CSS FOR NEW DESIGN */
+
+.pageTitle{
+    color: #ffb72b;
+    font-size: xx-large;
+    font-family: 'Jura';
+}
+
+.sliderDivWrapper{
+    margin-top: 20px;
+    height: 220px;
+    border-radius: 30px;
+    border-bottom: 1px solid white;
+    border-right: 2px solid white;
+}
+
+.sliderDiv{
+    height: 100%;
+    background-color: #26262c;
+    border-radius: 30px;
+}
+
+.leftSliderButton{
+    height: 100%;
+    color: #fff9f0;
+    font-size: x-large;
+}
+
+.sliderMidContent{
+    height: 100%;
+}
+
+.rightSliderButton{
+    height: 100%;
+    color: #fff9f0;
+    font-size: x-large;
+}
+
+.accNumAndTitle{
+    height: 30%;
+    color: #fff9f0;
+}
+
+.accBalance{
+    height: 30%;
+    font-family: 'Jura';
+    font-size: medium;
+    color: #fff9f0;
+}
+
+.paymentAndInfoDiv{
+    height: 30%;
+}
+
+.accTitleDiv{
+    font-family: 'Jura';
+    font-size: large;
+}
+
+.accNumDiv{
+    font-family: 'Jura';
+    font-size: small;
+}
+
+.threeDots{
+    height: 10%;
+    font-size: small;
+}
+
+.myBtnDiv{
+    height: 100%;
+}
+
+.myBtn{
+    height: 80%;
+    background-color: #ffb72b;
+    color: #131319;
+    font-family: 'Jura';
+    font-size: large;
+    font-weight: bolder;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Bottom shadow */
+}
+
+/* .aa{
+    margin-top: 100px;
+    height: 200px;
+    color: white;
+} */
+
+/* TABS CSS */
+/* .tab-headers {
+    display: flex;
+    cursor: pointer;
+  }
+  
+  .tab-header {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .tab-header.active {
+    background-color: #f0f0f0;
+  }
+  
+  .tab-content {
+    border: 1px solid #ccc;
+    padding: 20px;
+  } */
+
+  .tab-headers {
+    display: flex;
+    border-bottom: 2px solid #fff9f0; /* Only bottom border for the container */
+  }
+  
+  /* Default styles for all tabs */
+  .tab-header {
+    padding: 10px;
+    background-color: #26262c; /* Background color for inactive tabs */
+    color: #b3aba0; /* Text color for inactive tabs */
+    cursor: pointer;
+  }
+  
+  /* Styles for the active tab */
+  .tab-header.active {
+    background-color: #131319; /* Background color for active tab */
+    color: #ffb72b; /* Text color for active tab */
+    border-bottom: 4px solid #ffb72b; /* Bottom border color for active tab */
+  }
+
+  .tab-content {
+    border: 1px solid #ccc;
+    padding: 20px;
+    color: white;
+  }
+
+  /* TABLE CSS */
+  .transOverviewDiv{
+    font-family: 'Jura';
+  }
+
+  .transactionsContentContainer{
+    margin-top: 100px;
+    height: 300px;
+    background-color: #26262c;
+    border-radius: 30px;
+    padding: 20px;
+  }
+
+  .transOverviewDiv{
+    height: 25%;
+    border: 1px solid rebeccapurple;
+    font-family: 'Jura';
+    font-size: large;
+    padding-left: 25px;
+    padding-top: 10px;
+    color: #fff9f0;
+  }
+  
