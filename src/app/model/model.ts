@@ -169,3 +169,12 @@ export interface CreateBankAccountRequest{
   maintenanceCost: number;
 }
 
+export interface Order {
+  security: string,
+  transaction: string,
+  symbol: string,
+  amount: number,
+  price: number,
+  status: string,
+  lastModified: number
+}

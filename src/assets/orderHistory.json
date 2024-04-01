@@ -1,0 +1,47 @@
+[
+  {
+    "security": "stock",
+    "transaction": "BUY",
+    "symbol": "AAPL",
+    "amount": 4,
+    "price": 1623.6,
+    "status": "DONE",
+    "lastModified": "28.3.2024. 12:11:35"
+  },
+  {
+    "security": "stock",
+    "transaction": "BUY",
+    "symbol": "AAPL",
+    "amount": 4,
+    "price": 1623.6,
+    "status": "DONE",
+    "lastModified": "28.3.2024. 12:11:35"
+  },
+  {
+    "security": "stock",
+    "transaction": "SELL",
+    "symbol": "GOOGL",
+    "amount": 2,
+    "price": 2750.25,
+    "status": "DONE",
+    "lastModified": "29.3.2024. 10:23:18"
+  },
+  {
+    "security": "future",
+    "transaction": "BUY",
+    "symbol": "ES",
+    "amount": 3,
+    "price": 4200.75,
+    "status": "DONE",
+    "lastModified": "30.3.2024. 15:45:59"
+  },
+  {
+    "security": "forex",
+    "transaction": "SELL",
+    "symbol": "EURUSD",
+    "amount": 10000,
+    "price": 1.115,
+    "status": "DONE",
+    "lastModified": "30.3.2024. 18:02:14"
+  }
+]

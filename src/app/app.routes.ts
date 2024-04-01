@@ -29,6 +29,7 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
+import {OrdersComponent} from "./orders/orders.component";
 
 
 
@@ -79,7 +80,8 @@ export const routes: Routes = [
 
   // { path: 'customer/:customerId', component: UserDetailComponent},
 
-  { path: 'activate-account', component: ActivateAccountComponent }
+  { path: 'activate-account', component: ActivateAccountComponent },
+  { path: 'orders', component: OrdersComponent }
 
 ];
 

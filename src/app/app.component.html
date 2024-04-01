@@ -46,6 +46,11 @@
         <span>Securities</span>
       </div>
 
+      <div class="sidebar-btn" [routerLink]="'/orders'"  *ngIf="isAdmin || isEmployee">
+        <img src="assets/security.png"/>
+        <span>Orders</span>
+      </div>
+
       <!-- Navigation button to Bank accounts page. -->
       <div class="sidebar-btn" [routerLink]="'/bank-accounts'" *ngIf="isCustomer">
         <img src="assets/admin.png"/>
