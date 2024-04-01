@@ -31,6 +31,20 @@
         <span>Admin panel</span>
       </div>
 
+      <div class="sidebar-btn" (click)="togglePaymentsSubMenu()"*ngIf="isCustomer">
+        <img src="assets/security.png"/>
+         <span>Payments</span>
+     </div>
+
+     <div *ngIf="showPaymentsSubMenu">
+      <div class="sidebar-btn" [routerLink]="'/payment/overview'">
+      <img src="assets/security.png"/>
+      <span>Overview</span>
+    </div>
+     </div>
+ 
+     
+
       <div class="sidebar-btn" [routerLink]="'/customer/all'" *ngIf="isAdmin">
         <img src="assets/admin.png"/>
         <span>Customer</span>
