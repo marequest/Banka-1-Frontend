@@ -35,7 +35,7 @@
         <span>Admin panel</span>
       </div>
 
-      <div class="sidebar-btn" (click)="togglePaymentsSubMenu()">
+      <div class="sidebar-btn" (click)="togglePaymentsSubMenu()"*ngIf="isCustomer">
         <img src="assets/security.png"/>
          <span>Payments</span>
      </div>

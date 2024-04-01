@@ -11,9 +11,8 @@ export class CustomerGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const position = sessionStorage.getItem('userPosition');
-
-    // If 'position' is equal to 'customer', allow access to the route
+    const position = sessionStorage.getItem('userPosition');  
+     // // If 'position' is equal to 'customer', allow access to the route
     if (position === 'customer') {
       return true;
     } else {

@@ -66,8 +66,7 @@ export const routes: Routes = [
 
 
   
-  // {path:'payment/overview',component:TransactionsOverviewComponent,canActivate: [CustomerGuard]},
-    {path:'payment/overview',component:TransactionsOverviewComponent},
+  {path:'payment/overview',component:TransactionsOverviewComponent,canActivate: [CustomerGuard]},
 
 
   {path: 'future/:ticker', component: FutureViewComponent},
