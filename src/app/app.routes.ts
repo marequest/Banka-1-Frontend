@@ -81,7 +81,7 @@ export const routes: Routes = [
   // { path: 'customer/:customerId', component: UserDetailComponent},
 
   { path: 'activate-account', component: ActivateAccountComponent },
-  { path: 'orders', component: OrdersComponent }
+  { path: 'orders', component: OrdersComponent, canActivate: [employeeGuard] }
 
 ];
 
