@@ -43,6 +43,7 @@ export class AppComponent implements OnInit{
   isCustomer:boolean = false;
   hasRequiredAccounts: boolean = false;
   loggedUserPosition: string = "";
+  showPaymentsSubMenu:boolean = false;
 
 
   //Izbrisati kada bek odradi
@@ -183,6 +184,10 @@ export class AppComponent implements OnInit{
         console.error("Error while fetching accounts: ", error);
       }
     );
+  }
+
+  togglePaymentsSubMenu() {
+    this.showPaymentsSubMenu = !this.showPaymentsSubMenu;
   }
 
 
