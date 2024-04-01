@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
 :root {
     --banka-black: #1E1E1E;
     --banka-dark-gray: #26262C;
-    --banka-gray: #989591;
     --banka-white: #FFF9F0;
+    --banka-gray: #B3ABA0;
     --banka-orange: #FFB72B;
 }
 
 body {
-    background-color: #ebf6f9;
+    background-color: var(--banka-black);
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

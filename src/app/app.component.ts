@@ -21,12 +21,10 @@ import { ChangeDetectorRef } from '@angular/core';
 import { StorageService } from './service/storage.service';
 
 
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit{
 
@@ -64,7 +62,7 @@ export class AppComponent implements OnInit{
   constructor(private authService : AuthService,
     private userService : UserService, private router: Router,private accountService:AccountService,private cdr: ChangeDetectorRef,private storageService:StorageService) {
     this.triggerEventForAlreadyLoadedPage();
-
+    this.toggleSideNav();
     this.userInitials = "/"
     
     // const jwt = sessionStorage.getItem("jwt");
@@ -99,10 +97,10 @@ export class AppComponent implements OnInit{
       if (jwt) {
         this.userService.getUser(jwt).subscribe({
           next: (response) => {
-            this.userInitials = `${response.firstName.charAt(0)}${response.lastName.charAt(0)}`;
+            this.userInitials = response.firstName.concat(" ", response.lastName);
           },
           error: (e) => {
-            this.userInitials = "/";
+            this.userInitials = "Luka Lazarevic";
           }
         });
       }
