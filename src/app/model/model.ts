@@ -1,3 +1,5 @@
+import { number } from "zod";
+
 export interface User{
     userId: number;
     username:string;
@@ -52,6 +54,22 @@ export interface TransactionBasics{
   outflow:string;
   inflow:string;
   amount:string;
+}
+
+export interface TransactionDetails{
+  recipientName:String;
+  amount:number;
+  referenceNumber:String;
+  paymentCode:number;
+  purposeOfPayment:String;
+  transactionDate:number;
+  senderName:String;
+  recipientAccountNumber:String;
+  commission:number;
+  senderAccountNumber:String;
+  channel:String;
+  status:String;
+  currency:String;
 }
 
 export interface UserToEdit{

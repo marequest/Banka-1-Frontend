@@ -1,0 +1,92 @@
+.transaction-title {
+    color: #FFB72B;
+    font-size: 24px;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+  }
+
+.form-group{
+    margin-bottom: 20px;
+}
+
+.body-content{
+  font-size: 14px;
+}
+.content{
+  width: 540px;
+  border-radius: 20px;
+}
+.btn_custom{
+  height: 50px;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+.custom_span{
+  font-size: 12px
+ }
+
+
+
+
+@media screen and (max-width: 576px) {
+  .body-content{
+    font-size: 8px;
+  }
+
+  .transaction-title {
+    font-size: 14px;
+  }
+
+  .form-group{
+    margin-bottom: 10px;
+}
+  .content{
+    width: 220px;
+    border-radius: 10px;
+
+  }
+
+   .custom_span{
+    font-size: 6px
+   }
+
+   .btn_custom{
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+
+  
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .body-content{
+    font-size: 10px;
+  }
+
+  .transaction-title {
+    font-size: 16px;
+  }
+
+  .form-group{
+    margin-bottom: 12px;
+}
+
+  .content{
+    width: 300px;
+    border-radius: 15px;
+
+  }
+
+   .custom_span{
+    font-size: 8px
+   }
+
+   .btn_custom{
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+
+}

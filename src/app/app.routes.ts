@@ -29,6 +29,7 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
+import { TransactionsOverviewComponent } from './transactions-overview/transactions-overview.component';
 
 
 
@@ -63,6 +64,10 @@ export const routes: Routes = [
 
   {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
 
+
+  
+  // {path:'payment/overview',component:TransactionsOverviewComponent,canActivate: [CustomerGuard]},
+    {path:'payment/overview',component:TransactionsOverviewComponent},
 
 
   {path: 'future/:ticker', component: FutureViewComponent},
