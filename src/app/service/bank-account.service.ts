@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders   } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BankAccount } from '../model/model';
+import { BankAccount, Transaction } from '../model/model';
 import { environment } from '../../../environment';
 
 @Injectable({
@@ -11,10 +11,12 @@ export class BankAccountService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // Get all bank accounts MOCKED
   getUsersBankAccountsMocked(userId: number): Observable<BankAccount[]> {
-    return this.httpClient.get<BankAccount[]>('/assets/bank-accs-mocked.json');
+    return this.httpClient.get<BankAccount[]>('/assets/mocked_banking_data/bank-accs-mocked.json');
   }
 
+  // Get all bank accounts REAL_DATA
   getUsersBankAccounts(userId: number): Observable<BankAccount[]> {
 
     const headers = new HttpHeaders({
@@ -26,5 +28,11 @@ export class BankAccountService {
     let url = environment.baseUrl + `/account/getCustomer/${userId}`;
 
     return this.httpClient.get<BankAccount[]>(url, options); 
+  }
+
+  //Get all transactions for bank account MOCKED
+  getTransactionsForAccountMocked(accountNumber: string): Observable<Transaction[]> {
+    const url = `/assets/mocked_banking_data/transactions${accountNumber}.json`;
+    return this.httpClient.get<Transaction[]>(url);
   }
 }

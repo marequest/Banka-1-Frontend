@@ -28,19 +28,19 @@
 
                 <!-- d-flex justify-content-center align-items-center ==> is for positioning text in the div center -->
                 <!-- Left slider button -->
-                <div class="col-md-1 col-sm-1 leftSliderButton d-flex justify-content-center align-items-center">&lt;</div>
+                <div class="col-md-1 col-sm-1 leftSliderButton d-flex justify-content-center align-items-center" (click) = "decrementDisplayedBankAccIdx()">&lt;</div>
 
                 <!-- Slider content in the middle -->
                 <div class="col-md-10 col-sm-10 sliderMidContent">
 
                     <!-- Account number and account name -->
                     <div class="row accNumAndTitle">
-                        <div class="accTitleDiv d-flex justify-content-center align-items-center">Dinarski racun tra la la</div>
-                        <div class="accNumDiv d-flex justify-content-center align-items-center">Acount number 24214325251514</div>
+                        <div class="accTitleDiv d-flex justify-content-center align-items-center">{{displayedBankAcc.accountType}}</div>
+                        <div class="accNumDiv d-flex justify-content-center align-items-center">Account number: {{displayedBankAcc.accountNumber}}</div>
                     </div>
                     
                     <!-- Account balance -->
-                    <div class="row accBalance d-flex justify-content-center align-items-center">120 000 000</div>
+                    <div class="row accBalance d-flex justify-content-center align-items-center">{{displayedBankAcc.balance}} {{displayedBankAcc.currency}}</div>
 
                     <!-- Div with newPayment and moreInfo buttons -->
                     <div class="row paymentAndInfoDiv">
@@ -54,7 +54,7 @@
 
                 <!-- d-flex justify-content-center align-items-center ==> is for positioning text in the div center -->
                 <!-- Right slider button -->
-                <div class="col-md-1 col-sm-1 rightSliderButton d-flex justify-content-center align-items-center">&gt;</div>
+                <div class="col-md-1 col-sm-1 rightSliderButton d-flex justify-content-center align-items-center" (click) = "incrementDisplayedBankAccIdx()">&gt;</div>
             </div>
         </div>
     </div>
@@ -75,15 +75,49 @@
                 <div class="tabs">
                     <!-- Tab Headers -->
                     <div class="tab-headers">
-                        <div class="tab-header active" [ngClass]="{'active': activeTab === 'tab1'}" (click)="setActiveTab('tab1')">Transactions</div>
-                        <div class="tab-header" [ngClass]="{'active': activeTab === 'tab2'}" (click)="setActiveTab('tab2')">Exchange</div>
+                        <div class="tab-header active" [ngClass]="{'active': activeTab === 'transactionsTab'}" (click)="setActiveTab('transactionsTab')">Transactions</div>
+                        <div class="tab-header" [ngClass]="{'active': activeTab === 'exchangesTab'}" (click)="setActiveTab('exchangesTab')">Exchange</div>
                     </div>
                 
                     <!-- Tab Content -->
-                    <div class="tab-content" *ngIf="activeTab === 'tab1'">
-                        Transaction table
+                    <div class="tab-content" *ngIf="activeTab === 'transactionsTab'">
+
+                        <!-- <div class="transactions-table tableHeaderDiv">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Bank Account</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div> -->
+                        <div class="scrollable-container">
+                            <!-- Transactions Table -->
+                            <table class="transactions-table">
+                                <thead>
+                                    <tr>
+                                        <th>Bank Account</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let transaction of displayedBankAccTransactions">
+                                        <td>{{ transaction.recepientBankAccount }}</td>
+                                        <td>{{ transaction.date | date: 'shortDate' }}</td>
+                                        <td>{{ transaction.status }}</td>
+                                        <td>{{ transaction.amount | currency }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
-                    <div class="tab-content" *ngIf="activeTab === 'tab2'">
+                    <div class="tab-content" *ngIf="activeTab === 'exchangesTab'">
                         Exchange table
                     </div>
                 </div>

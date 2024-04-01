@@ -112,6 +112,7 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     height: 100%;
     color: #fff9f0;
     font-size: x-large;
+    cursor: pointer;
 }
 
 .sliderMidContent{
@@ -122,6 +123,7 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     height: 100%;
     color: #fff9f0;
     font-size: x-large;
+    cursor: pointer;
 }
 
 .accNumAndTitle{
@@ -197,6 +199,11 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     padding: 20px;
   } */
 
+.tabs{
+    height: 85%;
+    /* border: 2px solid aqua; */
+}
+
   .tab-headers {
     display: flex;
     border-bottom: 2px solid #fff9f0; /* Only bottom border for the container */
@@ -208,6 +215,7 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     background-color: #26262c; /* Background color for inactive tabs */
     color: #b3aba0; /* Text color for inactive tabs */
     cursor: pointer;
+    font-family: 'Jura';
   }
   
   /* Styles for the active tab */
@@ -218,31 +226,62 @@ Grid elements are individual bank accounts of user (grid-item class elements).
   }
 
   .tab-content {
-    border: 1px solid #ccc;
-    padding: 20px;
+    /* border: 1px solid red; */
+    height: 85%;
+    /* padding: 20px; */
     color: white;
   }
 
   /* TABLE CSS */
-  .transOverviewDiv{
-    font-family: 'Jura';
-  }
-
   .transactionsContentContainer{
     margin-top: 100px;
-    height: 300px;
+    height: 400px;
     background-color: #26262c;
     border-radius: 30px;
     padding: 20px;
+    font-family: 'Jura';
   }
 
   .transOverviewDiv{
-    height: 25%;
-    border: 1px solid rebeccapurple;
+    height: 15%;
+    /* border: 1px solid rebeccapurple; */
     font-family: 'Jura';
     font-size: large;
     padding-left: 25px;
-    padding-top: 10px;
     color: #fff9f0;
   }
+
+  /* Transaction table */
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
   
+  .transactions-table th, .transactions-table td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .transactions-table th {
+    background-color: #131319;
+    color: #b3aba0;
+  }
+  
+  .transactions-table td {
+    border-bottom: 1px solid #fff9f0;
+    color: #b3aba0;
+    background-color: #26262c;
+  }
+  
+  .scrollable-container {
+    max-height: 100%; /* Adjust based on your needs */
+    overflow-y: auto; /* Enables vertical scrolling */
+    height: 85%;
+    padding-top: 10px;
+}
+
+.tableHeaderDiv{
+    height: 15%;
+    width: 100%;
+}
+

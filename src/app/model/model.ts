@@ -26,6 +26,13 @@ export interface BankAccount {
   availableBalance?: number;
 }
 
+export interface Transaction {
+  recepientBankAccount: string;
+  date: Date;
+  status: string;
+  amount: number;
+}
+
 export interface Card {
   id?: number;
   cardNumber?: string;
@@ -168,4 +175,3 @@ export interface CreateBankAccountRequest{
   accountType: string;
   maintenanceCost: number;
 }
-
