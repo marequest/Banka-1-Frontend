@@ -54,6 +54,12 @@
         <span>Cards</span>
       </div>
 
+      <!-- Navigation button to Receipient page. -->
+      <div class="sidebar-btn" [routerLink]="'/recipients'" *ngIf="isCustomer">
+        <img src="assets/admin.png"/>
+        <span>Recipients</span>
+      </div>
+
       <!-- <div class="sidebar-btn" [routerLink]="'/transaction'" *ngIf="checkIsCustomerAndBankAccounts()">
         <img src="assets/security.png"/>
         <span>Transaction</span>

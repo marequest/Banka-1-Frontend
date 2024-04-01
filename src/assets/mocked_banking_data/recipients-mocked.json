@@ -1,0 +1,28 @@
+[
+    {
+      "recepientFirstName": "Alice",
+      "recepientLastName": "Johnson",
+      "recepientAccountNumber": "1234567890"
+    },
+    {
+      "recepientFirstName": "Bob",
+      "recepientLastName": "Smith",
+      "recepientAccountNumber": "9876543210"
+    },
+    {
+      "recepientFirstName": "Charlie",
+      "recepientLastName": "Brown",
+      "recepientAccountNumber": "2468013579"
+    },
+    {
+      "recepientFirstName": "David",
+      "recepientLastName": "Davis",
+      "recepientAccountNumber": "1357924680"
+    },
+    {
+      "recepientFirstName": "Eve",
+      "recepientLastName": "White",
+      "recepientAccountNumber": "3692581470"
+    }
+  ]
+  

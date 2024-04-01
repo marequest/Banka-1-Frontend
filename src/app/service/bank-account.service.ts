@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders   } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BankAccount, Transaction, Exchange } from '../model/model';
+import { BankAccount, Transaction, Exchange, Recipient } from '../model/model';
 import { environment } from '../../../environment';
 
 @Injectable({
@@ -68,5 +68,11 @@ export class BankAccountService {
     let url = environment.baseUrl + `/exchanges/getAll/${accountNumber}`;
 
     return this.httpClient.get<Exchange[]>(url, options); 
+  }
+
+  //Get all recipients for user MOCKED
+  getAllRecipientsMocked(): Observable<Recipient[]> {
+    const url = `/assets/mocked_banking_data/recipients-mocked.json`;
+    return this.httpClient.get<Recipient[]>(url);
   }
 }

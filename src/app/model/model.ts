@@ -43,6 +43,12 @@ export interface Exchange {
   amount: number;
 }
 
+export interface Recipient{
+  recepientFirstName?: string;
+  recepientLastName?: string;
+  recepientAccountNumber?: string;
+}
+
 export interface Card {
   id?: number;
   cardNumber?: string;
