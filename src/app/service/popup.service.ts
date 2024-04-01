@@ -10,6 +10,7 @@ import { TransactionPopupComponent } from '../transaction-popup/transaction-popu
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
 import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
+import { TransactionsDetailsPopupComponent } from '../transactions-details-popup/transactions-details-popup.component';
 
 
 @Injectable({
@@ -26,6 +27,13 @@ export class PopupService {
     });
   }
 
+  openBiggerPopup(message: string, text: string): void {
+    this.dialog.open(PopupComponent, {
+      width: '350px',
+      data: { message, text }
+    });
+  }
+
   openAddUserPopup(): void {
     this.dialog.open(AddUserComponent, {
     });
@@ -35,6 +43,10 @@ export class PopupService {
     this.dialog.open(UpdateUserComponent, {
     });
   }
+
+  openTransactionDetailsPopup(): void {
+    this.dialog.open(TransactionsDetailsPopupComponent, {});}
+
 
 
   openTransactionPopup(): void {
