@@ -30,7 +30,7 @@ import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
 import { TransactionsOverviewComponent } from './transactions-overview/transactions-overview.component';
-
+import { RecipientsComponent } from './recipients/recipients.component';
 
 
 
@@ -79,6 +79,7 @@ export const routes: Routes = [
   },
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
+  { path: 'recipients', component: RecipientsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
 
   // { path: 'customer/:customerId', component: UserDetailComponent},

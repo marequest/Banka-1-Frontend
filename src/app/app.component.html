@@ -1,7 +1,3 @@
-<!-- 23.03.2024 Da li komentari iz linije 2 i 3 mogu da se brisu, ako da obrisati ih @FrontLead @TeamLead -->
-<!--ToDo: Kako se navbar ne bi pojavljivao na login stranici, odkomentarisati ovu liniju i zakomentariati liniju ispod, odkomentarisati poslednja tri reda-->
-<!--<div class="app-container" *ngIf="userIsLoggedIn()">-->
-
 <!-- Main page html that contains <A bar with title and logout button>, navigation bar and shows other pages. -->
 <div class="app-container">
 
@@ -70,6 +66,12 @@
       <div class="sidebar-btn" [routerLink]="'/cards'" *ngIf="isCustomer">
         <img src="assets/admin.png"/>
         <span>Cards</span>
+      </div>
+
+      <!-- Navigation button to Receipient page. -->
+      <div class="sidebar-btn" [routerLink]="'/recipients'" *ngIf="isCustomer">
+        <img src="assets/admin.png"/>
+        <span>Recipients</span>
       </div>
 
       <!-- <div class="sidebar-btn" [routerLink]="'/transaction'" *ngIf="checkIsCustomerAndBankAccounts()">
