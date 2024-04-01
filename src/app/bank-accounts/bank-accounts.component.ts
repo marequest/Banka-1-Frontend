@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BankAccountService } from '../service/bank-account.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AccountDetailsPopUpComponent } from '../account-details-pop-up/account-details-pop-up.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-bank-accounts',
@@ -28,7 +30,7 @@ export class BankAccountsComponent {
   public userBankAccounts: BankAccount[] = [];
   loggedUserId:number = -1;
 
-  constructor(private bankAccountService: BankAccountService, private router: Router) {
+  constructor(private bankAccountService: BankAccountService, private router: Router, private dialog: MatDialog) {
     let loggedUserIdAsString = sessionStorage.getItem('loggedUserID');
     
     if (loggedUserIdAsString !== null) {
@@ -122,5 +124,26 @@ export class BankAccountsComponent {
       this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
       this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
     }
+  }
+
+  newPaymentOnClick(){
+    //TODO: go to new payment page
+    console.log("New payment button clicked for account " + this.displayedBankAcc.accountNumber);
+  }
+
+  moreInfoOnClick(){
+    console.log("More info clicked for account " + this.displayedBankAcc.accountNumber);
+
+    const dialogRef = this.dialog.open(AccountDetailsPopUpComponent, {
+      width: '40vw',
+      height: 'auto',
+      data: this.displayedBankAcc, // Passing the displayed bank account
+      disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('The dialog was closed');
+    });
   }
 }

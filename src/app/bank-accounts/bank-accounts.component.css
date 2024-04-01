@@ -340,3 +340,9 @@ Grid elements are individual bank accounts of user (grid-item class elements).
         font-size: large;
     }
   }
+
+/* POP UP CSS */
+.rounded-dialog {
+    border-radius: 20px; /* or any other value you prefer */
+    background-color: #26262c;
+  }

@@ -24,6 +24,9 @@ export interface BankAccount {
   currency?: string;
   balance?: number;
   availableBalance?: number;
+  reservedResources?: number;
+  accountOwner?: string
+  accountName?: string
 }
 
 export interface Transaction {
