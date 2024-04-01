@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders   } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BankAccount, Transaction } from '../model/model';
+import { BankAccount, Transaction, Exchange } from '../model/model';
 import { environment } from '../../../environment';
 
 @Injectable({
@@ -32,7 +32,41 @@ export class BankAccountService {
 
   //Get all transactions for bank account MOCKED
   getTransactionsForAccountMocked(accountNumber: string): Observable<Transaction[]> {
-    const url = `/assets/mocked_banking_data/transactions${accountNumber}.json`;
+    const url = `/assets/mocked_banking_data/mocked_transactions/transactions${accountNumber}.json`;
     return this.httpClient.get<Transaction[]>(url);
+  }
+
+  //Get all transactions for bank account REAL_DATA
+  getTransactionsForAccount(accountNumber: string): Observable<Transaction[]> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/transactions/getAll/${accountNumber}`;
+
+    return this.httpClient.get<Transaction[]>(url, options); 
+  }
+
+  //Get all transactions for bank account MOCKED
+  getExchangesForAccountMocked(accountNumber: string): Observable<Exchange[]> {
+    const url = `/assets/mocked_banking_data/mocked_exchanges/exchanges${accountNumber}.json`;
+    return this.httpClient.get<Exchange[]>(url);
+  }
+
+  //Get all transactions for bank account REAL_DATA
+  getExchangesForAccount(accountNumber: string): Observable<Exchange[]> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/exchanges/getAll/${accountNumber}`;
+
+    return this.httpClient.get<Exchange[]>(url, options); 
   }
 }

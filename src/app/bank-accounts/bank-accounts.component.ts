@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User, BankAccount, Transaction } from '../model/model';
+import { User, BankAccount, Transaction, Exchange } from '../model/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,6 +23,7 @@ export class BankAccountsComponent {
   displayedBankAccIdx: number = -1;
   displayedBankAcc: BankAccount = {}
   displayedBankAccTransactions: Transaction[] = [];
+  displayedBankAccExchanges:Exchange[] = [];
 
   public userBankAccounts: BankAccount[] = [];
   loggedUserId:number = -1;
@@ -59,6 +60,7 @@ export class BankAccountsComponent {
           this.displayedBankAccIdx = 0;
           this.displayedBankAcc = usersBankAccountsFromDB[this.displayedBankAccIdx];
           this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+          this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
         }
 
         console.log('User bank acc from db mocked');
@@ -84,6 +86,20 @@ export class BankAccountsComponent {
     );
   }
 
+  loadExchangesForBankAcount(accountNumber: string) {
+    this.bankAccountService.getExchangesForAccountMocked(accountNumber).subscribe(
+      (bankAccountExchangesFromDB: Exchange[]) => {
+        this.displayedBankAccExchanges = bankAccountExchangesFromDB;
+
+        console.log('Bank acc exchanges from db mocked');
+        console.log(this.displayedBankAccExchanges);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error loading users:', error);
+      }
+    );
+  }
+
   incrementDisplayedBankAccIdx()
   {
     //increment index if currently displayed account isn't the rightmost one
@@ -92,6 +108,7 @@ export class BankAccountsComponent {
       this.displayedBankAccIdx++;
       this.displayedBankAcc = this.userBankAccounts[this.displayedBankAccIdx];
       this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+      this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
     }
   }
 
@@ -103,6 +120,7 @@ export class BankAccountsComponent {
       this.displayedBankAccIdx--;
       this.displayedBankAcc = this.userBankAccounts[this.displayedBankAccIdx];
       this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+      this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
     }
   }
 }

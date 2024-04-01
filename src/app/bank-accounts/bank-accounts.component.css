@@ -269,7 +269,7 @@ Grid elements are individual bank accounts of user (grid-item class elements).
   
   .transactions-table td {
     border-bottom: 1px solid #fff9f0;
-    color: #b3aba0;
+    color: #fff9f0;
     background-color: #26262c;
   }
   

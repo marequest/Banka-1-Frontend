@@ -33,6 +33,13 @@ export interface Transaction {
   amount: number;
 }
 
+export interface Exchange {
+  recepientBankAccount: string;
+  date: Date;
+  status: string;
+  amount: number;
+}
+
 export interface Card {
   id?: number;
   cardNumber?: string;
