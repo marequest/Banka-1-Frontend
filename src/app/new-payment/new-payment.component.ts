@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TransactionBasics, Account, AccountType, CreatePaymentRequest } from '../model/model';
 import { TransactionService } from '../service/transaction.service';
 import { AccountService } from '../service/account.service';
+import { PopupService } from '../service/popup.service';
 
 @Component({
   selector: 'app-new-payment',
@@ -45,7 +46,8 @@ export class NewPaymentComponent implements OnInit{
   selectedAccount: Account | undefined;
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private popupService: PopupService
   ){}
 
   ngOnInit(): void {
@@ -69,4 +71,8 @@ export class NewPaymentComponent implements OnInit{
     this.selectedAccount = this.accounts.find(account => account.accountNumber === accountNumber);
   }
   
+  submit(){
+    this.popupService.openVerifyPaymentPopup(this.payment);
+  }
+
 }
