@@ -61,8 +61,6 @@ export class AppComponent implements OnInit{
   }
 
 
-
-
   constructor(private authService : AuthService,
     private userService : UserService, private router: Router,private accountService:AccountService,private cdr: ChangeDetectorRef,private storageService:StorageService) {
     this.triggerEventForAlreadyLoadedPage();
