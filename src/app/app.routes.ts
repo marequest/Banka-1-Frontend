@@ -29,7 +29,8 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
-import {NewLoanComponent} from "./loans/new-loan.component";
+import {LoanTableComponent} from "./loans/loan-table/loan-table.component";
+import {NewLoanComponent} from "./loans/new-loan/new-loan.component";
 
 
 
@@ -77,7 +78,8 @@ export const routes: Routes = [
   //TODO: Add customer guard
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
-  { path: 'loans', component: NewLoanComponent, canActivate: [CustomerGuard]},
+  { path: 'loans', component: LoanTableComponent, canActivate: [CustomerGuard]},
+  { path: 'new-loan', component: NewLoanComponent, canActivate: [CustomerGuard]},
 
   // { path: 'customer/:customerId', component: UserDetailComponent},
 
