@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders,  HttpParams} from "@angular/common/http";
-import { TransactionBasics, User } from '../model/model';
+import {BankAccount, TransactionBasics, TransactionDto, User} from '../model/model';
 import {Router} from "@angular/router";
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment';
@@ -47,6 +47,18 @@ export class TransactionService {
     return this.http.post<any>(`${this.apiUrl}/transaction/createTransaction`, transactionBasics, { headers });
   }
 
+  getCardTransactions(cardNum: string | undefined): Observable<TransactionDto[]> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+
+    const options = {headers: headers};
+
+    let url = environment.baseUrl + `/transaction/getCardTransactions/${cardNum}`;
+
+    return this.http.get<TransactionDto[]>(url, options);
+  }
 
 
 }

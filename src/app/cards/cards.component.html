@@ -1,5 +1,5 @@
 <div class="cards-main-container">
-    <div class="title-div">Cards</div>
+    <div class="title-div">Card</div>
     <div class="bank-accs-div">
         <div class="grid-container">
             <div *ngFor="let card of userCards" class="grid-item">
@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="cardActive" [ngStyle]="{'color': card.isActivated ? 'green' : 'red'}">{{ card.isActivated ? 'Active' : 'Inactive' }}</div>
-                
+
                 <div class="cardLimitAndCVV">
                     <div>Limit: {{ card.limit}}</div>
                     <div></div>
@@ -20,5 +20,5 @@
             </div>
         </div>
     </div>
-      
+
 </div>

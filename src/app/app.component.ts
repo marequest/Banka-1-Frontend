@@ -38,7 +38,7 @@ export class AppComponent implements OnInit{
   @ViewChild('sidenav') sidenav: MatSidenav | undefined = undefined;
 
   userInitials: string = "";
-  isAdmin: boolean = false; 
+  isAdmin: boolean = false;
   isEmployee: boolean = false;
   isCustomer:boolean = false;
   hasRequiredAccounts: boolean = false;
@@ -61,25 +61,27 @@ export class AppComponent implements OnInit{
   }
 
 
+
+
   constructor(private authService : AuthService,
     private userService : UserService, private router: Router,private accountService:AccountService,private cdr: ChangeDetectorRef,private storageService:StorageService) {
     this.triggerEventForAlreadyLoadedPage();
 
     this.userInitials = "/"
-    
+
     // const jwt = sessionStorage.getItem("jwt");
     //  if (jwt !== null && jwt.length > 0) {
     // this.userService.getUser(jwt).subscribe(
     //   response => {
     //     console.log(response);
-         
+
 
     //     this.isCustomer=response.position.toString().toLowerCase()=="customer";
     //     if (this.isCustomer) {
     //       //his.testcheckRequiredAccounts();
     //       // Otkomentarisati kada bek odradi (jedno od ova dva u zavisnosti od implementacije beka)
     //       //this.checkRequiredAccounts(response.customerId);
-         
+
     //     }
 
     //   }, (e) => {
@@ -125,9 +127,9 @@ export class AppComponent implements OnInit{
        this.userInitials = "/"
      }
    );
-  
+
   }
-   
+
   }
 
   ngOnDestroy() {

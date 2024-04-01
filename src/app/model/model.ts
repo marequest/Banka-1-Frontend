@@ -54,6 +54,13 @@ export interface TransactionBasics{
   amount:string;
 }
 
+export interface TransactionDto{
+  amount: number;
+  date: number;
+  recipientAccountNumber: string;
+  status: string;
+}
+
 export interface UserToEdit{
     id: number;
     first_name: string;
@@ -118,6 +125,17 @@ export interface Account {
   accountType: AccountType;
   currencyName: string;
   maintenanceCost: number;
+}
+
+
+export interface BankAccountDto{
+  accountType: string;
+  accountNumber: string;
+  accountName: string;
+  accountStatus: string;
+  currency: string;
+  balance: number;
+  availableBalance: number;
 }
 
 export enum AccountType {

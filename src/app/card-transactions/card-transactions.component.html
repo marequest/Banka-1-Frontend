@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="title">Cards</div>
+
+    <div class="card-box">
+      <div class="arrow left-arrow" (click)="previousCard()">&#60;</div>
+      <div class="arrow right-arrow" (click)="nextCard()">&#62;</div>
+      <div class="card-content">
+        <div class="card-title">{{ currCard.cardName }}</div>
+        <div class="card-acc-num">Card number {{ currCard.cardNumber }}</div>
+        <div class="card-balance">{{ balance }} RSD</div>
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <button type="button" class="more-info-btn" (click)="openPopUp()">More information</button>
+          </div>
+        </div>
+        <div class="dots-container">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-box">
+      <div class="table-title">Transactions overview</div>
+
+      <div class="tab-container">
+        <div class="tab" (click)="selectTab('transactions')">Transactions</div>
+      </div>
+      <div *ngIf="selectedTab === 'transactions'" class="table-responsive">
+        <table class="custom-table">
+          <thead>
+          <tr>
+            <th>Bank account</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Amount</th>
+          </tr>
+          </thead>
+          <tbody>
+<!--          <tr>-->
+<!--            <td>recipientAccountNumber1</td>-->
+<!--            <td>date1</td>-->
+<!--            <td>status1</td>-->
+<!--            <td>amount1</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>recipientAccountNumber2</td>-->
+<!--            <td>date2</td>-->
+<!--            <td>status2</td>-->
+<!--            <td>amount2</td>-->
+<!--          </tr>-->
+          <tr *ngFor="let transaction of transactions">
+            <td>transaction.recipientAccountNumber</td>
+            <td>transaction.date</td>
+            <td [style.color]="getTextColor(transaction.status)" >transaction.status</td>
+            <td>transaction.amount</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
