@@ -5,6 +5,7 @@ import { TransactionBasics, Account, AccountType, CreatePaymentRequest } from '.
 import { TransactionService } from '../service/transaction.service';
 import { AccountService } from '../service/account.service';
 import { PopupService } from '../service/popup.service';
+import { PaymentService } from '../service/payment.service';
 
 @Component({
   selector: 'app-new-payment',
@@ -47,7 +48,8 @@ export class NewPaymentComponent implements OnInit{
 
   constructor(
     private accountService: AccountService,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private paymentService: PaymentService
   ){}
 
   ngOnInit(): void {
@@ -72,6 +74,14 @@ export class NewPaymentComponent implements OnInit{
   }
   
   submit(){
+    this.paymentService.initializePayment().subscribe({
+      next: (paymentCode: number) => {
+        
+      },
+      error: (error) => {
+        console.error("Error while initializing payment: ", error);
+      }
+    });
     this.popupService.openVerifyPaymentPopup(this.payment);
   }
 

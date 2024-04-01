@@ -13,6 +13,18 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   public createPayment(payment: CreatePaymentRequest) {
-    return this.http.post<number>(`${this.apiUrl}/newPayment`, payment);
+    return this.http.post<number>(`${this.apiUrl}/newPayment`, payment,{
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+      }
+    });
+  }
+
+  public initializePayment() {
+    return this.http.post<number>(`${this.apiUrl}/newPayment`, null, {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+      }
+    });  
   }
 }
