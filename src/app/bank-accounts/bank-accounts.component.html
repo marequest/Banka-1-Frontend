@@ -23,15 +23,15 @@
 
     <!-- Slide bar for changing accounts -->
     <div class="row">
-        <div class="col-8 offset-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 sliderDivWrapper">
+        <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-8 offset-2 sliderDivWrapper">
             <div class="row sliderDiv">
 
                 <!-- d-flex justify-content-center align-items-center ==> is for positioning text in the div center -->
                 <!-- Left slider button -->
-                <div class="col-md-1 col-sm-1 leftSliderButton d-flex justify-content-center align-items-center" (click) = "decrementDisplayedBankAccIdx()">&lt;</div>
+                <div class="col-lg-1 col-lg-1 col-md-1 col-sm-1 col-1 leftSliderButton d-flex justify-content-center align-items-center" (click) = "decrementDisplayedBankAccIdx()">&lt;</div>
 
                 <!-- Slider content in the middle -->
-                <div class="col-md-10 col-sm-10 sliderMidContent">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-10 sliderMidContent">
 
                     <!-- Account number and account name -->
                     <div class="row accNumAndTitle">
@@ -44,8 +44,8 @@
 
                     <!-- Div with newPayment and moreInfo buttons -->
                     <div class="row paymentAndInfoDiv">
-                        <div class="myBtnDiv col-4 offset-2"><button type="button" class="col-12 myBtn">New payment</button></div>
-                        <div class="myBtnDiv col-4"><button type="button" class="col-12 myBtn">More information</button></div>
+                        <div class="myBtnDiv col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-6"><button type="button" class="col-lg-12 col-md-12 col-sm-12 col-12 myBtn">New payment</button></div>
+                        <div class="myBtnDiv col-lg-4 col-md-4 col-sm-4 col-6"><button type="button" class="col-lg-12 col-md-12 col-sm-12 col-12 myBtn">More information</button></div>
                     </div>
 
                     <!-- Three dots -->
@@ -54,7 +54,7 @@
 
                 <!-- d-flex justify-content-center align-items-center ==> is for positioning text in the div center -->
                 <!-- Right slider button -->
-                <div class="col-md-1 col-sm-1 rightSliderButton d-flex justify-content-center align-items-center" (click) = "incrementDisplayedBankAccIdx()">&gt;</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-1 rightSliderButton d-flex justify-content-center align-items-center" (click) = "incrementDisplayedBankAccIdx()">&gt;</div>
             </div>
         </div>
     </div>

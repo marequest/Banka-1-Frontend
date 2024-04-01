@@ -95,8 +95,8 @@ Grid elements are individual bank accounts of user (grid-item class elements).
 }
 
 .sliderDivWrapper{
-    margin-top: 20px;
-    height: 220px;
+    margin-top: 5vh;
+    height: 30vh;
     border-radius: 30px;
     border-bottom: 1px solid white;
     border-right: 2px solid white;
@@ -113,10 +113,12 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     color: #fff9f0;
     font-size: x-large;
     cursor: pointer;
+    /* border: 2px solid greenyellow; */
 }
 
 .sliderMidContent{
     height: 100%;
+    /* border: 2px solid seashell; */
 }
 
 .rightSliderButton{
@@ -124,6 +126,7 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     color: #fff9f0;
     font-size: x-large;
     cursor: pointer;
+    /* border: 2px solid springgreen; */
 }
 
 .accNumAndTitle{
@@ -234,8 +237,8 @@ Grid elements are individual bank accounts of user (grid-item class elements).
 
   /* TABLE CSS */
   .transactionsContentContainer{
-    margin-top: 100px;
-    height: 400px;
+    margin-top: 10vh;
+    height: 60vh;
     background-color: #26262c;
     border-radius: 30px;
     padding: 20px;
@@ -285,3 +288,55 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     width: 100%;
 }
 
+@media (min-width: 300px) {
+    .leftSliderButton {
+      font-size: smaller; /* Adjust for smaller screens */
+    }
+
+    .rightSliderButton{
+        font-size: smaller;
+    }
+
+    .myBtn{
+        font-size: smaller;
+    }
+
+    .accBalance{
+        font-size: small;
+    }
+
+    .accNumber{
+        font-size: small;
+    }
+
+    .accNumDiv{
+        font-size: smaller;
+    }
+  }
+
+
+  @media (min-width: 1000px) {
+    .leftSliderButton {
+      font-size: large; /* Adjust for smaller screens */
+    }
+
+    .rightSliderButton{
+        font-size: large;
+    }
+
+    .myBtn{
+        font-size: large;
+    }
+
+    .accBalance{
+        font-size: large;
+    }
+
+    .accNumber{
+        font-size: large;
+    }
+
+    .accNumDiv{
+        font-size: large;
+    }
+  }
