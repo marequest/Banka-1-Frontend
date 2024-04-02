@@ -19,14 +19,25 @@ import { NavigationEnd } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { ChangeDetectorRef } from '@angular/core';
 import { StorageService } from './service/storage.service';
-
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  animations: [
+    trigger('dropdown', [
+      transition(':enter', [
+        style({ height: '0', opacity: 0 }), // Start with no height and transparent
+        animate('0.3s ease-out', style({ height: '*', opacity: 1 })) // Animate to auto height and full opacity
+      ]),
+      transition(':leave', [
+        animate('0.2s ease-in', style({ height: '0', opacity: 0 })) // Animate back to no height and transparent
+      ])
+    ])
+  ]
 })
 export class AppComponent implements OnInit{
 
@@ -37,8 +48,13 @@ export class AppComponent implements OnInit{
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined = undefined;
 
+  activeItem: string = '';
+  setActiveItem(item: string) {
+    this.activeItem = this.activeItem === item ? '' : item; // This toggles the active item
+  }
+
   userInitials: string = "";
-  isAdmin: boolean = false; 
+  isAdmin: boolean = false;
   isEmployee: boolean = false;
   isCustomer:boolean = false;
   hasRequiredAccounts: boolean = false;
@@ -65,22 +81,22 @@ export class AppComponent implements OnInit{
   constructor(private authService : AuthService,
     private userService : UserService, private router: Router,private accountService:AccountService,private cdr: ChangeDetectorRef,private storageService:StorageService) {
     this.triggerEventForAlreadyLoadedPage();
-
+    this.toggleSideNav();
     this.userInitials = "/"
-    
+
     // const jwt = sessionStorage.getItem("jwt");
     //  if (jwt !== null && jwt.length > 0) {
     // this.userService.getUser(jwt).subscribe(
     //   response => {
     //     console.log(response);
-         
+
 
     //     this.isCustomer=response.position.toString().toLowerCase()=="customer";
     //     if (this.isCustomer) {
     //       //his.testcheckRequiredAccounts();
     //       // Otkomentarisati kada bek odradi (jedno od ova dva u zavisnosti od implementacije beka)
     //       //this.checkRequiredAccounts(response.customerId);
-         
+
     //     }
 
     //   }, (e) => {
@@ -100,10 +116,10 @@ export class AppComponent implements OnInit{
       if (jwt) {
         this.userService.getUser(jwt).subscribe({
           next: (response) => {
-            this.userInitials = `${response.firstName.charAt(0)}${response.lastName.charAt(0)}`;
+            this.userInitials = response.firstName.concat(" ", response.lastName);
           },
           error: (e) => {
-            this.userInitials = "/";
+            this.userInitials = "Luka Lazarevic";
           }
         });
       }
@@ -126,9 +142,9 @@ export class AppComponent implements OnInit{
        this.userInitials = "/"
      }
    );
-  
+
   }
-   
+
   }
 
   ngOnDestroy() {

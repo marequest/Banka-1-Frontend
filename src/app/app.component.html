@@ -1,37 +1,34 @@
 <!-- Main page html that contains <A bar with title and logout button>, navigation bar and shows other pages. -->
 <div class="app-container">
+  <div class="banka-sidebar" *ngIf="userIsLoggedIn()">
+    <div>
+      <div class="banka-sidebar-title">BANKA1</div>
 
-  <!-- Ribbon bar with A1 title, user credientals img and logout button. -->
-  <mat-toolbar *ngIf="userIsLoggedIn()">
-    <button mat-icon-button class="menu-button" (click)="toggleSideNav()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <img class="logo" src="assets/logo.png" width="200px" alt=""/>
-    <span class="remaining-space"></span>
-    <div class="user-info">
-      <div class="circle">{{ userInitials }}</div>
-      <span color="warn"  (click)="logout()" *ngIf="userIsLoggedIn()" class="logout-button">Logout</span>
-      <span color="warn"   [routerLink]="'login'" *ngIf="!userIsLoggedIn()" class="logout-button">Login</span>
-    </div>
-  </mat-toolbar>
+      <div class="user-information-wrapper">
+        <div class="user-logo-name">
+          <div class="banka-user-logo"></div>
+          <div class="banka-user-name">{{ userInitials }}</div>
+        </div>
 
-  <!-- Navigation side bar. -->
-  <mat-sidenav-container class="sidenav-container" >
-    <mat-sidenav #sidenav mode="side" class="sidenav" *ngIf="userIsLoggedIn()">
-
-      <!-- Navigation button to Welcome page. -->
-      <div class="sidebar-btn" [routerLink]="'/welcome'" >
-        <img src="assets/admin.png"/>
-        <span>Welcome</span>
+        <div class="underline"></div>
       </div>
 
-      <!-- Navigation button to Admin panel page. -->
-      <div class="sidebar-btn" [routerLink]="'/user/list'" *ngIf="isAdmin" >
-        <img src="assets/admin.png" />
-        <span>Admin panel</span>
-      </div>
+      <div class="sidebar-menu-wrapper">
+        <div class="sidebar-menu-title">Menu</div>
+        <div class="sidebar-items-holder">
+          <div [routerLink]="'/welcome'" class="sidebar-item">
+            <div>Bank accounts</div>
+          </div>
 
-      <div class="sidebar-btn" (click)="togglePaymentsSubMenu()"*ngIf="isCustomer">
+
+          <div class="sidebar-item-wrapper">
+            <div class="sidebar-item">
+              <div>Payments</div>
+              <img (click)="setActiveItem('openPayments')"
+                   src="../assets/expand.png" class="sidebar-icon" [routerLink]="'/welcome'">
+            </div>
+
+<!--       <div class="sidebar-btn" (click)="togglePaymentsSubMenu()"*ngIf="isCustomer">
         <img src="assets/security.png"/>
          <span>Payments</span>
      </div>
@@ -48,21 +45,34 @@
       <div class="sidebar-btn" [routerLink]="'/customer/all'" *ngIf="isAdmin">
         <img src="assets/admin.png"/>
         <span>Customer</span>
-      </div>
+      </div> -->
 
-      <!-- Navigation button to Securities page. -->
-      <div class="sidebar-btn" [routerLink]="'/security/all'"  *ngIf="isAdmin || isEmployee">
-        <img src="assets/security.png"/>
-        <span>Securities</span>
-      </div>
 
-      <!-- Navigation button to Bank accounts page. -->
-      <div class="sidebar-btn" [routerLink]="'/bank-accounts'" *ngIf="isCustomer">
-        <img src="assets/admin.png"/>
-        <span>Bank accounts</span>
-      </div>
+            <div @dropdown *ngIf="activeItem === 'openPayments'" class="item-subroutes">
+              <div [routerLink]="'/welcome'" class="sidebar-subitem">
+                <div>New Payments</div>
+              </div>
 
-        <mat-expansion-panel>
+              <div [routerLink]="'/welcome'" class="sidebar-subitem">
+                <div>Exchange</div>
+              </div>
+
+
+              <div [routerLink]="'/welcome'" class="sidebar-subitem">
+                <div>Recipients</div>
+              </div>
+
+              <div [routerLink]="'/welcome'" class="sidebar-subitem">
+                <div>Overview</div>
+              </div>
+            </div>
+          </div>
+
+          <div [routerLink]="'/welcome'" class="sidebar-item">
+            <div>Cards</div>
+          </div>
+
+<!--          <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
               <div class="sidebar-btn" *ngIf="isCustomer">
@@ -71,7 +81,7 @@
               </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
-            <!-- Add more sub-buttons for customer actions if needed -->
+             Add more sub-buttons for customer actions if needed 
           <div>
             <div class="sidebar-btn" [routerLink]="'/payment'">
               <span>New payment</span>
@@ -88,19 +98,19 @@
           </div>
         </mat-expansion-panel>
 
-      <!-- Navigation button to Card page. -->
+
       <div class="sidebar-btn" [routerLink]="'/cards'" *ngIf="isCustomer">
         <img src="assets/admin.png"/>
         <span>Cards</span>
       </div>
 
-      <!-- Navigation button to Receipient page. -->
+ 
       <div class="sidebar-btn" [routerLink]="'/recipients'" *ngIf="isCustomer">
         <img src="assets/admin.png"/>
         <span>Recipients</span>
       </div>
 
-      <!-- <div class="sidebar-btn" [routerLink]="'/transaction'" *ngIf="checkIsCustomerAndBankAccounts()">
+       <div class="sidebar-btn" [routerLink]="'/transaction'" *ngIf="checkIsCustomerAndBankAccounts()">
         <img src="assets/security.png"/>
         <span>Transaction</span>
       </div>
@@ -108,18 +118,28 @@
       <div class="sidebar-btn" [routerLink]="'/exchange-rate'" *ngIf="isCustomer">
         <img src="assets/security.png"/>
         <span>Exchange rate</span>
-      </div> -->
+      </div>
 
       <div class="sidebar-btn" [routerLink]="'/loans'" *ngIf="isCustomer">
         <img src="assets/loan-icon.svg" height="50px" width="64px"/>
         <span>Loans</span>
       </div>
 
-    </mat-sidenav>
+    </mat-sidenav> -->
 
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+
+          <div [routerLink]="'/welcome'" class="sidebar-item">
+            <div>Loans</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="logout-btn">
+      Log out
+    </div>
+  </div>
+  <div class=""></div>
+  <div style="flex-basis: 80%">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-

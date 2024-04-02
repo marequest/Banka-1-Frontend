@@ -1,28 +1,18 @@
-<div id="login-background">
-  <div class="logo-container">
-    <img src="assets/bankaTextLogo.png" alt="Logo"/>
-  </div>
-  <div class="login-container">
-    <h2>LOG IN</h2>
-    <form (submit)="onSubmit()">
-      <div class="input-container">
-        <input type="email" id="email" [(ngModel)]="model.email" name="email" placeholder="Email" required>
-      </div>
-      <div class="input-container">
-        <input type="password" id="password" [(ngModel)]="model.password" name="password" placeholder="Password" required>
-      </div>
-      <div class="activate-account-link-container">
-        <a href="/activate-account" class="activate-account-link">Don't have an account?</a>
-      </div>
-      <div class="submit-container">
-        <!-- The button is disabled unless both email and password are non-empty -->
-        <button type="submit" [disabled]="!model.email || !model.password">SUBMIT</button>
-      </div>
-    </form>
+<div class="login-page-container">
+  <div *ngIf="isEmployee; else showEmployee" class="employee-label" (click)="toggleRole()">Customer</div>
+  <ng-template #showEmployee>
+    <div class="employee-label" (click)="toggleRole()">Employee</div>
+  </ng-template>
 
-    <!-- <a href="/login">Forgot Password?</a> -->
+  <div class="login-form-container">
+    <h1 style="color: var(--banka-orange)">{{ isEmployee ? 'Employee Sign In' : 'Sign In' }}</h1>
+    <transparent-text-field [(text)]="model.email" fieldName="Email" style="width: 100%; max-width: 400px;"></transparent-text-field>
+    <transparent-text-field [(text)]="model.password" fieldName="Password" type="password" style="width: 100%; max-width: 400px;"></transparent-text-field>
+    <orange-button [buttonName]="'Login'" (click)="onSubmit()" style="width: 60%; max-width: 400px;"></orange-button>
 
-    <a href="/reset-password">Forgot Password?</a>
-
+    <div class="login-links-container">
+      <span class="forgot-password">Forgot password?</span>
+        <span *ngIf="!isEmployee" class="sign-up">Sign up</span>
+    </div>
   </div>
 </div>
