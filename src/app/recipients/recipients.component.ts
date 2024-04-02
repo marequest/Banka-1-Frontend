@@ -58,6 +58,7 @@ export class RecipientsComponent {
   editRecipient(recipient: Recipient, idx: number){
     console.log("Editing recipient at idx " + idx);
     console.log(recipient);
+    this.popupService.openEditRecipientPopup(recipient);
   }
 
   deleteRecipient(recipient: Recipient, idx: number){

@@ -1,28 +1,28 @@
 [
     {
-      "recepientFirstName": "Alice",
-      "recepientLastName": "Johnson",
-      "recepientAccountNumber": "1234567890"
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "accountNumber": "1234567890"
     },
     {
-      "recepientFirstName": "Bob",
-      "recepientLastName": "Smith",
-      "recepientAccountNumber": "9876543210"
+      "firstName": "Bob",
+      "lastName": "Smith",
+      "accountNumber": "9876543210"
     },
     {
-      "recepientFirstName": "Charlie",
-      "recepientLastName": "Brown",
-      "recepientAccountNumber": "2468013579"
+      "firstName": "Charlie",
+      "lastName": "Brown",
+      "accountNumber": "2468013579"
     },
     {
-      "recepientFirstName": "David",
-      "recepientLastName": "Davis",
-      "recepientAccountNumber": "1357924680"
+      "firstName": "David",
+      "lastName": "Davis",
+      "accountNumber": "1357924680"
     },
     {
-      "recepientFirstName": "Eve",
-      "recepientLastName": "White",
-      "recepientAccountNumber": "3692581470"
+      "firstName": "Eve",
+      "lastName": "White",
+      "accountNumber": "3692581470"
     }
   ]
   

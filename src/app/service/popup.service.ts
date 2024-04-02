@@ -9,9 +9,10 @@ import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
 import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
 import { VerificationPaymentPopupComponent } from '../verification-payment-popup/verification-payment-popup.component';
-import { CreatePaymentRequest } from '../model/model';
+import { CreatePaymentRequest, Recipient } from '../model/model';
 import { TransactionsDetailsPopupComponent } from '../transactions-details-popup/transactions-details-popup.component';
 import { NewRecipientComponent } from '../new-recipient/new-recipient.component';
+import { EditRecipientComponent } from '../edit-recipient/edit-recipient.component';
 
 
 @Injectable({
@@ -77,6 +78,12 @@ export class PopupService {
 
   openAddRecipientPopup(): void {
     this.dialog.open(NewRecipientComponent, {
+    });
+  }
+
+  openEditRecipientPopup(recipient: Recipient): void {
+    this.dialog.open(EditRecipientComponent, {
+      data: {recipient}
     });
   }
 }
