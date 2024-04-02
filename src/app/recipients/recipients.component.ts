@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BankAccountService } from '../service/bank-account.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PopupService } from '../service/popup.service';
 
 @Component({
   selector: 'app-recipients',
@@ -25,7 +26,7 @@ export class RecipientsComponent {
   public allUserRecipients: Recipient[] = [];
   loggedUserId:number = -1;
 
-  constructor(private bankAccountService: BankAccountService, private router: Router) {
+  constructor(private bankAccountService: BankAccountService, private router: Router, private popupService: PopupService) {
     let loggedUserIdAsString = sessionStorage.getItem('loggedUserID');
     
     if (loggedUserIdAsString !== null) {
@@ -68,5 +69,6 @@ export class RecipientsComponent {
 
   addRecipient(){
     console.log("Adding recipient");
+    this.popupService.openAddRecipientPopup();
   }
 }
