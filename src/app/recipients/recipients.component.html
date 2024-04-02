@@ -1,0 +1,56 @@
+<div class="container">
+    <!-- Page title -->
+    <div class="row pageTitle">
+        Payment recipients
+    </div>
+
+    <!-- Table with transactions and exchanges -->
+    <div class="row">
+        <div class="col-8 offset-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2">
+            
+            <!-- Table title, table headers, tabs and table div -->
+            <div class="recepientContentContainer">
+                <!-- Tabs -->
+                <div class="tabs">
+                    <!-- Tab Headers -->
+                    <div class="row tab-headers">
+                        <div class="col-md-2 tab-header active d-flex justify-content-center align-items-center" [ngClass]="{'active': activeTab === 'recipientsTab'}" (click)="setActiveTab('recipientsTab')">Recipients</div>
+                        <div class="col-md-2 offset-md-8">
+                            <div class="row addRecipientBtnDiv">
+                                <button class="AddReciepientBtn" (click) = "addRecipient()">Add recipient</button> 
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Tab Content -->
+                    <!-- Transactions tab table -->
+                    <div class="tab-content" *ngIf="activeTab === 'recipientsTab'">                        
+                        <div class="scrollable-container">
+                            <!-- Transactions Table -->
+                            <table class="transactions-table">
+                                <thead>
+                                    <tr>
+                                        <th>Recipient</th>
+                                        <th>Account number</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let recipient of allUserRecipients; let idx = index">
+                                        <td>{{ recipient.recepientFirstName }} {{ recipient.recepientLastName }}</td>
+                                        <td>{{ recipient.recepientAccountNumber }}</td>
+                                        <td class="buttonsTD">
+                                            <button class="tdBtn" (click) = "editRecipient(recipient, idx)">Edit</button>
+                                            <button class="tdBtn" (click) = "deleteRecipient(recipient, idx)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

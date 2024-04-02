@@ -1,3 +1,5 @@
+import { number } from "zod";
+
 export interface User{
     userId: number;
     username:string;
@@ -24,6 +26,29 @@ export interface BankAccount {
   currency?: string;
   balance?: number;
   availableBalance?: number;
+  reservedResources?: number;
+  accountOwner?: string
+  accountName?: string
+}
+
+export interface Transaction {
+  recepientBankAccount: string;
+  date: Date;
+  status: string;
+  amount: number;
+}
+
+export interface Exchange {
+  recepientBankAccount: string;
+  date: Date;
+  status: string;
+  amount: number;
+}
+
+export interface Recipient{
+  recepientFirstName?: string;
+  recepientLastName?: string;
+  recepientAccountNumber?: string;
 }
 
 export interface Card {
@@ -52,6 +77,22 @@ export interface TransactionBasics{
   outflow:string;
   inflow:string;
   amount:string;
+}
+
+export interface TransactionDetails{
+  recipientName:String;
+  amount:number;
+  referenceNumber:String;
+  paymentCode:number;
+  purposeOfPayment:String;
+  transactionDate:number;
+  senderName:String;
+  recipientAccountNumber:String;
+  commission:number;
+  senderAccountNumber:String;
+  channel:String;
+  status:String;
+  currency:String;
 }
 
 export interface UserToEdit{
@@ -118,6 +159,7 @@ export interface Account {
   accountType: AccountType;
   currencyName: string;
   maintenanceCost: number;
+  balance: number;
 }
 
 export enum AccountType {
@@ -191,3 +233,17 @@ export interface Loan {
   remainingDebt: number;
   currency: string;
 }
+
+
+export interface CreatePaymentRequest{
+  recipientName: string;
+  recipientAccountNumber: string;
+  amount: number;
+  referenceNumber: string;
+  paymentCode: number;
+  purposeOfPayment: string;
+  senderAccountNumber: string;
+  activationCode: string;
+}
+
+
