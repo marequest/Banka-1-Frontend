@@ -110,6 +110,11 @@
         <span>Exchange rate</span>
       </div> -->
 
+      <div class="sidebar-btn" [routerLink]="'/loans'" *ngIf="isCustomer">
+        <img src="assets/loan-icon.svg" height="50px" width="64px"/>
+        <span>Loans</span>
+      </div>
+
     </mat-sidenav>
 
     <mat-sidenav-content>

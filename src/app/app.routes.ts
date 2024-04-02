@@ -25,10 +25,13 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
+import {LoanTableComponent} from "./loans/loan-table/loan-table.component";
+import {NewLoanComponent} from "./loans/new-loan/new-loan.component";
 import { NewPaymentComponent } from './new-payment/new-payment.component';
 import { TransactionsOverviewComponent } from './transactions-overview/transactions-overview.component';
 import { RecipientsComponent } from './recipients/recipients.component';
 import { AdminAndEmployeeGuard } from './guards/admin-and-employee.guard';
+
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent, canActivate: [loginGuard] },
@@ -80,6 +83,8 @@ export const routes: Routes = [
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'recipients', component: RecipientsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
+  { path: 'loans', component: LoanTableComponent, canActivate: [CustomerGuard]},
+  { path: 'new-loan', component: NewLoanComponent, canActivate: [CustomerGuard]},
 
   // { path: 'customer/:customerId', component: UserDetailComponent},
 
