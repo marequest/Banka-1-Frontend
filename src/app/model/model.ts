@@ -26,6 +26,29 @@ export interface BankAccount {
   currency?: string;
   balance?: number;
   availableBalance?: number;
+  reservedResources?: number;
+  accountOwner?: string
+  accountName?: string
+}
+
+export interface Transaction {
+  recepientBankAccount: string;
+  date: Date;
+  status: string;
+  amount: number;
+}
+
+export interface Exchange {
+  recepientBankAccount: string;
+  date: Date;
+  status: string;
+  amount: number;
+}
+
+export interface Recipient{
+  recepientFirstName?: string;
+  recepientLastName?: string;
+  recepientAccountNumber?: string;
 }
 
 export interface Card {
@@ -188,6 +211,7 @@ export interface CreateBankAccountRequest{
   maintenanceCost: number;
 }
 
+
 export interface CreatePaymentRequest{
   recipientName: string;
   recipientAccountNumber: string;
@@ -198,3 +222,4 @@ export interface CreatePaymentRequest{
   senderAccountNumber: string;
   activationCode: string;
 }
+
