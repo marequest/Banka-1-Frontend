@@ -8,7 +8,7 @@ import {z} from "zod";
 import {ValidationService} from "../service/validation.service";
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AdminStatusService } from '../service/admin-status.service';
+
 import { AdminGuard } from '../guards/admin.guard';
 import { UserService } from '../service/user.service';
 import { StorageService } from '../service/storage.service';
@@ -30,7 +30,6 @@ export class LoginPageComponent {
   constructor(
     private authService: AuthService,
     private adminGuard:AdminGuard,
-    private adminSatusService:AdminStatusService,
     public dialog: MatDialog,
     private validator: ValidationService,
     private popupService: PopupService,
@@ -79,21 +78,11 @@ export class LoginPageComponent {
            response => {
               //this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
              this.storageService.setRole(response.position.toString().toLowerCase());
+             this.router.navigate(['/welcome']);
               console.log(response.position);
            }
          );
         }
-        
-        this.adminGuard.userIsAdmin().subscribe(
-          (isAdmin) => {
-            this.adminSatusService.setIsAdmin(isAdmin);
-            this.router.navigate(['/welcome']);
-          },
-          (error) => {
-            console.error("Error occurred while checking admin status:", error);
-
-            this.adminSatusService.setIsAdmin(false);
-          });
       },
       error => {
         this.popupService.openPopup("Error", "Wrong email or password")

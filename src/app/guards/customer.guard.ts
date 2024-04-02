@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { JwtService } from "../service/jwt.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(
+    private jwtService: JwtService,
+    private router: Router) {}
 
   canActivate(next: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    const position = sessionStorage.getItem('userPosition');  
-     // // If 'position' is equal to 'customer', allow access to the route
+    const token = sessionStorage.getItem("jwt");
+    if (!token || !this.jwtService.isTokenFormatValid(token)) {
+      return of(this.router.parseUrl('/login'));
+    }
+    const position = sessionStorage.getItem('role');  
     if (position === 'customer') {
       return true;
     } else {
-      //this.router.navigate(['/login']);
+      this.router.navigate(['/welcome']);
       return false;
     }
   }
