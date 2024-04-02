@@ -31,6 +31,14 @@ export interface BankAccount {
   accountName?: string
 }
 
+export interface Account {
+  accountNumber: string;
+  accountType: AccountType;
+  currencyName: string;
+  maintenanceCost: number;
+  balance: number;
+}
+
 export interface Transaction {
   recepientBankAccount: string;
   date: Date;

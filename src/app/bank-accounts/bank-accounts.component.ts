@@ -7,6 +7,7 @@ import { BankAccountService } from '../service/bank-account.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AccountDetailsPopUpComponent } from '../account-details-pop-up/account-details-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PaymentService } from '../service/payment.service';
 
 @Component({
   selector: 'app-bank-accounts',
@@ -30,7 +31,7 @@ export class BankAccountsComponent {
   public userBankAccounts: BankAccount[] = [];
   loggedUserId:number = -1;
 
-  constructor(private bankAccountService: BankAccountService, private router: Router, private dialog: MatDialog) {
+  constructor(private bankAccountService: BankAccountService, private router: Router, private dialog: MatDialog, private paymentService: PaymentService) {
     let loggedUserIdAsString = sessionStorage.getItem('loggedUserID');
     
     if (loggedUserIdAsString !== null) {
@@ -128,7 +129,9 @@ export class BankAccountsComponent {
 
   newPaymentOnClick(){
     //TODO: go to new payment page
-    console.log("New payment button clicked for account " + this.displayedBankAcc.accountNumber);
+    console.log("New payment button clicked for account " + this.displayedBankAcc);
+    this.paymentService.setSelectedBankAccount(this.displayedBankAcc);
+    this.router.navigate(['/payment']);
   }
 
   moreInfoOnClick(){

@@ -59,8 +59,8 @@ export const routes: Routes = [
 
 
 
-  //{path:'exchange', component: TransactionComponent},
-  //{path: 'payment', component: NewPaymentComponent},
+  {path:'exchange', component: TransactionComponent},
+  {path: 'payment', component: NewPaymentComponent},
 
   //{path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
 
