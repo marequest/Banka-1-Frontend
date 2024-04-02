@@ -36,6 +36,7 @@ export class LoanTableComponent implements OnInit {
   openDialog(element: Loan) {
     this.matDialog.open(LoanDetailsComponent, {
       width: '30%',
+      minWidth: '300px',
       height: '80%',
       panelClass: 'dialog-class',
       data: element,

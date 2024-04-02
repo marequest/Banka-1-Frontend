@@ -1,8 +1,9 @@
-
 h1 {
   color: #FFB72B;
   font-family: Jura;
   font-size: 36px;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
 .inner-flex {
