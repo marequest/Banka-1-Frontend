@@ -167,6 +167,7 @@ export interface Account {
   accountType: AccountType;
   currencyName: string;
   maintenanceCost: number;
+  balance: number;
 }
 
 
@@ -228,3 +229,40 @@ export interface CreateBankAccountRequest{
   accountType: string;
   maintenanceCost: number;
 }
+
+export enum LoanType {
+  PERSONAL = "PERSONAL",
+  MORTGAGE = "MORTGAGE",
+  REFINANCING = "REFINANCING",
+  AUTO = "AUTO"
+}
+
+export interface Loan {
+  id: number;
+  loanType: LoanType;
+  accountNumber: string;
+  loanAmount: number;
+  repaymentPeriod: number;
+  nominalInterestRate: number;
+  effectiveInterestRate: number;
+  agreementDate: number;
+  maturityDate: number;
+  installmentAmount: number;
+  nextInstallmentDate: number;
+  remainingDebt: number;
+  currency: string;
+}
+
+
+export interface CreatePaymentRequest{
+  recipientName: string;
+  recipientAccountNumber: string;
+  amount: number;
+  referenceNumber: string;
+  paymentCode: number;
+  purposeOfPayment: string;
+  senderAccountNumber: string;
+  activationCode: string;
+}
+
+

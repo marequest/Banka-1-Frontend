@@ -18,55 +18,63 @@ export class AdminGuard implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(route: any, state: any): Observable<boolean | UrlTree> {
+  canActivate(route: any, state: any): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = sessionStorage.getItem("jwt");
     if (!token || !this.jwtService.isTokenFormatValid(token)) {
       return of(this.router.parseUrl('/login'));
     }
 
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
-    });
-
-    return this.http.get<User>(`${environment.baseUrl}/user/getUser`, { headers }).pipe(
-      map((user: User) => {
-        if(user.position==null)return this.router.parseUrl('/welcome');
-        if (user.position.toLowerCase() === 'admin') {
-          return true;
-        } else {
-          return this.router.parseUrl('/welcome');        
-        }
-      }),
-      catchError((error: any) => {
-        console.error("Error occurred:", error);
-        return of(this.router.parseUrl('/error'));
-      })
-    );
-  }
-
-    userIsAdmin(): Observable<boolean> {
-    const token = sessionStorage.getItem("jwt");
-    if (!token || !this.jwtService.isTokenFormatValid(token)) {
-      return of(false);
+    const position = sessionStorage.getItem('role');  
+    if (position === 'admin') {
+      return true;
+    } else {
+      this.router.navigate(['/welcome']);
+      return false;
     }
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
-    });
 
-    return this.http.get<User>(`${environment.baseUrl}/user/getUser`, { headers }).pipe(
-      map((user: User) => {
-        if(user.position == null) {
-          return false;
-        }
-        
-        return user.position.toLowerCase() === 'admin';
-      }),
-      catchError((error: any) => {
-        console.error("Error occurred:", error);
-        return of(false); 
-      })
-    );
+    // const headers = new HttpHeaders({
+    //   'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    // });
+
+    // return this.http.get<User>(`${environment.baseUrl}/user/getUser`, { headers }).pipe(
+    //   map((user: User) => {
+    //     if(user.position==null)return this.router.parseUrl('/welcome');
+    //     if (user.position.toLowerCase() === 'admin') {
+    //       return true;
+    //     } else {
+    //       return this.router.parseUrl('/welcome');        
+    //     }
+    //   }),
+    //   catchError((error: any) => {
+    //     console.error("Error occurred:", error);
+    //     return of(this.router.parseUrl('/error'));
+    //   })
+    // );
   }
+
+  //   userIsAdmin(): Observable<boolean> {
+  //   const token = sessionStorage.getItem("jwt");
+  //   if (!token || !this.jwtService.isTokenFormatValid(token)) {
+  //     return of(false);
+  //   }
+  //   const headers = new HttpHeaders({
+  //     'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+  //   });
+
+  //   return this.http.get<User>(`${environment.baseUrl}/user/getUser`, { headers }).pipe(
+  //     map((user: User) => {
+  //       if(user.position == null) {
+  //         return false;
+  //       }
+        
+  //       return user.position.toLowerCase() === 'admin';
+  //     }),
+  //     catchError((error: any) => {
+  //       console.error("Error occurred:", error);
+  //       return of(false); 
+  //     })
+  //   );
+  // }
 }
 
 
