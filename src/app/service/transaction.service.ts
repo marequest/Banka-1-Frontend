@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders,  HttpParams} from "@angular/common/http";
-<<<<<<< HEAD
-import {BankAccount, TransactionBasics, TransactionDto, User} from '../model/model';
-=======
-import { TransactionBasics, TransactionDetails, User } from '../model/model';
->>>>>>> 77ba7c65169e2ff389740e0bec820fa0b0dc4c76
+import {BankAccount, TransactionBasics, TransactionDetails, TransactionDto, User} from '../model/model';
+
 import {Router} from "@angular/router";
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment';
@@ -61,7 +58,6 @@ export class TransactionService {
     return this.http.post<any>(`${this.apiUrl}/transaction/createTransaction`, transactionBasics, { headers });
   }
 
-<<<<<<< HEAD
   getCardTransactions(cardNum: string | undefined): Observable<TransactionDto[]> {
 
     const headers = new HttpHeaders({
@@ -74,7 +70,7 @@ export class TransactionService {
 
     return this.http.get<TransactionDto[]>(url, options);
   }
-=======
+
   printTransaction(transactionDetails:TransactionDetails):Observable<any>{
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
@@ -91,7 +87,6 @@ export class TransactionService {
 
 
 
->>>>>>> 77ba7c65169e2ff389740e0bec820fa0b0dc4c76
 
 
 }

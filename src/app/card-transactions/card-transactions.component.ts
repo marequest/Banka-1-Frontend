@@ -18,18 +18,7 @@ export class CardTransactionsComponent {
 
   transactions: TransactionDto[] = [];
   cards: Card[] = [];
-  currCard: Card = {
-    accountNumber : "123456789",
-    cardName : "Master card 123",
-    cardNumber : "123456789",
-    cardType : "FOREIGN_CURRENCY,",
-    creationDate : 1234567,
-    cvv : "167",
-    expirationDate : 1234566,
-    id : 1234,
-    isActivated : true,
-    limit : 12000
-  };
+  currCard: Card | null = null;
   currCardIndex: number = -1;
   loggedUserId:number = -1;
   selectedTab: string = "transactions";

@@ -60,7 +60,7 @@ export interface Card {
   expirationDate?: number;
   accountNumber?: string;
   cvv?: string;
-  limit?: number;
+  cardLimit?: number;
   isActivated?: boolean;
 }
 
@@ -79,13 +79,14 @@ export interface TransactionBasics{
   amount:string;
 }
 
-<<<<<<< HEAD
-export interface TransactionDto{
+
+export interface TransactionDto {
   amount: number;
   date: number;
   recipientAccountNumber: string;
   status: string;
-=======
+}
+
 export interface TransactionDetails{
   recipientName:String;
   amount:number;
@@ -100,7 +101,6 @@ export interface TransactionDetails{
   channel:String;
   status:String;
   currency:String;
->>>>>>> 77ba7c65169e2ff389740e0bec820fa0b0dc4c76
 }
 
 export interface UserToEdit{

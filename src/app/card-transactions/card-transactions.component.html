@@ -1,7 +1,7 @@
 <div class="container">
     <div class="title">Cards</div>
 
-    <div class="card-box">
+    <div *ngIf="currCard != null" class="card-box">
       <div class="arrow left-arrow" (click)="previousCard()">&#60;</div>
       <div class="arrow right-arrow" (click)="nextCard()">&#62;</div>
       <div class="card-content">
@@ -21,7 +21,12 @@
       </div>
     </div>
 
-    <div class="table-box">
+  <div *ngIf="currCard == null" class="card-box">
+      <div class="card-title">No cards found</div>
+
+  </div>
+
+    <div  *ngIf="currCard != null" class="table-box">
       <div class="table-title">Transactions overview</div>
 
       <div class="tab-container">
