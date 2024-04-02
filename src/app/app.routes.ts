@@ -25,11 +25,10 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
+import { NewPaymentComponent } from './new-payment/new-payment.component';
 import { TransactionsOverviewComponent } from './transactions-overview/transactions-overview.component';
 import { RecipientsComponent } from './recipients/recipients.component';
 import { AdminAndEmployeeGuard } from './guards/admin-and-employee.guard';
-
-
 
 export const routes: Routes = [
   { path: 'login', component: LoginPageComponent, canActivate: [loginGuard] },
@@ -56,7 +55,14 @@ export const routes: Routes = [
   {path: 'forex/:ticker', component: ForexViewComponent},
 
 
+
+  //{path:'exchange', component: TransactionComponent},
+  //{path: 'payment', component: NewPaymentComponent},
+
+  //{path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
+
   {path:'transaction', component: TransactionComponent,canActivate:[CustomerGuard]},
+
 
   {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[CustomerGuard]},
 

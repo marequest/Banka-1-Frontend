@@ -62,6 +62,32 @@
         <span>Bank accounts</span>
       </div>
 
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="sidebar-btn" *ngIf="isCustomer">
+                <img src="assets/admin.png"/>
+                <span>Customer</span>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+            <!-- Add more sub-buttons for customer actions if needed -->
+          <div>
+            <div class="sidebar-btn" [routerLink]="'/payment'">
+              <span>New payment</span>
+            </div>
+            <div class="sidebar-btn" [routerLink]="'/exchange'">
+              <span>Exchange</span>
+            </div>
+            <div class="sidebar-btn" [routerLink]="''">
+              <span>Recients</span>
+            </div>
+            <div class="sidebar-btn" [routerLink]="''">
+              <span>Overview</span>
+            </div>         
+          </div>
+        </mat-expansion-panel>
+
       <!-- Navigation button to Card page. -->
       <div class="sidebar-btn" [routerLink]="'/cards'" *ngIf="isCustomer">
         <img src="assets/admin.png"/>

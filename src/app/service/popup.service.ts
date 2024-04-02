@@ -4,12 +4,12 @@ import {PopupComponent} from "../popup/popup.component";
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
-
 import { TransactionPopupComponent } from '../transaction-popup/transaction-popup.component';
-
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
 import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
+import { VerificationPaymentPopupComponent } from '../verification-payment-popup/verification-payment-popup.component';
+import { CreatePaymentRequest } from '../model/model';
 import { TransactionsDetailsPopupComponent } from '../transactions-details-popup/transactions-details-popup.component';
 
 
@@ -54,6 +54,12 @@ export class PopupService {
 
   openAddCustomerPopup(): void {
     this.dialog.open(AddCustomerComponent, {
+    });
+  }
+
+  openVerifyPaymentPopup(payment: CreatePaymentRequest): void {
+    this.dialog.open(VerificationPaymentPopupComponent, {
+      data: {payment}
     });
   }
 
