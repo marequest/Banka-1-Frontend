@@ -12,18 +12,31 @@ import { AdminStatusService } from '../service/admin-status.service';
 import { AdminGuard } from '../guards/admin.guard';
 import { UserService } from '../service/user.service';
 import { StorageService } from '../service/storage.service';
+import {TransparentTextFieldModule} from "../welcome/redesign/TransparentTextField";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   imports: [
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TransparentTextFieldModule,
+    OrangeButtonModule,
+    NgIf
   ],
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent {
+  isEmployee: boolean = false; // Initially set to 'true' to show "Employee"
+
+  toggleRole() {
+    this.isEmployee = !this.isEmployee; // Toggle between true and false
+    console.log(this.isEmployee ? "employee page" :"customer page")
+  }
+
   model: any = {};
   showErrorModal: boolean = false;
 
@@ -38,18 +51,13 @@ export class LoginPageComponent {
     private userService: UserService,
     private storageService: StorageService
   ) {
-    // const jwt = sessionStorage.getItem("jwt");
-    //
-    // if (jwt !== null && jwt.length > 0) {
-    //   this.router.navigate(['/welcome']);
-    // }
   }
   loginFormSchema = z.object({
     email: z.string().email(),
     password: z.string()
   })
 
-  
+
 
   onSubmit() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple regex for email validation
@@ -61,6 +69,14 @@ export class LoginPageComponent {
     //   this.popupService.openPopup("Error", "Invalid email format")
     //   return;
     // }
+
+    if(this.isEmployee) {
+      // Ruta auth/login/emplyee POST
+      // kada se uloguje zaposleni u session storage se stavlja pod 'role' pozicija koja je dobijena u objektu
+    } else {
+      // Ruta auth/login/customer POST
+      // kada se uloguje costumer u session storage se stavlja pod 'role' customer
+    }
 
     this.authService.login(this.model.email, this.model.password).subscribe(
       (token) => {
@@ -83,7 +99,7 @@ export class LoginPageComponent {
            }
          );
         }
-        
+
         this.adminGuard.userIsAdmin().subscribe(
           (isAdmin) => {
             this.adminSatusService.setIsAdmin(isAdmin);
@@ -106,7 +122,7 @@ export class LoginPageComponent {
 
         console.log("User in login:");
         console.log(response);
-        
+
         sessionStorage.setItem('userPosition', response.position);
         sessionStorage.setItem('loggedUserID', response.userId.toString());
 

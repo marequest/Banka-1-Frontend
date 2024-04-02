@@ -4,7 +4,7 @@
 
 <!-- Main page html that contains <A bar with title and logout button>, navigation bar and shows other pages. -->
 <div class="app-container">
-  <div class="banka-sidebar">
+  <div class="banka-sidebar" *ngIf="userIsLoggedIn()">
     <div>
       <div class="banka-sidebar-title">BANKA1</div>
 

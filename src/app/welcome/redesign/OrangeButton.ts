@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
       width: 100%;
       background-color: var(--banka-orange); /* Use your specific orange color */
       color: #000; /* Black text color */
-      border: 2px solid #000; /* Thin black border */
+      border: 1px solid #000; /* Thin black border */
       padding: 10px 20px; /* Adjust padding to your preference */
       font-size: 16px; /* Adjust font size to your preference */
       border-radius: 5px; /* Rounded corners */
