@@ -90,4 +90,13 @@ export class BankAccountService {
     });
   }
 
+  editRecipient(recipient: Recipient): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.httpClient.put(environment.baseUrl + '/recipients/edit', recipient,{
+      headers: headers
+    });
+  }
+
 }

@@ -54,9 +54,9 @@ export interface Exchange {
 }
 
 export interface Recipient{
-  recepientFirstName?: string;
-  recepientLastName?: string;
-  recepientAccountNumber?: string;
+  firstName?: string;
+  lastName?: string;
+  accountNumber?: string;
 }
 
 export interface Card {

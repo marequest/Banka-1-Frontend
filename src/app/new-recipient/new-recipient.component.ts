@@ -21,10 +21,6 @@ export class NewRecipientComponent {
     ){}
 
   submit(){
-    console.log('Submitting new recipient');
-    console.log('Name: ' + this.name);
-    console.log('Bank account number: ' + this.bankAccountNumber);
-
     if(!this.validateRecipient()){
       alert('Invalid recipient data!');
       return;
