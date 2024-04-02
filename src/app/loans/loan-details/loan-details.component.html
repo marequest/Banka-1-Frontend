@@ -1,0 +1,53 @@
+<div style="background-color: black; height: 100%; width: 100%">
+  <h1>Loan details</h1>
+  <div class="inner-flex">
+    <div class="item">
+      <label>Loan type:</label><br>
+      <span>{{data.loanType}}</span>
+    </div>
+    <div class="item">
+      <label>Payment period:</label><br>
+      <span>{{data.repaymentPeriod}}</span>
+    </div>
+    <div class="item">
+      <label>Loan Amount:</label><br>
+      <span>{{data.loanAmount}}</span>
+    </div>
+    <div class="item">
+      <label>Effective interest rate</label><br>
+      <span>{{data.effectiveInterestRate | percent:'1.2'}}</span>
+    </div>
+    <div class="item">
+      <label>Nominal interest rate:</label><br>
+      <span>{{data.nominalInterestRate | percent: '1.2'}}</span>
+    </div>
+    <div class="item">
+      <label>Loan due date:</label><br>
+      <span>{{data.maturityDate | date}}</span>
+    </div>
+    <div class="item">
+      <label>Date of contracting:</label><br>
+      <span>{{data.agreementDate | date}}</span>
+    </div>
+    <div class="item">
+      <label>Next installment date:</label><br>
+      <span>{{data.nextInstallmentDate | date}}</span>
+    </div>
+    <div class="item">
+      <label>Installment amount:</label><br>
+      <span>{{data.installmentAmount}}</span>
+    </div>
+    <div class="item">
+      <label>Remaining debt:</label><br>
+      <span>{{data.remainingDebt}}</span>
+    </div>
+    <div class="item">
+      <label>Account number:</label><br>
+      <span>{{data.accountNumber}}</span>
+    </div>
+    <div class="item">
+      <label>Loan currency:</label><br>
+      <span>{{data.currency}}</span>
+    </div>
+  </div>
+</div>

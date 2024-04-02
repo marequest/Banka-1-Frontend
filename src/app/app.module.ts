@@ -12,6 +12,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { PopupComponent } from "./popup/popup.component";
 import { PermissionPopUpComponent } from "./permissions-popup/permission-pop-up/permission-pop-up.component";
 import {provideCharts, withDefaultRegisterables} from "ng2-charts";
@@ -37,11 +39,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTooltipModule,
     MatDialogModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatExpansionModule,
   ],
   providers: [
     provideAnimationsAsync(),
-    provideCharts(withDefaultRegisterables())
+    provideCharts(withDefaultRegisterables()),
+    provideAnimationsAsync('noop')
   ],
   bootstrap: [AppComponent]
 })
