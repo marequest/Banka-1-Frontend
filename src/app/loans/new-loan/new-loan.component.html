@@ -3,7 +3,9 @@
   <div class="inner-flex">
     <div class="input-container">
       <label>Credit type</label><br>
-      <input class="text-input">
+      <select class="text-input" style="height: 40px">
+        <option *ngFor="let type of loanTypes">{{type}}</option>
+      </select>
     </div>
     <div class="input-container">
       <label>Loan purpose</label><br>
