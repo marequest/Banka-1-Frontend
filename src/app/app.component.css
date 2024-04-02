@@ -91,7 +91,7 @@ img {
 .banka-sidebar {
   flex-basis: 20%;
   background-color: var(--banka-dark-gray);
-  
+
   border-top-right-radius: 35px;
   border-right: 1px solid gray;
   font-family: 'Juro', sans-serif;
@@ -100,6 +100,13 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.banka-sidebar {
+  position: fixed; /* Position the sidebar fixed relative to the viewport */
+  height: 100vh; /* Set the sidebar height to fill the viewport */
+  width: 320px; /* Adjust the width as needed */
+  overflow-y: auto; /* Allows the sidebar content to scroll if it exceeds the viewport height */
 }
 
 .banka-sidebar-title {
@@ -181,12 +188,25 @@ hr {
   padding: 15px;
   padding-left: 50px;
 }
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjusts the spacing to push the icon to the right */
+  border-left: 5px solid transparent; /* Invisible border */
+  border-radius: 5px;
+}
 
 .sidebar-item:hover {
   background-color: var(--banka-black);
   cursor: pointer;
   border-left: 5px solid var(--banka-orange);
-  border-radius: 5px;
+}
+
+.sidebar-icon {
+  filter: invert(100%);
+  width: 20px; /* Adjust the size of the icon as needed */
+  height: auto; /* Keeps the aspect ratio of the icon */
+  cursor: pointer; /* Changes the cursor to a pointer to indicate the icon is clickable */
 }
 
 .sidebar-subitem {

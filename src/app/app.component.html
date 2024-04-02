@@ -25,11 +25,13 @@
           </div>
 
           <div class="sidebar-item-wrapper">
-            <div [routerLink]="'/welcome'" class="sidebar-item">
+            <div class="sidebar-item">
               <div>Payments</div>
+              <img (click)="setActiveItem('openPayments')"
+                   src="../assets/expand.png" class="sidebar-icon" [routerLink]="'/welcome'">
             </div>
 
-            <div class="item-subroutes">
+            <div @dropdown *ngIf="activeItem === 'openPayments'" class="item-subroutes">
               <div [routerLink]="'/welcome'" class="sidebar-subitem">
                 <div>New Payment</div>
               </div>
