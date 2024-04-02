@@ -1,19 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+
 :root {
-    --banka-black: #1E1E1E;
-    --banka-dark-gray: #26262C;
-    --banka-white: #FFF9F0;
-    --banka-gray: #B3ABA0;
-    --banka-orange: #FFB72B;
-    --banka-dark-orange: #FF942B;
+  --banka-black: #1E1E1E;
+  --banka-dark-gray: #26262C;
+  --banka-white: #FFF9F0;
+  --banka-gray: #B3ABA0;
+  --banka-orange: #FFB72B;
+  --banka-dark-orange: #FF942B;
+  --banka-red: #FF5454; /* Added red color */
+  --banka-green: #80C04D; /* Added green color */
+  --banka-light-gray: #E4DFD7; /* Added light gray color */
+  --banka-background-gray: #0C0C11; /* Added background gray color */
+
+  /* Font sizes */
+  --font-size-small: 0.8rem; /* Small font size */
+  --font-size-medium: 1rem; /* Medium font size */
+  --font-size-large: 1.4rem; /* Large font size */
 }
 
 body {
-    background-color: var(--banka-black);
+  background-color: var(--banka-black);
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Jura', Roboto, "Helvetica Neue", sans-serif; /* Using 'Jura' as the primary font family */
+}
+
+/* Example usage of font sizes */
+.small-text {
+  font-size: var(--font-size-small);
+}
+
+.medium-text {
+  font-size: var(--font-size-medium);
+}
+
+.large-text {
+  font-size: var(--font-size-large);
+}
