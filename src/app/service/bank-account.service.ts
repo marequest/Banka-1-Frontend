@@ -27,7 +27,7 @@ export class BankAccountService {
     const options = { headers: headers };
     let url = environment.baseUrl + `/account/getCustomer/${userId}`;
 
-    return this.httpClient.get<BankAccount[]>(url, options); 
+    return this.httpClient.get<BankAccount[]>(url, options);
   }
 
   //Get all transactions for bank account MOCKED

@@ -25,6 +25,9 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
+
+import {CardTransactionsComponent} from "./card-transactions/card-transactions.component";
+
 import {LoanTableComponent} from "./loans/loan-table/loan-table.component";
 import {NewLoanComponent} from "./loans/new-loan/new-loan.component";
 import { NewPaymentComponent } from './new-payment/new-payment.component';
@@ -65,7 +68,12 @@ export const routes: Routes = [
 
   //{path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
 
+
+
+  {path:'payment/overview',component:TransactionsOverviewComponent,canActivate: [CustomerGuard]},
+
   {path:'transaction', component: TransactionComponent,canActivate:[CustomerGuard]},
+
 
 
   {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[CustomerGuard]},
@@ -80,12 +88,14 @@ export const routes: Routes = [
       {path: 'view', component: UserDetailComponent}
     ]
   },
-  
+
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'recipients', component: RecipientsComponent, canActivate: [CustomerGuard]},
   { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
   { path: 'loans', component: LoanTableComponent, canActivate: [CustomerGuard]},
   { path: 'new-loan', component: NewLoanComponent, canActivate: [CustomerGuard]},
+
+  { path: 'card-transactions', component: CardTransactionsComponent,canActivate: [CustomerGuard]},
 
   // { path: 'customer/:customerId', component: UserDetailComponent},
 

@@ -60,7 +60,7 @@ export interface Card {
   expirationDate?: number;
   accountNumber?: string;
   cvv?: string;
-  limit?: number;
+  cardLimit?: number;
   isActivated?: boolean;
 }
 
@@ -77,6 +77,14 @@ export interface TransactionBasics{
   outflow:string;
   inflow:string;
   amount:string;
+}
+
+
+export interface TransactionDto {
+  amount: number;
+  date: number;
+  recipientAccountNumber: string;
+  status: string;
 }
 
 export interface TransactionDetails{
@@ -160,6 +168,17 @@ export interface Account {
   currencyName: string;
   maintenanceCost: number;
   balance: number;
+}
+
+
+export interface BankAccountDto{
+  accountType: string;
+  accountNumber: string;
+  accountName: string;
+  accountStatus: string;
+  currency: string;
+  balance: number;
+  availableBalance: number;
 }
 
 export enum AccountType {
