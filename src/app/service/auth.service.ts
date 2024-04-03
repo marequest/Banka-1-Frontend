@@ -16,9 +16,33 @@ export class AuthService {
     const currentJwt = sessionStorage.getItem("jwt");
     this.jwtSubject.next(currentJwt);
   }
+  //auth/login/emplyee POST
+  loginEmployee(email: string, password: string): Observable<any> {
+    return this.http.post(environment.baseUrl+"/auth/login/employee", { email, password }).pipe(
+      map((response: any) => {
+        // Assuming the response contains the JWT token
+        console.log(response)
+        return response;
+
+      })
+    );
+  }
+
+  // Ruta auth/login/customer POST
+  loginCustomer(email: string, password: string): Observable<any> {
+    return this.http.post(environment.baseUrl+"/auth/login/customer", { email, password }).pipe(
+      map((response: any) => {
+        // Assuming the response contains the JWT token
+        console.log(response)
+        return response;
+
+      })
+    );
+  }
+
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(this.loginUrl, { email, password }).pipe(
+    return this.http.post(environment.baseUrl+"/auth/login", { email, password }).pipe(
       map((response: any) => {
         // Assuming the response contains the JWT token
         console.log(response)

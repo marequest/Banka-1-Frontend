@@ -19,7 +19,7 @@ h1 {
   margin-left: 12vw;
   margin-right: 12vw;
   margin-bottom: 30px;
-  padding-top: 5vh;
+  padding-bottom: 5vh;
   display: flex;
   gap:30px;
   flex-wrap: wrap;
@@ -30,6 +30,10 @@ h1 {
   border: 1px solid #406581;
   margin-top: 2rem;
   border-radius: 5px;
+}
+
+.table-head-custom {
+  background-color: #131319;
 }
 
 button {
@@ -46,7 +50,7 @@ button {
 
 .wrapper-header {
   height: 3rem;
-  background-color: #dbe2e7;
+  background-color: #26262C;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 
@@ -54,12 +58,22 @@ button {
 
   display: flex;
   align-items: center;
-  color: #406581;
+  color: #FFB72B;
   font-size: 18px;
+  font-family: Jura;
 }
 
 .user-table {
   padding-top: 10px;
   width: 100%;
   padding-bottom: 10px;
+}
+
+td, thead, tr {
+  font-family: Jura;
+  font-size: 18px;
+}
+
+tr {
+  border-bottom: 1px solid white;
 }

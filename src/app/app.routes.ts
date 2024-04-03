@@ -56,14 +56,15 @@ export const routes: Routes = [
     canActivate: [AdminAndEmployeeGuard],
     children: [
       { path: 'all', component: SecurityListComponent },
-      { path: "stock/:ticker", component: StockViewComponent }],
+      { path: "stock/:ticker", component: StockViewComponent },
+      {path: 'forex/:ticker', component: ForexViewComponent},
+      {path: 'future/:ticker', component: FutureViewComponent},],
   },
-  {path: 'forex/:ticker', component: ForexViewComponent},
 
 
 
-  //{path:'exchange', component: TransactionComponent},
-  //{path: 'payment', component: NewPaymentComponent},
+  {path:'exchange', component: TransactionComponent},
+  {path: 'payment', component: NewPaymentComponent},
 
   //{path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
 
@@ -79,7 +80,7 @@ export const routes: Routes = [
 
   {path:'payment/overview',component:TransactionsOverviewComponent,canActivate: [CustomerGuard]},
 
-  {path: 'future/:ticker', component: FutureViewComponent},
+  
   {
     path: 'customer',
     children: [
