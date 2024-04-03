@@ -69,53 +69,90 @@ export class LoginPageComponent {
     //   return;
     // }
 
-    if(this.isEmployee) {
-      // Ruta auth/login/emplyee POST
-      // kada se uloguje zaposleni u session storage se stavlja pod 'role' pozicija koja je dobijena u objektu
-    } else {
-      // Ruta auth/login/customer POST
-      // kada se uloguje costumer u session storage se stavlja pod 'role' customer
-    }
-
-    this.authService.login(this.model.email, this.model.password).subscribe(
-      (token) => {
-
-        // Koristimo ovaj pristup da bi mogao da saceka jwt od beka pa da apdejtuje inicijale
-        this.authService.setJwt(token.jwt)
-
-
-        sessionStorage.setItem('jwt', token.jwt);
-
-        sessionStorage.setItem('permissions', token.permissions);
-        this.setUserPropertiesInSessionStorage(token.jwt);
-
-        if (token.jwt !== null && token.jwt.length > 0) {
-          this.userService.getUser(token.jwt).subscribe(
-           response => {
-              //this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
-             this.storageService.setRole(response.position.toString().toLowerCase());
-             this.router.navigate(['/welcome']);
-              console.log(response.position);
-           }
-         );
-        }
+    // if(this.isEmployee) {
+    //   // Ruta auth/login/emplyee POST
+    //   // kada se uloguje zaposleni u session storage se stavlja pod 'role' pozicija koja je dobijena u objektu
+    //   this.authService.loginEmployee(this.model.email, this.model.password).subscribe(
+    //     (token) => {
+  
+    //       // Koristimo ovaj pristup da bi mogao da saceka jwt od beka pa da apdejtuje inicijale
+    //       this.authService.setJwt(token.jwt)
+    //       sessionStorage.setItem('jwt', token.jwt);
+    //       sessionStorage.setItem('permissions', token.permissions);
+    //       this.setUserPropertiesInSessionStorage(token.jwt);
+  
+    //       if (token.jwt !== null && token.jwt.length > 0) {
+    //         this.userService.getUser(token.jwt).subscribe(
+    //          response => {
+    //             //this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+    //            this.storageService.setRole(response.position.toString().toLowerCase());
+    //            this.router.navigate(['/welcome']);
+    //             console.log(response.position);
+    //          }
+    //        );
+    //       }
+  
+    //     },
+    //     error => {
+    //       this.popupService.openPopup("Error", "Wrong email or password")
+    //     });
 
 
-        this.adminGuard.userIsAdmin().subscribe(
-          (isAdmin) => {
-            this.adminSatusService.setIsAdmin(isAdmin);
-            this.router.navigate(['/welcome']);
+
+
+    // } else {
+    //   // Ruta auth/login/customer POST
+    //   // kada se uloguje costumer u session storage se stavlja pod 'role' customer
+
+    //   this.authService.loginCustomer(this.model.email, this.model.password).subscribe(
+    //     (token) => {
+  
+    //       // Koristimo ovaj pristup da bi mogao da saceka jwt od beka pa da apdejtuje inicijale
+    //       this.authService.setJwt(token.jwt)
+    //       sessionStorage.setItem('jwt', token.jwt);
+    //       sessionStorage.setItem('permissions', token.permissions);
+    //       this.setUserPropertiesInSessionStorage(token.jwt);
+  
+    //       if (token.jwt !== null && token.jwt.length > 0) {
+    //         this.userService.getUser(token.jwt).subscribe(
+    //          response => {
+    //            this.storageService.setRole('customer');
+    //            this.router.navigate(['/welcome']);
+    //             console.log(response.position);
+    //          }
+    //        );
+    //       }
+  
+    //     },
+    //     error => {
+    //       this.popupService.openPopup("Error", "Wrong email or password")
+    //     });
+    // }
+        this.authService.login(this.model.email, this.model.password).subscribe(
+          (token) => {
+    
+            // Koristimo ovaj pristup da bi mogao da saceka jwt od beka pa da apdejtuje inicijale
+            this.authService.setJwt(token.jwt)
+            sessionStorage.setItem('jwt', token.jwt);
+            sessionStorage.setItem('permissions', token.permissions);
+            this.setUserPropertiesInSessionStorage(token.jwt);
+    
+            if (token.jwt !== null && token.jwt.length > 0) {
+              this.userService.getUser(token.jwt).subscribe(
+               response => {
+                  //this.userInitials = response.firstName.charAt(0) + response.lastName.charAt(0);
+                 this.storageService.setRole(response.position.toString().toLowerCase());
+                 this.router.navigate(['/welcome']);
+                  console.log(response.position);
+               }
+             );
+            }
+    
           },
-          (error) => {
-            console.error("Error occurred while checking admin status:", error);
-
-            this.adminSatusService.setIsAdmin(false);
+          error => {
+            this.popupService.openPopup("Error", "Wrong email or password")
           });
-
-      },
-      error => {
-        this.popupService.openPopup("Error", "Wrong email or password")
-      });
+    
   }
 
   setUserPropertiesInSessionStorage(jwt:string){
@@ -132,5 +169,15 @@ export class LoginPageComponent {
         console.log('Error happend while getting user');
       }
     );
+  }
+
+
+  navigateToResetPassword() {
+    this.router.navigate(['/reset-password']);
+  }
+  //activate-account
+
+  navigateToActivateAccount() {
+    this.router.navigate(['/activate-account']);
   }
 }

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="text-field-container">
       <label for="name" class="field-label">{{ fieldName }}</label>
-      <input type="text" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
+      <input [type]="p?'text':'password'" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
     </div>
   `,
   styles: [`
@@ -39,12 +39,15 @@ import { FormsModule } from '@angular/forms';
       outline: none; /* Removes the default focus outline */
       border-color: #CCCCCC; /* Optional: Changes border color on focus */
     }
+
+
   `]
 })
 export class TransparentTextField {
   @Input() text: String = "";
   @Input() fieldName: String = "No name"; // This is the input for the field label
   @Output() textChange = new EventEmitter<string>();
+  @Input() p: boolean = false;
 
   onTextChange(value: string) {
     this.textChange.emit(value);

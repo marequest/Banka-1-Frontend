@@ -22,7 +22,7 @@
 .login-form-container {
   background-color: rgba(0, 0, 0, 0.3); /* Dim the background */
   width: 25vh;
-  min-width: 250px;
+  min-width: 30vw;
   padding: 70px;
   border-radius: 10px;
   display: flex;
