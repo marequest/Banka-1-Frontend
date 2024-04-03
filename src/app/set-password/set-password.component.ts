@@ -35,6 +35,10 @@ export class SetPasswordComponent {
     this.token = this.route.snapshot.paramMap.get('token') || '';
   }
 
+  sendToWelcome() {
+    this.router.navigate(['/welcome']);
+  }
+
   confirmPassword() {
     if(this.password.length < 3 || this.confirmedPassword.length < 3) {
       this.popupService.openPopup("Error", "Password has to be longer than 3 characters!");
