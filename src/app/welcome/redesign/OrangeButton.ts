@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .btn-custom:hover {
-      background-color: var(--banka-dark-orange); /* Slightly darken the button on hover for feedback */
+      background-color: var(--banka-light-orange); /* Slightly darken the button on hover for feedback */
       /*transform: scale(1.05); !* Slightly enlarge the button on hover *!*/
     }
   `]
