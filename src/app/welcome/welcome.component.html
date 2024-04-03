@@ -1,30 +1,35 @@
-<div class="welcome-container">
-  <div class="logo-container">
-    <img src="assets/banka1.png" alt="Bankai Logo" class="logo">
-  </div>
+<div class="welcome-container" xmlns="http://www.w3.org/1999/html">
+<!--  <div class="logo-container">-->
+<!--    <img src="assets/banka1.png" alt="Bankai Logo" class="logo">-->
+<!--  </div>-->
   <div>
-    <div>
+<!--    <div>-->
+<!--      <orange-button [buttonName]="btnName">-->
+<!--      </orange-button>-->
+<!--      -->
+<!--      <transparent-text-field [(text)]="fieldText" [fieldName]="'field name'">-->
+<!--      </transparent-text-field>-->
 
-      <orange-button [buttonName]="btnName">
+<!--      <white-text-field [text]="'text'" [fieldName]="'field name white'">-->
+<!--      </white-text-field>-->
+<!--      -->
+<!--      <line-text-field [text]="'text'" [fieldName]="'field name white'">-->
+<!--      </line-text-field>-->
+<!--    </div>-->
+<!--    <ng-template #customTemplate let-row>-->
+<!--      <button (click)="onButtonClick(row)">Click Me</button>-->
+<!--    </ng-template>-->
 
-      </orange-button>
-
-
-      <transparent-text-field [(text)]="fieldText" [fieldName]="'field name'">
-
-      </transparent-text-field>
-
-
-      <white-text-field [text]="'text'" [fieldName]="'field name white'">
-
-      </white-text-field>
-
-
-      <line-text-field [text]="'text'" [fieldName]="'field name white'">
-
-      </line-text-field>
-
-    </div>
+<!--    /// Koristi se tako sto prosledis headers i rows, kazes ako dodajes button ili slicno showActions na true,-->
+<!--    /// Primer dole za button click kako se prosledjuje red i kolona.-->
+    <app-dynamic-table [headersArray]="headers" [dataArray]="rows"
+                       [showActions]="true">
+      <ng-template let-row let-i="index">
+        <orange-button [buttonName]="'Sell'" (click)="handleCustomButtonClick({row: row, index: i})">
+          Click Me
+        </orange-button>
+      </ng-template>
+    </app-dynamic-table>
   </div>
 
 </div>
