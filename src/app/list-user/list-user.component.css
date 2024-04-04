@@ -1,7 +1,8 @@
 .content {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  /*margin: auto;*/
+  margin-left: 35vw;
   /* margin-left: 10%;
   margin-right: 10%; */
   font-family: "Roboto", sans-serif;
@@ -13,30 +14,6 @@
   font-weight: 700;
 
   margin-bottom: 3rem;
-}
-
-.security-tabs {
-  display: flex;
-  width: 13vw;
-}
-
-.tab {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  margin-right: auto;
-  cursor: pointer;
-  background-color: #dbe2e7;
-  width: 5vw;
-  height: 3vh;
-
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  font-weight: 400;
-}
-
-.tab-active {
-  background-color: white;
 }
 
 
@@ -143,7 +120,7 @@ thead {
   border-bottom: 1px solid #406581 !important;
   margin-bottom: 5px;
   text-align: center;
-  
+
 }
 
 .table-head {
@@ -174,13 +151,16 @@ td {
   display: none;
   position: absolute;
   right: 0;
-  background-color: #f9f9f9;
+  background-color: var(--banka-dark-gray);
   min-width: 120px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
-
+#options-button {
+  cursor: pointer; /* Change the cursor to indicate it's clickable */
+}
 .options-dropdown button {
+  color: var(--banka-white);
   display: block;
   width: 100%;
   padding: 10px;
@@ -192,6 +172,10 @@ td {
 .options-menu:hover .options-dropdown {
   display: block;
 }
+.options-dropdown button:hover {
+  background-color: var(--banka-very-dark-gray);
+}
+
 
 
 .button-image {
@@ -220,7 +204,7 @@ td {
 }
 
 /**
- Permission table and search filter 
+ Permission table and search filter
 **/
 .search-container {
   font-size: 0; /* Remove white space between inline-block elements */
@@ -260,8 +244,38 @@ td {
   user-select: none; /* Prevents selecting the 'x' on double click */
 }
 
-#helperDiv { 
+#helperDiv {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+}
+.security-tabs {
+  display: flex;
+  margin-bottom: 20px; /* Space between tabs and content */
+}
+
+.tab {
+  max-width: 10vw;
+  flex-grow: 1; /* Each tab takes up equal width */
+  text-align: center;
+  padding: 10px 0; /* Vertical padding */
+  cursor: pointer;
+  background-color: var(--banka-dark-gray); /* Light gray background */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+  border-radius: 5px 5px 0 0; /* Rounded top corners */
+  margin-right: 2px; /* Small gap between tabs */
+}
+
+.tab:last-child {
+  margin-right: 0; /* No gap after the last tab */
+}
+
+.tab-content {
+  color: var(--banka-white); /* Dark text for contrast */
+  font-weight: bold;
+}
+
+.tab-active, .tab:hover {
+  background-color: var(--banka-very-dark-gray); /* White background for active/hovered tab */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
