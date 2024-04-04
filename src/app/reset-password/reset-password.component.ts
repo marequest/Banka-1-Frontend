@@ -63,7 +63,7 @@ export class ResetPasswordComponent {
     this.router.navigate(['/login']);
   }
 
-  sendToWelcome() {
-    this.router.navigate(['/welcome']);
+  async sendToLogin() {
+    await this.router.navigate(['/login']);
   }
 }

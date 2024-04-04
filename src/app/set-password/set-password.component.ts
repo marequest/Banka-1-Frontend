@@ -35,8 +35,8 @@ export class SetPasswordComponent {
     this.token = this.route.snapshot.paramMap.get('token') || '';
   }
 
-  sendToWelcome() {
-    this.router.navigate(['/welcome']);
+  async sendToWelcome() {
+    await this.router.navigate(['/login']);
   }
 
   confirmPassword() {
