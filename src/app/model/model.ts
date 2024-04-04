@@ -238,6 +238,17 @@ export interface CreateBankAccountRequest{
   maintenanceCost: number;
 }
 
+
+export interface Order {
+  security: string,
+  transaction: string,
+  symbol: string,
+  amount: number,
+  price: number,
+  status: string,
+  lastModified: number
+}
+
 export enum LoanType {
   PERSONAL = "PERSONAL",
   MORTGAGE = "MORTGAGE",
@@ -272,5 +283,6 @@ export interface CreatePaymentRequest{
   senderAccountNumber: string;
   activationCode: string;
 }
+
 
 
