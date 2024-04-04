@@ -23,7 +23,7 @@ export class PaymentService {
   }
 
   public initializePayment() {
-    return this.http.post<number>(`${this.apiUrl}/newPayment`, null, {
+    return this.http.post<number>(`${this.apiUrl}/sendCode`, null, {
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }

@@ -42,7 +42,7 @@ export class RecipientsComponent {
   }
 
   loadAllUserRecipients(){
-    this.bankAccountService.getAllRecipientsMocked().subscribe(
+    this.bankAccountService.getAllRecipients().subscribe(
       (allUserRecipientsFromDB: Recipient[]) => {
         this.allUserRecipients = allUserRecipientsFromDB;
 

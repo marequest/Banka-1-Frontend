@@ -65,6 +65,8 @@ export class AppComponent implements OnInit {
   isAdmin: boolean = false;
   isEmployee: boolean = false;
   isCustomer: boolean = false;
+  isSupervizor: boolean = false;
+  isAgent: boolean = false;
   hasRequiredAccounts: boolean = false;
   loggedUserPosition: string = '';
   showPaymentsSubMenu: boolean = false;
@@ -142,6 +144,8 @@ export class AppComponent implements OnInit {
       this.isAdmin = role === 'admin';
       this.isEmployee = role === 'employee';
       this.isCustomer = role === 'customer';
+      this.isAgent = role === 'agent';
+      this.isSupervizor = role === 'supervizor';
     });
 
     
@@ -186,6 +190,9 @@ export class AppComponent implements OnInit {
     this.isAdmin = sessionStorage.getItem('role') === 'admin';
     this.isEmployee = sessionStorage.getItem('role') === 'employee';
     this.isCustomer = sessionStorage.getItem('role') === 'customer';
+    this.isCustomer = sessionStorage.getItem('role') === 'customer';
+    this.isAgent = sessionStorage.getItem('role') === 'agent';
+    this.isSupervizor = sessionStorage.getItem('role') === 'supervizor';
     const jwt = sessionStorage.getItem('jwt');
 
     if (jwt !== null && jwt.length > 0) {
