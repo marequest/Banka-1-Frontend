@@ -7,13 +7,17 @@ import { UserService } from '../service/user.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PermissionService } from '../service/permission.service';
 import { Permissions } from '../model/model';
+import {TransparentTextFieldModule} from "../welcome/redesign/TransparentTextField";
+import {OutlineOrangeButtonModule} from "../welcome/redesign/OutlineOrangeButton";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
+import {FieldComponentModule} from "../welcome/redesign/FieldCompentn";
 
 
 
 @Component({
   selector: 'app-add-user',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, TransparentTextFieldModule, OutlineOrangeButtonModule, OrangeButtonModule, FieldComponentModule],
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.css'
 })
@@ -66,7 +70,7 @@ export class AddUserComponent {
     private userService: UserService,
     // private permissionService: PermissionService,
     public dialogRef: MatDialogRef<AddUserComponent>
-    ) {    
+    ) {
       // TODO: Uncomment this when backend is ready
       // this.permissionService.getAllPermissions().subscribe(
       //   response => {

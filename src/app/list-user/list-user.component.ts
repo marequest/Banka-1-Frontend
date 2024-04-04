@@ -12,11 +12,14 @@ import {TableComponentModule} from "../welcome/redesign/TableComponent";
 import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 import { TransformPermissionsPipeModule} from "./TransformPermissionsPipe";
 import {TransformUsersPipeModule} from "./TransformUsersPipe";
+import {LineTextFieldModule} from "../welcome/redesign/LineTextField";
+import {TransparentTextFieldModule} from "../welcome/redesign/TransparentTextField";
+import {WhiteTextFieldModule} from "../welcome/redesign/WhiteTextField";
 
 @Component({
   selector: 'app-list-user',
   standalone: true,
-  imports: [CommonModule, FormsModule, TableComponentModule, OrangeButtonModule, TransformPermissionsPipeModule, TransformUsersPipeModule],
+  imports: [CommonModule, FormsModule, TableComponentModule, OrangeButtonModule, TransformPermissionsPipeModule, TransformUsersPipeModule, LineTextFieldModule, TransparentTextFieldModule, WhiteTextFieldModule],
   templateUrl: './list-user.component.html',
   styleUrl: './list-user.component.css'
 })
