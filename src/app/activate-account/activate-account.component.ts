@@ -119,6 +119,10 @@ export class ActivateAccountComponent {
     await this.router.navigate(["login"])
   }
 
+  public async sendToLogin() {
+    await this.router.navigate(['/login'])
+  }
+
   public async nextStage() {
     if(!this.validateData()) return;
     this.error = ""

@@ -4,12 +4,15 @@ import {PopupComponent} from "../popup/popup.component";
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
-
 import { TransactionPopupComponent } from '../transaction-popup/transaction-popup.component';
-
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
 import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
+import { VerificationPaymentPopupComponent } from '../verification-payment-popup/verification-payment-popup.component';
+import { CreatePaymentRequest, Recipient } from '../model/model';
+import { TransactionsDetailsPopupComponent } from '../transactions-details-popup/transactions-details-popup.component';
+import { NewRecipientComponent } from '../new-recipient/new-recipient.component';
+import { EditRecipientComponent } from '../edit-recipient/edit-recipient.component';
 
 
 @Injectable({
@@ -26,6 +29,13 @@ export class PopupService {
     });
   }
 
+  openBiggerPopup(message: string, text: string): void {
+    this.dialog.open(PopupComponent, {
+      width: '350px',
+      data: { message, text }
+    });
+  }
+
   openAddUserPopup(): void {
     this.dialog.open(AddUserComponent, {
     });
@@ -36,12 +46,22 @@ export class PopupService {
     });
   }
 
+  openTransactionDetailsPopup(): void {
+    this.dialog.open(TransactionsDetailsPopupComponent, {});}
+
+
 
   openTransactionPopup(): void {
     this.dialog.open(TransactionPopupComponent, {});}
 
   openAddCustomerPopup(): void {
     this.dialog.open(AddCustomerComponent, {
+    });
+  }
+
+  openVerifyPaymentPopup(payment: CreatePaymentRequest): void {
+    this.dialog.open(VerificationPaymentPopupComponent, {
+      data: {payment}
     });
   }
 
@@ -53,6 +73,17 @@ export class PopupService {
   openUpdateCustomerPopup(): void {
     this.dialog.open(EditCustomerComponent, {
 
+    });
+  }
+
+  openAddRecipientPopup(): void {
+    this.dialog.open(NewRecipientComponent, {
+    });
+  }
+
+  openEditRecipientPopup(recipient: Recipient): void {
+    this.dialog.open(EditRecipientComponent, {
+      data: {recipient}
     });
   }
 }

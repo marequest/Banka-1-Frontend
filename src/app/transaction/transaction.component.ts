@@ -3,12 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Account, AccountType, TransactionBasics, User } from '../model/model';
-import { UserService } from '../service/user.service';
+import { UserService } from '../service/employee.service';
 import { PopupService } from '../service/popup.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { TransactionService } from '../service/transaction.service';
 import { AccountService } from '../service/account.service';
+import { CustomerService } from '../service/customer.service';
 @Component({
   selector: 'app-transaction',
   standalone: true,
@@ -26,7 +27,7 @@ export class TransactionComponent implements OnInit{
   outflowAccounts: Account[] = [];
   inflowAccounts: Account[] = [];
 
-  constructor(private router: Router, private popup: PopupService, private dialog: MatDialog, private transactionService: TransactionService, private userService: UserService, private accountService: AccountService) { }
+  constructor(private router: Router, private popup: PopupService, private dialog: MatDialog, private transactionService: TransactionService, private userService: UserService, private accountService: AccountService, private customerService: CustomerService) { }
 
   ngOnInit() {
     this.loadAccounts();
@@ -47,7 +48,7 @@ export class TransactionComponent implements OnInit{
     //Otkomentarisati kada bek odradi
     const jwt = sessionStorage.getItem("jwt");
       if (jwt) {
-        this.userService.getUser(jwt).subscribe(
+        this.customerService.getCustomer(jwt).subscribe(
           response => {
             if (response) {
                                                       //response.userId
@@ -85,7 +86,7 @@ export class TransactionComponent implements OnInit{
       const tempJwt = sessionStorage.getItem('jwt');
       if(tempJwt !== null)
         jwt = tempJwt; 
-      this.userService.getUser(jwt).subscribe(
+      this.customerService.getCustomer(jwt).subscribe(
         response => {
           this.transactionService.setTranscationUser(response);
           this.popup.openTransactionPopup();

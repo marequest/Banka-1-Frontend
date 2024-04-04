@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {PopupService} from "../service/popup.service";
-import { UserService } from '../service/user.service';
+import { UserService } from '../service/employee.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PermissionService } from '../service/permission.service';
 import { Permissions } from '../model/model';

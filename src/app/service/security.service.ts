@@ -17,7 +17,7 @@ export interface Security {
 export class SecurityService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<Security[]> {
+  getSecurities(): Observable<Security[]> {
     return this.http.get<Security[]>('/assets/securities.json');
   }
 }

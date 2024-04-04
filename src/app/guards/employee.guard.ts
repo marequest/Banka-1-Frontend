@@ -1,11 +1,27 @@
-import { CanActivateFn } from '@angular/router';
-import {inject} from "@angular/core";
-import {JwtService} from "../service/jwt.service";
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { JwtService } from "../service/jwt.service";
 
-export const employeeGuard: CanActivateFn = (route, state) => {
-  const jwtService = inject(JwtService);
-  const token = sessionStorage.getItem("jwt");
+@Injectable({
+  providedIn: 'root'
+})
+export class EmployeeGuard implements CanActivate {
+  constructor(
+    private jwtService: JwtService,
+    private router: Router) {}
 
-  if(!token) return false;
-  return jwtService.isTokenFormatValid(token);
+  canActivate(next: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    const token = sessionStorage.getItem("jwt");
+    if (!token || !this.jwtService.isTokenFormatValid(token)) {
+      return of(this.router.parseUrl('/login'));
+    }
+    const position = sessionStorage.getItem('role');  
+    if (position === 'employee') {
+      return true;
+    } else {
+      this.router.navigate(['/welcome']);
+      return false;
+    }
+  }
 };

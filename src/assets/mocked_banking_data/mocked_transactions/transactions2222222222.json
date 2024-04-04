@@ -1,0 +1,32 @@
+[
+  {
+    "recepientBankAccount": "987654321",
+    "date": 1687603200000,
+    "status": "Denied",
+    "amount": 2000
+  },
+  {
+    "recepientBankAccount": "123456789",
+    "date": 1687689600000,
+    "status": "Processing",
+    "amount": 1250
+  },
+  {
+    "recepientBankAccount": "112233445",
+    "date": 1687776000000,
+    "status": "Denied",
+    "amount": 300
+  },
+  {
+    "recepientBankAccount": "998877665",
+    "date": 1687862400000,
+    "status": "Done",
+    "amount": 1500
+  },
+  {
+    "recepientBankAccount": "556677889",
+    "date": 1687948800000,
+    "status": "Done",
+    "amount": 750
+  }
+]

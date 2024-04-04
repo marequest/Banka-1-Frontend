@@ -1,65 +1,114 @@
 <div class="page-wrapper">
-  <img ngSrc="/assets/logo-full.png" alt="Bank-logo" height="234" width="221" class="logo">
-  <div class="main-window">
-    <div class="window-header">
-      <h1 class="window-title">Account Activation</h1>
-      <div class="alert" *ngIf="error.length > 0">
-        {{ error }}
-      </div>
-    </div>
-    <hr>
-    <div class="window-content">
-      <div class="stage" *ngIf="stage === 1" #stage1>
-        <div class="input-field">
-          <label for="email-input">Email</label>
-          <input id="email-input" type="text" class="text-input" [(ngModel)]="email" name="email" required />
-        </div>
-
-        <div class="input-field">
-          <label for="account-number-input">Account number</label>
-          <input id="account-number-input" [(ngModel)]="accountNumber" name="accountNumber" type="text" class="text-input" required />
-        </div>
-
-        <div class="input-field">
-          <label for="phone-number-input">Phone number</label>
-          <input id="phone-number-input" [(ngModel)]="phoneNumber" name="phoneNumber" type="text" class="text-input" required />
-        </div>
-        <div class="have-account-link-wrapper">
-          <a href="/login">Already have an account?</a>
-        </div>
-      </div>
-
-      <div class="stage" *ngIf="stage === 2" #stage2>
-        <div class="generate-button-container">
-          <label class="generate-code-button-label">By pressing the button an activation code will be sent to your email.</label>
-          <button class="generate-code-button" (click)="generateCode()">Generate activation code</button>
-        </div>
-
-        <div class="input-field" style="margin-top: 50px">
-          <label for="activation-code-input">Activation code</label>
-          <input id="activation-code-input" [(ngModel)]="activationCode" name="activationCode" type="text" class="text-input" required />
-        </div>
-      </div>
-
-      <div class="stage" *ngIf="stage === 3" #stage3>
-        <div class="input-field">
-          <label for="password-input">Set password</label>
-          <input id="password-input" [(ngModel)]="password" name="password" type="password" class="text-input" required />
-        </div>
-
-        <div class="input-field">
-          <label for="confirm-password-input">Repeat password</label>
-          <input id="confirm-password-input" [(ngModel)]="confirmPassword" name="confirmPassword" type="password" class="text-input" required />
-        </div>
-      </div>
-
-    </div>
-    <hr>
-    <div class="window-footer">
-      <button class="back-button" *ngIf="stage > 1" (click)="previousStage()">Back</button>
-      <button class="next-button" (click)="nextStage()">Next</button>
-
+  <div class="alert" *ngIf="error.length > 0">
+    {{ error }}
+  </div>
+  <div class="activation-modal">
+    <div class="close-btn" (click)="sendToLogin()">X</div>
+    <div>
+      <div class="act-modal-title">Account activation</div>
+      <div class="gray-line"></div>
     </div>
 
+    <div class="act-form" *ngIf="stage === 1" #stage1>
+      <div class="act-form-group">
+        <div class="act-label">Email</div>
+        <input
+          id="email-input"
+          type="text"
+          class="act-input"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+      </div>
+
+      <div class="act-form-group">
+        <div class="act-label">Account number</div>
+        <input
+          id="account-number-input"
+          [(ngModel)]="accountNumber"
+          name="accountNumber"
+          type="text"
+          class="act-input"
+          required
+        />
+      </div>
+
+      <div class="act-form-group">
+        <div class="act-label">Phone number</div>
+        <input
+          id="phone-number-input"
+          [(ngModel)]="phoneNumber"
+          name="phoneNumber"
+          type="text"
+          class="act-input"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="act-form" *ngIf="stage === 2" #stage2>
+      <div class="act-form-group">
+        <div class="stage-2-text">
+          By pressing the button an activation code will be sent to your email
+        </div>
+      </div>
+
+      <div class="act-form-group" style="display: flex">
+        <button class="generate-code-button" (click)="generateCode()">
+          Generate activation code
+        </button>
+      </div>
+
+      <div class="act-form-group" style="display: flex">
+        <div style="margin: auto">
+          <div class="act-label">Activation code</div>
+          <input
+            id="activation-code-input"
+            [(ngModel)]="activationCode"
+            name="activationCode"
+            type="text"
+            class="act-input"
+            required
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="act-form" *ngIf="stage === 3" #stage3>
+      <div class="act-form-group">
+        <div class="act-label">Set password</div>
+        <input
+          id="password-input"
+          [(ngModel)]="password"
+          name="password"
+          type="password"
+          class="act-input"
+          required
+        />
+      </div>
+
+      <div class="act-form-group">
+        <div class="act-label">Retype password</div>
+        <input
+          id="confirm-password-input"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          class="act-input"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="already-have">
+      <a class="already-have" href="/login">Already have an account?</a>
+    </div>
+    <div class="act-modal-footer">
+      <button class="back-btn" *ngIf="stage > 1" (click)="previousStage()">
+        Back
+      </button>
+      <button class="back-btn" (click)="nextStage()">Next</button>
+    </div>
   </div>
 </div>

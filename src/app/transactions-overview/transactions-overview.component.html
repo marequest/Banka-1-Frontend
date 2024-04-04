@@ -1,0 +1,48 @@
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 transaction-title"> 
+                Transactions overview
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10" style="background-color: #26262C; border-radius: 15px; border-bottom:1px solid lightgray; border-right:1px solid gray; margin-bottom: 15vh;">
+                <div class="custom_span"style="color:#FFB72B;">
+                    
+                    <span style="background-color: black; border-bottom:1.5px solid #FFB72B; padding: 5px; padding-top: 0px; padding-bottom: 0px;">Transactions</span>
+                    <hr style="border-top: 2.5px solid #FFF9F0; margin: 0;">
+                </div>
+                <div class="table-responsive">
+                <table style="margin-top: 2vh;margin-bottom: 6vh;" class="table table-dark table-hover" >
+                    <thead  class="table-info" >
+                        <tr>
+                            <th style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;" class="col-md-2 col-sm-2">Outflow</th>
+                            <th class="col-md-2 col-sm-2">Inflow</th>
+                            <th class="col-md-2 col-sm-2">Date</th>
+                            <th class="col-md-2 col-sm-2">Status</th>
+                            <th style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;" class="col-md-2 col-sm-2">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Otkomentarisi kada dodje bek -->
+                     <!-- <tr *ngFor="let item of realTransactionList" (click)="handleRowClick(item)"> -->
+
+                        <!-- Izbrisi kada dodje bek -->
+                        <tr *ngFor="let item of transactionList" (click)="handleRowClick(item)">
+
+
+                            <td>{{ item.senderAccountNumber }}</td>
+                            <td>{{ item.recipientAccountNumber }}</td>
+                            <td>{{ item.transactionDate | date: 'dd/MM/yyyy' }}</td>
+                            <td [ngStyle]="getStatusColor(item.status)">{{ item.status }}</td>
+                            <td>{{ item.amount }} {{ item.currency }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>
