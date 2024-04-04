@@ -1,11 +1,11 @@
 .app-container {
   display: flex;
-  flex-direction: column;
   height: 100vh;
+  background-color: var(--banka-black);
 }
 
 .mat-toolbar {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .menu-button {
@@ -30,10 +30,9 @@
   font-size: 20px;
   color: #fff;
   text-align: center;
-  background: #19B5C7;
+  background: #19b5c7;
   margin-right: 10px;
 }
-
 
 .logout-button {
   font-family: Inter, sans-serif;
@@ -49,46 +48,187 @@
 }
 
 .sidenav {
-  width: 250px;
-  background-color: #f5f5f5;
-  font-family: 'Inter', sans-serif;
+  width: 35vw;
+  background-color: var(--banka-dark-gray);
+  font-family: "Inter", sans-serif;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  font-family: "Jura", sans-serif;
+  /* box-shadow: 5px 0px 5px 0px rgba(205,212,211,0.7); */
 }
 
 mat-sidenav-content {
   padding: 16px;
-  background-color: #ebf6f9;
+  background-color: var(--banka-black);
 }
 
 .remaining-space {
   flex: 1 1 auto;
 }
 
-.rest-of-btn{
+.rest-of-btn {
   flex: 1 1 auto;
 }
 
-.sidebar-btn{
+.sidebar-btn {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 7px;
   font-size: 20px;
-
 }
 
-.sidebar-btn:hover{
-  background-color: #DBE2E7;
+.sidebar-btn:hover {
+  background-color: #dbe2e7;
 }
 
-.sidebar-btn span, img {
+.sidebar-btn span,
+img {
   margin-right: 7px;
 }
 
+.banka-sidebar {
+  overflow-x: hidden;
+  position: fixed; /* Keeps the sidebar fixed relative to the viewport */
+  top: 0; /* Aligns the top of the sidebar with the top of the viewport */
+  left: 0; /* Aligns the left of the sidebar with the left of the viewport */
+  height: 100vh; /* Fills the full height of the viewport */
+  width: 330px; /* Maintains a fixed width */
+  min-width: 18%; /* Ensures the sidebar doesn't take more than 20% of the viewport width */
+  background-color: var(--banka-dark-gray);
+  border-top-right-radius: 35px;
+  border-right: 1px solid gray;
+  font-family: 'Jura', sans-serif; /* Corrected the font family name */
+  color: var(--banka-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto; /* Allows the sidebar content to scroll if it exceeds the viewport height */
+}
+
+.banka-sidebar-title {
+  font-size: 35px;
+  font-weight: 300;
+
+  margin: 30px;
+}
+
+.user-information-wrapper {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-logo-name {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.banka-user-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--banka-white);
+  margin-right: 15px;
+}
 
 
+.banka-user-name {
+  font-size: 25px;
+  font-weight: 500;
+  font-family: 'Jura', sans-serif;
+}
 
+hr {
+  color: orange !important;
+}
 
+.underline {
+  margin: auto;
+  margin-top: 10px;
+  width: 75%;
+  background-color: var(--banka-orange) !important;
+  height: 1.5px;
+}
 
+.sidebar-menu-wrapper {
+  margin-top: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px; */
+}
+
+.sidebar-items-holder {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+}
+
+.sidebar-menu-title {
+  color: var(--banka-gray);
+  font-size: 22px;
+  font-family: 'Jura', sans-serif;
+
+  padding-left: 30px;
+}
+
+.sidebar-item {
+  font-family: 'Jura', sans-serif;
+  font-size: 25px;
+  color: var(--banka-white);
+  margin-top: 20px;
+  margin-right: auto;
+  width: 12vw;
+
+  padding: 15px;
+  padding-left: 50px;
+}
+.sidebar-item {
+  display: flex;
+  align-items: start;
+  justify-content: space-between; /* Adjusts the spacing to push the icon to the right */
+  border-left: 5px solid transparent; /* Invisible border */
+  border-radius: 5px;
+}
+
+.sidebar-item:hover {
+  background-color: var(--banka-black);
+  cursor: pointer;
+  border-left: 5px solid var(--banka-orange);
+}
+
+.sidebar-icon {
+  filter: invert(100%);
+  width: 24px; /* Adjust the size of the icon as needed */
+  height: 24px; /* Keeps the aspect ratio of the icon */
+  cursor: pointer; /* Changes the cursor to a pointer to indicate the icon is clickable */
+}
+
+.sidebar-subitem {
+  font-family: 'Jura', sans-serif;
+  font-size: 23px;
+  color: var(--banka-white);
+  margin-top: 30px;
+}
+
+.item-subroutes {
+  padding-left: 60px;
+}
+
+.sidebar-subitem:hover {
+  cursor: pointer;
+  color: var(--banka-orange);
+}
+
+.logout-btn {
+  font-family: 'Jura', sans-serif;
+  font-size: 25px;
+  color: var(--banka-white);
+  margin-right: auto;
+
+  padding: 50px;
+  cursor: pointer;
+}

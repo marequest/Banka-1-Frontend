@@ -1,0 +1,28 @@
+[
+    {
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "accountNumber": "1234567890"
+    },
+    {
+      "firstName": "Bob",
+      "lastName": "Smith",
+      "accountNumber": "9876543210"
+    },
+    {
+      "firstName": "Charlie",
+      "lastName": "Brown",
+      "accountNumber": "2468013579"
+    },
+    {
+      "firstName": "David",
+      "lastName": "Davis",
+      "accountNumber": "1357924680"
+    },
+    {
+      "firstName": "Eve",
+      "lastName": "White",
+      "accountNumber": "3692581470"
+    }
+  ]
+  

@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import {NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {AuthService} from "../service/auth.service";
-import {AdminGuard} from "../guards/admin.guard";
-import {AdminStatusService} from "../service/admin-status.service";
-import {MatDialog} from "@angular/material/dialog";
-import {ValidationService} from "../service/validation.service";
 import {PopupService} from "../service/popup.service";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
