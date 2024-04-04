@@ -25,11 +25,11 @@ export class SecurityListComponent {
   }
 
   async ngOnInit() {
-    this.loadUsers();
+    this.loadSecurities();
   }
 
-  loadUsers(): void {
-    this.securityService.getUsers().subscribe(
+  loadSecurities(): void {
+    this.securityService.getSecurities().subscribe(
       (users: Security[]) => {
         this.users = users;
       },

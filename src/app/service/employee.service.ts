@@ -28,8 +28,8 @@ export class UserService {
     private router: Router,
   ) { }
 
-  public getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(this.apiUrl+"/user/getAll", {
+  public getEmployees(): Observable<User[]>{
+    return this.http.get<User[]>(this.apiUrl+"/employee/getAll", {
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
@@ -41,7 +41,7 @@ export class UserService {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
-    return this.http.delete<boolean>(`${this.apiUrl}/user/delete/${userId}`, { headers});
+    return this.http.delete<boolean>(`${this.apiUrl}/employee/remove/${userId}`, { headers});
     // Ovako pise da treba po fajlu koji je radjen sa endpointovima, ali ja kad sam preuzeo back
     // kod je napisan tako da se koristila putanja sa /delete
     //return this.http.delete<boolean>(`${this.apiUrl}/user/remove/${userId}`, { headers});
@@ -52,7 +52,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
-    return this.http.post<any>(`${this.apiUrl}/user/createUser`, userData, { headers });
+    return this.http.post<any>(`${this.apiUrl}/employee/createEmployee`, userData, { headers });
   }
 
   public searchUser(position: string, email: string, firstName: string, lastName:string): Observable<any> {
@@ -69,12 +69,12 @@ export class UserService {
       'Authorization': 'Bearer ' + jwt
     });
 
-    return this.http.get(this.apiUrl + '/user/search' ,{ headers, params });
+    return this.http.get(this.apiUrl + '/employee/search' ,{ headers, params });
   }
 
 
   public getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(this.apiUrl + '/user/' + userId,{
+    return this.http.get<User>(this.apiUrl + '/employee/' + userId,{
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
@@ -92,7 +92,7 @@ export class UserService {
     phoneNumber: string;
     isActive: boolean;
   }): Observable<any> {
-    return this.http.put<User>(this.apiUrl + '/user', user,{
+    return this.http.put<User>(this.apiUrl + '/employee/', user,{
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }
@@ -108,8 +108,8 @@ export class UserService {
     return this.userToEdit;
   }
 
-  getUser(jwt: string): Observable<User> {
-    const url = `${this.apiUrl}/user/getUser`;
+  getEmployee(jwt: string): Observable<User> {
+    const url = `${this.apiUrl}/employee/getEmployee`;
 
   //getUser(jwt: string | null): Observable<{name: string, lastName: string}> {
    // let url = `${this.apiUrl}/user/getUser`;

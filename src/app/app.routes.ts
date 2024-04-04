@@ -26,9 +26,7 @@ import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
 import {OrdersComponent} from "./orders/orders.component";
-import { TransactionsOverviewComponent } from './transactions-overview/transactions-overview.component';
 import {CardTransactionsComponent} from "./card-transactions/card-transactions.component";
-
 import {LoanTableComponent} from "./loans/loan-table/loan-table.component";
 import {NewLoanComponent} from "./loans/new-loan/new-loan.component";
 import { NewPaymentComponent } from './new-payment/new-payment.component';
@@ -101,7 +99,7 @@ export const routes: Routes = [
   // { path: 'customer/:customerId', component: UserDetailComponent},
 
   { path: 'activate-account', component: ActivateAccountComponent },
-  { path: 'orders', component: OrdersComponent, canActivate: [employeeGuard] }
+  { path: 'orders', component: OrdersComponent, canActivate: [AdminAndEmployeeGuard] }
 
 ];
 
