@@ -62,4 +62,8 @@ export class ResetPasswordComponent {
   okAction() {
     this.router.navigate(['/login']);
   }
+
+  async sendToLogin() {
+    await this.router.navigate(['/login']);
+  }
 }
