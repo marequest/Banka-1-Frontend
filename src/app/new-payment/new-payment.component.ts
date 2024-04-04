@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TransactionBasics, Account, AccountType, CreatePaymentRequest } from '../model/model';
+import { TransactionBasics, Account, AccountType, CreatePaymentRequest, BankAccount } from '../model/model';
 import { TransactionService } from '../service/transaction.service';
 import { AccountService } from '../service/account.service';
 import { PopupService } from '../service/popup.service';
 import { PaymentService } from '../service/payment.service';
+import { BankAccountService } from '../service/bank-account.service';
 
 @Component({
   selector: 'app-new-payment',
@@ -28,26 +29,24 @@ export class NewPaymentComponent implements OnInit{
   };
   
 
-  accounts: Account[] = [
+  accounts: BankAccount[] = [
     {
       accountNumber: '123456789',
       accountType: AccountType.CURRENT,
-      currencyName: 'RSD',
-      maintenanceCost: 10.0,
+      currency: 'RSD',
       balance: 120000.0
     },
     {
       accountNumber: '987654321',
       accountType: AccountType.FOREIGN_CURRENCY,
-      currencyName: 'EUR',
-      maintenanceCost: 15.0,
+      currency: 'EUR',
       balance: 5000
     },
   ];
-  selectedAccount: Account | undefined;
+  selectedAccount: BankAccount | undefined;
 
   constructor(
-    private accountService: AccountService,
+    private bankAccountService: BankAccountService,
     private popupService: PopupService,
     private paymentService: PaymentService
   ){}
@@ -57,14 +56,19 @@ export class NewPaymentComponent implements OnInit{
     // if(!loggedInUser){
     //   throw new Error("No user logged in");
     // }
-    // this.accountService.getCustomerAccounts(parseInt(loggedInUser)).subscribe({
-    //   next: (accounts: Account[]) => {
+    // this.bankAccountService.getUsersBankAccounts(parseInt(loggedInUser)).subscribe({
+    //   next: (accounts: BankAccount[]) => {
     //     this.accounts = accounts;
     //   },
     //   error: (error) => {
     //     console.error("Error while fetching accounts: ", error);
     //   }
     // });
+    if(this.paymentService.getSelectedBankAccount() !== undefined){
+      this.selectedAccount = this.paymentService.getSelectedBankAccount();
+      this.paymentService.setSelectedBankAccount(undefined);
+      console.log("Selected account: ", this.selectedAccount);
+    }
   }
 
   updateAmount(event: Event) {

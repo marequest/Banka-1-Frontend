@@ -75,4 +75,28 @@ export class BankAccountService {
     const url = `/assets/mocked_banking_data/recipients-mocked.json`;
     return this.httpClient.get<Recipient[]>(url);
   }
+
+  //Add recipient 
+  addRecipient(fistName: string, lastName: string, bankAccountNumber: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.httpClient.post(environment.baseUrl + '/recipients/add', {
+      firstName: fistName,
+      lastName: lastName,
+      bankAccountNumber: bankAccountNumber
+    },{
+      headers: headers
+    });
+  }
+
+  editRecipient(recipient: Recipient): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.httpClient.put(environment.baseUrl + '/recipients/edit', recipient,{
+      headers: headers
+    });
+  }
+
 }

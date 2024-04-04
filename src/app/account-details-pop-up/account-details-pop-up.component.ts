@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeAccountNamePopUpComponent } from '../change-account-name-pop-up/change-account-name-pop-up.component';
+import { Router } from '@angular/router';
+import { PaymentService } from '../service/payment.service';
 
 
 @Component({
@@ -20,7 +22,9 @@ export class AccountDetailsPopUpComponent {
   accept data (the user object) passed into the dialog. Import MAT_DIALOG_DATA and MatDialogRef to facilitate this.*/
   constructor(
     public dialogRef: MatDialogRef<AccountDetailsPopUpComponent>,
-    @Inject(MAT_DIALOG_DATA) public bankAccount: BankAccount, private dialog: MatDialog) {}
+    @Inject(MAT_DIALOG_DATA) public bankAccount: BankAccount, private dialog: MatDialog,
+    private router: Router,
+    private paymentService: PaymentService) {}
 
     exit(){
       this.dialogRef.close('Dialog closed by exit');
@@ -43,6 +47,9 @@ export class AccountDetailsPopUpComponent {
     }
 
     newPayment(){
-      console.log("New payment" + this.bankAccount.accountNumber);
+      console.log("New payment" + this.bankAccount);
+      this.paymentService.setSelectedBankAccount(this.bankAccount);
+      this.router.navigate(['/payment']);
+      this.dialogRef.close();
     }
 }
