@@ -6,11 +6,14 @@ import { User, UserToEdit } from '../model/model';
 import { UserService } from '../service/user.service';
 import { PopupService } from '../service/popup.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import {FieldComponentModule} from "../welcome/redesign/FieldCompentn";
+import {OutlineOrangeButtonModule} from "../welcome/redesign/OutlineOrangeButton";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 
 @Component({
   selector: 'app-update-user',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, FieldComponentModule, OutlineOrangeButtonModule, OrangeButtonModule],
   templateUrl: './update-user.component.html',
   styleUrl: './update-user.component.css'
 })

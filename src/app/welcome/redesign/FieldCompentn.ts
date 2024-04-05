@@ -8,7 +8,7 @@ import {TableComponent} from "./TableComponent";
   template: `
     <div class="form-group">
       <label class="fieldInput" for="fieldInput">{{ labelText }}</label>
-      <input class="form-control" type="text" id="fieldInput" [(ngModel)]="value" name="fieldInput"
+      <input class="form-control" [type]="isPassword ? 'password' : 'text'" id="fieldInput" [(ngModel)]="value" name="fieldInput"
         [pattern]="pattern" required #fieldModel="ngModel"
         [ngClass]="{ 'invalid-input': fieldModel.invalid && (fieldModel.dirty || fieldModel.touched) }">
       <ng-container *ngIf="fieldModel.invalid && (fieldModel.dirty || fieldModel.touched)">
@@ -56,6 +56,7 @@ export class FieldComponent implements ControlValueAccessor {
   @Input() pattern: string = "";
   @Input() requiredErrorText: string = 'This field is required.';
   @Input() patternErrorText: string = 'Invalid format.';
+  @Input() isPassword: boolean = false;
 
   value: string = "";
   onChange: (value: any) => void = () => {};

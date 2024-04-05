@@ -30,7 +30,7 @@
     .close-icon {
       cursor: pointer;
       font-size: 20px;
-      color: #282323;
+      color: var(--banka-white);
     }
 
     .form-container {
