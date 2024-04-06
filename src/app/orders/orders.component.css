@@ -8,8 +8,16 @@ h1 {
   color: #FFB72B;
   font-size: 36px;
   font-weight: 700;
-  padding-top: 60px;
-  margin-left: 16px;
+  padding-top: 40px;
+  margin-left: 40px;
+}
+.limit-info {
+  position: absolute; /* Positioning it relative to the nearest positioned ancestor (or the body) */
+  top: 0; /* At the top */
+  right: 0; /* At the right */
+  text-align: right; /* Align text to the right */
+  color: orange; /* Text color orange */
+  padding: 20px; /* Add some padding */
 }
 
 .central-window {

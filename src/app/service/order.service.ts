@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {firstValueFrom} from "rxjs";
-import {environmentMarket} from "../../../environment";
+import {firstValueFrom, Observable} from "rxjs";
+import {environment, environmentMarket} from "../../../environment";
 import {StockListing} from "./stock.service";
-import {Order} from "../model/model";
+import {BankAccountDto, Order, User} from "../model/model";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,32 @@ import {Order} from "../model/model";
 export class OrderService {
 
   constructor(private http: HttpClient) { }
+
+  fetchAccountData(id: string): Observable<number> {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+    return this.http.get<BankAccountDto[]>(environment.baseUrl + '/account/getCustomer/' + id, httpOptions).pipe(
+      map(accounts => accounts.reduce((sum, account) => sum + account.availableBalance, 0))
+    );
+  }
+
+  fetchUserForLimit(id: string): Observable<User> {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+    return this.http.get<User>(environment.baseUrl + '/employee/' + id, httpOptions);
+  }
+
+
 
   async getOrderHistory() {
     const jwt = sessionStorage.getItem("jwt");

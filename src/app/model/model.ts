@@ -11,8 +11,14 @@ export interface User{
     position: string;
     phoneNumber: string;
     active: boolean;
+
+    limitNow: number;
+    orderlimit: number;
+    requireApproval: boolean;
+
     permissions:Permissions[]
 }
+
 export interface Permissions{
     permission_id?:number;
     name:string;
