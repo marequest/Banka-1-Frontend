@@ -5,6 +5,8 @@ import {OrderService} from "../service/order.service";
 import {FormsModule} from "@angular/forms";
 import {z} from "zod";
 import {HttpClient} from "@angular/common/http";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
+import {WhiteTextFieldModule} from "../welcome/redesign/WhiteTextField";
 
 @Component({
   selector: 'app-orders',
@@ -12,7 +14,9 @@ import {HttpClient} from "@angular/common/http";
   imports: [
     NgIf,
     NgForOf,
-    FormsModule
+    FormsModule,
+    OrangeButtonModule,
+    WhiteTextFieldModule
   ],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'

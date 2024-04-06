@@ -248,3 +248,54 @@ th:nth-last-child(1) {
     display: block;
   }
 }
+.popup-buttons {
+  display: flex; /* Enables Flexbox */
+  justify-content: space-around; /* Distributes space evenly around the items */
+}
+
+.button-wrapper {
+  flex: 0.5; /* Each child will take up an equal amount of space */
+  max-width: 13vw;
+  padding: 5px; /* Optional: Adds some space between the buttons */
+}
+
+.popup-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content horizontally */
+  padding: 20px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  width: 80%; /* Set a fixed width for all rows to align them */
+  margin-bottom: 10px; /* Add some space between rows */
+}
+
+.input-row label {
+  color: white; /* Set label text color to white */
+  width: 150px; /* Set a fixed width for all labels to ensure alignment */
+}
+
+white-text-field, input {
+  flex-grow: 1; /* Allow input fields to take up remaining space */
+  /*max-width: 30vh;*/
+  padding: 8px;
+}
+
+.input-row input[type="checkbox"] {
+  margin-left: 150px; /* Align checkboxes with other input fields */
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between; /* Evenly distribute space around buttons */
+  width: 80%; /* Match the width of the input rows for alignment */
+  margin-top: 20px; /* Add some space above the button row */
+}
+
+.button-wrapper {
+  flex-grow: 1; /* Allow button wrappers to grow and fill the space */
+  text-align: center; /* Center the buttons within their wrappers */
+}
