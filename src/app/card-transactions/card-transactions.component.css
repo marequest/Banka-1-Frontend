@@ -12,6 +12,8 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 20px;
+  padding-left: 250px;
+  padding-top:3%;
 }
 
 .title {

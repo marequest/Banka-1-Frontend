@@ -1,9 +1,10 @@
 .content {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  /* margin-left: 10%;
-  margin-right: 10%; */
+  margin: auto; 
+  /*Kada se uradi i da je navBar responsive ovaj padding-left moze biti oblika:  padding-left: 25%;  na primer*/
+  padding-left: 350px;
+  padding-top:3%;
   font-family: "Roboto", sans-serif;
 }
 

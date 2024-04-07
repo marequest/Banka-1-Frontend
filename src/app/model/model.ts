@@ -13,6 +13,17 @@ export interface User{
     active: boolean;
     permissions:Permissions[]
 }
+
+export enum StatusRequest{
+  APPROVED="APPROVED",
+  DENIED="DENIED"
+}
+
+export interface DecideOrderResponse{
+  success:boolean,
+  message:string
+}
+
 export interface Permissions{
     permission_id?:number;
     name:string;
@@ -240,6 +251,7 @@ export interface CreateBankAccountRequest{
 
 
 export interface Order {
+  listingId:number,
   security: string,
   transaction: string,
   symbol: string,
@@ -248,6 +260,33 @@ export interface Order {
   status: string,
   lastModified: number
 }
+
+export interface OrderDto{
+  orderId:number,
+  listingType:string,
+  orderType:OrderType,
+  symbol:string,
+  amount:number,
+  price: number,
+  status: string,
+  lastModified: number
+}
+
+export interface SellingRequest{
+  amount:number,
+  limitValue:number,
+  stopValue:number,
+  allOrNone:boolean,
+  margin:boolean
+}
+
+export enum OrderType{
+  BUY="BUY",
+  SELL="SELL"
+}
+
+
+
 
 export enum LoanType {
   PERSONAL = "PERSONAL",

@@ -1,14 +1,16 @@
+<div class="container">
 <div class="page">
   <h1>Orders</h1>
   <div class="central-window">
     <div class="tabs-menu">
       <ul>
         <li class="{{selectedTab === 'order-history' ? 'active-tab' : ''}}" (click)="setSelectedTab('order-history')" *ngIf="isAdmin || isEmployee">Order history</li>
-        <li class="{{selectedTab === 'requests' ? 'active-tab' : ''}}" (click)="setSelectedTab('requests')" *ngIf="isAdmin">Requests</li>
+        <li class="{{selectedTab === 'requests' ? 'active-tab' : ''}}" (click)="setSelectedTab('requests')" *ngIf="isAdmin||isSupervizor">Requests</li>
         <li class="{{selectedTab === 'securities' ? 'active-tab' : ''}}" (click)="setSelectedTab('securities')" *ngIf="isAdmin || isEmployee">Securities</li>
       </ul>
       <hr>
     </div>
+  <!-- </div> -->
     <div class="history-tab" *ngIf="selectedTab === 'order-history'">
       <table>
         <thead>
@@ -24,8 +26,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let order of orderHistory">
-            <td>{{order.security}}</td>
-            <td>{{order.transaction}}</td>
+            <td>{{order.listingType}}</td>
+            <td>{{order.orderType}}</td>
             <td>{{order.symbol}}</td>
             <td>{{order.amount}}</td>
             <td>{{order.price}}</td>
@@ -52,8 +54,8 @@
         </thead>
         <tbody>
         <tr *ngFor="let order of orderRequests">
-          <td>{{order.security}}</td>
-          <td>{{order.transaction}}</td>
+          <td>{{order.listingType}}</td>
+          <td>{{order.orderType}}</td>
           <td>{{order.symbol}}</td>
           <td>{{order.amount}}</td>
           <td>{{order.price}}</td>
@@ -84,7 +86,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let order of orderSecurities">
-          <td>{{order.security}}</td>
+          <td>{{order.listingType}}</td>
           <td>{{order.symbol}}</td>
           <td>{{order.amount}}</td>
           <td>{{order.price}}</td>
@@ -98,7 +100,6 @@
         </tbody>
       </table>
     </div>
-  </div>
   <div class="popup-bg" *ngIf="popupOpen">
     <div class="popup">
       <div class="popup-header">
@@ -139,5 +140,6 @@
       </div>
 
     </div>
+  </div>  
   </div>
-</div>
+</div> 
