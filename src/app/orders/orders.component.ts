@@ -7,6 +7,7 @@ import {z} from "zod";
 import {HttpClient} from "@angular/common/http";
 import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 import {WhiteTextFieldModule} from "../welcome/redesign/WhiteTextField";
+import {PopupService} from "../service/popup.service";
 
 @Component({
   selector: 'app-orders',
@@ -49,7 +50,9 @@ export class OrdersComponent {
     margin: z.boolean()
   })
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, popupService: PopupService) {
+    // TODO Test za popup koji ide na buy dugme, izbrisati
+    popupService.openBuyPopup();
   }
 
   setSelectedTab(tab: "order-history" | "requests" | "securities") {

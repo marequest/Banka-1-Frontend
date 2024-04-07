@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom, Observable} from "rxjs";
 import {environment, environmentMarket} from "../../../environment";
 import {StockListing} from "./stock.service";
-import {BankAccountDto, Order, User} from "../model/model";
+import {BankAccountDto, CreateOrderRequest, ListingType, Order, OrderType, User} from "../model/model";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -112,6 +112,33 @@ export class OrderService {
 
   denyOrder() {
 
+  }
+  async buyOrder(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: string, limitValue: string, stopValue: string, allOrNone: boolean) {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+
+    const orderRequest: CreateOrderRequest = {
+      orderType: orderType,
+      listingId: listingId,
+      listingType: listingType,
+      contractSize: contractSize,
+      limitValue: limitValue,
+      stopValue: stopValue,
+      allOrNone: allOrNone
+    };
+
+    try {
+      const response = await this.http.post<boolean>(environment.baseUrl + '/orders', orderRequest, httpOptions).toPromise();
+      return response;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   }
 
 }

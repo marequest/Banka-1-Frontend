@@ -255,6 +255,27 @@ export interface Order {
   lastModified: number
 }
 
+export interface CreateOrderRequest {
+  orderType: OrderType;
+  listingId: string;
+  listingType: ListingType;
+  contractSize: string;
+  limitValue: string;
+  stopValue: string;
+  allOrNone: boolean;
+}
+
+export enum OrderType {
+  BUY = "BUY",
+  SELL = "SELL"
+}
+
+export enum ListingType {
+  STOCK = "STOCK",
+  FUTURE = "FUTURE",
+  FOREX = "FOREX"
+}
+
 export enum LoanType {
   PERSONAL = "PERSONAL",
   MORTGAGE = "MORTGAGE",
