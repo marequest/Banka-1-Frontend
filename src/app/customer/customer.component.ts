@@ -1,19 +1,47 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Customer, User } from '../model/model';
+import { Customer, CustomerTable, User } from '../model/model';
 import { CustomerService } from '../service/customer.service';
 import { Router } from '@angular/router';
 import { PopupService } from '../service/popup.service';
+import { TableComponentModule } from "../welcome/redesign/TableComponent";
 
 @Component({
-  selector: 'app-customer',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './customer.component.html',
-  styleUrl: './customer.component.css'
+    selector: 'app-customer',
+    standalone: true,
+    templateUrl: './customer.component.html',
+    styleUrl: './customer.component.css',
+    imports: [CommonModule, FormsModule, TableComponentModule]
 })
 export class CustomerComponent implements OnInit{
+
+  customersTable: CustomerTable[] = [
+    {
+      name: "Doe",
+      email: "john.doe@example.com",
+      jmbg: "1234567890123",
+      phoneNumber: "+1234567890",
+      gender: "Male",
+      address: "123 Main Street"
+    },
+    {
+      name: "Smith",
+      email: "jane.smith@example.com",
+      jmbg: "9876543210987",
+      phoneNumber: "+1987654321",
+      gender: "Female",
+      address: "456 Elm Street"
+    },
+    {
+      name: "Johnson",
+      email: "alice.johnson@example.com",
+      jmbg: "5555555555555",
+      phoneNumber: "+1555555555",
+      gender: "Female",
+      address: "789 Oak Avenue"
+    }
+  ]
 
   customers: Customer[] = [
     {
@@ -77,8 +105,13 @@ export class CustomerComponent implements OnInit{
     this.popup.openAddCustomerPopup();
   }
 
-  viewCustomer(customer: Customer) {
-    this.customerService.setSelectedCustomer(customer);
+  viewCustomer(customer: CustomerTable) {
+    const cust = this.customers.find((c1) => c1.email === customer.email);
+
+    if(!cust) return;
+    
+    this.customerService.setSelectedCustomer(cust);
+
     this.router.navigate(['/customer/view']);
   }
 
