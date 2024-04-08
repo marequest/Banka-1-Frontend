@@ -10,6 +10,8 @@ import { AccountDetailsPopUpComponent } from '../account-details-pop-up/account-
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentService } from '../service/payment.service';
 import { CardDetailsPopupComponent } from '../card-details-popup/card-details-popup.component';
+import { ExchangeDetailsPopUpComponent } from '../exchange-details-pop-up/exchange-details-pop-up.component';
+import { PaymentDetailsPopUpComponent } from '../payment-details-pop-up/payment-details-pop-up.component';
 
 
 
@@ -151,5 +153,33 @@ export class CardsComponent {
       data: { card: this.displayedCard }
     });
 
+  }
+
+  paymentInfoPopUp(idx: number){
+    const dialogRef = this.dialog.open(PaymentDetailsPopUpComponent, {
+      width: '50vw',
+      height: 'auto',
+      data: this.displayedCardPayments[idx], // Passing the displayed bank account
+      disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('The dialog was closed');
+    });
+  }
+
+  exchangeInfoPopUp(idx: number){
+    const dialogRef = this.dialog.open(ExchangeDetailsPopUpComponent, {
+      width: '50vw',
+      height: 'auto',
+      data: this.displayedCardExchanges[idx], // Passing the displayed bank account
+      disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('The dialog was closed');
+    });
   }
 }

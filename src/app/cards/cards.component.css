@@ -288,6 +288,10 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     width: 100%;
 }
 
+tr{
+  cursor: pointer;
+}
+
 @media (min-width: 300px) {
     .leftSliderButton {
       font-size: smaller; /* Adjust for smaller screens */
