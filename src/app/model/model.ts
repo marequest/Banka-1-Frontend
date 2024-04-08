@@ -46,11 +46,49 @@ export interface Transaction {
   amount: number;
 }
 
+export enum TransactionStatus {
+  PROCESSING = 'PROCESSING',
+  COMPLETE = 'COMPLETE',
+  DENIED = 'DENIED'
+}
+
+export interface Payment {
+  id: number;
+  senderAccountOwnerName?: string;
+  senderAccountNumber?: string;
+  recipientAccountOwnerName?: string;
+  recipientAccountNumber?: string;
+  amount?: number;
+  paymentCode?: string;
+  model?: string;
+  referenceNumber?: string
+  status?: TransactionStatus;
+  commissionFee?: number;
+  dateOfPayment?: number;
+  channel?: string;
+}
+
+// export interface Exchange {
+//   recepientBankAccount: string;
+//   date: Date;
+//   status: string;
+//   amount: number;
+// }
+
 export interface Exchange {
-  recepientBankAccount: string;
-  date: Date;
-  status: string;
-  amount: number;
+  id: number;
+  senderAccountOwnerName?: string;
+  senderAccountNumber?: string;
+  recipientAccountOwnerName?: string;
+  recipientAccountNumber?: string;
+  amount?: number;
+  paymentCode?: string;
+  model?: string;
+  referenceNumber?: string
+  status?: TransactionStatus;
+  commissionFee?: number;
+  dateOfPayment?: number;
+  channel?: string;
 }
 
 export interface Recipient{

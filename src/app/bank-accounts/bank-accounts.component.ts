@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User, BankAccount, Transaction, Exchange } from '../model/model';
+import { User, BankAccount, Exchange, Payment } from '../model/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export class BankAccountsComponent {
   //If userBankAcc is empty, index will be -1
   displayedBankAccIdx: number = -1;
   displayedBankAcc: BankAccount = {}
-  displayedBankAccTransactions: Transaction[] = [];
+  displayedBankAccPayments: Payment[] = [];
   displayedBankAccExchanges:Exchange[] = [];
 
   public userBankAccounts: BankAccount[] = [];
@@ -51,9 +51,9 @@ export class BankAccountsComponent {
     this.loadUsersBankAccounts();
   }
 
-  // REPLACE MOCKED WITH getUsersBankAccounts - see the function it is in same file as getUsersBankAccountsMocked
+  // TODO: REPLACE MOCKED WITH getUsersBankAccounts - see the function it is in same file as getUsersBankAccountsMocked
   loadUsersBankAccounts() {
-    this.bankAccountService.getUsersBankAccounts(this.loggedUserId).subscribe(
+    this.bankAccountService.getUsersBankAccountsMocked(this.loggedUserId).subscribe(
       (usersBankAccountsFromDB: BankAccount[]) => {
         this.userBankAccounts = usersBankAccountsFromDB;
 
@@ -62,11 +62,11 @@ export class BankAccountsComponent {
         {
           this.displayedBankAccIdx = 0;
           this.displayedBankAcc = usersBankAccountsFromDB[this.displayedBankAccIdx];
-          this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+          this.loadPaymentsForBankAcount(this.displayedBankAcc.accountNumber!);
           this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
         }
 
-        console.log('User bank acc from db mocked');
+        console.log('User bank acc from db');
         console.log(this.userBankAccounts);
       },
       (error: HttpErrorResponse) => {
@@ -75,26 +75,29 @@ export class BankAccountsComponent {
     );
   }
 
-  loadTransactionsForBankAcount(accountNumber: string) {
-    this.bankAccountService.getTransactionsForAccount(accountNumber).subscribe(
-      (bankAccountTransactionsFromDB: Transaction[]) => {
-        this.displayedBankAccTransactions = bankAccountTransactionsFromDB;
+  // TODO: REPLACE MOCKED WITH getPaymentsForAccount - see the function it is in same file as getPaymentsForAccountMocked
+  loadPaymentsForBankAcount(accountNumber: string) {
+    this.bankAccountService.getPaymentsForAccountMocked(accountNumber).subscribe(
+      (bankAccountTransactionsFromDB: Payment[]) => {
+        this.displayedBankAccPayments = bankAccountTransactionsFromDB;
 
-        console.log('Bank acc transactions from db mocked');
-        console.log(this.displayedBankAccTransactions);
+        console.log('Bank acc payments from db');
+        console.log(this.displayedBankAccPayments);
       },
       (error: HttpErrorResponse) => {
-        console.error('Error loading users:', error);
+        console.error('Error loading payments:', error);
       }
     );
   }
 
+  // TODO: REPLACE MOCKED WITH getExchangesForAccount - see the function it is in same file as getExchangesForAccountMocked
   loadExchangesForBankAcount(accountNumber: string) {
-    this.bankAccountService.getExchangesForAccount(accountNumber).subscribe(
+    this.bankAccountService.getExchangesForAccountMocked(accountNumber).subscribe(
       (bankAccountExchangesFromDB: Exchange[]) => {
         this.displayedBankAccExchanges = bankAccountExchangesFromDB;
+        if(bankAccountExchangesFromDB.length == 0) this.displayedBankAccExchanges = [];
 
-        console.log('Bank acc exchanges from db mocked');
+        console.log('Bank acc exchanges from db');
         console.log(this.displayedBankAccExchanges);
       },
       (error: HttpErrorResponse) => {
@@ -110,7 +113,7 @@ export class BankAccountsComponent {
     {
       this.displayedBankAccIdx++;
       this.displayedBankAcc = this.userBankAccounts[this.displayedBankAccIdx];
-      this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+      this.loadPaymentsForBankAcount(this.displayedBankAcc.accountNumber!);
       this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
     }
   }
@@ -122,7 +125,7 @@ export class BankAccountsComponent {
     {
       this.displayedBankAccIdx--;
       this.displayedBankAcc = this.userBankAccounts[this.displayedBankAccIdx];
-      this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+      this.loadPaymentsForBankAcount(this.displayedBankAcc.accountNumber!);
       this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
     }
   }
