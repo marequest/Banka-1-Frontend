@@ -1,4 +1,8 @@
 <div class="page">
+  <div class="limit-info">
+    <h2>Limit: {{limitValue}}</h2>
+    <h2>Available: {{ totalAvailableBalance }}</h2>
+  </div>
   <h1>Orders</h1>
   <div class="central-window">
     <div class="tabs-menu">
@@ -99,6 +103,7 @@
       </table>
     </div>
   </div>
+
   <div class="popup-bg" *ngIf="popupOpen">
     <div class="popup">
       <div class="popup-header">
@@ -109,17 +114,20 @@
       <div class="popup-body">
         <div class="input-row">
           <label>Amount:</label>
-          <input type="number" [(ngModel)]="amount" min="0" placeholder="value...">
+          <white-text-field [(text)]="amount"></white-text-field>
+          <!--          <input type="number" [(ngModel)]="amount" min="0" placeholder="value...">-->
         </div>
 
         <div class="input-row">
           <label>Limit value:</label>
-          <input type="number" min="0" placeholder="value..." [(ngModel)]="limitValue">
+          <white-text-field [(text)]="limitValue"></white-text-field>
+          <!--          <input type="number" min="0" placeholder="value..." [(ngModel)]="limitValue">-->
         </div>
 
         <div class="input-row">
           <label>Stop value:</label>
-          <input type="number" min="0" placeholder="value..." [(ngModel)]="stopValue">
+          <white-text-field [(text)]="stopValue"></white-text-field>
+<!--          <input type="number" min="0" placeholder="value..." [(ngModel)]="stopValue">-->
         </div>
 
         <div class="input-row">
@@ -133,9 +141,15 @@
         </div>
 
         <div class="popup-buttons">
-          <button class="button-secondary" (click)="closeSellingMenu()">Cancel</button>
-          <button class="button-primary" (click)="sellOrder()">Sell</button>
+          <div class="button-wrapper">
+            <orange-button [buttonName]="'Cancel'" (click)="closeSellingMenu()"></orange-button>
+          </div>
+          <div class="button-wrapper">
+            <orange-button [buttonName]="'Sell'" (click)="sellOrder()"></orange-button>
+          </div>
         </div>
+<!--          <button class="button-secondary" (click)="closeSellingMenu()">Cancel</button>-->
+<!--          <button class="button-primary" (click)="sellOrder()">Sell</button>-->
       </div>
 
     </div>

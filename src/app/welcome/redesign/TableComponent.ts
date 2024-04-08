@@ -9,6 +9,7 @@ import { Component, Input } from '@angular/core';
       <thead>
       <tr>
         <th *ngFor="let header of headersArray">{{ header }}</th>
+        <th *ngIf="showAnotherColumn"></th> <!-- New column header -->
         <th *ngIf="showActions">Actions</th>
       </tr>
       </thead>
@@ -16,6 +17,9 @@ import { Component, Input } from '@angular/core';
       <tr *ngFor="let row of dataArray; let i = index">
         <td *ngFor="let key of objectKeys(row)">
           {{ row[key] }}
+        </td>
+        <td *ngIf="showAnotherColumn">
+          <ng-container *ngTemplateOutlet="anotherColumnTemplate; context: {$implicit: row, index: i}"></ng-container>
         </td>
         <td *ngIf="showActions">
           <ng-container *ngTemplateOutlet="customTemplate; context: {$implicit: row, index: i}"></ng-container>
@@ -55,13 +59,19 @@ import { Component, Input } from '@angular/core';
 export class TableComponent {
   @Input() headersArray: string[] = [];
   @Input() dataArray: any[] = [];
+  @Input() showAnotherColumn: boolean = false;
   @Input() showActions: boolean = false;
-  @Output() customButtonClick = new EventEmitter<{ row: any, index: number }>();
 
-  @ContentChild(TemplateRef) customTemplate!: TemplateRef<any>;
+  @ContentChild('actionsColumn', { read: TemplateRef}) customTemplate!: TemplateRef<any>;
+  @ContentChild('anotherColumn', { read: TemplateRef }) anotherColumnTemplate!: TemplateRef<any>; // New template reference for the additional column content
 
   // Helper function to get keys from the row object
-  objectKeys = Object.keys;
+  // objectKeys = Object.keys;
+
+  objectKeys(row: any): string[] {
+    // Exclude 'originalUser' from the keys used for rendering table cells
+    return Object.keys(row).filter(key => key !== 'originalUser' && key !== 'originalLimit');
+  }
 }
 @NgModule({
   declarations: [TableComponent],

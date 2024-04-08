@@ -11,8 +11,21 @@ export interface User{
     position: string;
     phoneNumber: string;
     active: boolean;
+
+    limitNow: number;
+    orderlimit: number;
+    requireApproval: boolean;
+
     permissions:Permissions[]
 }
+
+export interface Limit{
+  email?: string;
+  limit?: number;
+  usedLimit?: number;
+  needApprove?: boolean;
+}
+
 export interface Permissions{
     permission_id?:number;
     name:string;
@@ -285,6 +298,27 @@ export interface Order {
   price: number,
   status: string,
   lastModified: number
+}
+
+export interface CreateOrderRequest {
+  orderType: OrderType;
+  listingId: string;
+  listingType: ListingType;
+  contractSize: string;
+  limitValue: string;
+  stopValue: string;
+  allOrNone: boolean;
+}
+
+export enum OrderType {
+  BUY = "BUY",
+  SELL = "SELL"
+}
+
+export enum ListingType {
+  STOCK = "STOCK",
+  FUTURE = "FUTURE",
+  FOREX = "FOREX"
 }
 
 export enum LoanType {
