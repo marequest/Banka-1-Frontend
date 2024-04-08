@@ -19,6 +19,13 @@ export interface User{
     permissions:Permissions[]
 }
 
+export interface Limit{
+  email?: string;
+  limit?: number;
+  usedLimit?: number;
+  needApprove?: boolean;
+}
+
 export interface Permissions{
     permission_id?:number;
     name:string;

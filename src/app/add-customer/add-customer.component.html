@@ -8,23 +8,22 @@
     <div class="popup-body">
         <div class="form-container">
             <div class="left-section">
-<!--              <div class="form-group">-->
-<!--                  <label for="email">Email:</label>-->
-<!--                  <input type="text" id="email" [(ngModel)]="addCustomerData.email" name="email" required #emailModel="ngModel" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" [ngClass]="{ 'invalid-input': emailModel.invalid && (emailModel.dirty || emailModel.touched) }"/>-->
-<!--                  <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="error-message">-->
-<!--                  <div *ngIf="emailModel.hasError('required')" style="color: red;">Email is required.</div>-->
-<!--                  <div *ngIf="emailModel.hasError('pattern')" style="color: red;">Invalid email format.</div>-->
-<!--                   </div>-->
-<!--              </div>-->
               <div class="form-group">
-                <custom-field
-                  [labelText]="'Email'"
-                  [(ngModel)]="addCustomerData.email"
-                  [pattern]="'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'"
-                  [requiredErrorText]="'Email is required.'"
-                  [patternErrorText]="'Invalid email format.'">
-                </custom-field>
+                  <label for="email">Email:</label>
+                  <input type="text" id="email" [(ngModel)]="addCustomerData.email" name="email" required #emailModel="ngModel" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" [ngClass]="{ 'invalid-input': emailModel.invalid && (emailModel.dirty || emailModel.touched) }"/>
+                  <div *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)" class="error-message">
+                  <div *ngIf="emailModel.hasError('required')" style="color: red;">Email is required.</div>
+                  <div *ngIf="emailModel.hasError('pattern')" style="color: red;">Invalid email format.</div>
+                   </div>
               </div>
+<!--              <div class="form-group">-->
+<!--                <custom-field-->
+<!--                  [labelText]="'Email'"-->
+<!--                  [(ngModel)]="addCustomerData.email"-->
+<!--                  [requiredErrorText]="'Email is required.'"-->
+<!--                  [patternErrorText]="'Invalid email format.'">-->
+<!--                </custom-field>-->
+<!--              </div>-->
 <!--              <div class="form-group">-->
 <!--                  <label for="name">Name:</label>-->
 <!--                  <input type="text" id="name" [(ngModel)]="addCustomerData.firstName" name="name" required pattern="[a-zA-Z]+" required #nameModel="ngModel" [ngClass]="{ 'invalid-input': nameModel.invalid && (nameModel.dirty || nameModel.touched) }" />-->
