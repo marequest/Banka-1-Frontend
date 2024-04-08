@@ -357,14 +357,15 @@ export interface Loan {
 
 
 export interface CreatePaymentRequest{
-  recipientName: string;
-  recipientAccountNumber: string;
-  amount: number;
-  referenceNumber: string;
-  paymentCode: number;
-  purposeOfPayment: string;
-  senderAccountNumber: string;
-  activationCode: string;
+    singleUseCode?: string; //verifikacija
+    senderAccountNumber?: string;
+    recipientName?: string;
+    recipientAccountNumber?: string;
+    amount?: number
+    paymentCode?: string;
+    model?: string;
+    referenceNumber?: string;
+    paymentPurpose?: string;
 }
 
 

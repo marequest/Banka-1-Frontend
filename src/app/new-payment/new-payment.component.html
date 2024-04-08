@@ -68,8 +68,8 @@
                     </div>
                     <div class="mt-4">
                         <div class="form-group">
-                            <label for="referenceNumber">Reference number:</label>
-                            <input type="text" [(ngModel)]="payment.referenceNumber"  id="referenceNumber" name="referenceNumber" required pattern="^\d+(\.\d+)?$"  />
+                            <label for="referenceNumber">Sender account number:</label>
+                            <input type="text" [(ngModel)]="payment.senderAccountNumber"  id="referenceNumber" name="referenceNumber" required pattern="^\d+(\.\d+)?$"  />
                             <!-- <div *ngIf="amountModel.invalid && (amountModel.dirty || amountModel.touched)" class="error-message">
                                 <div *ngIf="amountModel.hasError('required')" style="color: red;">Amount is required.</div>
                                 <div *ngIf="amountModel.hasError('pattern')" style="color: red;">Invalid amount format (must be a number).</div>
@@ -91,7 +91,7 @@
                     <div class="mt-4">
                         <div class="form-group">
                             <label for="paymentPurpose">Purpose of payment:</label>
-                            <input type="text" [(ngModel)]="payment.purposeOfPayment"  id="paymentPurpose" name="paymentPurpose" required pattern="^\d+(\.\d+)?$"  />
+                            <input type="text" [(ngModel)]="payment.paymentPurpose"  id="paymentPurpose" name="paymentPurpose" required pattern="^\d+(\.\d+)?$"  />
                             <!-- <div *ngIf="amountModel.invalid && (amountModel.dirty || amountModel.touched)" class="error-message">
                                 <div *ngIf="amountModel.hasError('required')" style="color: red;">Amount is required.</div>
                                 <div *ngIf="amountModel.hasError('pattern')" style="color: red;">Invalid amount format (must be a number).</div>
