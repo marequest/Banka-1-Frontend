@@ -2,7 +2,7 @@ import { Component, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'orange-button',
+  selector: 'outline-orange-button',
   template: `
     <button type="button" class="btn-custom">{{ buttonName }}</button>
   `,
@@ -10,9 +10,9 @@ import { CommonModule } from '@angular/common';
     .btn-custom {
       font-family: 'Jura', sans-serif;
       width: 100%;
-      background-color: var(--banka-orange); /* Use your specific orange color */
+      background-color: transparent; /* Use your specific orange color */
       color: var(--banka-white); /* Black text color */
-      border: 1px solid #000; /* Thin black border */
+      border: 1px solid var(--banka-orange); /* Thin black border */
       padding: 10px 20px; /* Adjust padding to your preference */
       font-size: 18px; /* Adjust font size to your preference */
       border-radius: 5px; /* Rounded corners */
@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
     }
   `]
 })
-export class OrangeButton {
+export class OutlineOrangeButton {
   @Input()
   get buttonName(): string { return this._name; }
   set buttonName(name: string) {
@@ -36,8 +36,8 @@ export class OrangeButton {
 }
 
 @NgModule({
-  declarations: [OrangeButton],
+  declarations: [OutlineOrangeButton],
   imports: [CommonModule],
-  exports: [OrangeButton],
+  exports: [OutlineOrangeButton],
 })
-export class OrangeButtonModule {}
+export class OutlineOrangeButtonModule {}
