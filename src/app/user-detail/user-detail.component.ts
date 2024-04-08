@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {BankAccountService} from "../service/bank-account.service";
 import {BankAccount, Card, Customer} from "../model/model";
 import {ActivatedRoute} from "@angular/router";
@@ -85,12 +85,24 @@ export class UserDetailComponent implements OnInit {
               isActive = "active"
             else isActive = "inactive"
 
+
+            var creationDate = new Date();
+            var expDate = new Date();
+
+            if(card.expirationDate != undefined && card.creationDate != undefined){
+              creationDate = new Date(card.creationDate * 1000);
+              expDate = new Date(card.expirationDate * 1000);
+            }
+
+            const formattedCrDate = this.formatDate(creationDate);
+            const formattedExpDate = this.formatDate(expDate);
+
             const obj = {
               'Card number': card.cardNumber,
               'Type': card.cardType,
               'Name': card.cardName,
-              'Creation Date': card.creationDate,
-              'Expiration Date': card.expirationDate,
+              'Creation Date': formattedCrDate,
+              'Expiration Date': formattedExpDate,
               'Account number': card.accountNumber,
               'CVV': card.cvv,
               'Limit': card.cardLimit,
@@ -98,7 +110,6 @@ export class UserDetailComponent implements OnInit {
             }
             this.cards.push(obj);
           })
-          // this.cards = response;
         }
       )
     }
@@ -110,6 +121,19 @@ export class UserDetailComponent implements OnInit {
 
   selectTab(tab: string){
     this.selectedTab = tab;
+  }
+
+  formatDate(date: Date): string {
+    const day: number = date.getDate();
+    const month: number = date.getMonth() + 1; // Months are zero-based, so we add 1
+    const year: number = date.getFullYear();
+
+    // Ensure leading zeros for day and month if needed
+    const formattedDay: string = day < 10 ? '0' + day : day.toString();
+    const formattedMonth: string = month < 10 ? '0' + month : month.toString();
+
+    // Return the formatted date string in the format "dd-MM-yyyy"
+    return formattedDay + '-' + formattedMonth + '-' + year;
   }
 
 }
