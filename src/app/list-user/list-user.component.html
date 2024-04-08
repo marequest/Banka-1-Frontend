@@ -38,9 +38,9 @@
                 <option value="Admin">Admin</option>
               </select>
             </div>
-            <transparent-text-field [(text)]="email" [fieldName]="'Search by email'"></transparent-text-field>
-            <transparent-text-field [(text)]="firstName" [fieldName]="'By name'"></transparent-text-field>
-            <transparent-text-field [(text)]="lastName" [fieldName]="'By surname'"></transparent-text-field>
+            <transparent-text-field class="searchTF" [(text)]="email" [fieldName]="'Search by email'"></transparent-text-field>
+            <transparent-text-field class="searchTF" [(text)]="firstName" [fieldName]="'By name'"></transparent-text-field>
+            <transparent-text-field class="searchTF" [(text)]="lastName" [fieldName]="'By surname'"></transparent-text-field>
 
             <!--            <div class="filter-input">-->
 <!--              <input-->
@@ -101,28 +101,30 @@
           </div>
         </div>
 
-        <app-dynamic-table [headersArray]="headersPermissions" [dataArray]="users | transformPermissions"
-                           [showAnotherColumn]="true" [showActions]="true">
-          <ng-template #anotherColumn let-row>
-            <div id="helperDiv">
-              <div *ngFor="let permission of row.originalUser.permissions; let i = index" class="permission-element">
-                <span>⠀</span>
-                {{ permission.name }}
-                <span *ngIf="hasPermission" class="close-icon" (click)="removePermission(row.originalUser, i)">✖ </span>
-                <span>⠀</span>
+        <div class="security-table-wrapper">
+          <app-dynamic-table [headersArray]="headersPermissions" [dataArray]="users | transformPermissions"
+                             [showAnotherColumn]="true" [showActions]="true">
+            <ng-template #anotherColumn let-row>
+              <div id="helperDiv">
+                <div *ngFor="let permission of row.originalUser.permissions; let i = index" class="permission-element">
+                  <span>⠀</span>
+                  {{ permission.name }}
+                  <span *ngIf="hasPermission" class="close-icon" (click)="removePermission(row.originalUser, i)">✖ </span>
+                  <span>⠀</span>
+                </div>
               </div>
-            </div>
-          </ng-template>
-          <ng-template #actionsColumn let-row>
-            <div class="options-menu">
-              <span id="options-button" class="material-symbols-outlined">more_vert</span>
-              <div class="options-dropdown">
-                <button id="editProfile-button" (click)="editUserPermissions(row.originalUser)">Add permission</button>
-                <button id="delete-button" (click)="deleteAllPermissions(row.originalUser)">Delete all</button>
+            </ng-template>
+            <ng-template #actionsColumn let-row>
+              <div class="options-menu">
+                <span id="options-button" class="material-symbols-outlined">more_vert</span>
+                <div class="options-dropdown">
+                  <button id="editProfile-button" (click)="editUserPermissions(row.originalUser)">Add permission</button>
+                  <button id="delete-button" (click)="deleteAllPermissions(row.originalUser)">Delete all</button>
+                </div>
               </div>
-            </div>
-          </ng-template>
-        </app-dynamic-table>
+            </ng-template>
+          </app-dynamic-table>
+        </div>
       </div>
     </div>
 </div>

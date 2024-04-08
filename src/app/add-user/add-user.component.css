@@ -11,7 +11,9 @@
       transform: translate(-50%, -50%); /* Centriranje po sredini ekrana */
       background-color: var(--banka-dark-gray);
       border-radius: 10px;
-    }
+  font-family: "Jura", sans-serif;
+
+}
 
     .popup-header {
       display: flex;
@@ -46,7 +48,6 @@
     .form-group {
       margin-bottom: 10px;
       font-size: 10px;
-
     }
 
     .form-group.active-checkbox {
@@ -67,6 +68,17 @@
       margin-right: 10%;
       width:40%;
       border-radius: 5px;
+    }
+
+    .form-group input {
+      color: var(--banka-white);
+
+      border: 2px solid var(--banka-white);
+    }
+
+    .form-group label {
+      color: var(--banka-white);
+
     }
 
     .form-group.buttonSl button:last-child {
@@ -105,7 +117,7 @@
     }
 
     .invalid-input {
-      border: 2px solid red;
+      border: 2px solid red !important;
     }
 
     /* Dodati media upit za responsivnost tabele TODO */
@@ -115,7 +127,7 @@
 }
 /* Style for the select element */
 .security-filter-select {
-  appearance: none; /* Remove default system appearance */
+  /*appearance: none; !* Remove default system appearance *!*/
   background-color: var(--banka-dark-gray); /* Dark background color */
   color: var(--banka-white); /* White text color */
   border: 2px solid var(--banka-white); /* White border */
@@ -123,7 +135,7 @@
   padding: 8px 24px 8px 12px; /* Padding for text and custom arrow space */
   cursor: pointer; /* Pointer cursor on hover */
   font-size: 16px; /* Text size */
-  outline: none; /* Remove default focus outline */
+  /*outline: none; !* Remove default focus outline *!*/
 }
 
 /* Custom arrow using a pseudo-element */
@@ -142,3 +154,9 @@
 .label {
   color: var(--banka-white);
 }
+.bottom-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+

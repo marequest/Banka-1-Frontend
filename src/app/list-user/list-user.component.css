@@ -5,7 +5,7 @@
   margin-left: 35vw;
   /* margin-left: 10%;
   margin-right: 10%; */
-  font-family: "Roboto", sans-serif;
+  font-family: "Jura", sans-serif;
 }
 
 .security-title {
@@ -37,7 +37,7 @@
 /* General styling for the filter row */
 .filter-row {
   display: flex;
-  justify-content: center; /* Center the content */
+  justify-content: left; /* Center the content */
   padding: 20px; /* Add some padding for spacing */
   /*background-color: #f2f4f6; !* Light background color for the filter area *!*/
   /*border-bottom: 2px solid #d1d8e0; !* Add a subtle border for separation *!*/
@@ -53,7 +53,8 @@
 /* Styling for the filter input */
 .filter-input input.security-filter-input {
   width: 100%; /* Full width of its container */
-  padding: 10px 15px; /* Padding for the input */
+  /* Padding for the input */
+  padding: 10px 15px 10px 15px;
   border: 2px solid #d1d8e0; /* Border color */
   border-radius: 20px; /* Rounded corners for the input */
   outline: none; /* Remove the default focus outline */
@@ -64,13 +65,18 @@
 .filter-input input.security-filter-input::placeholder {
   color: #a6a9ad; /* Placeholder text color */
 }
+.filter-input {
+  margin-left: 16px;
+}
 
 /* Styling for the search button */
 .search-icon .button-image {
   background-color: transparent; /* Transparent background */
   border: none; /* Remove border */
   cursor: pointer; /* Pointer cursor on hover */
-  padding-left: 10px; /* Space between input and button */
+  /*padding-left: 10px; !* Space between input and button *!*/
+  margin-right: 16px;
+  margin-left: 16px;
 }
 
 .search-icon img {
@@ -79,8 +85,11 @@
 }
 
 .right-row {
+  margin-top: 1.3em;
+  padding-left: 16px;
   display: flex;
   align-items: center;
+  text-align: right;
 }
 
 .add-new-btn {
@@ -101,7 +110,7 @@
 }
 
 .security-table-wrapper {
-  border: 1px solid #406581;
+  /*border: 1px solid #406581;*/
   margin-top: 2rem;
   border-radius: 5px;
 }
@@ -189,11 +198,18 @@ td {
 }
 
 
+.searchTF{
+  margin-left: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .button-image {
   border: none; /* Removes the border */
   background-color: transparent; /* Makes the background transparent */
-  padding: 0; /* Removes padding around the image */
+  /* Removes padding around the image */
+  padding: 30px 0 0;
   cursor: pointer; /* Changes the cursor to a pointer when hovered over the button */
   display: inline-block; /* Ensures the button is properly aligned */
   overflow: hidden; /* Prevents any overflow */
@@ -202,6 +218,7 @@ td {
 
 .button-image img {
   width: 100%; /* Adjusts the width of the image to fill the button */
+  min-width: 24px;
   height: auto; /* Adjusts the height to maintain the aspect ratio */
   display: block; /* Ensures the image fills the button */
   transition: transform 0.3s ease; /* Adds a transform transition for a subtle effect */
@@ -227,6 +244,7 @@ td {
     display: inline-block;
     width: 20%; /* Adjust width as needed */
     font-size: 16px; /* Restore font size */
+
     box-sizing: border-box; /* Include padding and border in width calculation */
     vertical-align: top; /* Align elements to the top */
 }
@@ -349,6 +367,7 @@ app-dynamic-table {
 }
 
 .filter-dropdown {
+  margin-top: 1.3em;
   position: relative; /* Allows absolute positioning for the arrow */
   display: inline-block; /* Fit the size of the content */
 }
