@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, Permissions } from '../model/model';
+import {User, Permissions, Limit} from '../model/model';
 import { UserService } from '../service/employee.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -8,17 +8,27 @@ import {FormsModule} from "@angular/forms";
 import { PermissionPopUpComponent } from '../permissions-popup/permission-pop-up/permission-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PermissionsService } from '../service/permissions.service';
+import {TableComponentModule} from "../welcome/redesign/TableComponent";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
+import { TransformPermissionsPipeModule} from "./TransformPermissionsPipe";
+import {TransformUsersPipeModule} from "./TransformUsersPipe";
+import {LineTextFieldModule} from "../welcome/redesign/LineTextField";
+import {TransparentTextFieldModule} from "../welcome/redesign/TransparentTextField";
+import {WhiteTextFieldModule} from "../welcome/redesign/WhiteTextField";
+import {TransformLimitsPipeModule} from "./TransformLimitsPipe";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-list-user',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TableComponentModule, OrangeButtonModule, TransformPermissionsPipeModule, TransformUsersPipeModule, LineTextFieldModule, TransparentTextFieldModule, WhiteTextFieldModule, TransformLimitsPipeModule],
   templateUrl: './list-user.component.html',
   styleUrl: './list-user.component.css'
 })
 export class ListUserComponent implements OnInit{
 
   public users: User[] = [];
+  public limits: Limit[] = [];
   public position:string='';
   public firstName:string='';
   public lastName:string='';
@@ -26,6 +36,21 @@ export class ListUserComponent implements OnInit{
   public searchEmail:string='';
   selectedTab: string = "users";
   hasPermission?: boolean = false;
+
+  headersLimits = ['Email', 'Limit', 'Used Limit', 'Needs Approve'];
+  headersUsers = ['NAME', 'EMAIL', 'JMBG', 'POSITION', 'PHONE NUMBER', 'ACTIVITY'];
+  rowsUsers = [
+    { 'Header 1': 'Row 1', 'Header 2': 'Row 1', 'Header 3': 'Row 1', 'Header 4': 'Row 1', 'Header 5': 'Row 1','Header 6': 'Row 1', },
+    { 'Header 1': 'Row 1', 'Header 2': 'Row 1', 'Header 3': 'Row 1', 'Header 4': 'Row 1', 'Header 5': 'Row 1','Header 6': 'Row 1', },
+    { 'Header 1': 'Row 1', 'Header 2': 'Row 1', 'Header 3': 'Row 1', 'Header 4': 'Row 1', 'Header 5': 'Row 1','Header 6': 'Row 1', },
+  ];
+
+  headersPermissions = ['EMAIl'];
+  rowsPermissions = [
+    { 'Header 1': 'Row 1', 'Header 2': 'Row 1' },
+    { 'Header 1': 'Row 1', 'Header 2': 'Row 1' },
+    { 'Header 1': 'Row 1', 'Header 2': 'Row 1' },
+  ];
 
   constructor(private userService: UserService, private router: Router,private popup:PopupService, private dialog: MatDialog, private apiService: PermissionsService) { }
 
@@ -37,6 +62,22 @@ export class ListUserComponent implements OnInit{
 
     //load data from database
     this.loadEmployeesFromDataBase();
+    this.loadLimit();
+  }
+
+  // TODO: REPLACE MOCKED WITH getLimits - see the function it is in same file as getLimitsMocked
+  loadLimit() {
+    this.userService.getLimitsMocked().subscribe(
+      (limitsFromDB: Limit[]) => {
+        this.limits = limitsFromDB;
+
+        console.log('Limits from db');
+        console.log(this.limits);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error loading limits:', error);
+      }
+    );
   }
 
   getPermission(): string | null {
@@ -47,6 +88,7 @@ export class ListUserComponent implements OnInit{
     this.userService.getEmployees().subscribe({
       next: (users: User[]) => {
         this.users = users;
+        console.log(users[0])
       },
       error: (error: any) => {
         console.error(error);
@@ -82,7 +124,7 @@ export class ListUserComponent implements OnInit{
   }
 
   deleteUser(user: User): void {
-     user.userId=2; 
+     user.userId=2;
     // userId sam ovde rucno zadao jer kada se uradi ovaj poziv this.userService.getEmployees() u ngOnInit()
     // za usera se ne vraca userId (videti sa backend stranom)
     const confirmResult = confirm('Are you sure you want to delete this user?');
@@ -100,10 +142,10 @@ export class ListUserComponent implements OnInit{
         }
       });
      }
-    
+
   }
 
-  /** 
+  /**
     Api call wrapper.
 
     user - User who's permissions are modified.
@@ -113,7 +155,7 @@ export class ListUserComponent implements OnInit{
   modifyUserPermissions(user: User, permissions: Permissions[], flag: boolean){
     let userId = user.userId;
     let permissionsToModify: string[] = permissions.map(permission => permission.name);
-    
+
     console.log("modifyUserPermissions wrapper log:");
     console.log(user);
     console.log(userId);
@@ -173,7 +215,7 @@ export class ListUserComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       console.log('The dialog was closed');
-      
+
       //TODO: two options:
       //a) refetch users
       //b) update the modified user using result
@@ -193,4 +235,7 @@ export class ListUserComponent implements OnInit{
     return sessionStorage.getItem('permissions')?.includes('deleteUser');
   }
 
+  editLimit(originalLimit: any) {
+    console.log('Edit limit: ', originalLimit)
+  }
 }

@@ -1,19 +1,20 @@
 .main-container{
     height: 200px;
-    background-color: #ebf6f9;
+    background-color: var(--banka-dark-gray);
 }
 
 .title-and-close-div{
     display: flex;
     width: auto;
     height: 25%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--banka-white);
 }
 
 .popUpTitle{
     width: 95%;
     height: 100%;
     font-size: xx-large;
+  color: var(--banka-white);
     padding-left: 5rem;
     line-height: 50px;
     margin: auto;
@@ -44,12 +45,13 @@
     width: fit-content;
     align-items: center;
     height: 20px;
-    background-color: #19b5c7;
+    background-color: var(--banka-blue);
     border-radius: 10px;
     margin-bottom: 4px; /* Spacing between permission elements */
   }
 
   .close-icon{
+    color: var(--banka-white);
     cursor: pointer;
   }
 
@@ -60,7 +62,7 @@
   .security-filter-input {
     /* border-color: #263238; */
     border-radius: 5px;
-  
+
     height: 60%;
     border: 1.3px solid #263238;
     padding: 5px;
@@ -92,7 +94,7 @@
   }
 
   .cancelBtn{
-    color: #19b5c7;
+    color: var(--banka-blue);
     width: 40%;
     font-size: large;
     cursor: pointer;
@@ -115,4 +117,33 @@
     cursor: pointer;
   }
 
-  
+.filter-dropdown {
+  position: relative; /* Allows absolute positioning for the arrow */
+  display: inline-block; /* Fit the size of the content */
+}
+/* Style for the select element */
+.security-filter-select {
+  appearance: none; /* Remove default system appearance */
+  background-color: var(--banka-dark-gray); /* Dark background color */
+  color: var(--banka-white); /* White text color */
+  border: 2px solid var(--banka-white); /* White border */
+  border-radius: 15px; /* Soft rounded borders */
+  padding: 8px 24px 8px 12px; /* Padding for text and custom arrow space */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Text size */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Custom arrow using a pseudo-element */
+.filter-dropdown::after {
+  content: ''; /* Required for pseudo-elements */
+  position: absolute; /* Position relative to the filter-dropdown container */
+  top: 50%; /* Center vertically */
+  right: 10px; /* Position from the right */
+  width: 0;
+  height: 0;
+  border: 5px solid transparent; /* Create a triangle using borders */
+  border-top-color: var(--banka-white); /* Top border as the arrow */
+  transform: translateY(-50%); /* Ensure it's perfectly centered */
+  pointer-events: none; /* Ensure clicks pass through to the select element */
+}
