@@ -27,12 +27,24 @@ import { Component, Input } from '@angular/core';
   styles: [`
     table {
       width: 40vw;
-      border-collapse: collapse;
       font-family: 'Jura', sans-serif;
       font-size: 1.1em;
       color: var(--banka-white);
       margin: 20px 0;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-collapse: collapse;
+      overflow: hidden;
+    }
+
+    td {
+      padding-top:20px;
+      padding-bottom:20px;
+      padding-right:20px;
+    }
+
+    td:first-child {
+      padding-left:20px;
+      padding-right:0;
     }
 
     th {
@@ -47,9 +59,41 @@ import { Component, Input } from '@angular/core';
       border-bottom: 1px solid var(--banka-white); /* Horizontal line color */
     }
 
+    /*tr {*/
+    /*  border-bottom: 30px solid transparent;*/
+    /*}*/
+
     tbody tr:hover td {
       background-color: var(--banka-very-dark-gray); /* Light brown for row hover */
     }
+
+    tr:checked td {
+      background-color: var(--banka-very-dark-gray);
+    }
+
+    tr:first-child th:first-child {
+      border-top-left-radius: 30px;
+    }
+
+    tr:first-child th:last-child {
+      border-top-right-radius: 30px;
+    }
+
+    tr:last-child td:first-child {
+      border-bottom-left-radius: 30px;
+    }
+
+    tr:last-child td:last-child {
+      border-bottom-right-radius: 30px;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    /*tr:last-child td:nth-child(2) {*/
+    /*  border-bottom-color: var(--banka-dark-gray);*/
+    /*}*/
   `]
 })
 export class TableComponent {
