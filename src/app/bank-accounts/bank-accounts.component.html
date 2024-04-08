@@ -81,7 +81,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let payment of displayedBankAccPayments">
+                                    <tr *ngFor="let payment of displayedBankAccPayments; let idx = index" (click) = "paymentInfoPopUp(idx)">
                                         <td>{{ payment.recipientAccountNumber }}</td>
                                         <td>{{ payment.dateOfPayment | date: 'shortDate' }}</td>
                                         <td [ngStyle]="{'color': payment.status === 'COMPLETE' ? '#7cb94c' : 

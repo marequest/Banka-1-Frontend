@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AccountDetailsPopUpComponent } from '../account-details-pop-up/account-details-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentService } from '../service/payment.service';
+import { PaymentDetailsPopUpComponent } from '../payment-details-pop-up/payment-details-pop-up.component';
 
 @Component({
   selector: 'app-bank-accounts',
@@ -143,6 +144,22 @@ export class BankAccountsComponent {
       width: '40vw',
       height: 'auto',
       data: this.displayedBankAcc, // Passing the displayed bank account
+      disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('The dialog was closed');
+    });
+  }
+
+  paymentInfoPopUp(idx: number){
+    console.log("More info clicked for account " + this.displayedBankAcc.accountNumber);
+
+    const dialogRef = this.dialog.open(PaymentDetailsPopUpComponent, {
+      width: '50vw',
+      height: 'auto',
+      data: this.displayedBankAccPayments[idx], // Passing the displayed bank account
       disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
     });
 
