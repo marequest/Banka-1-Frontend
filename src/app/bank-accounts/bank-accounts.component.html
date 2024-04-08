@@ -110,7 +110,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let exchange of displayedBankAccExchanges">
+                                    <tr *ngFor="let exchange of displayedBankAccExchanges; let idx = index;" (click) = "exchangeInfoPopUp(idx)">
                                         <td>{{ exchange.recipientAccountNumber }}</td>
                                         <td>{{ exchange.dateOfPayment | date: 'shortDate' }}</td>
                                         <td [ngStyle]="{'color': exchange.status === 'COMPLETE' ? '#7cb94c' : 

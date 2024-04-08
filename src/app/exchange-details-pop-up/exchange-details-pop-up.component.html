@@ -1,0 +1,74 @@
+<div class="container">
+    <!-- d-flex justify-content-center align-items-center -->
+    <div class="row titleAndCloseBtnDiv">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-11  titleDiv">Exchange details</div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-1 closeBtn" (click) = "exit()">❌</div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Inflow account owner:</div>
+            <div class="row down">{{ exchange.senderAccountOwnerName || '-' }}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Inflow account number:</div>
+            <div class="row down">{{exchange.senderAccountNumber || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Outflow account owner:</div>
+            <div class="row down">{{ exchange.recipientAccountOwnerName || '-' }}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Outflow account number:</div>
+            <div class="row down">{{exchange.recipientAccountNumber || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">exchange code:</div>
+            <div class="row down">{{ exchange.paymentCode || '-' }}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Model:</div>
+            <div class="row down">{{exchange.model || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Reference number:</div>
+            <div class="row down">{{exchange.referenceNumber || '-'}}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Satus:</div>
+            <div class="row down">{{exchange.status || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Comission fee:</div>
+            <div class="row down">{{exchange.commissionFee || '-'}}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Date of exchange:</div>
+            <div class="row down">{{exchange.dateOfPayment | date: 'shortDate' || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Channel:</div>
+            <div class="row down">{{exchange.channel || '-'}}</div>
+        </div>
+    </div>
+</div>
