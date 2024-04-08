@@ -60,13 +60,13 @@
                 <div class="tabs">
                     <!-- Tab Headers -->
                     <div class="tab-headers">
-                        <div class="tab-header active" [ngClass]="{'active': activeTab === 'transactionsTab'}" (click)="setActiveTab('transactionsTab')">Payments</div>
+                        <div class="tab-header active" [ngClass]="{'active': activeTab === 'paymentsTab'}" (click)="setActiveTab('paymentsTab')">Payments</div>
                         <div class="tab-header" [ngClass]="{'active': activeTab === 'exchangesTab'}" (click)="setActiveTab('exchangesTab')">Exchange</div>
                     </div>
                 
                     <!-- Tab Content -->
                     <!-- Transactions tab table -->
-                    <div class="tab-content" *ngIf="activeTab === 'transactionsTab'">
+                    <div class="tab-content" *ngIf="activeTab === 'paymentsTab'">
 
     
                         <div class="scrollable-container">

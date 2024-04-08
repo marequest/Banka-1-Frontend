@@ -19,7 +19,7 @@ import { PaymentService } from '../service/payment.service';
 export class BankAccountsComponent {
   
   // Initially set the first tab as active
-  activeTab: string = 'transactionsTab';
+  activeTab: string = 'paymentsTab';
 
   //Index of bank account that is displayed in slider
   //If userBankAcc is empty, index will be -1
@@ -95,7 +95,6 @@ export class BankAccountsComponent {
     this.bankAccountService.getExchangesForAccountMocked(accountNumber).subscribe(
       (bankAccountExchangesFromDB: Exchange[]) => {
         this.displayedBankAccExchanges = bankAccountExchangesFromDB;
-        if(bankAccountExchangesFromDB.length == 0) this.displayedBankAccExchanges = [];
 
         console.log('Bank acc exchanges from db');
         console.log(this.displayedBankAccExchanges);
