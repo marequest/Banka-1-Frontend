@@ -13,6 +13,7 @@ import { CreatePaymentRequest, Recipient } from '../model/model';
 import { TransactionsDetailsPopupComponent } from '../transactions-details-popup/transactions-details-popup.component';
 import { NewRecipientComponent } from '../new-recipient/new-recipient.component';
 import { EditRecipientComponent } from '../edit-recipient/edit-recipient.component';
+import {BuyPopupComponent} from "../buy-popup/buy-popup.component";
 
 
 @Injectable({
@@ -78,6 +79,11 @@ export class PopupService {
 
   openAddRecipientPopup(): void {
     this.dialog.open(NewRecipientComponent, {
+    });
+  }
+
+  openBuyPopup(): void {
+    this.dialog.open(BuyPopupComponent, {
     });
   }
 

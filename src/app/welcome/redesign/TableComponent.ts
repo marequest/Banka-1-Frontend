@@ -70,7 +70,7 @@ export class TableComponent {
 
   objectKeys(row: any): string[] {
     // Exclude 'originalUser' from the keys used for rendering table cells
-    return Object.keys(row).filter(key => key !== 'originalUser');
+    return Object.keys(row).filter(key => key !== 'originalUser' && key !== 'originalLimit');
   }
 }
 @NgModule({
