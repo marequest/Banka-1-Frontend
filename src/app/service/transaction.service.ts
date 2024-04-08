@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders,  HttpParams} from "@angular/common/http";
-import {BankAccount, TransactionBasics, TransactionDetails, TransactionDto, User} from '../model/model';
+import {BankAccount, Customer, TransactionBasics, TransactionDetails, TransactionDto, User} from '../model/model';
 
 import {Router} from "@angular/router";
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ export class TransactionService {
 
   private transationBasics: TransactionBasics | undefined;
   private transactionDetails: TransactionDetails|undefined;
-  private user: User|undefined;
+  private user: Customer|undefined;
 
   constructor( private http: HttpClient, private router: Router) { }
 
@@ -28,7 +28,7 @@ export class TransactionService {
     this.transationBasics = transationBasics;
     console.log('Transaction basics: ', this.transationBasics);
   }
-  public setTranscationUser(transactionUser:User):void{
+  public setTranscationUser(transactionUser:Customer):void{
     this.user=transactionUser;
     console.log("Transaction user: ", this.user)
   }
@@ -46,7 +46,7 @@ export class TransactionService {
     return this.transationBasics;
   }
 
-  public getTransactionUser(): User | undefined {
+  public getTransactionUser(): Customer | undefined {
     console.log(this.user);
     return this.user;
   }

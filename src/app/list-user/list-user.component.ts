@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Permissions } from '../model/model';
-import { UserService } from '../service/user.service';
+import { UserService } from '../service/employee.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {PopupService} from "../service/popup.service";
@@ -57,15 +57,15 @@ export class ListUserComponent implements OnInit{
     this.hasPermission = this.canEditUser();
 
     //load data from database
-    this.loadUsersFromDataBase();
+    this.loadEmployeesFromDataBase();
   }
 
   getPermission(): string | null {
     return sessionStorage.getItem('permissions');
   }
 
-  loadUsersFromDataBase(){
-    this.userService.getUsers().subscribe({
+  loadEmployeesFromDataBase(){
+    this.userService.getEmployees().subscribe({
       next: (users: User[]) => {
         this.users = users;
         console.log(users[0])
@@ -105,7 +105,7 @@ export class ListUserComponent implements OnInit{
 
   deleteUser(user: User): void {
      user.userId=2;
-    // userId sam ovde rucno zadao jer kada se uradi ovaj poziv this.userService.getUsers() u ngOnInit()
+    // userId sam ovde rucno zadao jer kada se uradi ovaj poziv this.userService.getEmployees() u ngOnInit()
     // za usera se ne vraca userId (videti sa backend stranom)
     const confirmResult = confirm('Are you sure you want to delete this user?');
      if (confirmResult) {
@@ -171,7 +171,7 @@ export class ListUserComponent implements OnInit{
   }
 
   filter(){
-    if(this.searchEmail === '' || this.searchEmail === null) this.loadUsersFromDataBase();
+    if(this.searchEmail === '' || this.searchEmail === null) this.loadEmployeesFromDataBase();
     else this.users = this.users.filter(user => user.email === this.searchEmail)
   }
 
@@ -199,7 +199,7 @@ export class ListUserComponent implements OnInit{
       //TODO: two options:
       //a) refetch users
       //b) update the modified user using result
-      this.loadUsersFromDataBase();
+      this.loadEmployeesFromDataBase();
     });
   }
 

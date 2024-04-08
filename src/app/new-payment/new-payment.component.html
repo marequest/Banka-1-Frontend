@@ -6,18 +6,31 @@
             <div class="row justify-content-between">
                 <div class="form-group m-3 col-10 col-md-4 ">
                     <label for="inflow">Account number:</label>
-                    <select (change)="updateAmount($event)" [(ngModel)]="payment.senderAccountNumber" id="inflow" name="inflow" required #inflowModel="ngModel" [ngClass]="{ 'invalid-input': inflowModel.invalid && (inflowModel.dirty || inflowModel.touched) }">
+                    <ng-container *ngIf="!selectedAccount; else labelTemplate">
+                        <select (change)="updateAmount($event)" [(ngModel)]="payment.senderAccountNumber" id="inflow" name="inflow" required #inflowModel="ngModel" [ngClass]="{ 'invalid-input': inflowModel.invalid && (inflowModel.dirty || inflowModel.touched) }">
+                          <option value="" disabled selected>Select Inflow Account</option>
+                          <option *ngFor="let account of accounts" [value]="account.accountNumber">{{ account.accountNumber }}</option>
+                        </select>
+                        <div *ngIf="inflowModel.invalid && (inflowModel.dirty || inflowModel.touched)" class="error-message">
+                          <div *ngIf="inflowModel.hasError('required')" style="color: red;">Inflow account number is required.</div>
+                        </div>
+                      </ng-container>
+                      
+                      <ng-template #labelTemplate>
+                        <label>Selected Account Number: {{ selectedAccount?.accountNumber }}</label>
+                      </ng-template>
+                    <!-- <select (change)="updateAmount($event)" [(ngModel)]="payment.senderAccountNumber" id="inflow" name="inflow" required #inflowModel="ngModel" [ngClass]="{ 'invalid-input': inflowModel.invalid && (inflowModel.dirty || inflowModel.touched) }">
                         <option value="" disabled selected>Select Inflow Account</option>
                         <option *ngFor="let account of accounts" [value]="account.accountNumber">{{ account.accountNumber }}</option>
                     </select>
                     <div *ngIf="inflowModel.invalid && (inflowModel.dirty || inflowModel.touched)" class="error-message">
                         <div *ngIf="inflowModel.hasError('required')" style="color: red;">Inflow account number is required.</div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group m-3 col-10 col-md-4">
                     <label class="rightText">Available resources:</label>
                     <label class="rightText" >
-                        {{ selectedAccount ? selectedAccount.balance.toFixed(2) + ' ' + selectedAccount.currencyName : '0.00' }}
+                        {{ selectedAccount ? selectedAccount.balance?.toFixed(2) + ' ' + selectedAccount.currency : '0.00' }}
                     </label>                
                 </div>
             </div>

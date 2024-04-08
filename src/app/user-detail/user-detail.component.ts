@@ -4,7 +4,7 @@ import {BankAccountService} from "../service/bank-account.service";
 import {BankAccount, Card, Customer} from "../model/model";
 import {ActivatedRoute} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {UserService} from "../service/user.service";
+import {UserService} from "../service/employee.service";
 import {CardService} from "../service/card.service";
 import {objectUtil} from "zod";
 import addQuestionMarks = objectUtil.addQuestionMarks;
@@ -27,10 +27,9 @@ export class UserDetailComponent {
   customer: Customer | undefined;
 
   constructor(private bankAccountService: BankAccountService,
-              private userService: UserService,
+              private customerService: CustomerService,
               private route: ActivatedRoute,
               private cardService: CardService,
-              private customerService: CustomerService,
               private popup: PopupService) {
     this.route.params.subscribe(params => {
       this.customerId = this.customerService.getSelectedCustomer()?.userId;
@@ -50,7 +49,7 @@ export class UserDetailComponent {
   loadName(){
     const jwt = sessionStorage.getItem("jwt");
     if (jwt !== null && jwt.length > 0) {
-      this.userService.getUser(jwt).subscribe(
+      this.customerService.getCustomer(jwt).subscribe(
         response => {
           console.log(response);
           this.userName = response.firstName + " " + response.lastName;

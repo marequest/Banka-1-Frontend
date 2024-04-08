@@ -7,6 +7,7 @@ import { BankAccountService } from '../service/bank-account.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AccountDetailsPopUpComponent } from '../account-details-pop-up/account-details-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PaymentService } from '../service/payment.service';
 
 @Component({
   selector: 'app-bank-accounts',
@@ -30,7 +31,7 @@ export class BankAccountsComponent {
   public userBankAccounts: BankAccount[] = [];
   loggedUserId:number = -1;
 
-  constructor(private bankAccountService: BankAccountService, private router: Router, private dialog: MatDialog) {
+  constructor(private bankAccountService: BankAccountService, private router: Router, private dialog: MatDialog, private paymentService: PaymentService) {
     let loggedUserIdAsString = sessionStorage.getItem('loggedUserID');
     
     if (loggedUserIdAsString !== null) {
@@ -52,7 +53,7 @@ export class BankAccountsComponent {
 
   // REPLACE MOCKED WITH getUsersBankAccounts - see the function it is in same file as getUsersBankAccountsMocked
   loadUsersBankAccounts() {
-    this.bankAccountService.getUsersBankAccountsMocked(this.loggedUserId).subscribe(
+    this.bankAccountService.getUsersBankAccounts(this.loggedUserId).subscribe(
       (usersBankAccountsFromDB: BankAccount[]) => {
         this.userBankAccounts = usersBankAccountsFromDB;
 
@@ -75,7 +76,7 @@ export class BankAccountsComponent {
   }
 
   loadTransactionsForBankAcount(accountNumber: string) {
-    this.bankAccountService.getTransactionsForAccountMocked(accountNumber).subscribe(
+    this.bankAccountService.getTransactionsForAccount(accountNumber).subscribe(
       (bankAccountTransactionsFromDB: Transaction[]) => {
         this.displayedBankAccTransactions = bankAccountTransactionsFromDB;
 
@@ -89,7 +90,7 @@ export class BankAccountsComponent {
   }
 
   loadExchangesForBankAcount(accountNumber: string) {
-    this.bankAccountService.getExchangesForAccountMocked(accountNumber).subscribe(
+    this.bankAccountService.getExchangesForAccount(accountNumber).subscribe(
       (bankAccountExchangesFromDB: Exchange[]) => {
         this.displayedBankAccExchanges = bankAccountExchangesFromDB;
 
@@ -128,7 +129,9 @@ export class BankAccountsComponent {
 
   newPaymentOnClick(){
     //TODO: go to new payment page
-    console.log("New payment button clicked for account " + this.displayedBankAcc.accountNumber);
+    console.log("New payment button clicked for account " + this.displayedBankAcc);
+    this.paymentService.setSelectedBankAccount(this.displayedBankAcc);
+    this.router.navigate(['/payment']);
   }
 
   moreInfoOnClick(){

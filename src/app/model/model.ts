@@ -31,6 +31,14 @@ export interface BankAccount {
   accountName?: string
 }
 
+export interface Account {
+  accountNumber: string;
+  accountType: AccountType;
+  currencyName: string;
+  maintenanceCost: number;
+  balance: number;
+}
+
 export interface Transaction {
   recepientBankAccount: string;
   date: Date;
@@ -46,9 +54,9 @@ export interface Exchange {
 }
 
 export interface Recipient{
-  recepientFirstName?: string;
-  recepientLastName?: string;
-  recepientAccountNumber?: string;
+  firstName?: string;
+  lastName?: string;
+  accountNumber?: string;
 }
 
 export interface Card {
@@ -230,6 +238,17 @@ export interface CreateBankAccountRequest{
   maintenanceCost: number;
 }
 
+
+export interface Order {
+  security: string,
+  transaction: string,
+  symbol: string,
+  amount: number,
+  price: number,
+  status: string,
+  lastModified: number
+}
+
 export enum LoanType {
   PERSONAL = "PERSONAL",
   MORTGAGE = "MORTGAGE",
@@ -264,5 +283,6 @@ export interface CreatePaymentRequest{
   senderAccountNumber: string;
   activationCode: string;
 }
+
 
 

@@ -1,6 +1,6 @@
-import { TransactionBasics, User } from '../model/model';
+import { Customer, TransactionBasics, User } from '../model/model';
 import { Component, OnInit  } from '@angular/core';
-import { UserService } from '../service/user.service';
+import { UserService } from '../service/employee.service';
 import { Router } from '@angular/router';
 import { PopupService } from '../service/popup.service';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -15,11 +15,11 @@ import { TransactionService } from '../service/transaction.service';
   styleUrl: './transaction-popup.component.css'
 })
 export class TransactionPopupComponent implements OnInit{
-   user:User|undefined;
+   user:Customer|undefined;
    transactionBasics:TransactionBasics|undefined;
 
   ngOnInit(): void {
-    this.user = this.transactionService.getTransactionUser() as User;
+    this.user = this.transactionService.getTransactionUser() as Customer;
     this.transactionBasics=this.transactionService.getTransactionBasics() as TransactionBasics;
   }
 

@@ -45,7 +45,7 @@ export class BankAccountService {
     console.log(headers);
 
     const options = { headers: headers };
-    let url = environment.baseUrl + `/transactions/getAll/${accountNumber}`;
+    let url = environment.baseUrl + `/payment/getAll/${accountNumber}`;
 
     return this.httpClient.get<Transaction[]>(url, options); 
   }
@@ -65,7 +65,7 @@ export class BankAccountService {
     console.log(headers);
 
     const options = { headers: headers };
-    let url = environment.baseUrl + `/exchanges/getAll/${accountNumber}`;
+    let url = environment.baseUrl + `/exchange/getAll/${accountNumber}`;
 
     return this.httpClient.get<Exchange[]>(url, options); 
   }
@@ -75,4 +75,40 @@ export class BankAccountService {
     const url = `/assets/mocked_banking_data/recipients-mocked.json`;
     return this.httpClient.get<Recipient[]>(url);
   }
+
+  getAllRecipients(): Observable<Recipient[]> {
+    
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.httpClient.get<Recipient[]>(environment.baseUrl + '/recipients/getAll',{
+      headers: headers
+    });
+
+  }
+
+  //Add recipient 
+  addRecipient(fistName: string, lastName: string, bankAccountNumber: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.httpClient.post(environment.baseUrl + '/recipients/add', {
+      firstName: fistName,
+      lastName: lastName,
+      bankAccountNumber: bankAccountNumber
+    },{
+      headers: headers
+    });
+  }
+
+  editRecipient(recipient: Recipient): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.httpClient.put(environment.baseUrl + '/recipients/edit', recipient,{
+      headers: headers
+    });
+  }
+
 }

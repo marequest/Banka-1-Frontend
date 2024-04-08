@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BankAccountService } from '../service/bank-account.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PopupService } from '../service/popup.service';
 
 @Component({
   selector: 'app-recipients',
@@ -25,7 +26,7 @@ export class RecipientsComponent {
   public allUserRecipients: Recipient[] = [];
   loggedUserId:number = -1;
 
-  constructor(private bankAccountService: BankAccountService, private router: Router) {
+  constructor(private bankAccountService: BankAccountService, private router: Router, private popupService: PopupService) {
     let loggedUserIdAsString = sessionStorage.getItem('loggedUserID');
     
     if (loggedUserIdAsString !== null) {
@@ -41,7 +42,7 @@ export class RecipientsComponent {
   }
 
   loadAllUserRecipients(){
-    this.bankAccountService.getAllRecipientsMocked().subscribe(
+    this.bankAccountService.getAllRecipients().subscribe(
       (allUserRecipientsFromDB: Recipient[]) => {
         this.allUserRecipients = allUserRecipientsFromDB;
 
@@ -57,6 +58,7 @@ export class RecipientsComponent {
   editRecipient(recipient: Recipient, idx: number){
     console.log("Editing recipient at idx " + idx);
     console.log(recipient);
+    this.popupService.openEditRecipientPopup(recipient);
   }
 
   deleteRecipient(recipient: Recipient, idx: number){
@@ -68,5 +70,6 @@ export class RecipientsComponent {
 
   addRecipient(){
     console.log("Adding recipient");
+    this.popupService.openAddRecipientPopup();
   }
 }

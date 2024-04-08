@@ -5,174 +5,151 @@
 .page-wrapper {
   width: 100%;
   height: 100%;
-  background-image: url("/assets/backgroundLogin.png");
+  background-image: url("/assets/pozadina_dark.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  position: relative;
+
+  padding-top: 10rem;
+  font-family: "Jura", sans-serif;
 }
 
-.main-window {
-  height: 90%;
-  width: 45%;
-  position: absolute;
+.activation-modal {
+  background-color: var(--banka-dark-gray);
+  width: 30vw;
 
-  background: #EBF6F9;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  border-radius: 45px;
-}
-
-.window-title {
-  text-align: center;
-  font-size: 50px;
-  font-weight: 700;
-
-  margin-top: 47px;
-  margin-bottom: 0;
-  padding-bottom: 37px;
-}
-
-.window-header {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  border-radius: 30px;
 }
 
-hr {
-  width: 85%;
-}
-
-.window-content {
-  height: 75%;
-}
-
-.stage {
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.text-input {
-  border-radius: 16px;
-  height: 60px;
-  width: 100%;
-  background: #B3D3DF;
-
-  font-size: 24px;
-}
-
-.input-field {
-  width: 70%;
-}
-
-.input-field label {
-  display: block;
-  margin-left: 10px;
-}
-
-.have-account-link-wrapper {
-  width: 70%;
-}
-
-.window-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 45px;
-}
-
-.next-button {
-  width: 211px;
-  height: 60px;
-  background: #103145;
-  border-radius: 16px;
-  color: white;
-
-  font-weight: 400;
-  font-size: 32px;
-
+.close-btn {
+  margin-left: auto;
+  color: var(--banka-white);
   cursor: pointer;
-
-  border: none;
-}
-
-.back-button {
-  width: 211px;
-  height: 60px;
-  background: transparent;
-  border-color: #19B5C7;
-  border-radius: 16px;
-  color: #19B5C7;
-
-  font-weight: 400;
-  font-size: 32px;
-
-  box-shadow: transparent;
-
-  cursor: pointer;
-
-  border-width: 1px;
-  border-style: solid;
-
-}
-
-.generate-code-button {
-  width: 70%;
-  height: 90px;
-  border-radius: 16px;
-  color: white;
-  background: #103145;
-
-  font-size: 32px;
-  font-weight: 400;
-
-  cursor: pointer;
-}
-
-.generate-code-button-label {
   font-size: 20px;
-  font-weight: 400;
-  padding-bottom: 25px;
+  font-family: "Jura", sans-serif;
 }
 
-.generate-button-container {
+.act-modal-title {
+  text-align: center;
+  font-size: 25px;
+  font-family: "Jura", sans-serif;
+  color: var(--banka-white);
+  font-weight: 800;
+}
+
+.gray-line {
+  height: 1px;
+  background-color: #bebab5;
+
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.act-form {
+  margin: auto;
+}
+
+.act-label {
+  font-family: "Jura", sans-serif;
+  font-size: 20px;
+  color: var(--banka-white);
+  font-weight: 300;
+}
+
+.act-input {
+  font-family: "Jura", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: var(--banka-white);
+  width: 15rem;
+  height: 2.3rem;
+  color: var(--banka-black);
+  margin-top: 5px;
+
+  border-radius: 5px;
+}
+
+.act-form-group {
+  margin-top: 20px;
+}
+
+.already-have {
+  margin: auto;
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--banka-orange);
+  text-decoration: none;
+}
+
+.already-have:hover {
+  text-decoration: underline;
+}
+
+.act-modal-footer {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+
+  margin-top: 20px;
+}
+
+.back-btn {
+  margin: auto;
+
+  width: 9rem;
+  height: 1.6rem;
+
   justify-content: center;
   align-items: center;
+  background-color: var(--banka-orange);
+  border: none;
+  border-radius: 3px;
+  font-weight: 700;
+  font-family: "Jura", sans-serif;
 }
 
 .alert {
   height: 60px;
-  width: 80%;
-  background: #F8D7DA;
+  width: 30vw;
+  background: #f8d7da;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-color: #F1AEB5;
+  border-color: #f1aeb5;
   border-width: 1px;
   border-style: solid;
   border-radius: 16px;
-  color: #7B1559;
+  color: #7b1559;
+  margin: auto;
+  margin-bottom: 20px;
 
   font-size: 20px;
 }
 
+.stage-2-text {
+  text-align: left;
+  color: var(--banka-white);
+}
 
-@media only screen and (max-width: 1000px) {
-  .main-window {
-    width: 90%;
-  }
+.generate-code-button {
+  background-color: var(--banka-orange);
+  color: var(--banka-dark-gray);
+  border: none;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 10px 5px 10px 5px;
+  margin: auto;
+}
 
-  .alert {
-    width: 90%;
-    height: 100px;
+@media (max-width: 576px) {
+  .activation-modal {
+    width: 90vw;
   }
 }

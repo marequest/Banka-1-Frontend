@@ -24,7 +24,7 @@ export class PermissionsService {
     permissionsToModify: string[],
     flag: boolean
   ) {
-    let url = environment.baseUrl + `/user/permission/${userId}`;
+    let url = environment.baseUrl + `/employee/permission/${userId}`;
 
     const jsonData = {
       permissions: permissionsToModify,
@@ -57,7 +57,7 @@ export class PermissionsService {
   addUserPermissions(user: User) {
     let id = user.userId;
     const permissionsToModify: string[] = user.permissions.map(permission => permission.name);
-    let url = environment.baseUrl + '/user';
+    let url = environment.baseUrl + '/employee/';
 
     let userToSend = {
       userId: id,

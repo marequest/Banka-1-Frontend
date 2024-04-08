@@ -23,7 +23,7 @@ export class AdminGuard implements CanActivate {
     if (!token || !this.jwtService.isTokenFormatValid(token)) {
       return of(this.router.parseUrl('/login'));
     }
-
+    
     const position = sessionStorage.getItem('role');  
     if (position === 'admin') {
       return true;

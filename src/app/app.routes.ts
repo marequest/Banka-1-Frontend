@@ -25,15 +25,16 @@ import { CustomerGuard } from './guards/customer.guard';
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {FutureViewComponent} from "./future-view/future-view.component";
-
+import {OrdersComponent} from "./orders/orders.component";
 import {CardTransactionsComponent} from "./card-transactions/card-transactions.component";
-
 import {LoanTableComponent} from "./loans/loan-table/loan-table.component";
 import {NewLoanComponent} from "./loans/new-loan/new-loan.component";
 import { NewPaymentComponent } from './new-payment/new-payment.component';
 import { TransactionsOverviewComponent } from './transactions-overview/transactions-overview.component';
 import { RecipientsComponent } from './recipients/recipients.component';
 import { AdminAndEmployeeGuard } from './guards/admin-and-employee.guard';
+import { AgentAndSupervizorGuard } from './guards/agent-and-supervizor.guard';
+import { AgentAndSupervizorAndAdminGuard } from './guards/agent-and-supervizor-and-admin.guard';
 
 
 export const routes: Routes = [
@@ -78,7 +79,6 @@ export const routes: Routes = [
 
   {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[CustomerGuard]},
 
-  {path:'payment/overview',component:TransactionsOverviewComponent,canActivate: [CustomerGuard]},
 
   
   {
@@ -91,7 +91,7 @@ export const routes: Routes = [
 
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'recipients', component: RecipientsComponent, canActivate: [CustomerGuard]},
-  { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
+  { path: 'cards', component: CardTransactionsComponent,canActivate: [CustomerGuard]},
   { path: 'loans', component: LoanTableComponent, canActivate: [CustomerGuard]},
   { path: 'new-loan', component: NewLoanComponent, canActivate: [CustomerGuard]},
 
@@ -99,7 +99,8 @@ export const routes: Routes = [
 
   // { path: 'customer/:customerId', component: UserDetailComponent},
 
-  { path: 'activate-account', component: ActivateAccountComponent }
+  { path: 'activate-account', component: ActivateAccountComponent },
+  { path: 'orders', component: OrdersComponent, canActivate: [AgentAndSupervizorAndAdminGuard] }
 
 ];
 

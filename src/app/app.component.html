@@ -21,7 +21,7 @@
             <div>Welcome</div>
           </div>
 
-          <div [routerLink]="'/user/list'" class="sidebar-item" *ngIf="isAdmin">
+          <div [routerLink]="'/user/list'" class="sidebar-item" *ngIf="isAdmin || isSupervizor">
             <div>Admin panel</div>
           </div>
 
@@ -29,11 +29,11 @@
             <div>Customer</div>
           </div>
 
-          <div [routerLink]="'/security/all'" class="sidebar-item" *ngIf="isAdmin || isEmployee">
+          <div [routerLink]="'/security/all'" class="sidebar-item" *ngIf="isAdmin || isAgent || isSupervizor">
             <div>Securities</div>
           </div>
 
-          <div [routerLink]="'/orders'" class="sidebar-item" *ngIf="isAdmin || isEmployee">
+          <div [routerLink]="'/orders'" class="sidebar-item" *ngIf="isAdmin || isAgent || isSupervizor">
             <div>Orders</div>
           </div>
 
@@ -42,7 +42,7 @@
           </div>
 
 
-<!--       <!-- Navigation button to Card page.
+<!--   Navigation button to Card page.
      <div class="sidebar-btn" [routerLink]="'/cards'" *ngIf="isCustomer">
         <img src="assets/admin.png"/>
        <span>Cards</span>
@@ -97,7 +97,7 @@
     <div class="logout-btn" (click)="logout()">Log out</div>
   </div>
   <div class=""></div>
-  <div style="flex-basis: 100%">
+  <div style="flex-basis: 100%;">
     <router-outlet></router-outlet>
   </div>
 </div>
