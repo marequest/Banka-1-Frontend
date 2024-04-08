@@ -4,11 +4,13 @@ import { User, Permissions } from '../../model/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PermissionsService } from '../../service/permissions.service';
+import {OrangeButtonModule} from "../../welcome/redesign/OrangeButton";
+import {OutlineOrangeButtonModule} from "../../welcome/redesign/OutlineOrangeButton";
 
 @Component({
   selector: 'app-permission-pop-up',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, OrangeButtonModule, OutlineOrangeButtonModule],
   templateUrl: './permission-pop-up.component.html',
   styleUrl: './permission-pop-up.component.css'
 })
@@ -18,7 +20,7 @@ export class PermissionPopUpComponent implements OnInit {
   public availablePermissions:Permissions[] = [];
   public allPermissionFromDb:Permissions[] = [];
 
-  /*Modify the permission-dialog.component.ts file to 
+  /*Modify the permission-dialog.component.ts file to
   accept data (the user object) passed into the dialog. Import MAT_DIALOG_DATA and MatDialogRef to facilitate this.*/
   constructor(
     public dialogRef: MatDialogRef<PermissionPopUpComponent>,
@@ -34,7 +36,7 @@ export class PermissionPopUpComponent implements OnInit {
           this.setDropDownToPermissionUserDoNotHave();
         },
         error => {
-          
+
         }
       )
     }
@@ -66,7 +68,7 @@ export class PermissionPopUpComponent implements OnInit {
           name: this.addedPermission,
           description: 'Default description', // Placeholder description, replace or modify as needed
         };
-        
+
         this.user.permissions.push(newPermission);
         this.setDropDownToPermissionUserDoNotHave();
       }
@@ -95,7 +97,7 @@ export class PermissionPopUpComponent implements OnInit {
       return this.user.permissions.some(permission => permission.name === perm);
     }
 
-    /** 
+    /**
     Api call wrapper.
 
     user - User who's permissions are modified.
@@ -105,7 +107,7 @@ export class PermissionPopUpComponent implements OnInit {
   modifyUserPermissions(user: User, permissions: Permissions[], flag: boolean){
     let userId = user.userId;
     let permissionsToModify: string[] = permissions.map(permission => permission.name);
-    
+
     console.log("modifyUserPermissions wrapper log:");
     console.log(user);
     console.log(userId);
