@@ -35,13 +35,15 @@
 
         <div class="right-row">
           <button class="add-new-btn" (click)="togglePopupAddCustomer()">
-            Add new Customer
+            Add New Customer
           </button>
         </div>
       </div>
 
       <div class="security-table-wrapper">
-        <div class="wrapper-header">Customers</div>
+        <div class="wrapper-header">
+          <div class="tab-active">Customers</div>
+        </div>
         <app-dynamic-table
           [headersArray]="[
             'Name',
@@ -56,7 +58,7 @@
         >
           <ng-template #actionsColumn let-row>
             <div class="options-menu">
-              <button id="options-button">&#8286;</button>
+              <button class="options-button" id="options-button">&#8286;</button>
               <div class="options-dropdown">
                 <button id="view-button" (click)="viewCustomer(row.customer)">
                   View Profile
