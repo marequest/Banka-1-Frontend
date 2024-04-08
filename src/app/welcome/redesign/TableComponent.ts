@@ -63,10 +63,6 @@ import { Component, Input } from '@angular/core';
       border-bottom: 1px solid var(--banka-white); /* Horizontal line color */
     }
 
-    /*tr {*/
-    /*  border-bottom: 30px solid transparent;*/
-    /*}*/
-
     tbody tr:hover td {
       background-color: var(--banka-very-dark-gray); /* Light brown for row hover */
     }
@@ -94,10 +90,6 @@ import { Component, Input } from '@angular/core';
     tr:last-child td {
       border-bottom: 0;
     }
-
-    /*tr:last-child td:nth-child(2) {*/
-    /*  border-bottom-color: var(--banka-dark-gray);*/
-    /*}*/
   `]
 })
 export class TableComponent {
