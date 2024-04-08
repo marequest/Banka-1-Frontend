@@ -8,7 +8,7 @@
     <div class="row infoRow">
         <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
             <div class="row up">Inflow account owner:</div>
-            <div class="row down">{{ exchange.senderAccountOwnerName || '-' }}</div>
+            <div class="row down">{{ exchange.senderName || '-' }}</div>
         </div>
 
         <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
@@ -19,56 +19,26 @@
 
     <div class="row infoRow">
         <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
-            <div class="row up">Outflow account owner:</div>
-            <div class="row down">{{ exchange.recipientAccountOwnerName || '-' }}</div>
-        </div>
-
-        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
             <div class="row up">Outflow account number:</div>
             <div class="row down">{{exchange.recipientAccountNumber || '-'}}</div>
         </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Converted amount:</div>
+            <div class="row down">{{exchange.convertedAmount || '-'}}</div>
+        </div>
     </div>
 
     <div class="row infoRow">
         <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
-            <div class="row up">exchange code:</div>
-            <div class="row down">{{ exchange.paymentCode || '-' }}</div>
+            <div class="row up">Exchange rate:</div>
+            <div class="row down">{{ exchange.exchangeRate || '-' }}</div>
         </div>
 
         <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
-            <div class="row up">Model:</div>
-            <div class="row down">{{exchange.model || '-'}}</div>
+            <div class="row up">Comission:</div>
+            <div class="row down">{{exchange.commision || '-'}}</div>
         </div>
     </div>
 
-    <div class="row infoRow">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
-            <div class="row up">Reference number:</div>
-            <div class="row down">{{exchange.referenceNumber || '-'}}</div>
-        </div>
-
-        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
-            <div class="row up">Satus:</div>
-            <div class="row down">{{exchange.status || '-'}}</div>
-        </div>
-    </div>
-
-    <div class="row infoRow">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
-            <div class="row up">Comission fee:</div>
-            <div class="row down">{{exchange.commissionFee || '-'}}</div>
-        </div>
-
-        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
-            <div class="row up">Date of exchange:</div>
-            <div class="row down">{{exchange.dateOfPayment | date: 'shortDate' || '-'}}</div>
-        </div>
-    </div>
-
-    <div class="row infoRow">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
-            <div class="row up">Channel:</div>
-            <div class="row down">{{exchange.channel || '-'}}</div>
-        </div>
-    </div>
 </div>

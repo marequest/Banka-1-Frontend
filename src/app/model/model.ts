@@ -20,6 +20,7 @@ export interface User{
 }
 
 export interface Limit{
+  userId: string;
   email?: string;
   limit?: number;
   usedLimit?: number;
@@ -90,7 +91,7 @@ export interface Payment {
 
 export interface Exchange {
   id: number;
-  senderAccountOwnerName?: string;
+  senderName?: string;
   senderAccountNumber?: string;
   recipientAccountOwnerName?: string;
   recipientAccountNumber?: string;
@@ -102,6 +103,16 @@ export interface Exchange {
   commissionFee?: number;
   dateOfPayment?: number;
   channel?: string;
+  convertedAmount?: number;
+  exchangeRate?: number;
+  commision?: number;
+  transferDate?: number;
+}
+
+export interface NewLimitDto{
+  userId: string;
+  approvalReqired: boolean;
+  limit: number;
 }
 
 export interface Recipient{

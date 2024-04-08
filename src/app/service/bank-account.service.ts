@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders   } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BankAccount, Exchange, Recipient, Payment } from '../model/model';
+import { BankAccount, Exchange, Recipient, Payment, NewLimitDto } from '../model/model';
 import { environment } from '../../../environment';
 
 @Injectable({
@@ -111,6 +111,28 @@ export class BankAccountService {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
     return this.httpClient.put(environment.baseUrl + '/recipients/edit', recipient,{
+      headers: headers
+    });
+  }
+
+
+
+  addNewLimit(newLimitDto : NewLimitDto): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/employee/limits/newLimit`;
+
+    return this.httpClient.post(url, {
+      userId: newLimitDto.userId,
+      approvalReqired: newLimitDto.approvalReqired,
+      limit: newLimitDto.limit
+    },{
       headers: headers
     });
   }
