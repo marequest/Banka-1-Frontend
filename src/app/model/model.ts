@@ -1,5 +1,3 @@
-import { number } from 'zod';
-
 export interface User {
   userId: number;
   username: string;
@@ -124,6 +122,23 @@ export interface UserToEdit {
   active: boolean;
   birth_date: string;
 }
+
+export interface StockListing {
+  listingId: number;
+  listingType: 'stock';
+  ticker: string;
+  name: string;
+  exchangeName: string;
+  lastRefresh: number; // UNIX timestamp
+  price: number;
+  high: number;
+  low: number;
+  priceChange: number;
+  volume: number;
+  outstandingShares: number;
+  dividendYield: number;
+}
+
 export interface Forex {
   listingId: number;
   listingType: 'Forex';

@@ -47,22 +47,37 @@
           *ngIf="selectedTab === 'stocks'"
           [headersArray]="[
             'Ticker',
+            'Name',
+            'Exchange Name',
+            'Last Refresh',
             'Price',
-            'Change',
+            'High',
+            'Low',
+            'Price Change',
             'Volume',
-            'Init Margin Cost'
+            'Outstanding Shares',
+            'Dividend Yield',
           ]"
           [dataArray]="securities | transformSecurity"
           [showActions]="true"
         >
           <ng-template #actionsColumn let-row>
-            <button class="buy-security">BUY</button>
+            <button (click)="navigateToStock(row.originalSecurity)" class="buy-security">Detail</button>
           </ng-template>
         </app-dynamic-table>
 
         <app-dynamic-table
           *ngIf="selectedTab === 'future'"
           [headersArray]="[
+            'Ticker',
+            'Name',
+            'Exchange Name',
+            'Last Refresh',
+            'Price',
+            'High',
+            'Low',
+            'Price Change',
+            'Volume',
             'Contract Size',
             'Contract Unit',
             'Open Interest',
@@ -79,10 +94,17 @@
         <app-dynamic-table
           *ngIf="selectedTab === 'forex'"
           [headersArray]="[
-            'Quote Currency',
-            'Base Currency',
+            'Ticker',
+            'Name',
+            'Exchange Name',
+            'Last Refresh',
             'Price',
-            'Exchange Name'
+            'High',
+            'Low',
+            'Price Change',
+            'Volume',
+            'Base Currency',
+            'Quote Currency',
           ]"
           [dataArray]="forex | transformForex"
           [showActions]="true"

@@ -1,24 +1,27 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Security } from './service/security.service';
+import { StockListing } from './model/model';
 
 @Pipe({
   name: 'transformSecurity',
-  standalone: true
+  standalone: true,
 })
 export class TransformSecurityPipe implements PipeTransform {
-
-  transform(securities: Security[]): any[] {
-    return securities.map((sec: Security) => {
-      const newSec = {
+  transform(securities: StockListing[]): any[] {
+    return securities.map((sec: StockListing) => {
+      return {
         ticker: sec.ticker,
+        name: sec.name,
+        exchangeName: sec.exchangeName,
+        lastRefresh: sec.lastRefresh,
         price: sec.price,
-        change: sec.change,
+        high: sec.high,
+        low: sec.low,
+        priceChange: sec.priceChange,
         volume: sec.volume,
-        initial_margin_cost: sec.initial_margin_cost
-      }
-
-      return newSec;
-    })
+        outstandingShares: sec.outstandingShares,
+        dividendYield: sec.dividendYield,
+      };
+    });
   }
-
 }

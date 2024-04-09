@@ -3,20 +3,25 @@ import { Forex } from './model/model';
 
 @Pipe({
   name: 'transformForex',
-  standalone: true
+  standalone: true,
 })
 export class TransformForexPipe implements PipeTransform {
-
   transform(forexs: Forex[]): any[] {
     return forexs.map((forex) => {
       return {
-        quoteCurrency: forex.quoteCurrency,
-        baseCurrency: forex.baseCurrency,
-        price: forex.price,
+        ticker: forex.ticker,
+        name: forex.name,
         exchangeName: forex.exchangeName,
-        originalForex: forex
-      }
-    })
+        lastRefresh: forex.lastRefresh,
+        price: forex.price,
+        high: forex.high,
+        low: forex.low,
+        priceChange: forex.priceChange,
+        volume: forex.volume,
+        baseCurrency: forex.baseCurrency,
+        quoteCurrency: forex.quoteCurrency,
+        originalForex: forex,
+      };
+    });
   }
-
 }

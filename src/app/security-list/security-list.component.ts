@@ -7,13 +7,13 @@ import {
 } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ForexTableComponent } from './components/forex-table/forex-table.component';
-import { StockListing, StockService } from '../service/stock.service';
+import { StockService } from '../service/stock.service';
 import { FormsModule } from '@angular/forms';
 import { StockTableComponent } from './components/stock-table/stock-table.component';
 import { FutureTableComponent } from './components/future-table/future-table.component';
 import { TableComponentModule } from '../welcome/redesign/TableComponent';
 import { TransformSecurityPipe } from '../transform-security.pipe';
-import { Forex, Future } from '../model/model';
+import { Forex, Future, StockListing } from '../model/model';
 import { Router } from '@angular/router';
 import { environmentMarket } from '../../../environment';
 import { TransformFuturePipe } from '../transform-future.pipe';
@@ -37,7 +37,7 @@ import { TransformForexPipe } from '../transform-forex.pipe';
   styleUrl: './security-list.component.css',
 })
 export class SecurityListComponent {
-  securities: Security[] = [];
+  securities: StockListing[] = [];
   selectedTab: string = 'stocks';
   symbol: string = '';
 
@@ -102,15 +102,21 @@ export class SecurityListComponent {
     this.loadForex();
   }
 
-  loadSecurities(): void {
-    this.securityService.getSecurities().subscribe(
-      (securities: Security[]) => {
-        this.securities = securities;
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Error loading securities:', error);
-      }
-    );
+  async loadSecurities(): Promise<void> {
+    // this.stockService.getStocks().subscribe(
+    //   (securities: Security[]) => {
+    //     this.securities = securities;
+    //   },
+    //   (error: HttpErrorResponse) => {
+    //     console.error('Error loading securities:', error);
+    //   }
+    // );
+
+    const stocks = await this.stockService.getStocks();
+
+    console.log(stocks);
+
+    this.securities = stocks;
   }
 
   loadForex(): void {
@@ -118,8 +124,8 @@ export class SecurityListComponent {
       Authorization: 'Bearer ' + sessionStorage.getItem('jwt'),
     });
     this.http
-      // .get<Forex[]>('assets/mock-forex.json')
-      this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/get/forex', {headers})
+      .get<Forex[]>('assets/mock-forex.json')
+      // this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/get/forex', {headers})
       .subscribe(
         (res) =>
           (this.forexBackup = this.forex =
@@ -135,8 +141,8 @@ export class SecurityListComponent {
       Authorization: 'Bearer ' + sessionStorage.getItem('jwt'),
     });
     this.http
-      // .get<Future[]>('assets/futures-mock.json')
-      this.http.get<Future[]>(environmentMarket.baseUrl + '/market/listing/get/futures',{ headers })
+      .get<Future[]>('assets/futures-mock.json')
+      // this.http.get<Future[]>(environmentMarket.baseUrl + '/market/listing/get/futures',{ headers })
       .subscribe(
         (res) =>
           (this.futuresBackup = this.futures =
@@ -154,10 +160,14 @@ export class SecurityListComponent {
   }
 
   navigateToFuture(listingId: any) {
-    this._router.navigateByUrl(`/future/${listingId}`);
+    this._router.navigateByUrl(`/security/future/${listingId}`);
   }
 
   navigateToForex(forexId: number): void {
-    this._router.navigateByUrl(`/forex/${forexId}`);
+    this._router.navigateByUrl(`/security/forex/${forexId}`);
+  }
+
+  navigateToStock(stockId: number): void {
+    this._router.navigateByUrl(`/security/stock/${stockId}`);
   }
 }
