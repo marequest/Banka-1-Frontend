@@ -31,7 +31,7 @@ import { TransformForexPipe } from '../transform-forex.pipe';
     TableComponentModule,
     TransformSecurityPipe,
     TransformFuturePipe,
-    TransformForexPipe
+    TransformForexPipe,
   ],
   templateUrl: './security-list.component.html',
   styleUrl: './security-list.component.css',
@@ -59,7 +59,42 @@ export class SecurityListComponent {
     this._router = router;
   }
 
-  search() {}
+  searchFutures() {
+    this.futures = this.futuresBackup.filter(
+      (val) =>
+        val.ticker.toLowerCase().includes(this.symbol.toLowerCase()) ||
+        val.name.toLowerCase().includes(this.symbol.toLowerCase())
+    );
+  }
+
+  searchForex() {
+    this.forex = this.forexBackup.filter((value) => {
+      return (
+        value.baseCurrency.toLowerCase().includes(this.symbol.toLowerCase()) &&
+        value.quoteCurrency.toLowerCase().includes(this.symbol.toLowerCase())
+      );
+    });
+  }
+
+  searchStocks() {
+    if (this.symbol.length === 0) this.securities = this.securities;
+    this.securities = this.securities.filter((stock) => {
+      return stock.ticker.toLowerCase().includes(this.symbol.toLowerCase());
+    });
+  }
+
+  search() {
+    switch (this.selectedTab) {
+      case 'future':
+        this.searchFutures();
+        break;
+      case 'forex':
+        this.searchForex();
+        break;
+      case 'stocks':
+        this.searchStocks();
+    }
+  }
 
   async ngOnInit() {
     this.loadSecurities();
@@ -80,11 +115,19 @@ export class SecurityListComponent {
 
   loadForex(): void {
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+      Authorization: 'Bearer ' + sessionStorage.getItem('jwt'),
     });
-    this.http.get<Forex[]>('assets/mock-forex.json')
-    // this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/get/forex', {headers})
-      .subscribe(res => this.forexBackup = this.forex = res.map(val => { val.lastRefresh *= 1000; return val; }));
+    this.http
+      .get<Forex[]>('assets/mock-forex.json')
+      // this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/get/forex', {headers})
+      .subscribe(
+        (res) =>
+          (this.forexBackup = this.forex =
+            res.map((val) => {
+              val.lastRefresh *= 1000;
+              return val;
+            }))
+      );
   }
 
   loadFutures(): void {
