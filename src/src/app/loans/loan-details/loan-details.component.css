@@ -1,0 +1,28 @@
+h1 {
+  color: #FFB72B;
+  font-family: Jura;
+  font-size: 36px;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.inner-flex {
+  max-width: 90%;
+  margin: 30px;
+  padding-top: 30px;
+  display: flex;
+  gap:30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.item {
+  min-width: 200px;
+}
+
+label, span {
+  color: #FFF9F0;
+  font-family: Jura;
+  font-size: 24px;
+}

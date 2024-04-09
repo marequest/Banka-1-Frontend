@@ -15,7 +15,7 @@ import { PaymentService } from '../service/payment.service';
 export class VerificationPaymentPopupComponent implements OnInit{
 
   payment!: CreatePaymentRequest;
-  code: number = 0;
+  code: string = '';
 
   constructor(
     private dialogRef: MatDialogRef<VerificationPaymentPopupComponent>,
@@ -28,6 +28,8 @@ export class VerificationPaymentPopupComponent implements OnInit{
   }
 
   submit(){
+    this.payment.singleUseCode = this.code;
+
     this.PaymentService.createPayment(this.payment).subscribe({
       next: (response) => {
         console.log("Payment created successfully");

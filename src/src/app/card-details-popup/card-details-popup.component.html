@@ -1,0 +1,85 @@
+<div class="popup-container">
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="col-6">-->
+  <h2 class="title">Card Details</h2>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="labels">
+          <div class="label">Card name: </div>
+          <div class="value">{{ data.card.cardName }}</div>
+          <div class="label">Id card number: </div>
+          <div class="value">{{ data.card.cardNumber }}</div>
+          <div class="label">Account number: </div>
+          <div class="value">{{ data.card.accountNumber }}</div>
+          <div class="label">Limit: </div>
+          <div class="value">{{ data.card.cardLimit }}</div>
+          <div class="label">Creation date: </div>
+          <div class="value">{{ data.card.creationDate }}</div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-4">
+        <div class="labels">
+          <div class="label">Card type: </div>
+          <div class="value">{{ data.card.cardType }}</div>
+          <div class="label">Type: </div>
+          <div class="value">{{ data.card.cardType }}</div>
+          <div class="label">CVV code: </div>
+          <div class="value">{{ data.card.cvv }}</div>
+          <div class="label">Status: </div>
+          <div *ngIf="data.card.isActivated" class="value"> active </div>
+          <div *ngIf="!data.card.isActivated" class="value"> not active </div>
+          <div class="label">Expiration date: </div>
+          <div class="value">{{ data.card.expirationDate }}</div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+
+  <div class="options">
+    Options:
+  </div>
+
+<!--          <div class="content">-->
+
+<!--            <div class="popup-column left">-->
+<!--              <div class="labels">-->
+<!--                <div class="label">Card name: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--                <div class="label">Id card number: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--                <div class="label">Account number: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--                <div class="label">Limit: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--                <div class="label">Creation date: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="popup-column">-->
+<!--              <div class="labels">-->
+<!--                <div class="label">Card type: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--                <div class="label">Type: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--                <div class="label">CVV code: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--                <div class="label">Status: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--                <div class="label">Expiration date: </div>-->
+<!--                <div class="value"> label </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </div>-->
+
+  <button class="close-button" (click)="onClose()">X</button>
+
+
+</div>
+

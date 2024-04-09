@@ -42,7 +42,8 @@ export class UserService {
     console.log(headers);
 
     const options = { headers: headers };
-    let url = environment.baseUrl + `/limits/getAll`;
+    let url = environment.baseUrl + `/employee/limits/getAll`;
+    
 
     return this.http.get<Limit[]>(url, options);
   }
