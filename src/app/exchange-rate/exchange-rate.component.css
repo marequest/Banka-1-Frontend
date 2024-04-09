@@ -6,14 +6,12 @@
   }
 
   .security-title {
-    color: #263238;
+    color: #FFB72B;
     font-size: 35px;
-    font-weight: 700;
+    font-weight: 500;
 
     margin-bottom: 3rem;
   }
-
-
 
   .table-content {
     background-color: white;
@@ -176,7 +174,7 @@
 
 .rounded-box {
   width: 40vw;
-  justify-content: space-evenly;
+  justify-content: center;
   border-radius: 10px;
   background-color: var(--banka-dark-gray);
   padding: 20px;

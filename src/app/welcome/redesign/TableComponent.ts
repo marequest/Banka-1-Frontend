@@ -38,6 +38,20 @@ import { Component, Input } from '@angular/core';
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-collapse: collapse;
       overflow: hidden;
+      border-radius: 30px;
+      text-align: center;
+    }
+
+    tr {
+      border-left: 10px solid var(--banka-dark-gray);
+      border-right: 10px solid var(--banka-dark-gray);
+      background-color: var(--banka-very-dark-gray);
+    }
+
+    tr:last-child {
+      border-bottom: 10px solid var(--banka-dark-gray);
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
     }
 
     td {
@@ -46,12 +60,9 @@ import { Component, Input } from '@angular/core';
       padding-right:20px;
     }
 
-    td:first-child {
-      padding-left:20px;
-      padding-right:0;
-    }
 
     th {
+      border: 10px solid var(--banka-very-dark-gray);
       background-color: var(--banka-very-dark-gray); /* Dark grayish-blue for the header */
       color: var(--banka-white);
       padding: 20px 15px;
@@ -67,29 +78,13 @@ import { Component, Input } from '@angular/core';
       background-color: var(--banka-very-dark-gray); /* Light brown for row hover */
     }
 
-    tr:checked td {
-      background-color: var(--banka-very-dark-gray);
-    }
+    /*tr:last-child td:first-child {*/
+    /*  border-bottom-left-radius: 30px;*/
+    /*}*/
 
-    tr:first-child th:first-child {
-      border-top-left-radius: 30px;
-    }
-
-    tr:first-child th:last-child {
-      border-top-right-radius: 30px;
-    }
-
-    tr:last-child td:first-child {
-      border-bottom-left-radius: 30px;
-    }
-
-    tr:last-child td:last-child {
-      border-bottom-right-radius: 30px;
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
+    /*tr:last-child td:last-child {*/
+    /*  border-bottom-right-radius: 30px;*/
+    /*}*/
   `]
 })
 export class TableComponent {
