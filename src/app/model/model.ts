@@ -234,6 +234,12 @@ export interface Forex {
   quoteCurrency: string;
 }
 
+export interface ExchangeRate {
+  baseCurrency: string;
+  quoteCurrency: string;
+  rate: number;
+}
+
 export interface Future {
   listingId: number;
   listingType: string;
