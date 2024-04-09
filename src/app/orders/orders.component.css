@@ -1,7 +1,15 @@
+.container{
+  /* padding-left: 300px; */
+    padding-left: 20%;
+    padding-right: 0px;
+  /* background-color: #0C0C11; */
+ 
+}
 .page {
   width: 100%;
   height: 100%;
-  background: #0C0C11;
+  /* background: #0C0C11;
+  background-color: #0C0C11; */
   position: relative;
 }
 h1 {
@@ -22,19 +30,21 @@ h1 {
 
 .central-window {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  */
+
+  
   background: #26262C;
   border-radius: 30px;
 
-  width: 80%;
-  min-height: 50%;
+  width: 100%;
+   min-height: 50%;
 
   overflow-x: auto;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
 }
 
 .central-window::-webkit-scrollbar {
@@ -87,7 +97,7 @@ hr {
 table {
   width: 100%;
   color: white;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 700;
   border-spacing: 0;
 }
@@ -98,7 +108,9 @@ thead {
 }
 th {
   margin: 0;
-  padding: 9px 0;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 15px;
 }
 
 td {
@@ -157,7 +169,7 @@ th:nth-last-child(1) {
 }
 
 .popup {
-  height: 90%;
+  height: 100%;
   width: 60%;
   background: #26262C;
 
