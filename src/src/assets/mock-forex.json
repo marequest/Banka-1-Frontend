@@ -1,0 +1,32 @@
+[
+  {
+    "listingId": 1,
+    "listingType": "Forex",
+    "ticker": "EURUSD",
+    "name": "Euro/US Dollar",
+    "exchangeName": "FX Market",
+    "lastRefresh": 1647600000,
+    "price": 1.1205,
+    "high": 1.1250,
+    "low": 1.1180,
+    "priceChange": 0.0035,
+    "volume": 5000,
+    "baseCurrency": "EUR",
+    "quoteCurrency": "USD"
+  },
+  {
+    "listingId": 2,
+    "listingType": "Forex",
+    "ticker": "GBPUSD",
+    "name": "British Pound/US Dollar",
+    "exchangeName": "FX Market",
+    "lastRefresh": 1647600000,
+    "price": 1.3100,
+    "high": 1.3150,
+    "low": 1.3080,
+    "priceChange": -0.0050,
+    "volume": 7500,
+    "baseCurrency": "GBP",
+    "quoteCurrency": "USD"
+  }
+]

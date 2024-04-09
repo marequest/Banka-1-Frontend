@@ -1,0 +1,62 @@
+<div class="container">
+    <!-- d-flex justify-content-center align-items-center -->
+    <div class="row titleAndCloseBtnDiv">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-11  titleDiv">Account details</div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-1 closeBtn" (click) = "exit()">❌</div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Account name:</div>
+            <div class="row down">{{ bankAccount.accountName || '-' }}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Account number:</div>
+            <div class="row down">{{bankAccount.accountNumber || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Account owner:</div>
+            <div class="row down">{{bankAccount.accountOwner || '-'}}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Type:</div>
+            <div class="row down">{{bankAccount.accountType || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Available rescources:</div>
+            <div class="row down">{{bankAccount.availableBalance || '-'}}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Reserved rescources:</div>
+            <div class="row down">{{bankAccount.reservedResources || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Balance:</div>
+            <div class="row down">{{bankAccount.balance || '-'}} {{bankAccount.currency}}</div>
+        </div>
+    </div>
+
+    <div class="row options">Oprions:</div>
+
+    <div class="row optionRow">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-11 opt">Change account name</div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-1 optBtn" (click) = "changeAccName()">&gt;</div>
+    </div>
+
+    <div class="row optionRow">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-11 opt">New payment</div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-1 optBtn" (click) = "newPayment()">&gt;</div>
+    </div>
+</div>

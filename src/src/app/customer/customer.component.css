@@ -1,0 +1,288 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5rem;
+  margin-top: 5rem;
+
+  font-family: "Jura", sans-serif;
+}
+
+.security-title {
+  color: var(--banka-orange);
+  font-size: 35px;
+  font-weight: 700;
+
+  margin-bottom: 7rem;
+}
+
+.table-content {
+  background-color: var(--banka-dark-gray);
+
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 60vw;
+  border-radius: 15px;
+}
+
+.search-icon {
+  cursor: pointer;
+  margin-left: 10px;
+  background-color: var(--banka-orange);
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+}
+
+.filter-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-row {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  padding-left: 20px;
+}
+
+.filter-input {
+  margin-left: 10px;
+}
+
+.security-filter-input {
+  /* border-color: #263238; */
+  border-radius: 5px;
+
+  height: 3vh;
+  border: 1.3px solid #263238;
+  padding: 15px;
+  font-size: 18px;
+}
+
+.security-filter-select {
+  border-radius: 5px;
+
+  height: 4.3vh;
+  border: 1.3px solid #263238;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.right-row {
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.add-new-btn {
+  padding: 12px;
+  background-color: var(--banka-orange); /* Initial background color */
+  border: 1px solid var(--banka-orange);
+
+  border-radius: 5px;
+  color: var(--banka-black); /* Text color for contrast against the white background */
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s; /* Updated to include border-color transition */
+}
+
+.add-new-btn:hover {
+  background-color: var(--banka-dark-gray); /* Background color on hover */
+  color: var(--banka-orange); /* Text color on hover */
+}
+
+.security-table-wrapper {
+  margin-top: 2rem;
+  
+}
+
+.wrapper-header {
+  height: 3rem;
+  display: flex;
+  gap: 10px;
+  padding-left: 3rem;
+  border-bottom: 1px solid var(--banka-white);
+}
+
+.tab {
+  color: var(--banka-gray);
+  font-size: 20px;
+  cursor: pointer;
+  width: fit-content;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  border-bottom: 1px solid var(--bank-white);
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tab-active {
+  background-color: var(--banka-black);
+  color: var(--banka-orange);
+  border-bottom: 3px solid var(--banka-orange);
+
+  font-size: 20px;
+  cursor: pointer;
+  width: fit-content;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tab:hover {
+  border-bottom: 3px solid var(--banka-orange);
+}
+
+.user-table {
+  padding-top: 10px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+thead {
+  color: #406581;
+  font-weight: 400 !important;
+  border-bottom: 1px solid #406581 !important;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.table-head {
+  border-bottom: 1px solid gray;
+  font-weight: 400;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid gray;
+  border-right: 1px dotted gray;
+}
+
+.options-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.options-button {
+  background-color: var(--banka-orange);
+  border: none;
+  font-weight: 900;
+  font-size: 20px;
+  border-radius: 30px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.options-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: var(--banka-black);
+  min-width: 120px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.options-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--banka-white);
+}
+.options-menu:hover .options-dropdown {
+  display: block;
+}
+
+.button-image {
+  border: none; /* Removes the border */
+  background-color: transparent; /* Makes the background transparent */
+  padding: 0; /* Removes padding around the image */
+  cursor: pointer; /* Changes the cursor to a pointer when hovered over the button */
+  display: inline-block; /* Ensures the button is properly aligned */
+  overflow: hidden; /* Prevents any overflow */
+  transition: opacity 0.3s ease; /* Smooth transition for the whole button */
+}
+
+.button-image img {
+  width: 100%; /* Adjusts the width of the image to fill the button */
+  height: auto; /* Adjusts the height to maintain the aspect ratio */
+  display: block; /* Ensures the image fills the button */
+  transition: transform 0.3s ease; /* Adds a transform transition for a subtle effect */
+}
+
+.button-image:hover {
+  opacity: 0.8; /* Changes the opacity of the button on hover */
+}
+
+.button-image:hover img {
+  transform: scale(1.05); /* Slightly scales up the image on hover */
+}
+
+/**
+   Permission table and search filter 
+  **/
+.search-container {
+  font-size: 0; /* Remove white space between inline-block elements */
+  margin-top: 1vw;
+}
+
+.search-input,
+.search-icon-div {
+  display: inline-block;
+  width: 20%; /* Adjust width as needed */
+  font-size: 16px; /* Restore font size */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  vertical-align: top; /* Align elements to the top */
+}
+
+/* Optional: Add styling to the divs */
+.search-input {
+  background-color: lightblue;
+}
+
+.search-icon-div {
+  background-color: lightgreen;
+}
+
+/** permission element **/
+.permission-element {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  background-color: #19b5c7;
+  border-radius: 10px;
+  margin-bottom: 4px; /* Spacing between permission elements */
+}
+
+.close-icon {
+  margin-left: 8px;
+  cursor: pointer;
+  user-select: none; /* Prevents selecting the 'x' on double click */
+}
+
+#helperDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}

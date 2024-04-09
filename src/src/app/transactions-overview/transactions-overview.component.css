@@ -1,0 +1,113 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    font-family: "Roboto", sans-serif;
+    background-color: #0C0C11;  
+    height:auto
+
+  }
+  
+  .transaction-title {
+    margin-top:10px;
+    color: #FFB72B;
+    font-size: 36px;
+    margin-bottom: 3rem;
+    margin-left: 1rem;
+  }
+  th{
+    background-color: #131319;
+    border-bottom: none;
+    color: #B3ABA0;
+  }
+
+  td {
+    border-bottom: 1px solid #B3ABA0;
+    background-color: #26262C; 
+   }
+
+   table{
+    font-size: 16px;
+   }
+
+   .custom_span{
+    font-size: 20px;
+    margin-top: 2rem;
+   }
+
+   
+   @media screen and (max-width: 576px) {
+    .transaction-title {
+        font-size: 18px;
+    }
+
+    table{
+      font-size: 10px;
+     }
+
+     .custom_span{
+      font-size: 12px
+     }
+  
+    
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    .transaction-title {
+        font-size: 20px;
+    }
+    table{
+      font-size: 12px;
+     }
+
+     .custom_span{
+      font-size: 14px
+     }
+  
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .transaction-title {
+        font-size: 24px;
+    }
+
+    table{
+      font-size: 14px;
+     }
+
+     .custom_span{
+      font-size: 16px
+     }
+  
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .transaction-title {
+        font-size: 24px;
+    }
+    table{
+      font-size: 16px;
+     }
+
+     .custom_span{
+      font-size: 16px
+     }
+  
+}
+
+
+  
+
+
+
+
+ 
+
+  /* .body-content {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 60vw;
+  } */
+  
