@@ -6,13 +6,14 @@ import { CustomerService } from '../service/customer.service';
 import { Router } from '@angular/router';
 import { PopupService } from '../service/popup.service';
 import { TableComponentModule } from "../welcome/redesign/TableComponent";
+import { TransformCustomerPipe } from '../transform-customer.pipe';
 
 @Component({
     selector: 'app-customer',
     standalone: true,
     templateUrl: './customer.component.html',
     styleUrl: './customer.component.css',
-    imports: [CommonModule, FormsModule, TableComponentModule]
+    imports: [CommonModule, FormsModule, TableComponentModule, TransformCustomerPipe]
 })
 export class CustomerComponent implements OnInit{
 
@@ -21,26 +22,26 @@ export class CustomerComponent implements OnInit{
       name: "Doe",
       email: "john.doe@example.com",
       jmbg: "1234567890123",
+      address: "123 Main Street",
       phoneNumber: "+1234567890",
       gender: "Male",
-      address: "123 Main Street"
     },
     {
-      name: "Smith",
-      email: "jane.smith@example.com",
-      jmbg: "9876543210987",
-      phoneNumber: "+1987654321",
-      gender: "Female",
-      address: "456 Elm Street"
+      name: "Doe",
+      email: "john.doe@example.com",
+      jmbg: "1234567890123",
+      address: "123 Main Street",
+      phoneNumber: "+1234567890",
+      gender: "Male",
     },
     {
-      name: "Johnson",
-      email: "alice.johnson@example.com",
-      jmbg: "5555555555555",
-      phoneNumber: "+1555555555",
-      gender: "Female",
-      address: "789 Oak Avenue"
-    }
+      name: "Doe",
+      email: "john.doe@example.com",
+      jmbg: "1234567890123",
+      address: "123 Main Street",
+      phoneNumber: "+1234567890",
+      gender: "Male",
+    },
   ]
 
   customers: Customer[] = [
@@ -99,23 +100,51 @@ export class CustomerComponent implements OnInit{
   public lastName:string='';
   public email:string='';
 
-  search(){}
+  search(){
+    this.customers = this.customers.filter((cust:Customer) => {
+      if(this.email === '') {
+        return true;
+      }
+
+      return cust.email.includes(this.email);
+    })
+
+    this.customers = this.customers.filter((cust:Customer) => {
+      if(this.firstName === '') {
+        return true;
+      }
+
+      return cust.firstName.includes(this.firstName);
+    })
+
+    this.customers = this.customers.filter((cust:Customer) => {
+      if(this.lastName === '') {
+        return true;
+      }
+
+      return cust.lastName.includes(this.lastName);
+    })
+  }
 
   togglePopupAddCustomer(){
     this.popup.openAddCustomerPopup();
   }
 
-  viewCustomer(customer: CustomerTable) {
-    const cust = this.customers.find((c1) => c1.email === customer.email);
+  viewCustomer(customerEmail: string) {
+    const customer = this.customers.find((cust:Customer) => cust.email === customerEmail);
 
-    if(!cust) return;
+    if(!customer) return;
     
-    this.customerService.setSelectedCustomer(cust);
+    this.customerService.setSelectedCustomer(customer);
 
     this.router.navigate(['/customer/view']);
   }
 
-  editCustomer(customer: Customer) {
+  editCustomer(customerEmail: string) {
+    const customer = this.customers.find((cust:Customer) => cust.email === customerEmail);
+
+    if(!customer) return;
+
     this.customerService.setCustomerForEdit(
       {
         id: customer.userId,
