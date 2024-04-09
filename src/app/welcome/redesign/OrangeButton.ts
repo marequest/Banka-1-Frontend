@@ -11,10 +11,10 @@ import { CommonModule } from '@angular/common';
       font-family: 'Jura', sans-serif;
       width: 100%;
       background-color: var(--banka-orange); /* Use your specific orange color */
-      color: #000; /* Black text color */
+      color: var(--banka-white); /* Black text color */
       border: 1px solid #000; /* Thin black border */
       padding: 10px 20px; /* Adjust padding to your preference */
-      font-size: 16px; /* Adjust font size to your preference */
+      font-size: 18px; /* Adjust font size to your preference */
       border-radius: 5px; /* Rounded corners */
       cursor: pointer;
       transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */

@@ -7,11 +7,14 @@ import { CommonModule } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
 import { boolean } from 'zod';
 import { Router } from '@angular/router';
+import {FieldComponentModule} from "../welcome/redesign/FieldCompentn";
+import {OutlineOrangeButtonModule} from "../welcome/redesign/OutlineOrangeButton";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 
 @Component({
   selector: 'app-add-bank-account',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, FieldComponentModule, OutlineOrangeButtonModule, OrangeButtonModule],
   templateUrl: './add-bank-account.component.html',
   styleUrl: './add-bank-account.component.css'
 })
@@ -40,9 +43,9 @@ export class AddBankAccountComponent {
   submit() {
     const customer = this.customerService.getCustomerForCreation();
     // Uncomment this
-    
+
     if(this.validateForm() && customer) {
-     
+
       this.customerService.createCustomerAndBankAccount( customer, this.accountToCreate).subscribe(
         (response) => {
           if (response) {
@@ -63,7 +66,7 @@ export class AddBankAccountComponent {
     }
     else if(this.validateForm() && this.customerService.getSelectedCustomer()!==null){
        const userId = this.customerService.getSelectedCustomer()?.userId;
-       if(userId!==null && userId!==undefined){    
+       if(userId!==null && userId!==undefined){
         this.customerService.addCustomerBankAccount(userId,this.accountToCreate).subscribe(
           (response) => {
             if (response) {

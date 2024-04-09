@@ -1,0 +1,32 @@
+[
+  {
+    "email": "user1@example.com",
+    "limit": 1000,
+    "usedLimit": 500,
+    "needApprove": true
+  },
+  {
+    "email": "user2@example.com",
+    "limit": 2000,
+    "usedLimit": 1500,
+    "needApprove": false
+  },
+  {
+    "email": "user3@example.com",
+    "limit": 500,
+    "usedLimit": 200,
+    "needApprove": true
+  },
+  {
+    "email": "user4@example.com",
+    "limit": 3000,
+    "usedLimit": 2000,
+    "needApprove": true
+  },
+  {
+    "email": "user5@example.com",
+    "limit": 1500,
+    "usedLimit": 1000,
+    "needApprove": false
+  }
+]

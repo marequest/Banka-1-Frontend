@@ -1,16 +1,30 @@
-export interface User {
-  userId: number;
-  username: string;
-  password: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  jmbg: string;
-  position: string;
-  phoneNumber: string;
-  active: boolean;
-  permissions: Permissions[];
+export interface User{
+    userId: number;
+    username:string;
+    password:string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    jmbg: string;
+    position: string;
+    phoneNumber: string;
+    active: boolean;
+
+    limitNow: number;
+    orderlimit: number;
+    requireApproval: boolean;
+
+    permissions:Permissions[]
 }
+
+export interface Limit{
+  userId: string;
+  email?: string;
+  limit?: number;
+  usedLimit?: number;
+  needApprove?: boolean;
+}
+
 export interface Permissions {
   permission_id?: number;
   name: string;
@@ -44,11 +58,59 @@ export interface Transaction {
   amount: number;
 }
 
+export enum TransactionStatus {
+  PROCESSING = 'PROCESSING',
+  COMPLETE = 'COMPLETE',
+  DENIED = 'DENIED'
+}
+
+export interface Payment {
+  id: number;
+  senderAccountOwnerName?: string;
+  senderAccountNumber?: string;
+  recipientAccountOwnerName?: string;
+  recipientAccountNumber?: string;
+  amount?: number;
+  paymentCode?: string;
+  model?: string;
+  referenceNumber?: string
+  status?: TransactionStatus;
+  commissionFee?: number;
+  dateOfPayment?: number;
+  channel?: string;
+}
+
+// export interface Exchange {
+//   recepientBankAccount: string;
+//   date: Date;
+//   status: string;
+//   amount: number;
+// }
+
 export interface Exchange {
-  recepientBankAccount: string;
-  date: Date;
-  status: string;
-  amount: number;
+  id: number;
+  senderName?: string;
+  senderAccountNumber?: string;
+  recipientAccountOwnerName?: string;
+  recipientAccountNumber?: string;
+  amount?: number;
+  paymentCode?: string;
+  model?: string;
+  referenceNumber?: string
+  status?: TransactionStatus;
+  commissionFee?: number;
+  dateOfPayment?: number;
+  channel?: string;
+  convertedAmount?: number;
+  exchangeRate?: number;
+  commision?: number;
+  transferDate?: number;
+}
+
+export interface NewLimitDto{
+  userId: string;
+  approvalReqired: boolean;
+  limit: number;
 }
 
 export interface Recipient {
@@ -259,13 +321,34 @@ export interface CreateBankAccountRequest {
 }
 
 export interface Order {
-  security: string;
-  transaction: string;
-  symbol: string;
-  amount: number;
-  price: number;
-  status: string;
-  lastModified: number;
+  security: string,
+  transaction: string,
+  symbol: string,
+  amount: number,
+  price: number,
+  status: string,
+  lastModified: number
+}
+
+export interface CreateOrderRequest {
+  orderType: OrderType;
+  listingId: string;
+  listingType: ListingType;
+  contractSize: string;
+  limitValue: string;
+  stopValue: string;
+  allOrNone: boolean;
+}
+
+export enum OrderType {
+  BUY = "BUY",
+  SELL = "SELL"
+}
+
+export enum ListingType {
+  STOCK = "STOCK",
+  FUTURE = "FUTURE",
+  FOREX = "FOREX"
 }
 
 export enum LoanType {
@@ -292,12 +375,13 @@ export interface Loan {
 }
 
 export interface CreatePaymentRequest {
-  recipientName: string;
-  recipientAccountNumber: string;
-  amount: number;
-  referenceNumber: string;
-  paymentCode: number;
-  purposeOfPayment: string;
-  senderAccountNumber: string;
-  activationCode: string;
+    singleUseCode?: string; //verifikacija
+    senderAccountNumber?: string;
+    recipientName?: string;
+    recipientAccountNumber?: string;
+    amount?: number
+    paymentCode?: string;
+    model?: string;
+    referenceNumber?: string;
+    paymentPurpose?: string;
 }
