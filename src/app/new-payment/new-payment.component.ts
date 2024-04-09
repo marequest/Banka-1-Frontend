@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TransactionBasics, Account, AccountType, CreatePaymentRequest, BankAccount } from '../model/model';
 import { TransactionService } from '../service/transaction.service';
 import { AccountService } from '../service/account.service';
@@ -17,17 +17,18 @@ import { BankAccountService } from '../service/bank-account.service';
 })
 export class NewPaymentComponent implements OnInit{
 
+
   payment: CreatePaymentRequest = {
     recipientName: '',
     recipientAccountNumber: '',
     amount: 0,
     referenceNumber: '',
-    paymentCode: 0,
-    purposeOfPayment: '',
+    paymentCode: '',
+    paymentPurpose: '',
     senderAccountNumber: '',
-    activationCode: ''
+    singleUseCode: '',
+    model: ''
   };
-  
 
   accounts: BankAccount[] = [
     {
@@ -48,8 +49,10 @@ export class NewPaymentComponent implements OnInit{
   constructor(
     private bankAccountService: BankAccountService,
     private popupService: PopupService,
-    private paymentService: PaymentService
-  ){}
+    private paymentService: PaymentService,
+  ){
+    
+  }
 
   ngOnInit(): void {
     // const loggedInUser = sessionStorage.getItem("loggedInUser");
@@ -76,8 +79,39 @@ export class NewPaymentComponent implements OnInit{
     const accountNumber = selectElement.value;
     this.selectedAccount = this.accounts.find(account => account.accountNumber === accountNumber);
   }
+
+
+  private validateForm(): boolean {
+
+    if (!this.payment.recipientName) {
+      return false;
+    }
+
+    if (!this.payment.recipientAccountNumber) {
+      
+      return false;
+    }
+
+    if (!this.payment.amount || this.payment.amount==0) {
+      return false;
+    }
+
+    if (!this.payment.paymentCode || this.payment.paymentCode==0) {
+      return false;
+    }
+
+    if (!this.payment.referenceNumber) {
+      return false;
+    }
+
+    if (!this.payment.purposeOfPayment) {
+      return false;
+    }
+    return true;
+  }
   
   submit(){
+    if (this.validateForm()) {
     this.paymentService.initializePayment().subscribe({
       next: (paymentCode: number) => {
         
@@ -88,5 +122,10 @@ export class NewPaymentComponent implements OnInit{
     });
     this.popupService.openVerifyPaymentPopup(this.payment);
   }
+  else{
+    this.popupService.openPopup("Error", "Forma nije validna");
+    console.log('Forma nije validna.');
+  }
+}
 
 }

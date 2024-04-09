@@ -21,7 +21,6 @@ export class CardService {
     });
     console.log(headers);
 
-    //Vanja treba da doda ovu rutu
     const options = { headers: headers };
     let url = environment.baseUrl + `/account/getAllCards/${userId}`;
 

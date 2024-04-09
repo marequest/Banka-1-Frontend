@@ -1,7 +1,8 @@
 [
   {
-    "security": "stock",
-    "transaction": "BUY",
+    "orderId":1,
+    "listingType": "stock",
+    "orderType": "BUY",
     "symbol": "AAPL",
     "amount": 4,
     "price": 1623.6,
@@ -9,8 +10,9 @@
     "lastModified": "28.3.2024. 12:11:35"
   },
   {
-    "security": "stock",
-    "transaction": "SELL",
+    "orderId":2,
+    "listingType": "stock",
+    "orderType": "SELL",
     "symbol": "AAPL",
     "amount": 3,
     "price": 2450,
@@ -18,8 +20,9 @@
     "lastModified": "28.3.2024. 12:11:35"
   },
   {
-    "security": "stock",
-    "transaction": "SELL",
+    "orderId":3,
+    "listingType": "stock",
+    "orderType": "SELL",
     "symbol": "GOOGL",
     "amount": 2,
     "price": 2750.25,
@@ -27,8 +30,9 @@
     "lastModified": "29.3.2024. 10:23:18"
   },
   {
-    "security": "future",
-    "transaction": "BUY",
+    "orderId":4,
+    "listingType": "future",
+    "orderType": "BUY",
     "symbol": "ES",
     "amount": 3,
     "price": 4200.75,
@@ -36,8 +40,9 @@
     "lastModified": "30.3.2024. 15:45:59"
   },
   {
-    "security": "forex",
-    "transaction": "SELL",
+    "orderId":5,
+    "listingType": "forex",
+    "orderType": "SELL",
     "symbol": "EURUSD",
     "amount": 10000,
     "price": 1.115,

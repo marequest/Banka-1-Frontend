@@ -1,0 +1,185 @@
+
+:host {
+  font-family: 'Jura', sans-serif;
+  display: block;
+  background-color: #0C0C11;
+  /*color: #fff;*/
+}
+
+.container {
+  color: #fff;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 20px;
+}
+
+.title {
+  grid-column: span 12;
+  font-size: 36px;
+  color: #FFB72B;
+}
+
+/*CARD CARD*/
+.card-box {
+  position: relative;
+  grid-column: span 12;
+  background-color: #26262C;
+  padding: 20px;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.card-content {
+  position: relative;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card-acc-num{
+  margin-bottom: 30px;
+  font-size:   16px;
+}
+
+.card-balance {
+  font-size: 24px;
+  /*margin-top: 20px;*/
+  margin-bottom: 30px;
+}
+
+.more-info-btn{
+  font-size: 24px;
+  background-color: #FFB72B;
+  color: #131319;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.arrow {
+  font-size: 24px;
+  color: #D9D9D9; /* Arrow color */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+/*ACCOUNTS CARD*/
+.table-box {
+  grid-column: span 12;
+  background-color: #26262C;
+  padding: 20px;
+  border-radius: 30px;
+  margin-top: 80px;
+}
+
+.tab-container {
+  display: flex;
+  border-bottom: 1px solid #FFF9F0;
+  margin-bottom: 30px;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #131319;
+  color: #FFB72B;
+  border-radius: 5px 5px 0px 0px;
+}
+
+
+.tab:hover {
+  color: #FFF9F0;
+}
+
+
+.table-title{
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
+.custom-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.custom-table th, .custom-table td {
+  border-bottom: 1px solid #B3ABA0;
+  padding: 10px;
+  text-align: center;
+}
+
+.custom-table th:first-child, .custom-table td:first-child {
+  border-left: none;
+}
+
+.custom-table th {
+  color: #B3ABA0;
+  background-color: #131319;
+  border-bottom: none;
+  border-radius: 5px;
+}
+
+.custom-table td {
+  border-top: 10px;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #26262C;
+}
+
+
+.rounded-dialog .mat-dialog-container {
+  border-radius: 40px;
+}
+
+@media (max-width: 768px) {
+  .table-box {
+    margin-top: 20px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .more-info-btn{
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .card-acc-num{
+    font-size: 13px;
+  }
+
+  .card-balance {
+    font-size: 20px;
+  }
+
+}
+

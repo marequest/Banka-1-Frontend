@@ -30,7 +30,9 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [`
     table {
-      width: 40vw;
+
+      width: 100%;
+      border-collapse: collapse;
       font-family: 'Jura', sans-serif;
       font-size: 1.1em;
       color: var(--banka-white);
@@ -100,8 +102,10 @@ export class TableComponent {
   // objectKeys = Object.keys;
 
   objectKeys(row: any): string[] {
-    // Exclude 'originalUser' from the keys used for rendering table cells
-    return Object.keys(row).filter(key => key !== 'originalUser' && key !== 'originalLimit');
+    //OBRATITI PAZNJU !!!!!!!!
+    return Object.keys(row).filter(
+      (key) => !key.includes('original')
+    )
   }
 }
 @NgModule({

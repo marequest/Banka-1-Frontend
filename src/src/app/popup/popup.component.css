@@ -1,0 +1,35 @@
+/* popup.component.css */
+
+.popup-container {
+  background-color: #f5f5f5; /* Background color for the pop-up container */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow effect */
+  width: 80%; /* Set the width of the pop-up */
+  max-width: 400px; /* Adjust maximum width as needed */
+  margin: auto; /* Center the pop-up horizontally */
+  text-align: center; /* Align text in the center */
+}
+
+.popup-header {
+  color: #007bff; /* Header color */
+  margin-bottom: 10px;
+}
+
+.popup-message {
+  color: #333; /* Message text color */
+  margin-bottom: 15px;
+}
+
+.popup-button {
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-button:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}

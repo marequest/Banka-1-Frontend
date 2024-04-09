@@ -1,0 +1,91 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-left: 10px;
+    font-family: "Roboto", sans-serif;
+    /* background-color: #EBF6F9;  */
+
+  }
+  
+  .transaction-title {
+    color: #263238;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+
+  .body-content {
+    /* padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 30px; */
+    padding-bottom: 30px;
+    width: 30vw;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+
+
+
+  .form-group {
+    margin-left: 5%;
+    margin-bottom: 10px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column; /* Postavljanje labela iznad input polja */
+  }
+  
+  .form-group label {
+    color: #103145;
+    margin-bottom: 5px; /* Dodavanje razmaka između labela i input polja */
+  }
+  
+  
+
+  .form-group input[type="text"] {
+    width: 55%;
+      height:auto;
+      box-sizing: border-box;
+      border-radius: 5px; 
+      background-color: #B3D3DF; 
+      color: #3f3e3e; 
+      padding: 8px;
+  }
+
+  
+  .form-group.buttonSl{
+    padding-top: 2%;
+    flex-direction: row; 
+  }
+
+  .form-group.buttonSl button {
+    margin: 0 0; 
+    height: 5vh; 
+
+
+  }
+  
+  .form-group.buttonSl button:first-child {
+    background-color: #f0f8ff; 
+    width: 20%;
+    color: #19B5C7; 
+    border-color: #19B5C7;
+    border-radius: 5px; 
+  }
+  
+  .form-group.buttonSl button:last-child {
+    background-color: #103145; 
+    color: #fff; 
+    width: 20%;
+    border-radius: 5px; 
+    margin-left: 1rem;
+  }
+  
+
+  
+  
+  
+  

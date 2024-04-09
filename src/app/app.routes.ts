@@ -54,7 +54,7 @@ export const routes: Routes = [
   {path:'user/reset-password/:token', component: UserResetPasswordComponent, canActivate: [resetPasswordGuard]},
   {
     path: 'security',
-    canActivate: [AdminAndEmployeeGuard],
+    // canActivate: [AdminAndEmployeeGuard],
     children: [
       { path: 'all', component: SecurityListComponent },
       { path: "stock/:ticker", component: StockViewComponent },
@@ -91,7 +91,7 @@ export const routes: Routes = [
 
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'recipients', component: RecipientsComponent, canActivate: [CustomerGuard]},
-  { path: 'cards', component: CardTransactionsComponent,canActivate: [CustomerGuard]},
+  { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
   { path: 'loans', component: LoanTableComponent, canActivate: [CustomerGuard]},
   { path: 'new-loan', component: NewLoanComponent, canActivate: [CustomerGuard]},
 

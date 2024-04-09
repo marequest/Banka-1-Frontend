@@ -3,6 +3,8 @@
     background-color: #ebf6f9;
 }
 
+
+
 /* Css of div where title Bank Accounts is. */
 .title-div{
     height: 70px;
@@ -286,6 +288,10 @@ Grid elements are individual bank accounts of user (grid-item class elements).
 .tableHeaderDiv{
     height: 15%;
     width: 100%;
+}
+
+tr{
+    cursor: pointer;
 }
 
 @media (min-width: 300px) {

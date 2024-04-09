@@ -1,0 +1,44 @@
+<div class="container">
+    <!-- d-flex justify-content-center align-items-center -->
+    <div class="row titleAndCloseBtnDiv">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-11  titleDiv">Exchange details</div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-1 closeBtn" (click) = "exit()">❌</div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Inflow account owner:</div>
+            <div class="row down">{{ exchange.senderName || '-' }}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Inflow account number:</div>
+            <div class="row down">{{exchange.senderAccountNumber || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Outflow account number:</div>
+            <div class="row down">{{exchange.recipientAccountNumber || '-'}}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Converted amount:</div>
+            <div class="row down">{{exchange.convertedAmount || '-'}}</div>
+        </div>
+    </div>
+
+    <div class="row infoRow">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Exchange rate:</div>
+            <div class="row down">{{ exchange.exchangeRate || '-' }}</div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
+            <div class="row up">Comission:</div>
+            <div class="row down">{{exchange.commision || '-'}}</div>
+        </div>
+    </div>
+
+</div>
