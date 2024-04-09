@@ -96,7 +96,7 @@ export class NewPaymentComponent implements OnInit{
       return false;
     }
 
-    if (!this.payment.paymentCode || this.payment.paymentCode==0) {
+    if (!this.payment.paymentCode || this.payment.paymentCode=="") {
       return false;
     }
 
@@ -104,7 +104,7 @@ export class NewPaymentComponent implements OnInit{
       return false;
     }
 
-    if (!this.payment.purposeOfPayment) {
+    if (!this.payment.paymentPurpose) {
       return false;
     }
     return true;

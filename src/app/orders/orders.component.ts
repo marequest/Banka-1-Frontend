@@ -1,17 +1,9 @@
 import { Component } from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-
 import {Order, OrderDto, SellingRequest, StatusRequest} from "../model/model";
-
-import {BankAccountDto, Order} from "../model/model";
-
 import {OrderService} from "../service/order.service";
 import {FormsModule} from "@angular/forms";
 import {z} from "zod";
-import {HttpClient} from "@angular/common/http";
-import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
-import {WhiteTextFieldModule} from "../welcome/redesign/WhiteTextField";
-import {PopupService} from "../service/popup.service";
 
 @Component({
   selector: 'app-orders',
@@ -19,9 +11,7 @@ import {PopupService} from "../service/popup.service";
   imports: [
     NgIf,
     NgForOf,
-    FormsModule,
-    OrangeButtonModule,
-    WhiteTextFieldModule
+    FormsModule
   ],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
@@ -52,10 +42,6 @@ export class OrdersComponent {
   allOrNone: boolean = false;
   margin: boolean = false;
 
-  // TODO Pretpostvaljam da je customerId?? jer se on trazi u putanjama za limit i availableBalance
-  totalAvailableBalance: number = 0; // Global variable to store the sum
-  orderLimitBalance: number = 0;
-
   sellScheme = z.object({
     amount: z.number().min(0),
     limitValue: z.number().min(0),
@@ -64,18 +50,14 @@ export class OrdersComponent {
     margin: z.boolean()
   })
 
-  constructor(private orderService: OrderService, popupService: PopupService) {
-    // TODO Test za popup koji ide na buy dugme, izbrisati
-    popupService.openBuyPopup();
+  constructor(private orderService: OrderService) {
   }
 
   setSelectedTab(tab: "order-history" | "requests" | "securities") {
     this.selectedTab = tab;
   }
 
-
   async ngOnInit() {
-
     if(this.isSupervizor || this.isAdmin){
     this.orderHistory = await this.orderService.getAllOrdersHistory();
     }else{
@@ -106,29 +88,6 @@ export class OrdersComponent {
     } catch (error) {
       console.error('Error while approving order:', error);
     }
-
-//     this.orderHistory = await this.orderService.getOrderHistory();
-//     this.orderRequests = await this.orderService.getOrderRequests();
-//     this.orderSecurities = await this.orderService.getOrderSecurities();
-
-//     var customerId = sessionStorage.getItem('loggedUserID');
-//     if(customerId) {
-//       this.orderService.fetchAccountData(customerId).subscribe(total => {
-//         this.totalAvailableBalance = total;
-//       });
-
-//       this.orderService.fetchUserForLimit(customerId).subscribe(user => {
-//         this.orderLimitBalance = user.orderlimit;
-//       }, error => {
-//         console.error('Failed to fetch user order limit:', error);
-//       });
-//     }
-//   }
-
-
-//   async approveOrder(order: Order) {
-//     this.orderService.approveOrder();
-
   }
 
   async denyOrder(orderr: OrderDto) {

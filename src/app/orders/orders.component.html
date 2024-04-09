@@ -1,23 +1,46 @@
 <div class="container">
-<div class="page">
-  <div class="limit-info">
-    <h2>Limit: {{limitValue}}</h2>
-    <h2>Available: {{ totalAvailableBalance }}</h2>
-  </div>
-  <h1>Orders</h1>
-  <div class="central-window">
-    <div class="tabs-menu">
-      <ul>
-        <li class="{{selectedTab === 'order-history' ? 'active-tab' : ''}}" (click)="setSelectedTab('order-history')" *ngIf="isAdmin || isEmployee">Order history</li>
-        <li class="{{selectedTab === 'requests' ? 'active-tab' : ''}}" (click)="setSelectedTab('requests')" *ngIf="isAdmin||isSupervizor">Requests</li>
-        <li class="{{selectedTab === 'securities' ? 'active-tab' : ''}}" (click)="setSelectedTab('securities')" *ngIf="isAdmin || isEmployee">Securities</li>
-      </ul>
-      <hr>
-    </div>
-  <!-- </div> -->
-    <div class="history-tab" *ngIf="selectedTab === 'order-history'">
-      <table>
-        <thead>
+  <div class="page">
+    <h1>Orders</h1>
+    <div class="central-window">
+      <div class="tabs-menu">
+        <ul>
+          <li class="{{selectedTab === 'order-history' ? 'active-tab' : ''}}" (click)="setSelectedTab('order-history')" *ngIf="isAdmin || isEmployee">Order history</li>
+          <li class="{{selectedTab === 'requests' ? 'active-tab' : ''}}" (click)="setSelectedTab('requests')" *ngIf="isAdmin||isSupervizor">Requests</li>
+          <li class="{{selectedTab === 'securities' ? 'active-tab' : ''}}" (click)="setSelectedTab('securities')" *ngIf="isAdmin || isEmployee">Securities</li>
+        </ul>
+        <hr>
+      </div>
+    <!-- </div> -->
+      <div class="history-tab" *ngIf="selectedTab === 'order-history'">
+        <table>
+          <thead>
+            <tr>
+              <th>Security</th>
+              <th>Transaction</th>
+              <th>Symbol</th>
+              <th>Amount</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Last Modified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orderHistory">
+              <td>{{order.listingType}}</td>
+              <td>{{order.orderType}}</td>
+              <td>{{order.symbol}}</td>
+              <td>{{order.amount}}</td>
+              <td>{{order.price}}</td>
+              <td>{{order.status}}</td>
+              <td>{{order.lastModified}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="requests-tab" *ngIf="selectedTab === 'requests'">
+        <table>
+          <thead>
           <tr>
             <th>Security</th>
             <th>Transaction</th>
@@ -26,10 +49,11 @@
             <th>Price</th>
             <th>Status</th>
             <th>Last Modified</th>
+            <th>Actions</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let order of orderHistory">
+          </thead>
+          <tbody>
+          <tr *ngFor="let order of orderRequests">
             <td>{{order.listingType}}</td>
             <td>{{order.orderType}}</td>
             <td>{{order.symbol}}</td>
@@ -37,125 +61,85 @@
             <td>{{order.price}}</td>
             <td>{{order.status}}</td>
             <td>{{order.lastModified}}</td>
+            <td>
+              <div class="table-buttons" *ngIf="order.status.toLowerCase() === 'processing'">
+                <button class="button-primary" (click)="approveOrder(order)">Approve</button>
+                <button class="button-secondary" (click)="denyOrder(order)">Deny</button>
+              </div>
+            </td>
           </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="requests-tab" *ngIf="selectedTab === 'requests'">
-      <table>
-        <thead>
-        <tr>
-          <th>Security</th>
-          <th>Transaction</th>
-          <th>Symbol</th>
-          <th>Amount</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th>Last Modified</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let order of orderRequests">
-          <td>{{order.listingType}}</td>
-          <td>{{order.orderType}}</td>
-          <td>{{order.symbol}}</td>
-          <td>{{order.amount}}</td>
-          <td>{{order.price}}</td>
-          <td>{{order.status}}</td>
-          <td>{{order.lastModified}}</td>
-          <td>
-            <div class="table-buttons" *ngIf="order.status.toLowerCase() === 'processing'">
-              <button class="button-primary" (click)="approveOrder(order)">Approve</button>
-              <button class="button-secondary" (click)="denyOrder(order)">Deny</button>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="securities-tab" *ngIf="selectedTab === 'securities'">
-      <table>
-        <thead>
-        <tr>
-          <th>Security</th>
-          <th>Symbol</th>
-          <th>Amount</th>
-          <th>Price</th>
-          <th>Last Modified</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let order of orderSecurities">
-          <td>{{order.listingType}}</td>
-          <td>{{order.symbol}}</td>
-          <td>{{order.amount}}</td>
-          <td>{{order.price}}</td>
-          <td>{{order.lastModified}}</td>
-          <td>
-            <div class="table-buttons">
-              <button class="button-primary" (click)="openSellMenu(order)">Sell</button>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
-
-  <div class="popup-bg" *ngIf="popupOpen">
-    <div class="popup">
-      <div class="popup-header">
-        <h1>Sell Security</h1>
-        <img src="/assets/x.svg" alt="x button" class="x-button" height="40" width="40" (click)="closeSellingMenu()" />
+          </tbody>
+        </table>
       </div>
-      <hr>
-      <div class="popup-body">
-        <div class="input-row">
-          <label>Amount:</label>
-          <white-text-field [(text)]="amount"></white-text-field>
-          <!--          <input type="number" [(ngModel)]="amount" min="0" placeholder="value...">-->
+  
+      <div class="securities-tab" *ngIf="selectedTab === 'securities'">
+        <table>
+          <thead>
+          <tr>
+            <th>Security</th>
+            <th>Symbol</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Last Modified</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let order of orderSecurities">
+            <td>{{order.listingType}}</td>
+            <td>{{order.symbol}}</td>
+            <td>{{order.amount}}</td>
+            <td>{{order.price}}</td>
+            <td>{{order.lastModified}}</td>
+            <td>
+              <div class="table-buttons">
+                <button class="button-primary" (click)="openSellMenu(order)">Sell</button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    <div class="popup-bg" *ngIf="popupOpen">
+      <div class="popup">
+        <div class="popup-header">
+          <h1>Sell Security</h1>
+          <img src="/assets/x.svg" alt="x button" class="x-button" height="40" width="40" (click)="closeSellingMenu()" />
         </div>
-
-        <div class="input-row">
-          <label>Limit value:</label>
-          <white-text-field [(text)]="limitValue"></white-text-field>
-          <!--          <input type="number" min="0" placeholder="value..." [(ngModel)]="limitValue">-->
-        </div>
-
-        <div class="input-row">
-          <label>Stop value:</label>
-          <white-text-field [(text)]="stopValue"></white-text-field>
-<!--          <input type="number" min="0" placeholder="value..." [(ngModel)]="stopValue">-->
-        </div>
-
-        <div class="input-row">
-          <label>All or None:</label>
-          <input type="checkbox" [(ngModel)]="allOrNone">
-        </div>
-
-        <div class="input-row">
-          <label>Margin:</label>
-          <input type="checkbox" [(ngModel)]="margin">
-        </div>
-
-        <div class="popup-buttons">
-          <div class="button-wrapper">
-            <orange-button [buttonName]="'Cancel'" (click)="closeSellingMenu()"></orange-button>
+        <hr>
+        <div class="popup-body">
+          <div class="input-row">
+            <label>Amount:</label>
+            <input type="number" [(ngModel)]="amount" min="0" placeholder="value...">
           </div>
-          <div class="button-wrapper">
-            <orange-button [buttonName]="'Sell'" (click)="sellOrder()"></orange-button>
+  
+          <div class="input-row">
+            <label>Limit value:</label>
+            <input type="number" min="0" placeholder="value..." [(ngModel)]="limitValue">
+          </div>
+  
+          <div class="input-row">
+            <label>Stop value:</label>
+            <input type="number" min="0" placeholder="value..." [(ngModel)]="stopValue">
+          </div>
+  
+          <div class="input-row">
+            <label>All or None:</label>
+            <input type="checkbox" [(ngModel)]="allOrNone">
+          </div>
+  
+          <div class="input-row">
+            <label>Margin:</label>
+            <input type="checkbox" [(ngModel)]="margin">
+          </div>
+  
+          <div class="popup-buttons">
+            <button class="button-secondary" (click)="closeSellingMenu()">Cancel</button>
+            <button class="button-primary" (click)="sellOrder()">Sell</button>
           </div>
         </div>
-<!--          <button class="button-secondary" (click)="closeSellingMenu()">Cancel</button>-->
-<!--          <button class="button-primary" (click)="sellOrder()">Sell</button>-->
+  
       </div>
-
+    </div>  
     </div>
-  </div>  
-  </div>
-</div> 
+  </div> 

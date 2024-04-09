@@ -16,16 +16,8 @@ h1 {
   color: #FFB72B;
   font-size: 36px;
   font-weight: 700;
-  padding-top: 40px;
-  margin-left: 40px;
-}
-.limit-info {
-  position: absolute; /* Positioning it relative to the nearest positioned ancestor (or the body) */
-  top: 0; /* At the top */
-  right: 0; /* At the right */
-  text-align: right; /* Align text to the right */
-  color: orange; /* Text color orange */
-  padding: 20px; /* Add some padding */
+  padding-top: 60px;
+  margin-left: 16px;
 }
 
 .central-window {
@@ -259,115 +251,4 @@ th:nth-last-child(1) {
   .popup::-webkit-scrollbar {
     display: block;
   }
-}
-.popup-buttons {
-  display: flex; /* Enables Flexbox */
-  justify-content: space-around; /* Distributes space evenly around the items */
-}
-
-.button-wrapper {
-  flex: 0.5; /* Each child will take up an equal amount of space */
-  max-width: 13vw;
-  padding: 5px; /* Optional: Adds some space between the buttons */
-}
-
-.popup-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center the content horizontally */
-  padding: 20px;
-}
-
-.input-row {
-  display: flex;
-  align-items: center; /* Align items vertically in the center */
-  width: 80%; /* Set a fixed width for all rows to align them */
-  margin-bottom: 10px; /* Add some space between rows */
-}
-
-.input-row label {
-  color: white; /* Set label text color to white */
-  width: 150px; /* Set a fixed width for all labels to ensure alignment */
-}
-
-white-text-field, input {
-  flex-grow: 1; /* Allow input fields to take up remaining space */
-  /*max-width: 30vh;*/
-  padding: 8px;
-}
-
-.input-row input[type="checkbox"] {
-  margin-left: 150px; /* Align checkboxes with other input fields */
-}
-
-.popup-buttons {
-  display: flex;
-  justify-content: space-between; /* Evenly distribute space around buttons */
-  width: 80%; /* Match the width of the input rows for alignment */
-  margin-top: 20px; /* Add some space above the button row */
-}
-
-.button-wrapper {
-  flex-grow: 1; /* Allow button wrappers to grow and fill the space */
-  text-align: center; /* Center the buttons within their wrappers */
-}
-.popup {
-  background-color: #333; /* Dark gray background */
-  color: #fff; /* White text color */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  padding: 20px; /* Spacing inside the popup */
-  font-family: Arial, sans-serif; /* Professional, readable font */
-}
-
-.popup-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px; /* Space between header and body */
-}
-
-.popup-header h1 {
-  margin: 0; /* Remove default margin */
-  font-size: 24px; /* Prominent header size */
-}
-
-.popup-header .x-button {
-  cursor: pointer; /* Indicates clickable */
-  filter: invert(1); /* Makes the image white */
-}
-
-hr {
-  border-color: #444; /* Slightly lighter line for separation */
-}
-
-.popup-body .input-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px; /* Space between input rows */
-}
-
-.popup-body .input-row label {
-  flex: 0 0 120px; /* Fixed width for labels, ensuring alignment */
-  margin-right: 10px; /* Space between label and input field */
-}
-
-.white-text-field {
-  flex-grow: 1; /* Input field takes remaining space */
-  padding: 8px;
-  background-color: #444; /* Slightly lighter than popup background */
-  border: 1px solid #555; /* Subtle border */
-  border-radius: 4px; /* Rounded corners for input field */
-  color: #fff; /* White text */
-}
-
-.button-wrapper {
-  display: inline-block; /* Allows buttons to sit side by side */
-  margin-right: 10px; /* Space between buttons */
-}
-
-.popup-buttons {
-  display: flex;
-  justify-content: flex-end; /* Aligns buttons to the right */
-  margin-top: 20px; /* Space above buttons */
 }

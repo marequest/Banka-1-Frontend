@@ -32,7 +32,7 @@ export interface Permissions{
     permission_id?:number;
     name:string;
     description?:string;
-
+}
 export interface Limit{
   userId: string;
   email?: string;
@@ -392,10 +392,7 @@ export interface CreateOrderRequest {
   allOrNone: boolean;
 }
 
-export enum OrderType {
-  BUY = "BUY",
-  SELL = "SELL"
-}
+
 
 export enum ListingType {
   STOCK = "STOCK",

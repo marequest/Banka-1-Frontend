@@ -30,7 +30,15 @@ export interface BankAccount {
   accountOwner?: string;
   accountName?: string;
 }
-
+export interface Limit{
+  userId: string;
+  email?: string;
+  limit?: number;
+  usedLimit?: number;
+}
+export interface Transaction {
+  amount: number;
+}
 export interface Account {
   accountNumber: string;
   accountType: AccountType;

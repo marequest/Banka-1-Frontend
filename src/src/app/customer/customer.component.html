@@ -53,19 +53,19 @@
             'Phone number',
             'Gender'
           ]"
-          [dataArray]="customers | transformCustomer"
+          [dataArray]="customersTable"
           [showActions]="true"
         >
           <ng-template #actionsColumn let-row>
             <div class="options-menu">
               <button class="options-button" id="options-button">&#8286;</button>
               <div class="options-dropdown">
-                <button id="view-button" (click)="viewCustomer(row.email)">
+                <button id="view-button" (click)="viewCustomer(row.customer)">
                   View Profile
                 </button>
                 <button
                   id="editProfile-button"
-                  (click)="editCustomer(row.email)"
+                  (click)="editCustomer(row.customer)"
                 >
                   Edit Profile
                 </button>
