@@ -78,7 +78,7 @@ export class CustomerComponent implements OnInit{
   ];
 
   constructor(
-    private customerService: CustomerService,
+    private customerService: CustomerService, 
     private router:Router,
     private popup:PopupService
     ) { }
@@ -134,16 +134,10 @@ export class CustomerComponent implements OnInit{
     const customer = this.customers.find((cust:Customer) => cust.email === customerEmail);
 
     if(!customer) return;
-    
+
     this.customerService.setSelectedCustomer(customer);
 
-    this.router.navigate(['/customer/view'], {
-      queryParams: {
-        customerName: customer.firstName + " " + customer.lastName,
-        customerId: customer.userId
-      }
-    });
-
+    this.router.navigate(['/customer/view']);
   }
 
   editCustomer(customerEmail: string) {
