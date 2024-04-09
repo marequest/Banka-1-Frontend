@@ -23,12 +23,12 @@ export class NewPaymentComponent implements OnInit{
     recipientAccountNumber: '',
     amount: 0,
     referenceNumber: '',
-    paymentCode: 0,
-    purposeOfPayment: '',
+    paymentCode: '',
+    paymentPurpose: '',
     senderAccountNumber: '',
-    activationCode: ''
+    singleUseCode: '',
+    model: ''
   };
-  
 
   accounts: BankAccount[] = [
     {

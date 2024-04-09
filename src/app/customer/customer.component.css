@@ -220,49 +220,50 @@
     transform: scale(1.05); /* Slightly scales up the image on hover */
   }
   
-  /**
+
    Permission table and search filter 
   **/
-  .search-container {
-    font-size: 0; /* Remove white space between inline-block elements */
-    margin-top: 1vw;
-  }
-  
-  .search-input, .search-icon-div {
-      display: inline-block;
-      width: 20%; /* Adjust width as needed */
-      font-size: 16px; /* Restore font size */
-      box-sizing: border-box; /* Include padding and border in width calculation */
-      vertical-align: top; /* Align elements to the top */
-  }
-  
-  /* Optional: Add styling to the divs */
-  .search-input {
-    background-color: lightblue;
-  }
-  
-  .search-icon-div {
-    background-color: lightgreen;
-  }
-  
-  /** permission element **/
-  .permission-element {
-    display: flex;
-    width: fit-content;
-    align-items: center;
-    background-color: #19B5C7;
-    border-radius: 10px;
-    margin-bottom: 4px; /* Spacing between permission elements */
-  }
-  
-  .close-icon {
-    margin-left: 8px;
-    cursor: pointer;
-    user-select: none; /* Prevents selecting the 'x' on double click */
-  }
-  
-  #helperDiv { 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
+.search-container {
+  font-size: 0; /* Remove white space between inline-block elements */
+  margin-top: 1vw;
+}
+
+.search-input,
+.search-icon-div {
+  display: inline-block;
+  width: 20%; /* Adjust width as needed */
+  font-size: 16px; /* Restore font size */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  vertical-align: top; /* Align elements to the top */
+}
+
+/* Optional: Add styling to the divs */
+.search-input {
+  background-color: lightblue;
+}
+
+.search-icon-div {
+  background-color: lightgreen;
+}
+
+/** permission element **/
+.permission-element {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  background-color: #19b5c7;
+  border-radius: 10px;
+  margin-bottom: 4px; /* Spacing between permission elements */
+}
+
+.close-icon {
+  margin-left: 8px;
+  cursor: pointer;
+  user-select: none; /* Prevents selecting the 'x' on double click */
+}
+
+#helperDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}

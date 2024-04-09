@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {firstValueFrom} from "rxjs";
-import {environmentMarket} from "../../../environment";
+import {firstValueFrom, Observable} from "rxjs";
+import {environment, environmentMarket} from "../../../environment";
 import {StockListing} from "./stock.service";
+
 import {DecideOrderResponse, Order, OrderDto, SellingRequest, StatusRequest} from "../model/model";
+
+import {BankAccountDto, CreateOrderRequest, ListingType, Order, OrderType, User} from "../model/model";
+import {map} from "rxjs/operators";
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +17,37 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  async getAllOrdersHistory() {
+
+//   async getAllOrdersHistory() {
+
+  fetchAccountData(id: string): Observable<number> {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+    return this.http.get<BankAccountDto[]>(environment.baseUrl + '/account/getCustomer/' + id, httpOptions).pipe(
+      map(accounts => accounts.reduce((sum, account) => sum + account.availableBalance, 0))
+    );
+  }
+
+  fetchUserForLimit(id: string): Observable<User> {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+    return this.http.get<User>(environment.baseUrl + '/employee/' + id, httpOptions);
+  }
+
+
+
+  async getOrderHistory() {
+
     const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return [];
@@ -156,6 +191,33 @@ export class OrderService {
       throw error; 
     }
 
+  }
+  async buyOrder(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: string, limitValue: string, stopValue: string, allOrNone: boolean) {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+
+    const orderRequest: CreateOrderRequest = {
+      orderType: orderType,
+      listingId: listingId,
+      listingType: listingType,
+      contractSize: contractSize,
+      limitValue: limitValue,
+      stopValue: stopValue,
+      allOrNone: allOrNone
+    };
+
+    try {
+      const response = await this.http.post<boolean>(environment.baseUrl + '/orders', orderRequest, httpOptions).toPromise();
+      return response;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   }
 
 }

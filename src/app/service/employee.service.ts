@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders,  HttpParams} from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User, UserToEdit } from '../model/model';
+import {Limit, User, UserToEdit} from '../model/model';
 import { environment } from "../../../environment";
 import {PopupService} from "./popup.service";
 import {Router} from "@angular/router";
@@ -27,6 +27,27 @@ export class UserService {
     private http: HttpClient,
     private router: Router,
   ) { }
+
+
+  // Get all limits MOCKED
+  getLimitsMocked(): Observable<Limit[]> {
+    return this.http.get<Limit[]>('/assets/mocked_banking_data/mocked_limits/limits-mocked.json');
+  }
+
+  // Get all limits REAL_DATA
+  getLimits(): Observable<Limit[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/employee/limits/getAll`;
+    
+
+    return this.http.get<Limit[]>(url, options);
+  }
+
 
   public getEmployees(): Observable<User[]>{
     return this.http.get<User[]>(this.apiUrl+"/employee/getAll", {
