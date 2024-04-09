@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Forex} from "./model";
+import {ExchangeRate} from "./model";
 
 @Pipe({
-  name: 'forexFilterPipe',
+  name: 'exchangeFilterPipe',
   standalone: true
 })
-export class ForexFilterPipe implements PipeTransform {
-  transform(forexArray: Forex[]): any[] {
-    return forexArray.map(forex => ({
-      baseCurrency: forex.baseCurrency,
-      quoteCurrency: forex.quoteCurrency,
-      priceChange: forex.priceChange
+export class ExchangeFilterPipe implements PipeTransform {
+  transform(exchangeArray: ExchangeRate[]): any[] {
+    return exchangeArray.map(exchangeRate => ({
+      baseCurrency: exchangeRate.baseCurrency,
+      quoteCurrency: exchangeRate.quoteCurrency,
+      rate: exchangeRate.rate
     }));
   }
 }
