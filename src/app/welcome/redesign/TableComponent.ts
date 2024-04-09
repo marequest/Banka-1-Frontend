@@ -61,7 +61,14 @@ export class TableComponent {
   @ContentChild(TemplateRef) customTemplate!: TemplateRef<any>;
 
   // Helper function to get keys from the row object
-  objectKeys = Object.keys;
+  // objectKeys = Object.keys;
+
+  objectKeys(row: any): string[] {
+    //OBRATITI PAZNJU !!!!!!!!
+    return Object.keys(row).filter(
+      (key) => !key.includes('original')
+    )
+  }
 }
 @NgModule({
   declarations: [TableComponent],

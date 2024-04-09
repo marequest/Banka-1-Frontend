@@ -1,38 +1,97 @@
 <div class="content">
-  <div class="security-title">Securities panel</div>
+  <div class="security-title">Security</div>
 
   <div class="table-wrapper">
-    <div class="security-tabs">
-      <div
-        [ngClass]="selectedTab === 'stocks' ? 'tab tab-active' : 'tab'"
-        (click)="setSelectedTab('stocks')"
-      >
-        <div class="tab-content">Stocks</div>
+    <div class="table-content">
+      <div class="filter-row">
+        <div class="left-row">
+          <div class="filter-input">
+            <input
+              class="security-filter-input"
+              placeholder="Search by symbol"
+              [(ngModel)]="symbol"
+            />
+          </div>
+          <div class="search-icon">
+            <button (click)="search()" class="button-image">
+              <img src="assets/search.png" alt="search" />
+            </button>
+          </div>
+        </div>
       </div>
-       <div
-        [ngClass]="selectedTab === 'future' ? 'tab tab-active' : 'tab'"
-        class="tab"
-        (click)="setSelectedTab('future')"
-      >
-        <div class="tab-content">Future</div>
-      </div>
-      <div
-        [ngClass]="selectedTab === 'forex' ? 'tab tab-active' : 'tab'"
-        class="tab"
-        (click)="setSelectedTab('forex')"
-      >
-        <div class="tab-content">Forex</div>
-      </div>
-    </div>
 
-    <div class="tab-stocks" *ngIf="selectedTab === 'stocks'">
-      <app-stock-table></app-stock-table>
+      <div class="security-table-wrapper">
+        <div class="wrapper-header">
+          <div
+            (click)="setSelectedTab('stocks')"
+            [ngClass]="selectedTab === 'stocks' ? 'tab tab-active' : 'tab'"
+          >
+            Stock
+          </div>
+
+          <div
+            (click)="setSelectedTab('future')"
+            [ngClass]="selectedTab === 'future' ? 'tab tab-active' : 'tab'"
+          >
+            Future
+          </div>
+
+          <div
+            (click)="setSelectedTab('forex')"
+            [ngClass]="selectedTab === 'forex' ? 'tab tab-active' : 'tab'"
+          >
+            Forex
+          </div>
+        </div>
+        <app-dynamic-table
+          *ngIf="selectedTab === 'stocks'"
+          [headersArray]="[
+            'Ticker',
+            'Price',
+            'Change',
+            'Volume',
+            'Init Margin Cost'
+          ]"
+          [dataArray]="securities | transformSecurity"
+          [showActions]="true"
+        >
+          <ng-template #actionsColumn let-row>
+            <button class="buy-security">BUY</button>
+          </ng-template>
+        </app-dynamic-table>
+
+        <app-dynamic-table
+          *ngIf="selectedTab === 'future'"
+          [headersArray]="[
+            'Contract Size',
+            'Contract Unit',
+            'Open Interest',
+            'Settlement Date'
+          ]"
+          [dataArray]="futures | transformFuture"
+          [showActions]="true"
+        >
+          <ng-template #actionsColumn let-row>
+            <button class="buy-security" (click)="navigateToFuture(row.originalFuture.listingId)">BUY</button>
+          </ng-template>
+        </app-dynamic-table>
+
+        <app-dynamic-table
+          *ngIf="selectedTab === 'forex'"
+          [headersArray]="[
+            'Quote Currency',
+            'Base Currency',
+            'Price',
+            'Exchange Name'
+          ]"
+          [dataArray]="forex | transformForex"
+          [showActions]="true"
+        >
+          <ng-template #actionsColumn let-row>
+            <button class="buy-security" (click)="navigateToForex(row.originalForex.listingId)">BUY</button>
+          </ng-template>
+        </app-dynamic-table>
+      </div>
     </div>
-    <ng-container *ngIf="selectedTab === 'forex';">
-      <app-forex-table/>
-    </ng-container>
-    <ng-container *ngIf="selectedTab === 'future'">
-      <app-future-table/>
-    </ng-container>
   </div>
 </div>

@@ -54,7 +54,7 @@ export const routes: Routes = [
   {path:'user/reset-password/:token', component: UserResetPasswordComponent, canActivate: [resetPasswordGuard]},
   {
     path: 'security',
-    canActivate: [AdminAndEmployeeGuard],
+    // canActivate: [AdminAndEmployeeGuard],
     children: [
       { path: 'all', component: SecurityListComponent },
       { path: "stock/:ticker", component: StockViewComponent },
