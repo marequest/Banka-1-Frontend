@@ -30,7 +30,6 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [`
     table {
-
       width: 100%;
       border-collapse: collapse;
       font-family: 'Jura', sans-serif;
