@@ -1,6 +1,7 @@
 .content {
   display: flex;
   flex-direction: column;
+
   margin-left: 5rem;
   margin-top: 5rem;
  font-family: "Jura", sans-serif;
@@ -41,8 +42,15 @@
 
 .filter-row {
   display: flex;
+
+  /*justify-content: left; /* Center the content */
+  padding: 20px; /* Add some padding for spacing */
+  /*background-color: #f2f4f6; !* Light background color for the filter area *!*/
+  /*border-bottom: 2px solid #d1d8e0; !* Add a subtle border for separation *!*/
+
   justify-content: space-between;
   
+
 }
 
 .left-row {
@@ -52,19 +60,48 @@
   padding-left: 20px;
 }
 
-.filter-input {
-  margin-left: 100px;
+
+/* Styling for the filter input */
+.filter-input input.security-filter-input {
+  width: 100%; /* Full width of its container */
+  /* Padding for the input */
+  padding: 10px 15px 10px 15px;
+  border: 2px solid #d1d8e0; /* Border color */
+  border-radius: 20px; /* Rounded corners for the input */
+  outline: none; /* Remove the default focus outline */
+  font-size: 16px; /* Font size */
+  color: #333; /* Text color */
 }
 
+.filter-input input.security-filter-input::placeholder {
+  color: #a6a9ad; /* Placeholder text color */
+}
+.filter-input {
+  margin-left: 16px;
+}
+
+/* Styling for the search button */
+.search-icon .button-image {
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor on hover */
+  /*padding-left: 10px; !* Space between input and button *!*/
+  margin-right: 16px;
+  margin-left: 16px;
+}
+/* .filter-input {
+  margin-left: 100px;
+} */
+/* 
 .security-filter-input {
-  /* border-color: #263238; */
   border-radius: 5px;
 
   height: 3vh;
   border: 1.3px solid #263238;
   padding: 15px;
   font-size: 18px;
-}
+
+} */
 
 .security-filter-select {
   border-radius: 5px;
@@ -76,11 +113,16 @@
 }
 
 .right-row {
+  margin-top: 1.3em;
+  padding-left: 16px;
   display: flex;
   align-items: center;
+
+  text-align: right;
   padding-right: 20px;
 
   margin-top: 2%;
+
 }
 
 .add-new-btn {
@@ -101,6 +143,7 @@
 }
 
 .security-table-wrapper {
+
   margin-top: 2rem;
 
 }
@@ -220,10 +263,24 @@ td {
   display: block;
 }
 
+.options-dropdown button:hover {
+  background-color: var(--banka-very-dark-gray);
+}
+
+
+.searchTF{
+  margin-left: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .button-image {
   border: none; /* Removes the border */
   background-color: transparent; /* Makes the background transparent */
-  padding: 0; /* Removes padding around the image */
+  /* Removes padding around the image */
+  padding: 30px 0 0;
   cursor: pointer; /* Changes the cursor to a pointer when hovered over the button */
   display: inline-block; /* Ensures the button is properly aligned */
   overflow: hidden; /* Prevents any overflow */
@@ -232,6 +289,7 @@ td {
 
 .button-image img {
   width: 100%; /* Adjusts the width of the image to fill the button */
+  min-width: 24px;
   height: auto; /* Adjusts the height to maintain the aspect ratio */
   display: block; /* Ensures the image fills the button */
   transition: transform 0.3s ease; /* Adds a transform transition for a subtle effect */
@@ -253,15 +311,25 @@ td {
   margin-top: 1vw;
 }
 
+
+.search-input, .search-icon-div {
+    display: inline-block;
+    width: 20%; /* Adjust width as needed */
+    font-size: 16px; /* Restore font size */
+
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    vertical-align: top; /* Align elements to the top */
+/* =======
 .search-input,
 .search-icon-div {
   display: inline-block;
-  width: 20%; /* Adjust width as needed */
-  font-size: 16px; /* Restore font size */
+  width: 20%; 
+  font-size: 16px; 
   margin-left: 5%;
   margin-right: 5%;
-  box-sizing: border-box; /* Include padding and border in width calculation */
-  vertical-align: top; /* Align elements to the top */
+  box-sizing: border-box; 
+  vertical-align: top;  */
+
 }
 
 /* Optional: Add styling to the divs */
@@ -385,6 +453,7 @@ app-dynamic-table {
 }
 
 .filter-dropdown {
+  margin-top: 1.3em;
   position: relative; /* Allows absolute positioning for the arrow */
   display: inline-block; /* Fit the size of the content */
 

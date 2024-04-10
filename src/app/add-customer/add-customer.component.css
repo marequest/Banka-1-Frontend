@@ -8,6 +8,8 @@
     transform: translate(-50%, -50%); /* Centriranje po sredini ekrana */
   background-color: var(--banka-dark-gray);
     border-radius: 10px;
+  font-family: "Jura", sans-serif;
+
 }
 
 .popup-header {
@@ -48,60 +50,68 @@
     flex: 1;
   }
 
-  .form-group {
-    margin-bottom: 10px;
-    font-size: 10px;
+.form-group {
+  margin-bottom: 10px;
+  font-size: 10px;
+}
 
-  }
+.form-group.active-checkbox {
+  display: flex;
+  align-items: center;
+}
 
-  .form-group.active-checkbox {
-    display: flex;
-    align-items: center;
-  }
+.form-group.active-checkbox label {
+  margin-top: 15%;
+}
 
-  .form-group.active-checkbox label {
-    margin-top: 15%;
-  }
+.form-group.buttonSl {
+  margin-top: 20%;
+}
 
-  .form-group.buttonSl {
-    margin-top: 20%;
-  }
+.form-group.buttonSl button:first-child {
+  margin-left: 10%;
+  margin-right: 10%;
+  width:40%;
+  border-radius: 5px;
+}
 
-  .form-group.buttonSl button:first-child {
-    margin-left: 10%;
-    margin-right: 10%;
-    width:40%;
-    background-color: #f0f8ff;
-    color: #19B5C7;
-    border-radius: 5px;
-  }
+.form-group input {
+  color: var(--banka-white);
 
-  .form-group.buttonSl button:last-child {
-    background-color: #103145;
-    color: #fff;
-    width:40%;
-    border-radius: 5px;
-  }
+  border: 2px solid var(--banka-white);
+}
+
+.form-group label {
+  color: var(--banka-white);
+
+}
+
+.form-group.buttonSl button:last-child {
+  background-color: #103145;
+  color: #fff;
+  width:40%;
+  border-radius: 5px;
+}
 
 .form-group.active-checkbox input[type="checkbox"] {
-    margin-top: 15%;
-    transform: scale(1.5);
-    border: 2px solid #56b214;
-    border-radius: 5px;
-  }
+  margin-top: 15%;
+  transform: scale(1.5);
+  border: 2px solid #56b214;
+  border-radius: 5px;
+}
 
-  .left-section input,
-  .right-section input,
-  .right-section select {
-    width: 90%;
-    height:auto;
-    box-sizing: border-box;
-    border-radius: 5px;
-    /*background-color: #B3D3DF;*/
-    color: var(--banka-white);
-    padding: 8px;
 
-  }
+.left-section input,
+.right-section input,
+.right-section select {
+  width: 90%;
+  height:auto;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: var(--banka-dark-gray);
+  padding: 8px;
+
+}
 
   .right-section {
     text-align: left;
@@ -114,7 +124,7 @@
   }
 
   .invalid-input {
-    border: 2px solid red;
+    border: 2px solid red !important;
   }
 
   /* Dodati media upit za responsivnost tabele TODO */
@@ -124,7 +134,7 @@
 }
 /* Style for the select element */
 .security-filter-select {
-  appearance: none; /* Remove default system appearance */
+  /*appearance: none; !* Remove default system appearance *!*/
   background-color: var(--banka-dark-gray); /* Dark background color */
   color: var(--banka-white); /* White text color */
   border: 2px solid var(--banka-white); /* White border */
@@ -132,7 +142,7 @@
   padding: 8px 24px 8px 12px; /* Padding for text and custom arrow space */
   cursor: pointer; /* Pointer cursor on hover */
   font-size: 16px; /* Text size */
-  outline: none; /* Remove default focus outline */
+  /*outline: none; !* Remove default focus outline *!*/
 }
 
 /* Custom arrow using a pseudo-element */
@@ -151,3 +161,9 @@
 .label {
   color: var(--banka-white);
 }
+.bottom-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+

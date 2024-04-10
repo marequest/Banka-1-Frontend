@@ -9,16 +9,16 @@
         <div class="form-container">
             <div class="left-section">
 
-                <div class="form-group filter-dropdown">
-                    <label for="status">Status:</label>
+              <div class="form-group filter-dropdown">
+<!--                    <label for="status">Status:</label>-->
                     <select id="status" class="security-filter-select" [(ngModel)]="accountToCreate.status">
                         <option value="false">Active</option>
                         <option value="true">Inactive</option>
                     </select>
                 </div>
 
-                <div class="form-group filter-dropdown">
-                    <label for="type">Type:</label>
+              <div class="form-group filter-dropdown">
+<!--                    <label for="type">Type:</label>-->
                     <select id="type" class="security-filter-select" [(ngModel)]="accountToCreate.accountType" (change)="onAccountTypeChange()">
                         <option value="CURRENT">CURRENT</option>
                         <option value="FOREIGN_CURRENCY">FOREIGN_CURRENCY</option>
@@ -28,45 +28,42 @@
             </div>
 
             <div class="right-section">
+              <div class="form-group">
+                  <label for="phone">Upkeep:</label>
+                  <input type="text" id="phone" [(ngModel)]="accountToCreate.maintenanceCost" name="phone" required pattern="^\d+(\.\d+)?$" #maintenanceCost="ngModel" [ngClass]="{ 'invalid-input': maintenanceCost.invalid && (maintenanceCost.dirty || maintenanceCost.touched) }"/>
+                  <div *ngIf="maintenanceCost.invalid && (maintenanceCost.dirty || maintenanceCost.touched)" class="error-message">
+                    <div *ngIf="maintenanceCost.hasError('required')" style="color: red;">Upkeep is required.</div>
+                    <div *ngIf="maintenanceCost.hasError('pattern')" style="color: red;">Invalid Upkeep format (must contain only digits).</div>
+                  </div>
+                </div>
 <!--              <div class="form-group">-->
-<!--                  <label for="phone">Upkeep:</label>-->
-<!--                  <input type="text" id="phone" [(ngModel)]="accountToCreate.maintenanceCost" name="phone" required pattern="^\d+(\.\d+)?$" #maintenanceCost="ngModel" [ngClass]="{ 'invalid-input': maintenanceCost.invalid && (maintenanceCost.dirty || maintenanceCost.touched) }"/>-->
-<!--                  <div *ngIf="maintenanceCost.invalid && (maintenanceCost.dirty || maintenanceCost.touched)" class="error-message">-->
-<!--                    <div *ngIf="maintenanceCost.hasError('required')" style="color: red;">Upkeep is required.</div>-->
-<!--                    <div *ngIf="maintenanceCost.hasError('pattern')" style="color: red;">Invalid Upkeep format (must contain only digits).</div>-->
-<!--                  </div>-->
-<!--                </div>-->
-              <div class="form-group">
-                <custom-field
-                  [labelText]="'Upkeep'"
-                  [(ngModel)]="accountToCreate.maintenanceCost"
-                  [pattern]="'^\d+(\.\d+)?$'"
-                  [requiredErrorText]="'Upkeep is required.'"
-                  [patternErrorText]="'Invalid Upkeep format (must contain only digits).'">
-                </custom-field>
-              </div>
-<!--            <div class="form-group">-->
-<!--                <label for="jmbg">Currency:</label>-->
-<!--                <input type="text" id="jmbg" [(ngModel)]="accountToCreate.currencyName" name="jmbg" [readOnly]="isCurrencyReadOnly" required  #currency="ngModel" [ngClass]="{ 'invalid-input': currency.invalid && (currency.dirty || currency.touched) }" />-->
-<!--                <div *ngIf="currency.invalid && (currency.dirty || currency.touched)" class="error-message">-->
-<!--                    <div *ngIf="currency.hasError('required')" style="color: red;">Currency is required.</div>-->
-<!--                </div>-->
-<!--            </div>-->
-              <div class="form-group">
-                <custom-field
-                  [labelText]="'Currency'"
-                  [(ngModel)]="accountToCreate.currencyName"
-                  [requiredErrorText]="'Currency is required.'">
-                </custom-field>
-              </div>
-
-            <div class="form-group buttonSl">
-<!--                  <button (click)="cancel()">Cancel</button>-->
-<!--            <button (click)="submit()">Create</button>-->
-              <outline-orange-button [buttonName]="'Cancel'" (click)="cancel()"></outline-orange-button>
-              <orange-button [buttonName]="'Create'" (click)="submit()"></orange-button>
-
+<!--                <custom-field-->
+<!--                  [labelText]="'Upkeep'"-->
+<!--                  [(ngModel)]="accountToCreate.maintenanceCost"-->
+<!--                  [pattern]="'^\d+(\.\d+)?$'"-->
+<!--                  [requiredErrorText]="'Upkeep is required.'"-->
+<!--                  [patternErrorText]="'Invalid Upkeep format (must contain only digits).'">-->
+<!--                </custom-field>-->
+<!--              </div>-->
+            <div class="form-group">
+                <label for="jmbg">Currency:</label>
+                <input type="text" id="jmbg" [(ngModel)]="accountToCreate.currencyName" name="jmbg" [readOnly]="isCurrencyReadOnly" required  #currency="ngModel" [ngClass]="{ 'invalid-input': currency.invalid && (currency.dirty || currency.touched) }" />
+                <div *ngIf="currency.invalid && (currency.dirty || currency.touched)" class="error-message">
+                    <div *ngIf="currency.hasError('required')" style="color: red;">Currency is required.</div>
+                </div>
             </div>
+<!--              <div class="form-group">-->
+<!--                <custom-field-->
+<!--                  [labelText]="'Currency'"-->
+<!--                  [(ngModel)]="accountToCreate.currencyName"-->
+<!--                  [requiredErrorText]="'Currency is required.'">-->
+<!--                </custom-field>-->
+<!--              </div>-->
+
+          <div class="bottom-buttons">
+            <outline-orange-button [buttonName]="'Cancel'" (click)="cancel()"></outline-orange-button>
+            <orange-button [buttonName]="'Create'" (click)="submit()"></orange-button>
+          </div>
 
             </div>
         </div>
