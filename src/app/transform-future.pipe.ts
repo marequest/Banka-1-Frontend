@@ -18,9 +18,9 @@ export class TransformFuturePipe implements PipeTransform {
         low: fut.low,
         priceChange: fut.priceChange,
         volume: fut.volume,
-        contractSize: fut.contractSize,
-        contractUnit: fut.contractUnit,
-        openInterest: fut.openInterest,
+        // contractSize: fut.contractSize,
+        // contractUnit: fut.contractUnit,
+        // openInterest: fut.openInterest,
         settlementDate: fut.settlementDate,
         originalFuture: fut,
       };

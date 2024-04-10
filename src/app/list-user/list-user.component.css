@@ -1,130 +1,152 @@
 .content {
   display: flex;
   flex-direction: column;
-
-/*   margin: auto;  */
-  /*Kada se uradi i da je navBar responsive ovaj padding-left moze biti oblika:  padding-left: 25%;  na primer*/
-/*   padding-left: 350px;
-  padding-top:3%; */
-
-  /*margin: auto;*/
-  margin-left: 35vw;
-  /* margin-left: 10%;
-  margin-right: 10%; */
-
-  font-family: "Roboto", sans-serif;
+  margin-left: 5rem;
+  margin-top: 5rem;
+ font-family: "Jura", sans-serif;
 }
 
 .security-title {
-  color: var(--banka-white);
+  color: var(--banka-orange);
   font-size: 35px;
   font-weight: 700;
 
-  margin-bottom: 3rem;
+  margin-bottom: 7rem;
 }
 
 
 .table-content {
-  background-color: white;
-  padding-left: 10px;
-  padding-right: 10px;
+  background-color: var(--banka-dark-gray);
 
   padding-top: 30px;
   padding-bottom: 30px;
   width: 60vw;
+  border-radius: 15px;
 }
+
 
 .search-icon {
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 5%;
+  margin-right: 2%;
+  margin-top: 2%;
+  background-color: var(--banka-orange);
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 35px;
+  height: 35px;
+  display: flex;
 }
 
-
-
-/* General styling for the filter row */
 .filter-row {
   display: flex;
-  justify-content: center; /* Center the content */
-  padding: 20px; /* Add some padding for spacing */
-  /*background-color: #f2f4f6; !* Light background color for the filter area *!*/
-  /*border-bottom: 2px solid #d1d8e0; !* Add a subtle border for separation *!*/
+  justify-content: space-between;
+  
 }
 
 .left-row {
   display: flex;
-  align-items: center; /* Align items vertically */
-  max-width: 600px; /* Max width for the filter area */
-  width: 100%; /* Full width */
+  align-items: center;
+  margin-right: auto;
+  padding-left: 20px;
 }
 
-/* Styling for the filter input */
-.filter-input input.security-filter-input {
-  width: 100%; /* Full width of its container */
-  padding: 10px 15px; /* Padding for the input */
-  border: 2px solid #d1d8e0; /* Border color */
-  border-radius: 20px; /* Rounded corners for the input */
-  outline: none; /* Remove the default focus outline */
-  font-size: 16px; /* Font size */
-  color: #333; /* Text color */
+.filter-input {
+  margin-left: 100px;
 }
 
-.filter-input input.security-filter-input::placeholder {
-  color: #a6a9ad; /* Placeholder text color */
+.security-filter-input {
+  /* border-color: #263238; */
+  border-radius: 5px;
+
+  height: 3vh;
+  border: 1.3px solid #263238;
+  padding: 15px;
+  font-size: 18px;
 }
 
-/* Styling for the search button */
-.search-icon .button-image {
-  background-color: transparent; /* Transparent background */
-  border: none; /* Remove border */
-  cursor: pointer; /* Pointer cursor on hover */
-  padding-left: 10px; /* Space between input and button */
-}
+.security-filter-select {
+  border-radius: 5px;
 
-.search-icon img {
-  width: 24px; /* Icon size */
-  height: 24px; /* Icon size */
+  height: 4.3vh;
+  border: 1.3px solid #263238;
+  padding: 5px;
+  font-size: 18px;
 }
 
 .right-row {
   display: flex;
   align-items: center;
+  padding-right: 20px;
+
+  margin-top: 2%;
 }
 
 .add-new-btn {
   padding: 12px;
-  background-color: white; /* Initial background color */
-  border: 2px solid #19b5c7; /* Adds a border that matches the hover background color */
+  background-color: var(--banka-orange); /* Initial background color */
+  border: 1px solid var(--banka-orange);
+
   border-radius: 5px;
-  color: #19b5c7; /* Text color for contrast against the white background */
-  font-weight: 400;
+  color: var(--banka-black); /* Text color for contrast against the white background */
+  font-weight: 800;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Updated to include border-color transition */
+  transition: background-color 0.3s, color 0.3s, border 0.3s; /* Updated to include border-color transition */
 }
 
 .add-new-btn:hover {
-  background-color: #19b5c7; /* Background color on hover */
-  color: white; /* Text color on hover */
-  border-color: #0e7480; /* Optionally, change the border color on hover for added effect */
+  background-color: var(--banka-dark-gray); /* Background color on hover */
+  color: var(--banka-orange); /* Text color on hover */
 }
 
 .security-table-wrapper {
-  border: 1px solid #406581;
   margin-top: 2rem;
-  border-radius: 5px;
+
 }
 
 .wrapper-header {
   height: 3rem;
-  background-color: #dbe2e7;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-
-  padding: 10px;
-
   display: flex;
-  align-items: center;
-  color: #406581;
-  font-size: 18px;
+  gap: 10px;
+  padding-left: 3rem;
+  border-bottom: 1px solid var(--banka-white);
+}
+
+.tab {
+  color: var(--banka-gray);
+  font-size: 20px;
+  cursor: pointer;
+  width: fit-content;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  border-bottom: 1px solid var(--bank-white);
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tab-active {
+  background-color: var(--banka-black);
+  color: var(--banka-orange);
+  border-bottom: 3px solid var(--banka-orange);
+
+  font-size: 20px;
+  cursor: pointer;
+  width: fit-content;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tab:hover {
+  border-bottom: 3px solid var(--banka-orange);
 }
 
 .user-table {
@@ -139,7 +161,6 @@ thead {
   border-bottom: 1px solid #406581 !important;
   margin-bottom: 5px;
   text-align: center;
-
 }
 
 .table-head {
@@ -149,14 +170,12 @@ thead {
   padding-bottom: 10px;
 }
 
-
-
 table {
   border-collapse: collapse;
 }
 
 td {
-  padding: 10px;
+  padding: 100px;
   border-bottom: 1px solid gray;
   border-right: 1px dotted gray;
 }
@@ -166,20 +185,28 @@ td {
   display: inline-block;
 }
 
+.options-button {
+  background-color: var(--banka-orange);
+  border: none;
+  font-weight: 900;
+  font-size: 20px;
+  border-radius: 30px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .options-dropdown {
   display: none;
   position: absolute;
   right: 0;
-  background-color: var(--banka-dark-gray);
+  background-color: var(--banka-black);
   min-width: 120px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
-#options-button {
-  cursor: pointer; /* Change the cursor to indicate it's clickable */
-}
+
 .options-dropdown button {
-  color: var(--banka-white);
   display: block;
   width: 100%;
   padding: 10px;
@@ -187,15 +214,11 @@ td {
   border: none;
   background: none;
   cursor: pointer;
+  color: var(--banka-white);
 }
 .options-menu:hover .options-dropdown {
   display: block;
 }
-.options-dropdown button:hover {
-  background-color: var(--banka-very-dark-gray);
-}
-
-
 
 .button-image {
   border: none; /* Removes the border */
@@ -223,19 +246,22 @@ td {
 }
 
 /**
- Permission table and search filter
-**/
+   Permission table and search filter 
+  **/
 .search-container {
   font-size: 0; /* Remove white space between inline-block elements */
   margin-top: 1vw;
 }
 
-.search-input, .search-icon-div {
-    display: inline-block;
-    width: 20%; /* Adjust width as needed */
-    font-size: 16px; /* Restore font size */
-    box-sizing: border-box; /* Include padding and border in width calculation */
-    vertical-align: top; /* Align elements to the top */
+.search-input,
+.search-icon-div {
+  display: inline-block;
+  width: 20%; /* Adjust width as needed */
+  font-size: 16px; /* Restore font size */
+  margin-left: 5%;
+  margin-right: 5%;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  vertical-align: top; /* Align elements to the top */
 }
 
 /* Optional: Add styling to the divs */
@@ -244,6 +270,8 @@ td {
 }
 
 .search-icon-div {
+  margin-left: 5%;
+  margin-right: 5%;
   background-color: lightgreen;
 }
 
@@ -252,7 +280,7 @@ td {
   display: flex;
   width: fit-content;
   align-items: center;
-  background-color: #19B5C7;
+  background-color: #19b5c7;
   border-radius: 10px;
   margin-bottom: 4px; /* Spacing between permission elements */
 }
@@ -267,8 +295,7 @@ td {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-}
-.security-tabs {
+}.security-tabs {
   display: flex;
   /*margin-bottom: 20px; !* Space between tabs and content *!*/
 }
@@ -352,12 +379,17 @@ app-dynamic-table {
   text-align: center; /* Center the text within each tab */
 }
 .search-icon img {
-  filter: invert(100%); /* Inverts the colors, turning black to white */
+  filter: invert(100%);
+  margin-left: 5%;
+  margin-right: 5%; /* Inverts the colors, turning black to white */
 }
 
 .filter-dropdown {
   position: relative; /* Allows absolute positioning for the arrow */
   display: inline-block; /* Fit the size of the content */
+
+  margin-right: 5%;
+  margin-top: 2%;
 }
 /* Style for the select element */
 .security-filter-select {

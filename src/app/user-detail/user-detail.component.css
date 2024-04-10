@@ -4,12 +4,11 @@
 }
 
 .container {
-  color: white;
-  padding: 30px;
-  margin-left: 340px;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5rem;
+  margin-top: 5rem;
+ font-family: "Jura", sans-serif;
 }
 
 .title {

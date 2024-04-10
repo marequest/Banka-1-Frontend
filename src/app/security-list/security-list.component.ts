@@ -124,8 +124,8 @@ export class SecurityListComponent {
       Authorization: 'Bearer ' + sessionStorage.getItem('jwt'),
     });
     this.http
-      .get<Forex[]>('assets/mock-forex.json')
-      // this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/get/forex', {headers})
+      // .get<Forex[]>('assets/mock-forex.json')
+      this.http.get<Forex[]>(environmentMarket.baseUrl + '/market/listing/get/forex', {headers})
       .subscribe(
         (res) =>
           (this.forexBackup = this.forex =
@@ -141,8 +141,8 @@ export class SecurityListComponent {
       Authorization: 'Bearer ' + sessionStorage.getItem('jwt'),
     });
     this.http
-      .get<Future[]>('assets/futures-mock.json')
-      // this.http.get<Future[]>(environmentMarket.baseUrl + '/market/listing/get/futures',{ headers })
+      // .get<Future[]>('assets/futures-mock.json')
+      this.http.get<Future[]>(environmentMarket.baseUrl + '/market/listing/get/futures',{ headers })
       .subscribe(
         (res) =>
           (this.futuresBackup = this.futures =
