@@ -4,17 +4,22 @@ import {Order, OrderDto, SellingRequest, StatusRequest} from "../model/model";
 import {OrderService} from "../service/order.service";
 import {FormsModule} from "@angular/forms";
 import {z} from "zod";
+import { OrangeButtonModule } from "../welcome/redesign/OrangeButton";
+import { WhiteTextFieldModule } from "../welcome/redesign/WhiteTextField";
+import { PopupService } from '../service/popup.service';
 
 @Component({
-  selector: 'app-orders',
-  standalone: true,
-  imports: [
-    NgIf,
-    NgForOf,
-    FormsModule
-  ],
-  templateUrl: './orders.component.html',
-  styleUrl: './orders.component.css'
+    selector: 'app-orders',
+    standalone: true,
+    templateUrl: './orders.component.html',
+    styleUrl: './orders.component.css',
+    imports: [
+        NgIf,
+        NgForOf,
+        FormsModule,
+        OrangeButtonModule,
+        WhiteTextFieldModule
+    ]
 })
 export class OrdersComponent {
   selectedTab: "order-history" | "requests" | "securities" = "order-history"
@@ -42,6 +47,11 @@ export class OrdersComponent {
   allOrNone: boolean = false;
   margin: boolean = false;
 
+  // TODO Pretpostvaljam da je customerId?? jer se on trazi u putanjama za limit i availableBalance
+  totalAvailableBalance: number = 0; // Global variable to store the sum
+  orderLimitBalance: number = 0;
+
+
   sellScheme = z.object({
     amount: z.number().min(0),
     limitValue: z.number().min(0),
@@ -50,14 +60,36 @@ export class OrdersComponent {
     margin: z.boolean()
   })
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, popupService: PopupService) {
+    // TODO Test za popup koji ide na buy dugme, izbrisati
+    popupService.openBuyPopup();
   }
+
 
   setSelectedTab(tab: "order-history" | "requests" | "securities") {
     this.selectedTab = tab;
   }
 
   async ngOnInit() {
+    this.orderHistory = await this.orderService.getOrderHistory();
+    this.orderRequests = await this.orderService.getOrderRequests();
+    this.orderSecurities = await this.orderService.getOrderSecurities();
+
+    var customerId = sessionStorage.getItem('loggedUserID');
+    if(customerId) {
+      this.orderService.fetchAccountData(customerId).subscribe(total => {
+        this.totalAvailableBalance = total;
+      });
+
+      this.orderService.fetchUserForLimit(customerId).subscribe(user => {
+        this.orderLimitBalance = user.orderlimit;
+      }, error => {
+        console.error('Failed to fetch user order limit:', error);
+      });
+    }
+
+    
+
     if(this.isSupervizor || this.isAdmin){
     this.orderHistory = await this.orderService.getAllOrdersHistory();
     }else{

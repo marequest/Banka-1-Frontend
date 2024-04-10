@@ -41,6 +41,7 @@ import { Component, Input } from '@angular/core';
       overflow: hidden;
       border-radius: 30px;
       text-align: center;
+
     }
 
     tr {
