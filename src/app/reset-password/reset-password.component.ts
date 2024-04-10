@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {PopupService} from "../service/popup.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environment";
 
@@ -17,14 +17,17 @@ import {environment} from "../../../environment";
   styleUrl: './reset-password.component.css'
 })
 export class ResetPasswordComponent {
+  private route = inject(ActivatedRoute);
   emailSent: boolean = false;
   email: string = ''; // Add a property for the email
-
+  position: string = '';
   constructor(
     private http: HttpClient,
     private popupService: PopupService,
     private router: Router
-  ) {}
+  ) {
+    this.position = this.route.snapshot.paramMap.get('position') || '';
+  }
 
   sendEmail(): void {
     const trimmedEmail = this.email.trim();
@@ -42,7 +45,12 @@ export class ResetPasswordComponent {
 
     console.log("Send email button pressed with email:", this.email);
 
-    const url = `${environment.baseUrl}/user/reset/${encodeURIComponent(trimmedEmail)}`; // Use encodeURIComponent to ensure the email is properly encoded in the URL
+    var url;
+    if(this.position==='customer')
+     url = `${environment.baseUrl}/customer/reset/${(trimmedEmail)}`; // Use encodeURIComponent to ensure the email is properly encoded in the URL
+    else
+    url = `${environment.baseUrl}/employee/reset/${encodeURIComponent(trimmedEmail)}`; // Use encodeURIComponent to ensure the email is properly encoded in the URL
+   
 
     this.http.post(url, {}).subscribe({
       next: (response) => {
