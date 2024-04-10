@@ -1,6 +1,6 @@
 <div class="container">
   <div class="page">
-    <div class="limit-info">
+    <div class="limit-info" *ngIf="isAgent">
       <h2>Limit: {{ limitValue }}</h2>
       <h2>Available: {{ totalAvailableBalance }}</h2>
     </div>
@@ -11,7 +11,6 @@
           <li
             class="{{ selectedTab === 'order-history' ? 'active-tab' : '' }}"
             (click)="setSelectedTab('order-history')"
-            *ngIf="isAdmin || isEmployee"
           >
             Order history
           </li>
@@ -25,7 +24,6 @@
           <li
             class="{{ selectedTab === 'securities' ? 'active-tab' : '' }}"
             (click)="setSelectedTab('securities')"
-            *ngIf="isAdmin || isEmployee"
           >
             Securities
           </li>

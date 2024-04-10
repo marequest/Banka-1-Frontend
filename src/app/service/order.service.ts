@@ -59,8 +59,8 @@ export class OrderService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        //this.http.get(environmentMarket.baseUrl + "api", {headers})
-        this.http.get("/assets/orderHistory.json")
+        this.http.get(environment.baseUrl + "/orders/getAll", {headers})
+        //this.http.get("/assets/orderHistory.json")
       )) as OrderDto[];
     } catch (e) {
       return [];
@@ -79,8 +79,8 @@ export class OrderService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        //this.http.get(environmentMarket.baseUrl + "api", {headers})
-        this.http.get("/assets/orderHistory.json")
+        this.http.get(environment.baseUrl + "/orders/supervisor/getAll", {headers})
+        //this.http.get("/assets/orderHistory.json")
       )) as OrderDto[];
     } catch (e) {
       return [];

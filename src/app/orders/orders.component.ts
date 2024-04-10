@@ -99,10 +99,11 @@ export class OrdersComponent {
     //Da li zapravo ovde uzimam isti ovaj orderHistory samo filtriram gde je order.status processing
     this.orderRequests = this.orderHistory.filter(order => order.status.toLowerCase() === 'processing');
     //ili poseban poziv
-    // this.orderRequests=await this.orderService.getOrderRequests();
+    //this.orderRequests=await this.orderService.getOrderRequests();
 
     //Da li zapravo ovde uzimam isti ovaj orderHistory samo filtriram gde je order.orderType "SELL"
-    this.orderSecurities = this.orderHistory.filter(order => order.orderType === 'SELL');
+    //this.orderSecurities = this.orderHistory.filter(order => order.orderType === 'SELL');
+    //this.orderSecurities = this.orderService.get
     //ili poseban poziv
     // this.orderSecurities=await this.orderService.getOrderSecurities();
   }
