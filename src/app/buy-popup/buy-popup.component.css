@@ -39,7 +39,7 @@ hr {
   margin-right: 10px; /* Space between label and input field */
 }
 
-.white-text-field {
+.input-row input {
   flex-grow: 1; /* Input field takes remaining space */
   padding: 8px;
   background-color: #444; /* Slightly lighter than popup background */

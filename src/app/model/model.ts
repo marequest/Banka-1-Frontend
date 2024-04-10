@@ -389,9 +389,9 @@ export interface CreateOrderRequest {
   orderType: OrderType;
   listingId: string;
   listingType: ListingType;
-  contractSize: string;
-  limitValue: string;
-  stopValue: string;
+  contractSize: number;
+  limitValue: number;
+  stopValue: number;
   allOrNone: boolean;
 }
 

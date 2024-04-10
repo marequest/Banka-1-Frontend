@@ -149,6 +149,6 @@ export class ForexViewComponent {
   }
 
   openBuyPopup() {
-    this.popupService.openBuyPopup();
+    this.popupService.openBuyPopup(null, this.forex);
   }
 }

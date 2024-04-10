@@ -9,7 +9,7 @@ import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
 import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
 import { VerificationPaymentPopupComponent } from '../verification-payment-popup/verification-payment-popup.component';
-import { CreatePaymentRequest, Recipient } from '../model/model';
+import {CreatePaymentRequest, Forex, Future, Recipient} from '../model/model';
 import { TransactionsDetailsPopupComponent } from '../transactions-details-popup/transactions-details-popup.component';
 import { NewRecipientComponent } from '../new-recipient/new-recipient.component';
 import { EditRecipientComponent } from '../edit-recipient/edit-recipient.component';
@@ -82,8 +82,9 @@ export class PopupService {
     });
   }
 
-  openBuyPopup(): void {
+  openBuyPopup(future: any, forex: any): void {
     this.dialog.open(BuyPopupComponent, {
+      data: { future: future, forex: forex }  // Pass the future object to the dialog
     });
   }
 

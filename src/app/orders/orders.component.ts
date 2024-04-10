@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
+import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
 import {Order, OrderDto, SellingRequest, StatusRequest} from "../model/model";
 import {OrderService} from "../service/order.service";
 import {FormsModule} from "@angular/forms";
@@ -13,13 +13,14 @@ import { PopupService } from '../service/popup.service';
     standalone: true,
     templateUrl: './orders.component.html',
     styleUrl: './orders.component.css',
-    imports: [
-        NgIf,
-        NgForOf,
-        FormsModule,
-        OrangeButtonModule,
-        WhiteTextFieldModule
-    ]
+  imports: [
+    NgIf,
+    NgForOf,
+    FormsModule,
+    OrangeButtonModule,
+    WhiteTextFieldModule,
+    DecimalPipe
+  ]
 })
 export class OrdersComponent {
   selectedTab: "order-history" | "requests" | "securities" = "order-history"
@@ -77,12 +78,15 @@ export class OrdersComponent {
 
     var customerId = sessionStorage.getItem('loggedUserID');
     if(customerId) {
-      this.orderService.fetchAccountData(customerId).subscribe(total => {
-        this.totalAvailableBalance = total;
-      });
+      // this.orderService.fetchAccountData(customerId).subscribe(total => {
+      //   this.totalAvailableBalance = total;
+      // });
 
       this.orderService.fetchUserForLimit(customerId).subscribe(user => {
         this.orderLimitBalance = user.orderlimit;
+        // TODO pretpostavka da je available = limitNow
+        this.totalAvailableBalance = user.limitNow;
+        console.log(this.orderLimitBalance);
       }, error => {
         console.error('Failed to fetch user order limit:', error);
       });
