@@ -1,57 +1,103 @@
-<div style="display: flex; flex-direction: row; gap: 8px">
-  <h1 class="title">{{future?.name}}</h1>
-  <img src="assets/refresh.svg" class="refresh-button" width="36px" height="36px;" (click)="refresh()">
-</div>
-<div class="page-flex">
-  <div class="col-left">
-    <div class="future-info-table">
-      <div class="future-info-table-row">
-        <h4 class="future-info-table-key">FUTURE</h4>
-        <p class="future-info-table-value">{{future?.ticker}}</p>
+<div class="container">
+  <div class="details-header">
+    <div class="details-title">Future details</div>
+    <div class="details-back">
+      <orange-button [buttonName]="'Back'" (click)="goBack()"
+        >Back</orange-button
+      >
+    </div>
+  </div>
+
+  <div class="details-info">
+    <div class="details-row-group">
+      <div class="details-row">
+        <div class="details-name">TICKER</div>
+        <div class="details-value">{{ future?.ticker }}</div>
       </div>
-      <hr>
-      <div class="future-info-table-row">
-        <h4 class="future-info-table-key">EXCHANGE</h4>
-        <p class="future-info-table-value">{{future?.exchangeName}}</p>
+    </div>
+    <div class="white-line"></div>
+
+    <div class="details-row-group">
+      <div class="details-row">
+        <div class="details-name">EXCHANGE</div>
+        <div class="details-value">{{ future?.exchangeName }}</div>
       </div>
-      <div class="future-info-table-row">
-        <h4 class="future-info-table-key">CONTRACT SIZE</h4>
-        <p class="future-info-table-value">{{future?.contractSize}}</p>
+
+      <div class="details-row">
+        <div class="details-name">CONTRACT SIZE</div>
+        <div class="details-value">{{ future?.contractSize }}</div>
       </div>
-      <div class="future-info-table-row">
-        <h4 class="future-info-table-key">CONTRACT UNIT</h4>
-        <p class="future-info-table-value">{{future?.contractUnit}}</p>
+    </div>
+    <div class="white-line"></div>
+
+    <div class="details-row-group">
+      <div class="details-row">
+        <div class="details-name">CONTRACT UNIT</div>
+        <div class="details-value">{{ future?.contractUnit }}</div>
       </div>
-      <hr>
-      <div class="future-info-table-row">
-        <h4 class="future-info-table-key">HIGH</h4>
-        <p class="future-info-table-value">{{future?.high}}</p>
+
+      <div class="details-row">
+        <div class="details-name">HIGH</div>
+        <div class="details-value">{{ future?.high }}</div>
       </div>
-      <div class="future-info-table-row">
-        <h4 class="future-info-table-key">LOW</h4>
-        <p class="future-info-table-value">{{future?.low}}</p>
+    </div>
+    <div class="white-line"></div>
+
+    <div class="details-row-group">
+      <div class="details-row">
+        <div class="details-name">CHANGE</div>
+        <div class="details-value">{{ future?.priceChange }}</div>
       </div>
-      <hr>
-      <div class="future-info-table-row">
-        <h4 class="future-info-table-key">CHANGE</h4>
-        <p class="future-info-table-value">{{future?.priceChange}}</p>
-      </div>
-      <div class="future-info-table-row">
-        <h4 class="future-info-table-key">VOLUME</h4>
-        <p class="future-info-table-value">{{future?.volume}}</p>
+
+      <div class="details-row">
+        <div class="details-name">VOLUME</div>
+        <div class="details-value">{{ future?.volume }}</div>
       </div>
     </div>
   </div>
 
-  <orange-button [buttonName]="'Buy'" (click)="openBuyPopup()"></orange-button>
+  <div class="button-row">
+    <button class="details-button" (click)="openBuyPopup()">Buy</button>
+    <button class="details-button">Sell</button>
+    <button class="details-button" (click)="refresh()">Refresh</button>
+  </div>
 
-  <div class="col-right">
-    <div class="graph-filter-buttons">
-      <button (click)="handleGraphFilter('d')" class="filter-button curved-start {{graphFilter === 'd' && 'active'}}">Day</button>
-      <button (click)="handleGraphFilter('m')" class="filter-button {{graphFilter === 'm' && 'active'}}">Month</button>
-      <button (click)="handleGraphFilter('y')" class="filter-button {{graphFilter === 'y' && 'active'}}">Year</button>
-      <button (click)="handleGraphFilter('5y')" class="filter-button {{graphFilter === '5y' && 'active'}}">5 Years</button>
-      <button (click)="handleGraphFilter('all')" class="filter-button curved-end {{graphFilter === 'all' && 'active'}}" >All</button>
+  <div class="details-info" style="margin-bottom: 3rem;">
+    <div class="wrapper-header">
+      <div
+        (click)="handleGraphFilter('d')"
+        [ngClass]="graphFilter === 'd' ? 'tab tab-active' : 'tab'"
+      >
+        Day
+      </div>
+
+      <div
+        (click)="handleGraphFilter('m')"
+        [ngClass]="graphFilter === 'm' ? 'tab tab-active' : 'tab'"
+      >
+        Month
+      </div>
+
+      <div
+        (click)="handleGraphFilter('y')"
+        [ngClass]="graphFilter === 'y' ? 'tab tab-active' : 'tab'"
+      >
+        Year
+      </div>
+
+      <div
+        (click)="handleGraphFilter('5y')"
+        [ngClass]="graphFilter === '5y' ? 'tab tab-active' : 'tab'"
+      >
+        5 Years
+      </div>
+
+      <div
+        (click)="handleGraphFilter('all')"
+        [ngClass]="graphFilter === 'all' ? 'tab tab-active' : 'tab'"
+      >
+        All
+      </div>
     </div>
     <div>
       <canvas

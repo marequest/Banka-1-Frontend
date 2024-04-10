@@ -117,6 +117,7 @@
 }
 
 .tab {
+  font-family: 'Jura', sans-serif;
   color: var(--banka-gray);
   font-size: 20px;
   cursor: pointer;
@@ -132,6 +133,7 @@
 }
 
 .tab-active {
+  font-family: 'Jura', sans-serif;
   background-color: var(--banka-black);
   color: var(--banka-orange);
   border-bottom: 3px solid var(--banka-orange);
