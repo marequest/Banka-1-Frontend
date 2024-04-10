@@ -15,7 +15,7 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   public createPayment(payment: CreatePaymentRequest) {
-    return this.http.post<number>(`${this.apiUrl}/newPayment`, payment,{
+    return this.http.post<number>(`${this.apiUrl}`, payment,{
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
       }

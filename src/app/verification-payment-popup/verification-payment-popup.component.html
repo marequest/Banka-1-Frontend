@@ -8,12 +8,12 @@
 
         <div class="form-group m-auto col-sm-12 col-md-8 col-6">
             <label for="code">Enter your one-time password:</label>
-            <input type="text" id="code" name="code" placeholder="one-time password" />
+            <input type="text" id="code" name="code" placeholder="one-time password" [(ngModel)] = "code"/>
         </div>
 
         <div class="row justify-content-around mt-3 mb-3">
             <button class="btn btn-warning btn-sm col-sm-10 col-md-4 col-xl-3 mt-3" style="border-radius: 5px;" (click)="cancel()">Cancel</button>
-            <button class="btn btn-warning btn-sm col-sm-10 col-md-4 col-xl-3 mt-3" style="border-radius: 5px">Apply</button>
+            <button class="btn btn-warning btn-sm col-sm-10 col-md-4 col-xl-3 mt-3" style="border-radius: 5px" (click)="submit()">Apply</button>
         </div>
     </div>
 </div>

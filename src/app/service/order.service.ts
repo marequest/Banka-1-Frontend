@@ -3,8 +3,12 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom, Observable} from "rxjs";
 import {environment, environmentMarket} from "../../../environment";
 import {StockListing} from "./stock.service";
+
+import {DecideOrderResponse, OrderDto, SellingRequest, StatusRequest} from "../model/model";
+
 import {BankAccountDto, CreateOrderRequest, ListingType, Order, OrderType, User} from "../model/model";
 import {map} from "rxjs/operators";
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +16,9 @@ import {map} from "rxjs/operators";
 export class OrderService {
 
   constructor(private http: HttpClient) { }
+
+
+//   async getAllOrdersHistory() {
 
   fetchAccountData(id: string): Observable<number> {
     const jwt = sessionStorage.getItem("jwt");
@@ -40,6 +47,7 @@ export class OrderService {
 
 
   async getOrderHistory() {
+
     const jwt = sessionStorage.getItem("jwt");
 
     if(!jwt) return [];
@@ -53,7 +61,48 @@ export class OrderService {
       resp = (await firstValueFrom(
         //this.http.get(environmentMarket.baseUrl + "api", {headers})
         this.http.get("/assets/orderHistory.json")
-      )) as Order[];
+      )) as OrderDto[];
+    } catch (e) {
+      return [];
+    }
+    return resp;
+  }
+  async getAllOrdersHistory() {
+    const jwt = sessionStorage.getItem("jwt");
+
+    if(!jwt) return [];
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+
+    let resp;
+    try {
+      resp = (await firstValueFrom(
+        //this.http.get(environmentMarket.baseUrl + "api", {headers})
+        this.http.get("/assets/orderHistory.json")
+      )) as OrderDto[];
+    } catch (e) {
+      return [];
+    }
+    return resp;
+  }
+
+  async getOrdersHistory() {
+    const jwt = sessionStorage.getItem("jwt");
+
+    if(!jwt) return [];
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+
+    let resp;
+    try {
+      resp = (await firstValueFrom(
+        //this.http.get(environmentMarket.baseUrl + "api", {headers})
+        this.http.get("/assets/orderHistory.json")
+      )) as OrderDto[];
     } catch (e) {
       return [];
     }
@@ -74,7 +123,7 @@ export class OrderService {
       resp = (await firstValueFrom(
         //this.http.get(environmentMarket.baseUrl + "api", {headers})
         this.http.get("/assets/orderRequests.json")
-      )) as Order[];
+      )) as OrderDto[];
     } catch (e) {
       return [];
     }
@@ -95,22 +144,72 @@ export class OrderService {
       resp = (await firstValueFrom(
         //this.http.get(environmentMarket.baseUrl + "api", {headers})
         this.http.get("/assets/orderSecurities.json")
-      )) as Order[];
+      )) as OrderDto[];
     } catch (e) {
       return [];
     }
     return resp;
   }
 
-  sellOder() {
+  async sellOrder(orderId:number,sellingReq:SellingRequest): Promise<DecideOrderResponse> {
+    const jwt = sessionStorage.getItem("jwt");
+  
+      if (!jwt) return { success: false, message: 'JWT token not found' };
+  
+      const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + sessionStorage.getItem('jwt')
+      });
+    
+      try {
+        return await firstValueFrom(
+          this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders/sellOrder/${orderId}`, sellingReq, { headers })
+        );
+      } catch (error) {
+        console.error('Error while selling order:', error);
+        throw error; 
+      }
 
   }
 
-  approveOrder() {
+ 
 
+  async approveOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse> {
+    const jwt = sessionStorage.getItem('jwt');
+    if (!jwt) return { success: false, message: 'JWT token not found' };
+  
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+  
+    try {
+      return await firstValueFrom(
+        this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders/decideOrder/${orderId}`, request, { headers })
+      );
+    } catch (error) {
+      console.error('Error while approving order:', error);
+      throw error; 
+    }
   }
+  
 
-  denyOrder() {
+  
+
+   async denyOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse>{
+    const jwt = sessionStorage.getItem('jwt');
+    if (!jwt) return { success: false, message: 'JWT token not found' };
+  
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+  
+    try {
+      return await firstValueFrom(
+        this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders/decideOrder/${orderId}`, request, { headers })
+      );
+    } catch (error) {
+      console.error('Error while denying order:', error);
+      throw error; 
+    }
 
   }
   async buyOrder(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: string, limitValue: string, stopValue: string, allOrNone: boolean) {

@@ -1,20 +1,5 @@
-<!-- <div class="bank-accs-main-container">
-    <div class="title-div">Bank accounts</div>
-    <div class="bank-accs-div">
-        <div class="grid-container">
-            <div *ngFor="let account of userBankAccounts" class="grid-item">
-                <div class="accType">{{ account.accountType || 'N/A' }}</div>
-                <div class="accNumber">Account Number: {{ account.accountNumber || 'N/A' }}</div>
-                <div class="accActive" [ngStyle]="{'color': account.accountStatus === 'active' ? 'green' : 'red'}">{{ account.accountStatus === 'active' ? 'Active' : 'Inactive' }}</div>
-                <div class="accBalance">Balance: {{ account.balance | currency:account.currency:'symbol':'1.2-2' }}</div>
-            </div>
-        </div>
-    </div>
-      
-</div> -->
-
 <!-- Page container -->
-<div class="container">
+<div style="padding-left: 250px;padding-top:3%;" class="container">
 
     <!-- Page title -->
     <div class="row pageTitle">
@@ -75,26 +60,15 @@
                 <div class="tabs">
                     <!-- Tab Headers -->
                     <div class="tab-headers">
-                        <div class="tab-header active" [ngClass]="{'active': activeTab === 'transactionsTab'}" (click)="setActiveTab('transactionsTab')">Transactions</div>
+                        <div class="tab-header active" [ngClass]="{'active': activeTab === 'paymentsTab'}" (click)="setActiveTab('paymentsTab')">Payments</div>
                         <div class="tab-header" [ngClass]="{'active': activeTab === 'exchangesTab'}" (click)="setActiveTab('exchangesTab')">Exchange</div>
                     </div>
                 
                     <!-- Tab Content -->
                     <!-- Transactions tab table -->
-                    <div class="tab-content" *ngIf="activeTab === 'transactionsTab'">
+                    <div class="tab-content" *ngIf="activeTab === 'paymentsTab'">
 
-                        <!-- <div class="transactions-table tableHeaderDiv">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Bank Account</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div> -->
+    
                         <div class="scrollable-container">
                             <!-- Transactions Table -->
                             <table class="transactions-table">
@@ -107,15 +81,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let transaction of displayedBankAccTransactions">
-                                        <td>{{ transaction.recepientBankAccount }}</td>
-                                        <td>{{ transaction.date | date: 'shortDate' }}</td>
-                                        <td [ngStyle]="{'color': transaction.status === 'Done' ? '#7cb94c' : 
-                                                                 transaction.status === 'Denied' ? '#ff5454' : 
-                                                                 transaction.status === 'Processing' ? '#fff9f0' : ''}">
-                                            {{ transaction.status }}
+                                    <tr *ngFor="let payment of displayedBankAccPayments; let idx = index" (click) = "paymentInfoPopUp(idx)">
+                                        <td>{{ payment.recipientAccountNumber }}</td>
+                                        <td>{{ payment.dateOfPayment | date: 'shortDate' }}</td>
+                                        <td [ngStyle]="{'color': payment.status === 'COMPLETE' ? '#7cb94c' : 
+                                                                 payment.status === 'DENIED' ? '#ff5454' : 
+                                                                 payment.status === 'PROCESSING' ? '#fff9f0' : ''}">
+                                            {{ payment.status }}
                                         </td>
-                                        <td>{{ transaction.amount | currency }}</td>
+                                        <td>{{ payment.amount }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -136,15 +110,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let exchange of displayedBankAccExchanges">
-                                        <td>{{ exchange.recepientBankAccount }}</td>
-                                        <td>{{ exchange.date | date: 'shortDate' }}</td>
-                                        <td [ngStyle]="{'color': exchange.status === 'Done' ? '#7cb94c' : 
-                                                                 exchange.status === 'Denied' ? '#ff5454' : 
-                                                                 exchange.status === 'Processing' ? '#fff9f0' : ''}">
+                                    <tr *ngFor="let exchange of displayedBankAccExchanges; let idx = index;" (click) = "exchangeInfoPopUp(idx)">
+                                        <td>{{ exchange.recipientAccountNumber }}</td>
+                                        <td>{{ exchange.dateOfPayment | date: 'shortDate' }}</td>
+                                        <td [ngStyle]="{'color': exchange.status === 'COMPLETE' ? '#7cb94c' : 
+                                                                 exchange.status === 'DENIED' ? '#ff5454' : 
+                                                                 exchange.status === 'PROCESSING' ? '#fff9f0' : ''}">
                                             {{ exchange.status }}
                                         </td>
-                                        <td>{{ exchange.amount | currency }}</td>
+                                        <td>{{ exchange.amount }}</td>
                                     </tr>
                                 </tbody>
                             </table>

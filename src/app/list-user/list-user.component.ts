@@ -17,6 +17,7 @@ import {TransparentTextFieldModule} from "../welcome/redesign/TransparentTextFie
 import {WhiteTextFieldModule} from "../welcome/redesign/WhiteTextField";
 import {TransformLimitsPipeModule} from "./TransformLimitsPipe";
 import {HttpErrorResponse} from "@angular/common/http";
+import { EditLimitPopUpComponent } from '../edit-limit-pop-up/edit-limit-pop-up.component';
 
 @Component({
   selector: 'app-list-user',
@@ -235,7 +236,19 @@ export class ListUserComponent implements OnInit{
     return sessionStorage.getItem('permissions')?.includes('deleteUser');
   }
 
-  editLimit(originalLimit: any) {
+  editLimit(originalLimit: Limit) {
     console.log('Edit limit: ', originalLimit)
+
+    const dialogRef = this.dialog.open(EditLimitPopUpComponent, {
+      width: '30vw',
+      height: 'auto',
+      data: originalLimit, // Passing the displayed bank account
+      disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('The dialog was closed');
+    });
   }
 }

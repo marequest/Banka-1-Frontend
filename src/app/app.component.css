@@ -90,9 +90,7 @@ img {
 
 .banka-sidebar {
   overflow-x: hidden;
-  position: fixed; /* Keeps the sidebar fixed relative to the viewport */
-  top: 0; /* Aligns the top of the sidebar with the top of the viewport */
-  left: 0; /* Aligns the left of the sidebar with the left of the viewport */
+
   height: 100vh; /* Fills the full height of the viewport */
   width: 330px; /* Maintains a fixed width */
   min-width: 18%; /* Ensures the sidebar doesn't take more than 20% of the viewport width */
@@ -231,4 +229,15 @@ hr {
 
   padding: 50px;
   cursor: pointer;
+}
+
+
+.buy-security {
+  font-family: 'Jura', sans-serif;
+  color: var(--banka-white);
+  background-color: var(--banka-orange);
+  border: none;
+
+  padding-left: 10px;
+  padding-right: 10px;
 }

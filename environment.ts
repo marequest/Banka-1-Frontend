@@ -1,10 +1,9 @@
 export const environment = {
-  production: false,
-  baseUrl: 'http://localhost:8080'
+    production: false,
+    baseUrl: 'http://localhost:8080'
 };
 
-export const environmentMarket = {
-  production: false,
-  baseUrl: 'http://localhost:8081'
+export const environmentMarket ={
+    production: false,
+    baseUrl: 'http://localhost:8081'
 };
-
