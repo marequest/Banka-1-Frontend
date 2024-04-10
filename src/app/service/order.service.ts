@@ -20,18 +20,18 @@ export class OrderService {
 
 //   async getAllOrdersHistory() {
 
-  fetchAccountData(id: string): Observable<number> {
-    const jwt = sessionStorage.getItem("jwt");
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
-    return this.http.get<BankAccountDto[]>(environment.baseUrl + '/account/getCustomer/' + id, httpOptions).pipe(
-      map(accounts => accounts.reduce((sum, account) => sum + account.availableBalance, 0))
-    );
-  }
+  // fetchAccountData(id: string): Observable<number> {
+  //   const jwt = sessionStorage.getItem("jwt");
+  //
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Authorization': `Bearer ${jwt}`
+  //     })
+  //   };
+  //   return this.http.get<BankAccountDto[]>(environment.baseUrl + '/account/getCustomer/' + id, httpOptions).pipe(
+  //     map(accounts => accounts.reduce((sum, account) => sum + account.availableBalance, 0))
+  //   );
+  // }
 
   fetchUserForLimit(id: string): Observable<User> {
     const jwt = sessionStorage.getItem("jwt");
@@ -212,7 +212,7 @@ export class OrderService {
     }
 
   }
-  async buyOrder(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: string, limitValue: string, stopValue: string, allOrNone: boolean) {
+  async buyOrder(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: number, limitValue: number, stopValue: number, allOrNone: boolean) {
     const jwt = sessionStorage.getItem("jwt");
 
     const httpOptions = {
@@ -230,11 +230,11 @@ export class OrderService {
       stopValue: stopValue,
       allOrNone: allOrNone
     };
+    console.log(orderRequest);
 
     try {
       const response = await this.http.post<boolean>(
         environment.baseUrl + '/orders', orderRequest, httpOptions).toPromise();
-      console.log(response);
       return response;
     } catch (error) {
       console.error(error);

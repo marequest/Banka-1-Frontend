@@ -103,6 +103,6 @@ export class FutureViewComponent {
   }
 
   openBuyPopup() {
-    this.popupService.openBuyPopup();
+    this.popupService.openBuyPopup(this.future, null);
   }
 }

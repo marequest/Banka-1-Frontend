@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="text-field-container">
       <label for="name" class="field-label">{{ fieldName }}</label>
-      <input type="text" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
+      <input type="isText?'text':'number'" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
     </div>
   `,
   styles: [`
@@ -44,6 +44,7 @@ import { FormsModule } from '@angular/forms';
 export class WhiteTextField {
   @Input() text: String = "";
   @Input() fieldName: String = ""; // This is the input for the field label
+  @Input() isText: boolean = true;
   @Output() textChange = new EventEmitter<string>();
 
   onTextChange(value: string) {
