@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="security-title">Admin panel</div>
+  <div class="security-title">Employee panel</div>
 
   <div class="security-tabs">
     <div [ngClass]="selectedTab === 'users' ? 'tab tab-active' : 'tab'" (click)="setSelectedTab('users')">
@@ -8,7 +8,7 @@
     <div [ngClass]="selectedTab === 'permissions' ? 'tab tab-active' : 'tab'" (click)="setSelectedTab('permissions')">
       <div class="tab-content">Permissions</div>
     </div>
-    <div [ngClass]="selectedTab === 'limits' ? 'tab tab-active' : 'tab'" (click)="setSelectedTab('limits')">
+    <div *ngIf="this.p === 'admin' || this.p === 'supervizor'"  [ngClass]="selectedTab === 'limits' ? 'tab tab-active' : 'tab'" (click)="setSelectedTab('limits')">
       <div class="tab-content">Limits</div>
     </div>
   </div>

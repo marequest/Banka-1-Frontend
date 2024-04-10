@@ -30,6 +30,8 @@ export class AddUserComponent {
     position: string,
     phoneNumber: string,
     active: boolean,
+    orderLimit: number,
+    
     // permissions: Permissions[]
   } = {
     email: '',
@@ -39,8 +41,11 @@ export class AddUserComponent {
     position: '',
     phoneNumber: '',
     active: true,
+    orderLimit: 0
     // permissions: [],
   };
+
+  limit: boolean=false;
 
   // permissions: Permissions[] = [
   //   {

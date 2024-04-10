@@ -321,7 +321,7 @@ export interface CreateCustomerRequest {
   phoneNumber: string;
   gender: string;
   address: string;
-  active: boolean;
+  dateOfBirth: number;
 }
 
 export interface EditCustomerRequest {
@@ -335,13 +335,15 @@ export interface EditCustomerRequest {
   address: string;
   password: string;
   active: boolean;
+  dateOfBirth:number;
 }
 
 export interface CreateBankAccountRequest {
   status: boolean;
-  currencyName: string;
+  currencyCode: string;
   accountType: string;
   maintenanceCost: number;
+  accountName: string;
 }
 
 export interface Order {
