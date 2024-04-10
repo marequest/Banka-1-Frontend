@@ -43,6 +43,8 @@
     </div>
   </div>
 
+  <orange-button [buttonName]="'Buy'" (click)="openBuyPopup()"></orange-button>
+
   <div class="col-right">
     <div class="graph-filter-buttons">
       <button (click)="handleGraphFilter('d')" class="filter-button curved-start {{graphFilter === 'd' && 'active'}}">Day</button>

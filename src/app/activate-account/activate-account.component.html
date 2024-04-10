@@ -105,10 +105,10 @@
       <a class="already-have" href="/login">Already have an account?</a>
     </div>
     <div class="act-modal-footer">
-      <button class="back-btn" *ngIf="stage > 1" (click)="previousStage()">
+      <orange-button [buttonName]="'Back'" class="back-btn" *ngIf="stage > 1" (click)="previousStage()">
         Back
-      </button>
-      <button class="back-btn" (click)="nextStage()">Next</button>
+      </orange-button>
+      <orange-button [buttonName]="'Next'" class="back-btn" (click)="nextStage()">Next</orange-button>
     </div>
   </div>
 </div>

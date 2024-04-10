@@ -5,7 +5,7 @@
   margin-top: 5rem;
   /* background-color: #0C0C11; */
   font-family: "Jura", sans-serif;
- 
+
 }
 .page {
   width: 100%;
@@ -29,7 +29,7 @@
   left: 50%;
   transform: translate(-50%, -50%);  */
 
-  
+
   background: #26262C;
   border-radius: 30px;
 
@@ -37,8 +37,8 @@
    min-height: 50%;
 
   overflow-x: auto;
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .central-window::-webkit-scrollbar {
@@ -193,7 +193,14 @@ th:nth-last-child(1) {
 
   cursor: pointer;
 }
-
+.limit-info {
+  position: absolute; /* Positioning it relative to the nearest positioned ancestor (or the body) */
+  top: 0; /* At the top */
+  right: 0; /* At the right */
+  text-align: right; /* Align text to the right */
+  color: var(--banka-orange); /* Text color orange */
+  padding: 20px; /* Add some padding */
+}
 .popup-body {
   display: flex;
   flex-direction: column;

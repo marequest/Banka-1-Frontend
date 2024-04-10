@@ -4,15 +4,17 @@ import {z, ZodError, ZodIssue} from "zod";
 import {FormsModule} from "@angular/forms";
 import {CustomerService} from "../service/customer.service";
 import {Router} from "@angular/router";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 
 @Component({
   selector: 'app-activate-account',
   standalone: true,
-  imports: [
-    NgOptimizedImage,
-    NgIf,
-    FormsModule
-  ],
+    imports: [
+        NgOptimizedImage,
+        NgIf,
+        FormsModule,
+        OrangeButtonModule
+    ],
   templateUrl: './activate-account.component.html',
   styleUrl: './activate-account.component.css'
 })

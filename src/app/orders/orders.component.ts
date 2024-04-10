@@ -62,7 +62,7 @@ export class OrdersComponent {
 
   constructor(private orderService: OrderService, popupService: PopupService) {
     // TODO Test za popup koji ide na buy dugme, izbrisati
-    popupService.openBuyPopup();
+    // popupService.openBuyPopup();
   }
 
 
@@ -71,9 +71,9 @@ export class OrdersComponent {
   }
 
   async ngOnInit() {
-    this.orderHistory = await this.orderService.getOrderHistory();
-    this.orderRequests = await this.orderService.getOrderRequests();
-    this.orderSecurities = await this.orderService.getOrderSecurities();
+    // this.orderHistory = await this.orderService.getOrderHistory();
+    // this.orderRequests = await this.orderService.getOrderRequests();
+    // this.orderSecurities = await this.orderService.getOrderSecurities();
 
     var customerId = sessionStorage.getItem('loggedUserID');
     if(customerId) {
@@ -88,7 +88,7 @@ export class OrdersComponent {
       });
     }
 
-    
+
 
     if(this.isSupervizor || this.isAdmin){
     this.orderHistory = await this.orderService.getAllOrdersHistory();
