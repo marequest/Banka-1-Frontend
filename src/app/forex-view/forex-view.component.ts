@@ -4,12 +4,15 @@ import {ForexService} from "../service/forex.service";
 import {ActivatedRoute} from "@angular/router";
 import {BaseChartDirective} from "ng2-charts";
 import {ChartConfiguration, ChartType} from "chart.js";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
+import {PopupService} from "../service/popup.service";
 
 @Component({
   selector: 'app-forex-view',
   standalone: true,
   imports: [
-    BaseChartDirective
+    BaseChartDirective,
+    OrangeButtonModule
   ],
   templateUrl: './forex-view.component.html',
   styleUrl: './forex-view.component.css'
@@ -37,7 +40,7 @@ export class ForexViewComponent {
     responsive: true
   }
 
-  constructor(private forexService: ForexService, private route: ActivatedRoute) {
+  constructor(private forexService: ForexService, private route: ActivatedRoute, private popupService: PopupService) {
     this.route.params.subscribe(params =>
       this.forexId = params["ticker"]
     )
@@ -97,6 +100,10 @@ export class ForexViewComponent {
       this.chartData.datasets[0].data.push(listingHistory.price)
     }
     this.chart?.chart?.update();
+  }
+
+  openBuyPopup() {
+    this.popupService.openBuyPopup();
   }
 }
 

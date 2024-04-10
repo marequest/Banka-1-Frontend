@@ -33,7 +33,7 @@ export class BuyPopupComponent {
     this.dialogRef.close();
   }
 
-  async sellOrder() {
-    this.orderService.buyOrder(OrderType.BUY, this.listingId, ListingType.STOCK, this.amount, this.limitValue, this.stopValue, this.allOrNone);
+  async buyOrder() {
+    await this.orderService.buyOrder(OrderType.BUY, this.listingId, ListingType.STOCK, this.amount, this.limitValue, this.stopValue, this.allOrNone);
   }
 }

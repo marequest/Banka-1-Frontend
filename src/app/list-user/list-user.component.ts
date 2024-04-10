@@ -68,7 +68,7 @@ export class ListUserComponent implements OnInit{
 
   // TODO: REPLACE MOCKED WITH getLimits - see the function it is in same file as getLimitsMocked
   loadLimit() {
-    this.userService.getLimitsMocked().subscribe(
+    this.userService.getLimits().subscribe(
       (limitsFromDB: Limit[]) => {
         this.limits = limitsFromDB;
 

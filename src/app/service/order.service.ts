@@ -153,62 +153,62 @@ export class OrderService {
 
   async sellOrder(orderId:number,sellingReq:SellingRequest): Promise<DecideOrderResponse> {
     const jwt = sessionStorage.getItem("jwt");
-  
+
       if (!jwt) return { success: false, message: 'JWT token not found' };
-  
+
       const headers = new HttpHeaders({
         Authorization: 'Bearer ' + sessionStorage.getItem('jwt')
       });
-    
+
       try {
         return await firstValueFrom(
           this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders/sellOrder/${orderId}`, sellingReq, { headers })
         );
       } catch (error) {
         console.error('Error while selling order:', error);
-        throw error; 
+        throw error;
       }
 
   }
 
- 
+
 
   async approveOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse> {
     const jwt = sessionStorage.getItem('jwt');
     if (!jwt) return { success: false, message: 'JWT token not found' };
-  
+
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + sessionStorage.getItem('jwt')
     });
-  
+
     try {
       return await firstValueFrom(
         this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders/decideOrder/${orderId}`, request, { headers })
       );
     } catch (error) {
       console.error('Error while approving order:', error);
-      throw error; 
+      throw error;
     }
   }
-  
 
-  
+
+
 
    async denyOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse>{
     const jwt = sessionStorage.getItem('jwt');
     if (!jwt) return { success: false, message: 'JWT token not found' };
-  
+
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + sessionStorage.getItem('jwt')
     });
-  
+
     try {
       return await firstValueFrom(
         this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders/decideOrder/${orderId}`, request, { headers })
       );
     } catch (error) {
       console.error('Error while denying order:', error);
-      throw error; 
+      throw error;
     }
 
   }
@@ -232,7 +232,9 @@ export class OrderService {
     };
 
     try {
-      const response = await this.http.post<boolean>(environment.baseUrl + '/orders', orderRequest, httpOptions).toPromise();
+      const response = await this.http.post<boolean>(
+        environment.baseUrl + '/orders', orderRequest, httpOptions).toPromise();
+      console.log(response);
       return response;
     } catch (error) {
       console.error(error);

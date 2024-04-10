@@ -104,14 +104,15 @@
 
   width: 9rem;
   height: 1.6rem;
+  margin-bottom: 1rem;
 
   justify-content: center;
   align-items: center;
-  background-color: var(--banka-orange);
-  border: none;
-  border-radius: 3px;
-  font-weight: 700;
-  font-family: "Jura", sans-serif;
+  /*background-color: var(--banka-orange);*/
+  /*border: none;*/
+  /*border-radius: 3px;*/
+  /*font-weight: 700;*/
+  /*font-family: "Jura", sans-serif;*/
 }
 
 .alert {

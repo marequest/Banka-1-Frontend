@@ -4,12 +4,15 @@ import {ActivatedRoute} from "@angular/router";
 import {BaseChartDirective} from "ng2-charts";
 import {ChartConfiguration, ChartType} from "chart.js";
 import {FutureService} from "../service/future.service";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
+import {PopupService} from "../service/popup.service";
 
 @Component({
   selector: 'app-forex-view',
   standalone: true,
   imports: [
-    BaseChartDirective
+    BaseChartDirective,
+    OrangeButtonModule
   ],
   templateUrl: './future-view.component.html',
   styleUrl: './future-view.component.css'
@@ -37,7 +40,7 @@ export class FutureViewComponent {
     responsive: true
   }
 
-  constructor(private futureService: FutureService, private route: ActivatedRoute) {
+  constructor(private futureService: FutureService, private route: ActivatedRoute, private popupService: PopupService) {
     this.route.params.subscribe(params =>
       this.futureId = params["ticker"]
     )
@@ -97,5 +100,9 @@ export class FutureViewComponent {
       this.chartData.datasets[0].data.push(listingHistory.price)
     }
     this.chart?.chart?.update();
+  }
+
+  openBuyPopup() {
+    this.popupService.openBuyPopup();
   }
 }
