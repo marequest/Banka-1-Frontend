@@ -13,7 +13,7 @@
 
         <div class="form-group m-auto col-sm-12 col-md-8 col-6 mt-4">
             <label for="number">Recipient Account Number:</label>
-            <input type="text" [(ngModel)]="recipient.accountNumber" id="number" name="number" #numberModel="ngModel" required/>
+            <input type="text" [(ngModel)]="recipient.bankAccountNumber" id="number" name="number" #numberModel="ngModel" required/>
             <div *ngIf="numberModel.invalid && (numberModel.dirty || numberModel.touched)" class="error-message"></div>
             <div *ngIf="numberModel.hasError('required')" style="color: red; display: inline;">Bank account number is required!</div>
         </div>

@@ -49,9 +49,11 @@ export const routes: Routes = [
       { path: 'list', component: ListUserComponent },
     ]
   },
-  {path:'user/set-password/:token', component: SetPasswordComponent},
-  {path:'reset-password', component: ResetPasswordComponent, canActivate: [resetPasswordGuard]},
-  {path:'user/reset-password/:token', component: UserResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'customer/set-password/:token', component: SetPasswordComponent},
+  {path:'employee/set-password/:token', component: SetPasswordComponent},
+  {path:'reset-password/:position', component: ResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'customer/reset-password/:token', component: UserResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'employee/reset-password/:token', component: UserResetPasswordComponent, canActivate: [resetPasswordGuard]},
   {
     path: 'security',
     // canActivate: [AdminAndEmployeeGuard],

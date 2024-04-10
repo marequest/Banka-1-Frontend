@@ -13,6 +13,12 @@
     line-height: 70px;
 }
 
+.container{
+
+  margin-top: 3rem;
+ font-family: "Jura", sans-serif;
+}
+
 /*
 Inside bank-accs-div is a grid-container div that has grid display. For bigger monitors
 grid will have 2 columns with same size (1fr 1fr) and for smaller monitors just one cloumn.

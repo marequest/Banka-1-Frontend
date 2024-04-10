@@ -44,7 +44,11 @@ export class SetPasswordComponent {
       this.popupService.openPopup("Error", "Password has to be longer than 3 characters!");
     } else {
       if (this.password === this.confirmedPassword) {
-        const url = `${environment.baseUrl}/employee/activate/${this.token}`;
+        var url;
+        if(this.router.url.includes('employee'))
+          url = `${environment.baseUrl}/employee/activate/${this.token}`;
+        else
+          url = `${environment.baseUrl}/customer/activate/${this.token}`;
 
         const body = { password: this.password };
 

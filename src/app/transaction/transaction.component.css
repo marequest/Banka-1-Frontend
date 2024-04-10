@@ -1,11 +1,17 @@
 .content {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    font-family: "Roboto", sans-serif;
-    /* background-color: #EBF6F9;  */
+  margin-top: 3rem;
+
+  font-family: "Jura", sans-serif;
 
   }
+
+
+  .pageTitle{
+    margin-left: 3rem;
+    color: #ffb72b;
+    font-size: xx-large;
+    font-family: 'Jura';
+}
   
   .transaction-title {
     color: #FFB72B;
@@ -20,7 +26,9 @@
     border-radius: 42px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 30px;
+    margin: 5rem;
+    margin-left: auto;
+    margin-right: auto;
     padding-bottom: 30px;
     width: 35vw;
   }

@@ -55,7 +55,7 @@ export class BankAccountsComponent {
 
   // TODO: REPLACE MOCKED WITH getUsersBankAccounts - see the function it is in same file as getUsersBankAccountsMocked
   loadUsersBankAccounts() {
-    this.bankAccountService.getUsersBankAccountsMocked(this.loggedUserId).subscribe(
+    this.bankAccountService.getUsersBankAccounts(this.loggedUserId).subscribe(
       (usersBankAccountsFromDB: BankAccount[]) => {
         this.userBankAccounts = usersBankAccountsFromDB;
 
@@ -79,7 +79,7 @@ export class BankAccountsComponent {
 
   // TODO: REPLACE MOCKED WITH getPaymentsForAccount - see the function it is in same file as getPaymentsForAccountMocked
   loadPaymentsForBankAcount(accountNumber: string) {
-    this.bankAccountService.getPaymentsForAccountMocked(accountNumber).subscribe(
+    this.bankAccountService.getPaymentsForAccount(accountNumber).subscribe(
       (bankAccountTransactionsFromDB: Payment[]) => {
         this.displayedBankAccPayments = bankAccountTransactionsFromDB;
 
@@ -94,7 +94,7 @@ export class BankAccountsComponent {
 
   // TODO: REPLACE MOCKED WITH getExchangesForAccount - see the function it is in same file as getExchangesForAccountMocked
   loadExchangesForBankAcount(accountNumber: string) {
-    this.bankAccountService.getExchangesForAccountMocked(accountNumber).subscribe(
+    this.bankAccountService.getExchangesForAccount(accountNumber).subscribe(
       (bankAccountExchangesFromDB: Exchange[]) => {
         this.displayedBankAccExchanges = bankAccountExchangesFromDB;
 

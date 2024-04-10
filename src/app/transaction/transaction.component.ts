@@ -121,7 +121,8 @@ export class TransactionComponent implements OnInit{
   }
 
   private isValidAccountNumber(accountNumber: string): boolean {
-    return /^\d{18}$/.test(accountNumber);
+    // return /^\d{18}$/.test(accountNumber);
+    return true;
   }
 
   private isValidAmount(amount: string): boolean {

@@ -8,14 +8,15 @@ import {FormsModule} from "@angular/forms";
 import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 import {TableComponentModule} from "../welcome/redesign/TableComponent";
 import {ExchangeFilterPipe} from "../model/forex-filter-pipe.pipe";
+import { TransparentTextFieldModule } from "../welcome/redesign/TransparentTextField";
 
 @Component({
-  selector: 'app-exchange-rate',
-  standalone: true,
-  imports: [NgForOf,
-    FormsModule, OrangeButtonModule, TableComponentModule, ExchangeFilterPipe],
-  templateUrl: './exchange-rate.component.html',
-  styleUrl: './exchange-rate.component.css'
+    selector: 'app-exchange-rate',
+    standalone: true,
+    templateUrl: './exchange-rate.component.html',
+    styleUrl: './exchange-rate.component.css',
+    imports: [NgForOf,
+        FormsModule, OrangeButtonModule, TableComponentModule, ExchangeFilterPipe, TransparentTextFieldModule]
 })
 export class ExchangeRateComponent {
   exchange: ExchangeRate[] = [];
