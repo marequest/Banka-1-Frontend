@@ -49,8 +49,8 @@ export class StockService {
     let resp;
     try {
       resp = (await firstValueFrom(
-        this.http.get(environmentMarket.baseUrl + "/market/listing/get/stock", {headers})
-        // this.http.get("/assets/stocks.json")
+        // this.http.get(environmentMarket.baseUrl + "/market/listing/get/stock", {headers})
+        this.http.get("/assets/stocks.json")
       )) as StockListing[];
     } catch (e) {
       return [];
