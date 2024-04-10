@@ -5,14 +5,15 @@
     justify-content: center;
     height: 100vh;
     background-color: #f0f4f8;
-    color: #333;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
     background-color: var(--banka-black);
+    font-family: "Jura", sans-serif;
   }
 
   .logo-container {
     margin-bottom: 2rem;
   }
+
 
   .logo {
     width: 300px; /* Adjust as necessary for your logo */
@@ -24,7 +25,7 @@
   }
 
   h1 {
-    color: #212529;
+    color: #ffb72b;
     font-size: 2.8rem;
     margin-bottom: 1rem;
   }

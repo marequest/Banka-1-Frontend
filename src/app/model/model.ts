@@ -131,9 +131,10 @@ export interface NewLimitDto{
 }
 
 export interface Recipient {
+  id?: number;
   firstName?: string;
   lastName?: string;
-  accountNumber?: string;
+  bankAccountNumber?: string;
 }
 
 export interface Card {

@@ -2,26 +2,31 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-left: 10px;
-    font-family: "Roboto", sans-serif;
-    /* background-color: #EBF6F9;  */
+ 
+    font-family: "Jura", sans-serif;
+    background-color: #26262C;
 
   }
   
   .transaction-title {
-    color: #263238;
+    color: #ffb72b;
+    font-size: xx-large;
+    font-family: 'Jura';
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 600;
     margin-bottom: 2rem;
     margin-top: 1rem;
+
   }
 
   .body-content {
     /* padding-left: 10px;
     padding-right: 10px;
     padding-top: 30px; */
+    align-items: center;
     padding-bottom: 30px;
     width: 30vw;
+    color: antiquewhite;
   }
   
   .text-center {
@@ -36,6 +41,7 @@
     font-size: 15px;
     display: flex;
     flex-direction: column; /* Postavljanje labela iznad input polja */
+    color: antiquewhite;
   }
   
   .form-group label {
@@ -50,7 +56,7 @@
       height:auto;
       box-sizing: border-box;
       border-radius: 5px; 
-      background-color: #B3D3DF; 
+      background-color:#26262C; 
       color: #3f3e3e; 
       padding: 8px;
   }
@@ -69,16 +75,16 @@
   }
   
   .form-group.buttonSl button:first-child {
-    background-color: #f0f8ff; 
+    background-color:#ffb72b; 
     width: 20%;
-    color: #19B5C7; 
-    border-color: #19B5C7;
+    color: white; 
+    border-color: #ffb72b;
     border-radius: 5px; 
   }
   
   .form-group.buttonSl button:last-child {
-    background-color: #103145; 
-    color: #fff; 
+    background-color: #ffb72b; 
+    color: white; 
     width: 20%;
     border-radius: 5px; 
     margin-left: 1rem;

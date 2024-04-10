@@ -4,6 +4,7 @@ import { Recipient } from '../model/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BankAccountService } from '../service/bank-account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-recipient',
@@ -20,6 +21,7 @@ export class EditRecipientComponent implements OnInit{
   constructor(
     private dialogRef: MatDialogRef<EditRecipientComponent>,
     private bankAccountService: BankAccountService,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: { recipient: Recipient},
   ) { }
 
@@ -36,7 +38,8 @@ export class EditRecipientComponent implements OnInit{
     }
     let nameParts = this.fullName.split(' ');
     let recipientUpdated: Recipient = {};
-    recipientUpdated.accountNumber = this.recipient.accountNumber;
+    recipientUpdated.id = this.recipient.id;
+    recipientUpdated.bankAccountNumber = this.recipient.bankAccountNumber;
     recipientUpdated.firstName = nameParts[0];
     recipientUpdated.lastName = nameParts[1];
 
@@ -49,6 +52,8 @@ export class EditRecipientComponent implements OnInit{
         console.error('Error adding recipient:', error);
       }
     );
+    this.router.navigate(['/recipients']);
+    this.dialogRef.close();
   }
 
   cancel(): void {
@@ -61,7 +66,7 @@ export class EditRecipientComponent implements OnInit{
     if(nameParts.length !== 2){
       return false;
     }
-    if(this.fullName === '' || this.recipient.accountNumber === ''){
+    if(this.fullName === '' || this.recipient.bankAccountNumber === ''){
       return false;
     }
     return true;

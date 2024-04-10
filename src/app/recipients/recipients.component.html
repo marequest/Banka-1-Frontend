@@ -1,4 +1,4 @@
-<div style="padding-left: 250px;padding-top:3%;" class="container">
+<div class="container">
     <!-- Page title -->
     <div class="row pageTitle">
         Payment recipients
@@ -38,7 +38,7 @@
                                 <tbody>
                                     <tr *ngFor="let recipient of allUserRecipients; let idx = index">
                                         <td>{{ recipient.firstName }} {{ recipient.lastName }}</td>
-                                        <td>{{ recipient.accountNumber }}</td>
+                                        <td>{{ recipient.bankAccountNumber}}</td>
                                         <td class="buttonsTD">
                                             <button class="tdBtn" (click) = "editRecipient(recipient, idx)">Edit</button>
                                             <button class="tdBtn" (click) = "deleteRecipient(recipient, idx)">Delete</button>

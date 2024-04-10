@@ -1,18 +1,21 @@
 /* Whole page container css */
 .bank-accs-main-container{
     background-color: #ebf6f9;
-}
 
+}
+.container{
+
+  margin-top: 3rem;
+ font-family: "Jura", sans-serif;
+}
 
 
 /* Css of div where title Bank Accounts is. */
 .title-div{
-    height: 70px;
-    font-size: 3rem;
-    align-items: center;
-    font-weight: bold;
-    padding-left: 20px;
-    line-height: 70px;
+    color: var(--banka-orange);
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 7rem;
 }
 
 /*
@@ -28,7 +31,7 @@ Grid elements are individual bank accounts of user (grid-item class elements).
     display: grid;
     grid-template-columns: 1fr 1fr; /* Creates two columns of equal width */
     gap: 1.5rem; /* Adjust the gap between items */
-    padding-left: 5rem;
+    padding-left: 2rem;
     padding-right: 5rem;
     padding-top: 2rem;
     overflow-y: auto;
