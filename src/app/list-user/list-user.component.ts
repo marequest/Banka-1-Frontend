@@ -30,13 +30,14 @@ export class ListUserComponent implements OnInit{
 
   public users: User[] = [];
   public limits: Limit[] = [];
-  public position:string='';
+  public position:string ='';
   public firstName:string='';
   public lastName:string='';
   public email:string='';
   public searchEmail:string='';
   selectedTab: string = "users";
   hasPermission?: boolean = false;
+  public p:string | null='';
 
   headersLimits = ['Email', 'Limit', 'Used Limit', 'Needs Approve'];
   headersUsers = ['NAME', 'EMAIL', 'JMBG', 'POSITION', 'PHONE NUMBER', 'ACTIVITY'];
@@ -64,6 +65,7 @@ export class ListUserComponent implements OnInit{
     //load data from database
     this.loadEmployeesFromDataBase();
     this.loadLimit();
+    this.p = sessionStorage.getItem("role");
   }
 
   // TODO: REPLACE MOCKED WITH getLimits - see the function it is in same file as getLimitsMocked

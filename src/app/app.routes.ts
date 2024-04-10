@@ -35,6 +35,7 @@ import { RecipientsComponent } from './recipients/recipients.component';
 import { AdminAndEmployeeGuard } from './guards/admin-and-employee.guard';
 import { AgentAndSupervizorGuard } from './guards/agent-and-supervizor.guard';
 import { AgentAndSupervizorAndAdminGuard } from './guards/agent-and-supervizor-and-admin.guard';
+import { supportsPassiveEventListeners } from '@angular/cdk/platform';
 
 
 export const routes: Routes = [
@@ -42,7 +43,7 @@ export const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent, canActivate: [welcomeGuard] },
   {
     path: 'user',
-    canActivate: [AdminGuard],
+    canActivate: [AgentAndSupervizorAndAdminGuard],
     children: [
       { path: 'add', component: AddUserComponent },
       { path: 'update', component: UpdateUserComponent },

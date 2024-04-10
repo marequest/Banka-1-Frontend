@@ -25,7 +25,7 @@ export class AddCustomerComponent {
     phoneNumber: '',
     address: '',
     gender: '',
-    active:false,
+    dateOfBirth: 0
     // permissions: [],
   };
 

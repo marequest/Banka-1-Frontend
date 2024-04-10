@@ -53,6 +53,7 @@
     .form-group.active-checkbox {
       display: flex;
       align-items: center;
+      vertical-align:middle;
     }
 
     .form-group.active-checkbox label {

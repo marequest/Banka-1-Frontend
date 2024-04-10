@@ -62,8 +62,15 @@ export class RecipientsComponent {
   }
 
   deleteRecipient(recipient: Recipient, idx: number){
-    console.log("Deleting recipient at idx " + idx);
-    console.log(recipient);
+    this.bankAccountService.deleteRecipient(recipient).subscribe(
+      (response: any) => {
+        console.log('Recipient deleted successfully');
+        console.log(response);
+      },
+      (error: any) => {
+        console.error('Error adding recipient:', error);
+      }
+    );
 
     this.allUserRecipients.splice(idx, 1);
   }

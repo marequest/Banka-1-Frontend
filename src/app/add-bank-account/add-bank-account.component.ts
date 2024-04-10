@@ -27,9 +27,10 @@ export class AddBankAccountComponent {
   isCurrencyReadOnly: boolean = false;
   accountToCreate: CreateBankAccountRequest = {
     status: false,
-    currencyName: '',
+    currencyCode: '',
     accountType: '',
-    maintenanceCost: 0
+    maintenanceCost: 0,
+    accountName: ''
   };
 
   constructor(
@@ -92,22 +93,22 @@ export class AddBankAccountComponent {
       return false;
     }
 
-    if (!this.accountToCreate.currencyName) {
+    if (!this.accountToCreate.currencyCode) {
       this.popupService.openPopup("Error", "Currency is not valid.");
       return false;
     }
 
-    if (this.accountToCreate.accountType === 'CURRENT' && this.accountToCreate.currencyName !== 'RSD') {
+    if (this.accountToCreate.accountType === 'CURRENT' && this.accountToCreate.currencyCode !== 'RSD') {
       this.popupService.openPopup("Error", "Current account must be in RSD.");
       return false;
     }
 
-    if (this.accountToCreate.accountType === 'FOREIGN_CURRENCY' && this.accountToCreate.currencyName === 'RSD') {
+    if (this.accountToCreate.accountType === 'FOREIGN_CURRENCY' && this.accountToCreate.currencyCode === 'RSD') {
       this.popupService.openPopup("Error", "Foreign currency account must not be in RSD.");
       return false;
     }
 
-    if (this.accountToCreate.accountType === 'BUSINESS' && this.accountToCreate.currencyName === 'RSD') {
+    if (this.accountToCreate.accountType === 'BUSINESS' && this.accountToCreate.currencyCode === 'RSD') {
       this.popupService.openPopup("Error", "Business account must not be in RSD.");
       return false;
     }
@@ -122,10 +123,10 @@ export class AddBankAccountComponent {
 
   onAccountTypeChange() {
     if (this.accountToCreate.accountType === 'CURRENT') {
-      this.accountToCreate.currencyName = 'RSD';
+      this.accountToCreate.currencyCode = 'RSD';
       this.isCurrencyReadOnly = true;
     } else { //if (this.accountToCreate.accountType === 'FOREIGN_CURRENCY' || this.accountToCreate.accountType === 'BUSINESS') {
-      this.accountToCreate.currencyName = '';
+      this.accountToCreate.currencyCode = '';
       this.isCurrencyReadOnly = false;
     }
   }

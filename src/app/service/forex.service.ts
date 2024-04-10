@@ -62,7 +62,7 @@ export class ForexService {
     } catch (e) {
       return null;
     }
-
+    
     return resp;
 
   }

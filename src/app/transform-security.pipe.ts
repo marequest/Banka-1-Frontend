@@ -21,6 +21,7 @@ export class TransformSecurityPipe implements PipeTransform {
         volume: sec.volume,
         outstandingShares: sec.outstandingShares,
         dividendYield: sec.dividendYield,
+        originalStock: sec
       };
     });
   }

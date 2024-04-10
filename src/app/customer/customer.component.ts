@@ -157,6 +157,7 @@ export class CustomerComponent implements OnInit{
         gender: customer.gender,
         password: '',
         active:false,
+        dateOfBirth: 0
       }
     );
     this.popup.openUpdateCustomerPopup();

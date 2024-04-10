@@ -168,6 +168,8 @@ export class SecurityListComponent {
   }
 
   navigateToStock(stockId: number): void {
+    console.log(stockId);
     this._router.navigateByUrl(`/security/stock/${stockId}`);
   }
+
 }

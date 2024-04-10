@@ -69,7 +69,7 @@ export class BankAccountService {
     console.log(headers);
 
     const options = { headers: headers };
-    let url = environment.baseUrl + `/exchange/getAll/${accountNumber}`;
+    let url = environment.baseUrl + `/transfer/getAll/${accountNumber}`;
 
     return this.httpClient.get<Exchange[]>(url, options); 
   }
@@ -111,6 +111,15 @@ export class BankAccountService {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
     return this.httpClient.put(environment.baseUrl + '/recipients/edit', recipient,{
+      headers: headers
+    });
+  }
+
+  deleteRecipient(recipient: Recipient): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.httpClient.delete(environment.baseUrl + '/recipients/remove/'+recipient.id,{
       headers: headers
     });
   }
