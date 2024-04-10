@@ -1,16 +1,18 @@
 import {Component, ViewChild} from '@angular/core';
 import {Future, ListingHistory} from "../model/model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BaseChartDirective} from "ng2-charts";
 import {ChartConfiguration, ChartType} from "chart.js";
 import {FutureService} from "../service/future.service";
 import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 import {PopupService} from "../service/popup.service";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-forex-view',
   standalone: true,
   imports: [
+    CommonModule,
     BaseChartDirective,
     OrangeButtonModule
   ],
@@ -24,13 +26,15 @@ export class FutureViewComponent {
   futureHistory: ListingHistory[] = [];
   futureId: number = 0;
   graphFilter: "d" | "m" | "y" | "5y" | "all" = "d";
+  router: Router
 
   chartData: ChartConfiguration["data"] = {
     datasets: [
       {
         data: [],
         label: 'Forex price history',
-        fill: "origin"
+        fill: "origin",
+        backgroundColor: "#FFB72B"
       }
     ],
     labels: ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "23:59"],
@@ -40,19 +44,25 @@ export class FutureViewComponent {
     responsive: true
   }
 
-  constructor(private futureService: FutureService, private route: ActivatedRoute, private popupService: PopupService) {
+  constructor(private futureService: FutureService, private route: ActivatedRoute, private popupService: PopupService, router: Router) {
     this.route.params.subscribe(params =>
       this.futureId = params["ticker"]
     )
+
+    this.router = router;
   }
 
   refresh() {
     this.ngOnInit().then();
   }
 
+  goBack() {
+    this.router.navigateByUrl(`/security/all`);
+  }
+
   async ngOnInit() {
     this.future = await this.futureService.getFutureById(this.futureId);
-    debugger;
+    
     await this.handleGraphFilter("d");
   }
 
