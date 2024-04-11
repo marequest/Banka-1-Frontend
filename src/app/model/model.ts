@@ -382,7 +382,15 @@ export enum OrderType{
   SELL="SELL"
 }
 
-
+export interface CapitalProfitDto {
+  totalPrice: number;
+  bankAccountNumber: string;
+  currencyName: string;
+  listingType: ListingType;
+  listingId: number;
+  total: number;
+  reserved: number;
+}
 
 
 export interface CreateOrderRequest {

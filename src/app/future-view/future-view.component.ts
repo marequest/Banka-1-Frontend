@@ -62,7 +62,7 @@ export class FutureViewComponent {
 
   async ngOnInit() {
     this.future = await this.futureService.getFutureById(this.futureId);
-    
+
     await this.handleGraphFilter("d");
   }
 
@@ -113,6 +113,6 @@ export class FutureViewComponent {
   }
 
   openBuyPopup() {
-    this.popupService.openBuyPopup(this.future, null);
+    this.popupService.openBuyPopup(this.future, null, null);
   }
 }

@@ -14,6 +14,7 @@ import { TransactionsDetailsPopupComponent } from '../transactions-details-popup
 import { NewRecipientComponent } from '../new-recipient/new-recipient.component';
 import { EditRecipientComponent } from '../edit-recipient/edit-recipient.component';
 import {BuyPopupComponent} from "../buy-popup/buy-popup.component";
+import {SellPopupComponent} from "../sell-popup/sell-popup.component";
 
 
 @Injectable({
@@ -82,9 +83,15 @@ export class PopupService {
     });
   }
 
-  openBuyPopup(future: any, forex: any): void {
+  openBuyPopup(future: any, forex: any, stock: any): void {
     this.dialog.open(BuyPopupComponent, {
-      data: { future: future, forex: forex }  // Pass the future object to the dialog
+      data: { future: future, forex: forex, stock: stock }  // Pass the future object to the dialog
+    });
+  }
+
+  openSellPopup(listingId: number, future: boolean, forex: boolean, stock: boolean): void {
+    this.dialog.open(SellPopupComponent, {
+      data: { listingId: listingId, future: future, forex: forex, stock: stock }  // Pass the future object to the dialog
     });
   }
 

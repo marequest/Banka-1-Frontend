@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
-import {Order, OrderDto, SellingRequest, StatusRequest} from "../model/model";
+import {CapitalProfitDto, Order, OrderDto, SellingRequest, StatusRequest} from "../model/model";
 import {OrderService} from "../service/order.service";
 import {FormsModule} from "@angular/forms";
 import {z} from "zod";
 import { OrangeButtonModule } from "../welcome/redesign/OrangeButton";
 import { WhiteTextFieldModule } from "../welcome/redesign/WhiteTextField";
 import { PopupService } from '../service/popup.service';
+import {TableComponentModule} from "../welcome/redesign/TableComponent";
+import {TransformSecuritiesPipeModule} from "./TransformSecuritiesPipe";
 
 @Component({
     selector: 'app-orders',
@@ -19,7 +21,9 @@ import { PopupService } from '../service/popup.service';
     FormsModule,
     OrangeButtonModule,
     WhiteTextFieldModule,
-    DecimalPipe
+    DecimalPipe,
+    TableComponentModule,
+    TransformSecuritiesPipeModule
   ]
 })
 export class OrdersComponent {
@@ -61,9 +65,19 @@ export class OrdersComponent {
     margin: z.boolean()
   })
 
-  constructor(private orderService: OrderService, popupService: PopupService) {
-    // TODO Test za popup koji ide na buy dugme, izbrisati
-    // popupService.openBuyPopup();
+  headersSecurities = ['Total Price', 'Account Number', 'Currency', 'Listing Type', 'Total', 'Reserved'];
+  securities: CapitalProfitDto[] = [];
+
+  constructor(private orderService: OrderService, private popupService: PopupService) {
+    this.getSecurityOrders();
+
+  }
+
+  private getSecurityOrders() {
+    this.orderService.getSecurityOrders().subscribe(orders => {
+      this.securities = orders;
+      console.log(this.securities)
+    });
   }
 
 
@@ -144,29 +158,13 @@ export class OrdersComponent {
     }
   }
 
-  async sellOrder() {
-    this.sellingReq.amount=this.amount;
-    this.sellingReq.limitValue=this.limitValue;
-    this.sellingReq.stopValue=this.stopValue;
-    this.sellingReq.allOrNone=this.allOrNone;
-    this.sellingReq.margin=this.margin;
-    if(this.sellingOrder){
-    try{
-      console.log(this.sellingReq);
-      console.log(this.sellingOrder.orderId);
-
-      // const response = await this.orderService.sellOrder(this.sellingOrder.orderId,this.sellingReq);
-      // console.log('Response from selling:', response.success);
-
-      // Brisem ovaj sellingOrder iz niza i tabele:
-      // const index = this.orderSecurities.findIndex(order => order.orderId === this.sellingOrder?.orderId);
-      // if (index !== -1) {
-      //   this.orderSecurities = this.orderSecurities.filter((order, idx) => idx !== index);
-      // }
-
-    }catch (error) {
-      console.error('Error while selling order:', error);
-    }
+  sellOrder(original: any) {
+    if(original.listingType === 'STOCK') {
+      this.popupService.openSellPopup(original.listingId, false, false, true);
+    } else if(original.listingType === 'FOREX') {
+      this.popupService.openSellPopup(original.listingId, false, true, false);
+    } else if(original.listingType === 'FUTURE') {
+      this.popupService.openSellPopup(original.listingId, true, false, false);
     }
   }
 
@@ -179,4 +177,5 @@ export class OrdersComponent {
     this.sellingOrder = null;
     this.popupOpen = false;
   }
+
 }

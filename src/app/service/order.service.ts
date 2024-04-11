@@ -4,7 +4,7 @@ import {firstValueFrom, Observable} from "rxjs";
 import {environment, environmentMarket} from "../../../environment";
 import {StockListing} from "./stock.service";
 
-import {DecideOrderResponse, OrderDto, SellingRequest, StatusRequest} from "../model/model";
+import {CapitalProfitDto, DecideOrderResponse, OrderDto, SellingRequest, StatusRequest} from "../model/model";
 
 import {BankAccountDto, CreateOrderRequest, ListingType, Order, OrderType, User} from "../model/model";
 import {map} from "rxjs/operators";
@@ -151,28 +151,6 @@ export class OrderService {
     return resp;
   }
 
-  async sellOrder(orderId:number,sellingReq:SellingRequest): Promise<DecideOrderResponse> {
-    const jwt = sessionStorage.getItem("jwt");
-
-      if (!jwt) return { success: false, message: 'JWT token not found' };
-
-      const headers = new HttpHeaders({
-        Authorization: 'Bearer ' + sessionStorage.getItem('jwt')
-      });
-
-      try {
-        return await firstValueFrom(
-          this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders/sellOrder/${orderId}`, sellingReq, { headers })
-        );
-      } catch (error) {
-        console.error('Error while selling order:', error);
-        throw error;
-      }
-
-  }
-
-
-
   async approveOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse> {
     const jwt = sessionStorage.getItem('jwt');
     if (!jwt) return { success: false, message: 'JWT token not found' };
@@ -241,5 +219,83 @@ export class OrderService {
       return false;
     }
   }
+
+  async sellOrder(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: number, limitValue: number, stopValue: number, allOrNone: boolean) {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+
+    const orderRequest: CreateOrderRequest = {
+      orderType: orderType,
+      listingId: listingId,
+      listingType: listingType,
+      contractSize: contractSize,
+      limitValue: limitValue,
+      stopValue: stopValue,
+      allOrNone: allOrNone
+    };
+    console.log(orderRequest);
+
+    try {
+      const response = await this.http.post<boolean>(
+        environment.baseUrl + '/orders', orderRequest, httpOptions).toPromise();
+      return response;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
+
+  getSecurityOrders(): Observable<CapitalProfitDto[]> {
+    return this.http.get<CapitalProfitDto[]>('assets/mocked_banking_data/orders-security-mocked.json')
+      .pipe(
+        map((data: CapitalProfitDto[]) => data.map(item => ({
+          ...item,
+          listingType: ListingType[item.listingType as keyof typeof ListingType] // Assuming listingType in JSON is a string that matches enum keys
+        })))
+      );
+  }
+
+  getSecurityOrdersMocked(): Observable<CapitalProfitDto[]> {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+
+    return this.http.get<CapitalProfitDto[]>(environment.baseUrl + 'capitals/listings', httpOptions)
+      .pipe(
+        map((data: CapitalProfitDto[]) => data.map(item => ({
+          ...item,
+          listingType: ListingType[item.listingType as keyof typeof ListingType] // Assuming listingType in JSON is a string that matches enum keys
+        })))
+      );
+  }
+  //
+  // async sellOrder(orderId:number,sellingReq:SellingRequest): Promise<DecideOrderResponse> {
+  //   const jwt = sessionStorage.getItem("jwt");
+  //
+  //   if (!jwt) return { success: false, message: 'JWT token not found' };
+  //
+  //   const headers = new HttpHeaders({
+  //     Authorization: 'Bearer ' + sessionStorage.getItem('jwt')
+  //   });
+  //
+  //   try {
+  //     return await firstValueFrom(
+  //       this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders`, sellingReq, { headers })
+  //     );
+  //   } catch (error) {
+  //     console.error('Error while selling order:', error);
+  //     throw error;
+  //   }
+  //
+  // }
 
 }
