@@ -1,0 +1,29 @@
+[
+  {
+    "totalPrice": 15234.75,
+    "bankAccountNumber": "1234567890",
+    "currencyName": "USD",
+    "listingType": "FOREX",
+    "listingId": 1001,
+    "total": 20000.00,
+    "reserved": 4765.25
+  },
+  {
+    "totalPrice": 9876.54,
+    "bankAccountNumber": "0987654321",
+    "currencyName": "EUR",
+    "listingType": "STOCK",
+    "listingId": 1002,
+    "total": 12000.00,
+    "reserved": 2123.46
+  },
+  {
+    "totalPrice": 5678.90,
+    "bankAccountNumber": "1122334455",
+    "currencyName": "JPY",
+    "listingType": "FUTURE",
+    "listingId": 1003,
+    "total": 8000.00,
+    "reserved": 2321.10
+  }
+]

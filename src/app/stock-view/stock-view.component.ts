@@ -54,9 +54,7 @@ export class StockViewComponent {
     this.router = router;
   }
 
-  openBuyPopup() {
-    this.popupService.openBuyPopup();
-  }
+
 
   goBack() {
     this.router.navigateByUrl(`/security/all`);
@@ -152,5 +150,9 @@ export class StockViewComponent {
       this.chartData.datasets[0].data.push(stockHistory.price);
     }
     this.chart?.chart?.update();
+  }
+
+  openBuyPopup() {
+    this.popupService.openBuyPopup(null, null, this.stock);
   }
 }
