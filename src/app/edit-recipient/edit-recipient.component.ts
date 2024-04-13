@@ -53,7 +53,7 @@ export class EditRecipientComponent implements OnInit{
       }
     );
     this.router.navigate(['/recipients']);
-    this.dialogRef.close();
+    this.dialogRef.close({ success: true });
   }
 
   cancel(): void {
