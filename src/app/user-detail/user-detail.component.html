@@ -9,8 +9,8 @@
       </div>
       <div class="tab-container">
         <div class="tabs">
-          <div class="tab" (click)="selectTab('cards')">Cards</div>
-          <div class="tab" (click)="selectTab('bank_acc')">Bank accounts</div>
+          <div class="tab" (click)="selectTab('cards')" [class.selected_tab]="selectedTab === 'cards'">Cards</div>
+          <div class="tab" (click)="selectTab('bank_acc')" [class.selected_tab]="selectedTab === 'bank_acc'">Bank accounts</div>
         </div>
       </div>
     </div>
