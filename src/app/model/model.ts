@@ -241,6 +241,13 @@ export interface ExchangeRate {
   rate: number;
 }
 
+export interface TransformedExchangeRate {
+  baseCurrency: string;
+  quoteCurrency: string;
+  buyingPrice: number;
+  sellingPrice: number;
+}
+
 export interface Future {
   listingId: number;
   listingType: string;

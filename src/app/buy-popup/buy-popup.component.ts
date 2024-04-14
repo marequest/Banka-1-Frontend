@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {WhiteTextFieldModule} from "../welcome/redesign/WhiteTextField";
 import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {OrderService} from "../service/order.service";
 import {ListingType, OrderType} from "../model/model";
 import {PopupService} from "../service/popup.service";
@@ -13,7 +13,8 @@ import {PopupService} from "../service/popup.service";
   imports: [
     FormsModule,
     WhiteTextFieldModule,
-    OrangeButtonModule
+    OrangeButtonModule,
+    ReactiveFormsModule
   ],
   templateUrl: './buy-popup.component.html',
   styleUrl: './buy-popup.component.css'
