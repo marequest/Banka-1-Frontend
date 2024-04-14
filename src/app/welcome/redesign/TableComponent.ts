@@ -37,11 +37,9 @@ import { Component, Input } from '@angular/core';
       color: var(--banka-white);
       margin: 20px 0;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-collapse: collapse;
-      overflow: hidden;
+      /*overflow: hidden;*/
       border-radius: 30px;
       text-align: center;
-
     }
 
     tr {
@@ -79,6 +77,11 @@ import { Component, Input } from '@angular/core';
     tbody tr:hover td {
       background-color: var(--banka-very-dark-gray); /* Light brown for row hover */
     }
+
+    .wrap {
+      margin-bottom: 200px;
+    }
+
 
     /*tr:last-child td:first-child {*/
     /*  border-bottom-left-radius: 30px;*/
