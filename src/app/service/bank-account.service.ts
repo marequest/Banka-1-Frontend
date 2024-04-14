@@ -146,4 +146,22 @@ export class BankAccountService {
     });
   }
 
+  changeBankeAccountName(newName: string, bankAccountNumber: string): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/account/edit`;
+
+    return this.httpClient.put(url, {
+      bankAccountNumber: bankAccountNumber,
+      newName: newName
+    },{
+      headers: headers
+    });
+  }
 }
