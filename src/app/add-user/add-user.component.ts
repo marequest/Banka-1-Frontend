@@ -32,7 +32,6 @@ export class AddUserComponent {
     active: boolean,
     orderLimit: number,
     requireApproval: boolean
-
     // permissions: Permissions[]
   } = {
     email: '',
@@ -102,6 +101,7 @@ export class AddUserComponent {
 
   onCreateAddUserPopup() {
     if (this.validateForm()) {
+      this.addUserData.orderLimit = this.addUserData.orderLimit + 0.0;
       this.userService.addUser(this.addUserData).subscribe(
         response => {
           this.data.loadEmployeesFromDataBase();
