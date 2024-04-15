@@ -18,14 +18,19 @@
     </div>
 
     <div class="row infoRow">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+        <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
             <div class="row up">Account owner:</div>
             <div class="row down">{{bankAccount.accountOwner || '-'}}</div>
+        </div> -->
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-4 aa">
+            <div class="row up">Type:</div>
+            <div class="row down">{{bankAccount.accountType || '-'}}</div>
         </div>
 
         <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
-            <div class="row up">Type:</div>
-            <div class="row down">{{bankAccount.accountType || '-'}}</div>
+            <div class="row up">Reserved rescources:</div>
+            <div class="row down">{{bankAccount.reservedResources || '-'}}</div>
         </div>
     </div>
 
@@ -35,10 +40,6 @@
             <div class="row down">{{bankAccount.availableBalance || '-'}}</div>
         </div>
 
-        <div class="col-lg-4 offset-lg-2 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-2 aa">
-            <div class="row up">Reserved rescources:</div>
-            <div class="row down">{{bankAccount.reservedResources || '-'}}</div>
-        </div>
     </div>
 
     <div class="row infoRow">
