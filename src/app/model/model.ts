@@ -198,7 +198,6 @@ export interface UserToEdit {
   jmbg: string;
   brlk: string;
   phone: string;
-  active: boolean;
   birth_date: string;
 }
 

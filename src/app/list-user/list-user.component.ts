@@ -106,7 +106,7 @@ export class ListUserComponent implements OnInit{
   }
 
   togglePopupAddUser() {
-    this.popup.openAddUserPopup();
+    this.popup.openAddUserPopup(this);
   }
 
   search(){
@@ -123,7 +123,7 @@ export class ListUserComponent implements OnInit{
 
   editUser(user: User){
     this.userService.setUserToEdit(user);
-    this.popup.openUpdateUserPopup();
+    this.popup.openUpdateUserPopup(this);
     // this.router.navigate(['/user/update']);
   }
 
