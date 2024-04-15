@@ -54,10 +54,9 @@
       </div> -->
 
           <div class="sidebar-item-wrapper" *ngIf="isCustomer">
-            <div class="sidebar-item">
+            <div class="sidebar-item" (click)="setActiveItem('openPayments')">
               <div>Payments</div>
               <img
-                (click)="setActiveItem('openPayments')"
                 src="../assets/expand.png"
                 class="sidebar-icon"
                 [routerLink]="'/welcome'"/>

@@ -137,12 +137,12 @@ export class OrdersComponent {
 
   async approveOrder(order: OrderDto) {
     try {
-      const response = await this.orderService.approveOrder(order.listingId, StatusRequest.APPROVED);
+      const response = await this.orderService.approveOrder(order.orderId, StatusRequest.APPROVED);
       console.log('Response from approveOrder:', response.success);
 
        // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
       if(response.success){
-        const index = this.orderRequests.findIndex(order => order.listingId === order.listingId);
+        const index = this.orderRequests.findIndex(order => order.orderId === order.orderId);
         if (index !== -1) {
           this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
         }
@@ -158,11 +158,11 @@ export class OrdersComponent {
 
   async denyOrder(orderr: OrderDto) {
     try{
-    const response = await this.orderService.denyOrder(orderr.listingId,StatusRequest.DENIED);
+    const response = await this.orderService.denyOrder(orderr.orderId,StatusRequest.DENIED);
     console.log('Response from denyOrder:', response.success);
 
     if(response.success){
-      const index = this.orderRequests.findIndex(order => order.listingId === orderr.listingId);
+      const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
       if (index !== -1) {
         this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
       }

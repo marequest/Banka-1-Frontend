@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="text-field-container">
       <label for="name" class="field-label">{{ fieldName }}</label>
-      <input [type]="p?'text':'password'" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
+      <input [type]="p?'password':'text'" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
     </div>
   `,
   styles: [`

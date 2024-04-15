@@ -93,7 +93,9 @@
       <div class="right-section">
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" id="password" [(ngModel)]="password" name="password" required #passwordModel="ngModel" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" [ngClass]="{ 'invalid-input': passwordModel.invalid && (passwordModel.dirty || passwordModel.touched) }" />
+          <input type="password" id="password" [(ngModel)]="password" name="password" required #passwordModel="ngModel" required
+                 [ngClass]="{ 'invalid-input': passwordModel.invalid && (passwordModel.dirty || passwordModel.touched) }" />
+          <!--                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"-->
           <div *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)" class="error-message">
             <div *ngIf="passwordModel.hasError('required')" style="color: red;">Password is required.</div>
             <div *ngIf="passwordModel.hasError('pattern')" style="color: red;">Invalid password format.</div>

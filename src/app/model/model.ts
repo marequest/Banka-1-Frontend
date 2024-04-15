@@ -375,6 +375,7 @@ export interface Order {
 // }
 
 export interface OrderDto{
+  orderId:number,
   listingId:number,
   listingType:ListingType,
   // owner: EmployeeDto,
