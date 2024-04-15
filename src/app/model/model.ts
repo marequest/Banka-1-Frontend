@@ -34,8 +34,8 @@ export interface Permissions{
     description?:string;
 }
 export interface Limit{
-  userId: string;
-  email?: string;
+  userId: number;
+  email: string;
   limit?: number;
   usedLimit?: number;
   needApprove?: boolean;
@@ -45,7 +45,6 @@ export interface Permissions {
   permission_id?: number;
   name: string;
   description?: string;
-
 }
 
 export interface BankAccount {
@@ -125,7 +124,7 @@ export interface Exchange {
 }
 
 export interface NewLimitDto{
-  userId: string;
+  userId: number;
   approvalReqired: boolean;
   limit: number;
 }

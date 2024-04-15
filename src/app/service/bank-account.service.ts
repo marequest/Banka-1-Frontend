@@ -146,6 +146,22 @@ export class BankAccountService {
     });
   }
 
+  resetLimit(userId: number): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/employee/limits/reset/${userId}`;
+
+    return this.httpClient.put(url,{
+      headers: headers
+    });
+  }
+
   changeBankeAccountName(newName: string, bankAccountNumber: string): Observable<any> {
 
     const headers = new HttpHeaders({
@@ -155,7 +171,7 @@ export class BankAccountService {
     console.log(headers);
 
     const options = { headers: headers };
-    let url = environment.baseUrl + `/account/edit`;
+    let url = environment.baseUrl + `/account`;
 
     return this.httpClient.put(url, {
       bankAccountNumber: bankAccountNumber,

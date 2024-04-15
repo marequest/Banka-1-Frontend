@@ -9,18 +9,24 @@
             <input type="text" [(ngModel)]="amount" id="name" name="name" #nameModel="ngModel" required/>
             <!-- <div *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)" class="error-message"></div> -->
             <div *ngIf="nameModel.hasError('required')" style="color: red;">Amount required!</div>
+            
         </div>
 
         <div class="form-group m-auto col-sm-12 col-md-8 col-6 mt-4">
             <label>
-                Example Checkbox:
+                Approval required
                 <input type="checkbox" [(ngModel)]="approvalRequired" (change)="handleChange($event)">
               </label>
         </div>
 
+        
         <div class="row justify-content-around mt-5 mb-3 ms-auto me-auto">
+            
+        </div>
+
+        <div class="row justify-content-around mt-5 mb-3 ms-auto me-auto">
+            <button (click)="submit()" class="btn btn-warning btn-sm col-sm-10 col-md-8 col-xl-4 mt-3" style="border-radius: 5px">Set new limit</button>
             <button (click)="cancel()" class="btn btn-warning btn-sm col-sm-10 col-md-8 col-xl-4 mt-3" style="border-radius: 5px;" >Cancel</button>
-            <button (click)="submit()" class="btn btn-warning btn-sm col-sm-10 col-md-8 col-xl-4 mt-3" style="border-radius: 5px">Apply</button>
         </div>
     </div>
 </div>

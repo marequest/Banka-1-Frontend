@@ -18,6 +18,7 @@ import {WhiteTextFieldModule} from "../welcome/redesign/WhiteTextField";
 import {TransformLimitsPipeModule} from "./TransformLimitsPipe";
 import {HttpErrorResponse} from "@angular/common/http";
 import { EditLimitPopUpComponent } from '../edit-limit-pop-up/edit-limit-pop-up.component';
+import { ResetLimitPopupComponent } from '../reset-limit-popup/reset-limit-popup.component';
 
 @Component({
   selector: 'app-list-user',
@@ -39,7 +40,7 @@ export class ListUserComponent implements OnInit{
   hasPermission?: boolean = false;
   public p:string | null='';
 
-  headersLimits = ['Email', 'Limit', 'Used Limit', 'Needs Approve'];
+  headersLimits = ['Id','Email', 'Limit', 'Used Limit', 'Needs Approve'];
   headersUsers = ['NAME', 'EMAIL', 'JMBG', 'POSITION', 'PHONE NUMBER', 'ACTIVITY'];
   rowsUsers = [
     { 'Header 1': 'Row 1', 'Header 2': 'Row 1', 'Header 3': 'Row 1', 'Header 4': 'Row 1', 'Header 5': 'Row 1','Header 6': 'Row 1', },
@@ -240,9 +241,26 @@ export class ListUserComponent implements OnInit{
 
   editLimit(originalLimit: Limit) {
     console.log('Edit limit: ', originalLimit)
-
+    
     const dialogRef = this.dialog.open(EditLimitPopUpComponent, {
-      width: '30vw',
+      width: '50vw',
+      height: 'auto',
+      data: originalLimit, // Passing the displayed bank account
+      disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('The dialog was closed');
+    });
+  }
+
+
+  resetLimit(originalLimit: Limit) {
+    console.log('Edit limit: ', originalLimit)
+
+    const dialogRef = this.dialog.open(ResetLimitPopupComponent, {
+      width: '50vw',
       height: 'auto',
       data: originalLimit, // Passing the displayed bank account
       disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC

@@ -1,0 +1,63 @@
+.popup-container {
+    border: 1px solid #26262C;
+    position: fixed; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centriranje po sredini ekrana */
+    background-color: #26262C; 
+    border-radius: 42px; 
+}
+
+.form-group {
+margin-bottom: 10px;
+font-size: 15px;
+display: flex;
+color: white;
+font-size: 16px;
+flex-direction: column;
+}
+
+.form-group label {
+margin-bottom: 5px;
+}
+
+.form-group input[type="text"] {
+/* box-sizing: border-box; */
+border: #FFF9F0 solid 1px;
+border-radius: 5px; 
+background-color: #26262C; 
+color: #FFF9F0; 
+padding: 8px;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    padding: 20px 20px 0px 20px;
+
+}
+
+.closeBtn{
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 20px;
+    border: none;
+}
+
+button{
+    font-size: 20px;
+}
+
+@media (max-width: 776) {
+    button {
+        font-size: 8px; /* Adjust for even smaller screens */
+    }
+}
+
+
+@media (max-width: 576) {
+    button {
+        font-size: 8px; /* Adjust for even smaller screens */
+    }
+}

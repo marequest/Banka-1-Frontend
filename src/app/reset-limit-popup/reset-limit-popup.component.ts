@@ -1,33 +1,29 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Limit, Recipient, NewLimitDto } from '../model/model';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { BankAccountService } from '../service/bank-account.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { PopupService } from '../service/popup.service';
-import { CdkObserveContent } from '@angular/cdk/observers';
-
+import { Limit, NewLimitDto } from '../model/model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-edit-limit-pop-up',
+  selector: 'app-reset-limit-popup',
   standalone: true,
-  imports: [FormsModule,CommonModule],
-  templateUrl: './edit-limit-pop-up.component.html',
-  styleUrl: './edit-limit-pop-up.component.css'
+  imports: [],
+  templateUrl: './reset-limit-popup.component.html',
+  styleUrl: './reset-limit-popup.component.css'
 })
-export class EditLimitPopUpComponent {
-
+export class ResetLimitPopupComponent implements OnInit{
   constructor(
-    private dialogRef: MatDialogRef<EditLimitPopUpComponent>,
+    private dialogRef: MatDialogRef<ResetLimitPopupComponent>,
     private bankAccountService: BankAccountService,
     private  popupService: PopupService,
     @Inject(MAT_DIALOG_DATA) public limit: Limit,
-  ) { 
+  ) { }
 
+  ngOnInit(): void {
 
   }
-
+  
   amount : number = 0;
   approvalRequired: boolean = false;
 
@@ -36,36 +32,32 @@ export class EditLimitPopUpComponent {
     this.approvalRequired = event.target.checked;
     console.log(this.approvalRequired);
   }
+ 
 
-  addNewLimit() {
-    
-    let newLimitDto:NewLimitDto = {
-      userId: Number(this.limit.userId),
-      approvalReqired: this.approvalRequired,
-      limit: this.amount
-    }
+  resetLimit() {
+
+    // let userId: this.data.limit.userId;
     //TODO: when this is finished on backend uncoment
     //can not mock beacuse is POST method
-    this.bankAccountService.addNewLimit(newLimitDto).subscribe(
+    this.bankAccountService.resetLimit(this.limit.userId).subscribe(
       (bankAccountExchangesFromDB: any) => {
         console.log('New limit added');
-        this.popupService.openPopup("Success", "Limit has been added successfully");
+        this.popupService.openPopup("Success", "Reset limit has been done successfully");
       },
       (error: HttpErrorResponse) => {
-        this.popupService.openPopup("Error","Error adding new limit");
+        this.popupService.openPopup("Error","Error reseting limit");
       }
     );
   }
 
   cancel(){
+    
     this.dialogRef.close('Dialog closed by exit');
   }
 
   submit(){
-    console.log("add new limit clicked");
-    this.addNewLimit();
+    console.log(this.limit);
+    this.resetLimit();
     this.dialogRef.close();
   }
-
-
 }

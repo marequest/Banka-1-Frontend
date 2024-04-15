@@ -16,9 +16,19 @@
     <div class="tabs-content" [ngSwitch]="selectedTab">
       <div *ngSwitchCase="'limits'">
         <app-dynamic-table [headersArray]="headersLimits" [dataArray]="limits | transformLimits" [showActions]="true">
-          <ng-template #actionsColumn let-row>
+          <!-- <ng-template #actionsColumn let-row>
             <orange-button [buttonName]="'Edit'" (click)="editLimit(row.originalLimit)"></orange-button>
+          </ng-template> -->
+          <ng-template #actionsColumn let-row>
+            <div class="options-menu">
+              <span id="options-button" class="material-symbols-outlined">more_vert</span>
+              <div class="options-dropdown">
+                <button (click)="editLimit(row.originalLimit)">Edit</button>
+                <button (click)="resetLimit(row.originalLimit)">Reset</button>
+              </div>
+            </div>
           </ng-template>
+          
         </app-dynamic-table>
       </div>
 <!--      <div class="options-menu">-->
