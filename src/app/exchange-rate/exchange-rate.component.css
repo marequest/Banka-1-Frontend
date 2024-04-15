@@ -1,19 +1,22 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 3rem;
-   font-family: "Jura", sans-serif;
-  }
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  font-family: "Jura", sans-serif;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-  
 
-  .security-title {
-    color: #ffb72b;
-    font-size: xx-large;
-    font-family: 'Jura';
-  }
 
-  
+.security-title {
+  color: #ffb72b;
+  font-size: xx-large;
+  font-family: 'Jura';
+}
+
+
 .table-content {
   background-color: var(--banka-dark-gray);
 
@@ -43,11 +46,11 @@
 
   /*justify-content: left; /* Center the content */
   padding: 20px; /* Add some padding for spacing */
-  background-color: #f2f4f6; 
+  background-color: #f2f4f6;
   border-bottom: 2px solid #d1d8e0;
 
   justify-content: space-between;
-  
+
 
 }
 
@@ -90,7 +93,7 @@
 /* .filter-input {
   margin-left: 100px;
 } */
-/* 
+/*
 .security-filter-input {
   border-radius: 5px;
 
@@ -163,7 +166,7 @@
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 15px;
-  border-bottom: 1px solid var(--bank-white);
+  border-bottom: 1px solid var(--banka-white);
 
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -302,7 +305,7 @@ td {
 }
 
 /**
-   Permission table and search filter 
+   Permission table and search filter
   **/
 .search-container {
   font-size: 0; /* Remove white space between inline-block elements */
@@ -321,11 +324,11 @@ td {
 .search-input,
 .search-icon-div {
   display: inline-block;
-  width: 20%; 
-  font-size: 16px; 
+  width: 20%;
+  font-size: 16px;
   margin-left: 5%;
   margin-right: 5%;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   vertical-align: top;  */
 
 }
@@ -361,4 +364,38 @@ td {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+}
+
+.rounded-box {
+  width: 44vw;
+  border-radius: 10px;
+  background-color: var(--banka-dark-gray);
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.rounded-box input[type="text"] {
+  padding: 0.5em 1em;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+}
+
+.rounded-box input[type="text"], .rounded-box img {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
+@media (max-width: 600px) {
+  .rounded-box {
+    justify-content: space-around;
+  }
+
+  .rounded-box input[type="text"], .rounded-box img {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }

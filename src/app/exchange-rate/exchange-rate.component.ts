@@ -1,13 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {environment} from "../../../environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {ExchangeRate} from "../model/model";
+import {ExchangeRate, TransformedExchangeRate} from "../model/model";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 import {TableComponentModule} from "../welcome/redesign/TableComponent";
-import {ExchangeFilterPipe} from "../model/forex-filter-pipe.pipe";
 import { TransparentTextFieldModule } from "../welcome/redesign/TransparentTextField";
 
 @Component({
@@ -16,34 +15,62 @@ import { TransparentTextFieldModule } from "../welcome/redesign/TransparentTextF
     templateUrl: './exchange-rate.component.html',
     styleUrl: './exchange-rate.component.css',
     imports: [NgForOf,
-        FormsModule, OrangeButtonModule, TableComponentModule, ExchangeFilterPipe, TransparentTextFieldModule]
+        FormsModule, OrangeButtonModule, TableComponentModule, TransparentTextFieldModule]
 })
-export class ExchangeRateComponent {
+export class ExchangeRateComponent implements OnInit{
   exchange: ExchangeRate[] = [];
   exchangeBackup: ExchangeRate[] = [];
+  transformedExchangeRates: TransformedExchangeRate[] = [];
   buyingFilter: string = '';
   sellingFilter: string = '';
-  headers = ['Selling symbol', 'Buying symbol', 'Price'];
+  headers = ['Selling symbol', 'Buying symbol', 'Selling Price', 'Buying Price'];
   _router: Router;
   searchString = ""
 this: any;
-  constructor(private http: HttpClient, router: Router) {
+  constructor(private http: HttpClient, router: Router, ) {
     this._router = router;
   }
 
-  // searchExchangeRate() {
-  //   if(this.searchString.length === 0) this.filteredStocks = this.stocks;
-  //   this.filteredStocks = this.filteredStocks.filter((stock) => {
-  //     return stock.ticker.toLowerCase().includes(this.searchString.toLowerCase()) || stock.name.toLowerCase().includes(this.searchString.toLowerCase())
-  //   })
-  // }
-
   search() {
-    this.exchange = this.exchangeBackup.filter(value =>
+    this.transformedExchangeRates = this.transform(this.exchangeBackup);
+    this.transformedExchangeRates = this.transformedExchangeRates.filter(value =>
     {
       debugger;
       return value.baseCurrency.toLowerCase().includes(this.sellingFilter.toLowerCase())
       && value.quoteCurrency.toLowerCase().includes(this.buyingFilter.toLowerCase())
+    });
+  }
+  transform(exchangeArray: ExchangeRate[]): any[] {
+    const uniquePairs = new Map();
+
+    exchangeArray.forEach(rate => {
+      const symbols = [rate.baseCurrency, rate.quoteCurrency].sort();
+      const pairKey = symbols.join('/');
+
+      if (!uniquePairs.has(pairKey)) {
+        uniquePairs.set(pairKey, {
+          baseCurrency: symbols[0],
+          quoteCurrency: symbols[1],
+          buyingPrice: null,
+          sellingPrice: null,
+        });
+      }
+    });
+
+    exchangeArray.forEach(rate => {
+      const symbols = [rate.baseCurrency, rate.quoteCurrency].sort();
+      const pairKey = symbols.join('/');
+      const pair = uniquePairs.get(pairKey);
+
+      if (rate.baseCurrency === symbols[0] && rate.quoteCurrency === symbols[1]) {
+        pair.sellingPrice = rate.rate;
+      } else {
+        pair.buyingPrice = rate.rate;
+      }
+    });
+
+    return Array.from(uniquePairs.values()).sort((a, b) => {
+      return a.baseCurrency.localeCompare(b.baseCurrency) || a.quoteCurrency.localeCompare(b.quoteCurrency);
     });
   }
 
@@ -53,6 +80,9 @@ this: any;
     });
     // this.http.get<Forex[]>('assets/mock-forex.json')
     this.http.get<ExchangeRate[]>(environment.baseUrl + '/transfer/exchangeRates', {headers})
-      .subscribe(res => this.exchangeBackup = this.exchange = res );
+      .subscribe(res => {
+        this.exchangeBackup = this.exchange = res
+        this.transformedExchangeRates = this.transform(this.exchangeBackup);
+      } );
   }
 }
