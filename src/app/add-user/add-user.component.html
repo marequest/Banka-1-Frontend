@@ -121,6 +121,10 @@
           <label for="limit">Insert limit:</label>
           <input type="text" id="limit" [(ngModel)]="addUserData.orderLimit" name="limit"  />    
         </div>
+        <div class="form-group" *ngIf="limit">
+          <label for="limit">Approval required:</label>
+          <input type="text" id="limit" [(ngModel)]="addUserData.orderLimit" name="limit"  />    
+        </div>
 
         <!-- <h3 style="margin-bottom: 5px;">Permissions:</h3>
         <div *ngFor="let permission of permissions" style="display: flex; align-items: center; margin-bottom: 5px;">
