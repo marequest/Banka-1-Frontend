@@ -364,15 +364,32 @@ export interface Order {
 }
 
 
+// export interface OrderDto{
+//   orderId:number,
+//   listingType:string,
+//   orderType:OrderType,
+//   symbol:string,
+//   amount:number,
+//   price: number,
+//   status: string,
+//   lastModified: number
+// }
+
 export interface OrderDto{
-  orderId:number,
-  listingType:string,
+  listingId:number,
+  listingType:ListingType,
+  // owner: EmployeeDto,
   orderType:OrderType,
-  symbol:string,
-  amount:number,
+  status:OrderStatus,
+  contractSize:number,
+  processedNumber: number,
+  limitValue: number,
+  stopValue: number,
+  fee: number,
   price: number,
-  status: string,
-  lastModified: number
+  allOrNone: boolean,
+  updatedAt: number,
+  // approvedBy: EmployeeDto
 }
 
 export interface SellingRequest{
@@ -423,6 +440,14 @@ export enum LoanType {
   MORTGAGE = 'MORTGAGE',
   REFINANCING = 'REFINANCING',
   AUTO = 'AUTO',
+}
+
+export enum OrderStatus {
+  APPROVED = 'APPROVED',
+  PROCESSING = 'PROCESSING',
+  DONE = 'DONE',
+  DENIED = 'DENIED',
+  CANCELED = 'CANCELED'
 }
 
 export interface Loan {
