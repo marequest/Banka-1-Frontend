@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {PopupService} from "../service/popup.service";
 import { UserService } from '../service/employee.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { PermissionService } from '../service/permission.service';
 import { Permissions } from '../model/model';
 import {TransparentTextFieldModule} from "../welcome/redesign/TransparentTextField";
@@ -76,7 +76,8 @@ export class AddUserComponent {
     private popupService: PopupService,
     private userService: UserService,
     // private permissionService: PermissionService,
-    public dialogRef: MatDialogRef<AddUserComponent>
+    public dialogRef: MatDialogRef<AddUserComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
     ) {
       // TODO: Uncomment this when backend is ready
       // this.permissionService.getAllPermissions().subscribe(
@@ -103,6 +104,7 @@ export class AddUserComponent {
     if (this.validateForm()) {
       this.userService.addUser(this.addUserData).subscribe(
         response => {
+          this.data.loadEmployeesFromDataBase();
           alert('Successfully created user ' + JSON.stringify(this.addUserData));
           this.dialogRef.close();
           // this.router.navigate(['/user/list']);
