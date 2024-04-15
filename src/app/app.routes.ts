@@ -39,6 +39,7 @@ import { supportsPassiveEventListeners } from '@angular/cdk/platform';
 
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, //this will make the first page that is loaded a login page
   { path: 'login', component: LoginPageComponent, canActivate: [loginGuard] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [welcomeGuard] },
   {
