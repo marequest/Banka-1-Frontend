@@ -58,25 +58,42 @@ export class RecipientsComponent {
   editRecipient(recipient: Recipient, idx: number){
     console.log("Editing recipient at idx " + idx);
     console.log(recipient);
-    this.popupService.openEditRecipientPopup(recipient);
+    const dialogRef=this.popupService.openEditRecipientPopup(recipient);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.success) {
+        this.loadAllUserRecipients();
+      }
+    });
   }
 
   deleteRecipient(recipient: Recipient, idx: number){
-    this.bankAccountService.deleteRecipient(recipient).subscribe(
-      (response: any) => {
-        console.log('Recipient deleted successfully');
-        console.log(response);
-      },
-      (error: any) => {
-        console.error('Error adding recipient:', error);
+    const dialogRef=this.popupService.openDeleteConfirmation();
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Ako je korisnik potvrdio brisanje, pozovite funkciju za brisanje primaoca
+        this.bankAccountService.deleteRecipient(recipient).subscribe(
+          (response: any) => {
+            console.log('Recipient deleted successfully');
+            console.log(response);
+          },
+          (error: any) => {
+            console.error('Error deleting recipient:', error);
+          }
+        );
+  
+        // Ažurirajte listu primaoca nakon brisanja
+        this.allUserRecipients.splice(idx, 1);
       }
-    );
-
-    this.allUserRecipients.splice(idx, 1);
+    });
   }
 
   addRecipient(){
     console.log("Adding recipient");
-    this.popupService.openAddRecipientPopup();
+    const dialogRef= this.popupService.openAddRecipientPopup();
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.success) {
+        this.loadAllUserRecipients();
+      }
+    });
   }
 }

@@ -1,7 +1,7 @@
 // popup.service.ts
 import { Injectable } from '@angular/core';
 import {PopupComponent} from "../popup/popup.component";
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { TransactionPopupComponent } from '../transaction-popup/transaction-popup.component';
@@ -15,6 +15,7 @@ import { NewRecipientComponent } from '../new-recipient/new-recipient.component'
 import { EditRecipientComponent } from '../edit-recipient/edit-recipient.component';
 import {BuyPopupComponent} from "../buy-popup/buy-popup.component";
 import {SellPopupComponent} from "../sell-popup/sell-popup.component";
+import { DeleteRecipientConfirmationComponent } from '../delete-recipient-confirmation/delete-recipient-confirmation.component';
 
 
 @Injectable({
@@ -78,9 +79,12 @@ export class PopupService {
     });
   }
 
-  openAddRecipientPopup(): void {
-    this.dialog.open(NewRecipientComponent, {
-    });
+  openDeleteConfirmation():MatDialogRef<DeleteRecipientConfirmationComponent>{
+    return this.dialog.open(DeleteRecipientConfirmationComponent, {});
+  }
+
+  openAddRecipientPopup(): MatDialogRef<NewRecipientComponent> {
+    return this.dialog.open(NewRecipientComponent, {});
   }
 
   openBuyPopup(future: any, forex: any, stock: any): void {
@@ -95,9 +99,9 @@ export class PopupService {
     });
   }
 
-  openEditRecipientPopup(recipient: Recipient): void {
-    this.dialog.open(EditRecipientComponent, {
-      data: {recipient}
+  openEditRecipientPopup(recipient: Recipient): MatDialogRef<EditRecipientComponent> {
+    return this.dialog.open(EditRecipientComponent, {
+      data: { recipient }
     });
   }
 }

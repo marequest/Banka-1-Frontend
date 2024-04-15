@@ -30,12 +30,15 @@ export class NewRecipientComponent {
       (response: any) => {
         console.log('Recipient added successfully');
         console.log(response);
+        this.dialogRef.close({ success: true });
       },
       (error: any) => {
         console.error('Error adding recipient:', error);
       }
     );
   }
+
+  
 
   cancel(){
     this.dialogRef.close();

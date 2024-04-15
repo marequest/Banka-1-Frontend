@@ -1,0 +1,64 @@
+
+.container{
+    background-color: #26262C; 
+    border: 1px solid #26262C;
+    color: #FFF9F0; 
+    
+}
+.mat-dialog-container {
+    font-family: 'Jura', sans-serif;
+    color: #FFF9F0; 
+    font-size: 12px;
+
+}
+
+.mat-dialog-content {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-dialog-actions button {
+    font-size: 20px;
+    border-radius: 5px;
+
+}
+
+.mat-dialog-title {
+    font-size: 28px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mat-dialog-title,
+.mat-dialog-content {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+@media (max-width: 776px) {
+    .mat-dialog-title,
+    .mat-dialog-content {
+        font-size: 20px;
+    }
+
+    .mat-dialog-actions button {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .mat-dialog-title,
+    .mat-dialog-content {
+        font-size: 16px;
+    }
+
+    .mat-dialog-actions button {
+        font-size: 14px;
+    }
+}
