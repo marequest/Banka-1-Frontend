@@ -69,6 +69,7 @@ export class NewPaymentComponent implements OnInit{
     // });
     if(this.paymentService.getSelectedBankAccount() !== undefined){
       this.selectedAccount = this.paymentService.getSelectedBankAccount();
+      this.payment.senderAccountNumber = this.paymentService.getSelectedBankAccount()?.accountNumber;
       this.paymentService.setSelectedBankAccount(undefined);
       console.log("Selected account: ", this.selectedAccount);
     }

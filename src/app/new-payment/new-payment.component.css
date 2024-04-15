@@ -77,3 +77,12 @@
         text-align: start;
     }
   }
+
+  #referenceNumber:disabled {
+    background-color: #a7a7a7; /* Light grey background */
+    color: #26262C; /* Light grey text color */
+  }
+
+.opt{
+    color: #26262C;
+}

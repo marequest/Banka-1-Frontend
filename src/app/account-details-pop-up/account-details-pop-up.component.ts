@@ -37,12 +37,17 @@ export class AccountDetailsPopUpComponent {
         width: '20vw',
         height: 'auto',
         data: this.bankAccount, // Passing the displayed bank account
-        disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+        disableClose: true // Prevents closing the dialog by clicking outside or pressing ESC
       });
   
       dialogRef.afterClosed().subscribe(result => {
         console.log(result);
         console.log('The dialog was closed');
+
+        if(result != 'dialog_closed_without_changes'){
+          this.bankAccount.accountName = result;
+        }
+        
       });
     }
 
