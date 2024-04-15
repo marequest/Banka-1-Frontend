@@ -30,12 +30,12 @@ export class UserService {
 
 
   // Get all limits MOCKED
-  getLimits(): Observable<Limit[]> {
+  getLimitsMocked(): Observable<Limit[]> {
     return this.http.get<Limit[]>('/assets/mocked_banking_data/mocked_limits/limits-mocked.json');
   }
 
   // Get all limits REAL_DATA
-  getLimitsMocked(): Observable<Limit[]> {
+  getLimits(): Observable<Limit[]> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
