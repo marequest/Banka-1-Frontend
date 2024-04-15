@@ -159,8 +159,8 @@ export interface CreateUserRequest {
   active: boolean;
 }
 export interface TransactionBasics {
-  outflow: string;
-  inflow: string;
+  senderAccountNumber: string;
+  recipientAccountNumber: string;
   amount: string;
 }
 
