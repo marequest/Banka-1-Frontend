@@ -128,9 +128,7 @@ export class ListUserComponent implements OnInit{
   }
 
   deleteUser(user: User): void {
-     user.userId=2;
-    // userId sam ovde rucno zadao jer kada se uradi ovaj poziv this.userService.getEmployees() u ngOnInit()
-    // za usera se ne vraca userId (videti sa backend stranom)
+    console.log(user);
     const confirmResult = confirm('Are you sure you want to delete this user?');
      if (confirmResult) {
       this.userService.deleteUser(user.userId).subscribe({
@@ -241,7 +239,7 @@ export class ListUserComponent implements OnInit{
 
   editLimit(originalLimit: Limit) {
     console.log('Edit limit: ', originalLimit)
-    
+
     const dialogRef = this.dialog.open(EditLimitPopUpComponent, {
       width: '50vw',
       height: 'auto',

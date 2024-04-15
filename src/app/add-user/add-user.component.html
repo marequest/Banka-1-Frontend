@@ -106,11 +106,16 @@
             <option value="Agent">Agent</option>
           </select>
         </div>
-        
+
 
         <div class="form-group active-checkbox">
             <label for="active" style="font-size:large; color: var(--banka-white)">Active:</label>
             <input type="checkbox" id="active" [(ngModel)]="addUserData.active" />
+        </div>
+
+        <div class="form-group active-checkbox">
+          <label for="active" style="font-size:large; color: var(--banka-white)">Require approval:</label>
+          <input type="checkbox" id="active" [(ngModel)]="addUserData.requireApproval" />
         </div>
 
         <div class="form-group active-checkbox" *ngIf="addUserData.position === 'Agent'">
@@ -119,11 +124,11 @@
         </div>
         <div class="form-group" *ngIf="limit">
           <label for="limit">Insert limit:</label>
-          <input type="text" id="limit" [(ngModel)]="addUserData.orderLimit" name="limit"  />    
+          <input type="text" id="limit" [(ngModel)]="addUserData.orderLimit" name="limit"  />
         </div>
         <div class="form-group" *ngIf="limit">
           <label for="limit">Approval required:</label>
-          <input type="text" id="limit" [(ngModel)]="addUserData.orderLimit" name="limit"  />    
+          <input type="text" id="limit" [(ngModel)]="addUserData.orderLimit" name="limit"  />
         </div>
 
         <!-- <h3 style="margin-bottom: 5px;">Permissions:</h3>

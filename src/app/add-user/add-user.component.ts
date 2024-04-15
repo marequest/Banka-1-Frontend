@@ -31,7 +31,8 @@ export class AddUserComponent {
     phoneNumber: string,
     active: boolean,
     orderLimit: number,
-    
+    requireApproval: boolean
+
     // permissions: Permissions[]
   } = {
     email: '',
@@ -41,7 +42,8 @@ export class AddUserComponent {
     position: '',
     phoneNumber: '',
     active: true,
-    orderLimit: 0
+    orderLimit: 0,
+    requireApproval: false
     // permissions: [],
   };
 
