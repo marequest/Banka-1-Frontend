@@ -38,6 +38,7 @@ import { TransformForexPipe } from '../transform-forex.pipe';
 })
 export class SecurityListComponent {
   securities: StockListing[] = [];
+  securitiesBackup: StockListing[] = [];
   selectedTab: string = 'stocks';
   symbol: string = '';
 
@@ -62,22 +63,20 @@ export class SecurityListComponent {
   searchFutures() {
     this.futures = this.futuresBackup.filter(
       (val) =>
-        val.ticker.toLowerCase().includes(this.symbol.toLowerCase()) ||
-        val.name.toLowerCase().includes(this.symbol.toLowerCase())
+        val.ticker.toLowerCase().includes(this.symbol.toLowerCase())
     );
   }
 
   searchForex() {
     this.forex = this.forexBackup.filter((value) => {
       return (
-        value.baseCurrency.toLowerCase().includes(this.symbol.toLowerCase()) &&
-        value.quoteCurrency.toLowerCase().includes(this.symbol.toLowerCase())
+        value.ticker.toLowerCase().includes(this.symbol.toLowerCase())
       );
     });
   }
 
   searchStocks() {
-    if (this.symbol.length === 0) this.securities = this.securities;
+    if (this.symbol.length === 0) this.securities = this.securitiesBackup;
     this.securities = this.securities.filter((stock) => {
       return stock.ticker.toLowerCase().includes(this.symbol.toLowerCase());
     });
@@ -117,6 +116,7 @@ export class SecurityListComponent {
     console.log(stocks);
 
     this.securities = stocks;
+    this.securitiesBackup = stocks;
   }
 
   loadForex(): void {
