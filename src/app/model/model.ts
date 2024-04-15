@@ -125,7 +125,7 @@ export interface Exchange {
 
 export interface NewLimitDto{
   userId: number;
-  approvalReqired: boolean;
+  approvalRequired: boolean;
   limit: number;
 }
 

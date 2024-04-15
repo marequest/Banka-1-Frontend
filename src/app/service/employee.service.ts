@@ -40,11 +40,8 @@ export class UserService {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
     console.log(headers);
-
     const options = { headers: headers };
     let url = environment.baseUrl + `/employee/limits/getAll`;
-
-
     return this.http.get<Limit[]>(url, options);
   }
 
