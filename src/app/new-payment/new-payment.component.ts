@@ -55,18 +55,21 @@ export class NewPaymentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // const loggedInUser = sessionStorage.getItem("loggedInUser");
-    // if(!loggedInUser){
-    //   throw new Error("No user logged in");
-    // }
-    // this.bankAccountService.getUsersBankAccounts(parseInt(loggedInUser)).subscribe({
-    //   next: (accounts: BankAccount[]) => {
-    //     this.accounts = accounts;
-    //   },
-    //   error: (error) => {
-    //     console.error("Error while fetching accounts: ", error);
-    //   }
-    // });
+    const loggedInUser = sessionStorage.getItem('loggedUserID');
+    
+    if(!loggedInUser){
+      
+      throw new Error("No user logged in");
+    }
+    
+    this.bankAccountService.getUsersBankAccounts(parseInt(loggedInUser)).subscribe({
+      next: (accounts: BankAccount[]) => {
+        this.accounts = accounts;
+      },
+      error: (error) => {
+        console.error("Error while fetching accounts: ", error);
+      }
+    });
     if(this.paymentService.getSelectedBankAccount() !== undefined){
       this.selectedAccount = this.paymentService.getSelectedBankAccount();
       this.payment.senderAccountNumber = this.paymentService.getSelectedBankAccount()?.accountNumber;

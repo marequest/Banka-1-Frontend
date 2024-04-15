@@ -4,7 +4,10 @@
   font-family: "Jura", sans-serif;
 
   }
-
+.btn{
+  margin-left: auto;
+  margin-right: auto;
+}
 
   .pageTitle{
     margin-left: 3rem;
