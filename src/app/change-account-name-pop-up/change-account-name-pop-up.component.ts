@@ -31,7 +31,7 @@ export class ChangeAccountNamePopUpComponent {
     }
   
     exit(){
-      this.dialogRef.close('Dialog closed by exit');
+      this.dialogRef.close('dialog_closed_without_changes');
     }
 
 
