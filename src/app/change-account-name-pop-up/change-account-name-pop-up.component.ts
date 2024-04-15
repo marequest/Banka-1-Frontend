@@ -27,6 +27,7 @@ export class ChangeAccountNamePopUpComponent {
       console.log(this.bankAccount);
 
       this.changeAccName();
+      this.dialogRef.close(this.inputValue);
     }
   
     exit(){

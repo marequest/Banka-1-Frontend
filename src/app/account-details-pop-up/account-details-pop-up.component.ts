@@ -43,6 +43,8 @@ export class AccountDetailsPopUpComponent {
       dialogRef.afterClosed().subscribe(result => {
         console.log(result);
         console.log('The dialog was closed');
+
+        this.bankAccount.accountName = result;
       });
     }
 
