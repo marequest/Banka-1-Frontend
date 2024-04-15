@@ -78,7 +78,7 @@ export class CustomerComponent implements OnInit{
   ];
 
   constructor(
-    private customerService: CustomerService, 
+    private customerService: CustomerService,
     private router:Router,
     private popup:PopupService
     ) { }
@@ -136,8 +136,10 @@ export class CustomerComponent implements OnInit{
     if(!customer) return;
 
     this.customerService.setSelectedCustomer(customer);
+    const queryParams = {
+      queryParams : {customerName: customer.firstName + " " + customer.lastName, customerId: customer.userId}}
 
-    this.router.navigate(['/customer/view']);
+    this.router.navigate(['/customer/view'], queryParams);
   }
 
   editCustomer(customerEmail: string) {

@@ -71,3 +71,8 @@
 .header{
   grid-column: span 8
 }
+
+.selected_tab {
+  background-color: #131319;
+  color: #FFB72B;
+}
