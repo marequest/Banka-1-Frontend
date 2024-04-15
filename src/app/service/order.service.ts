@@ -101,7 +101,9 @@ export class OrderService {
     try {
       resp = (await firstValueFrom(
         //this.http.get(environmentMarket.baseUrl + "api", {headers})
-        this.http.get("/assets/orderHistory.json")
+        this.http.get(environment.baseUrl + "/orders/getAll", {headers})
+
+      // this.http.get("/assets/orderHistory.json")
       )) as OrderDto[];
     } catch (e) {
       return [];
@@ -161,6 +163,7 @@ export class OrderService {
 
     try {
       return await firstValueFrom(
+        // TODO bice odradjeno u toku dana
         this.http.put<DecideOrderResponse>(`${environmentMarket.baseUrl}/orders/decideOrder/${orderId}`, request, { headers })
       );
     } catch (error) {
@@ -168,9 +171,6 @@ export class OrderService {
       throw error;
     }
   }
-
-
-
 
    async denyOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse>{
     const jwt = sessionStorage.getItem('jwt');
