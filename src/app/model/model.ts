@@ -413,6 +413,7 @@ export interface CapitalProfitDto {
   listingId: number;
   total: number;
   reserved: number;
+  ticker: string;
 }
 
 
