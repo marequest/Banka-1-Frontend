@@ -7,6 +7,18 @@
     font-size: 16px;
     flex-direction: column; /* Postavljanje labela iznad input polja */
 }
+.container{
+
+    margin-top: 3rem;
+   font-family: "Jura", sans-serif;
+  }
+
+  .pageTitle{
+    color: #ffb72b;
+    font-size: xx-large;
+    font-family: 'Jura';
+}
+
 
 .form-group select {
     /* width: 55%; Širina select elementa */
@@ -65,3 +77,12 @@
         text-align: start;
     }
   }
+
+  #referenceNumber:disabled {
+    background-color: #a7a7a7; /* Light grey background */
+    color: #26262C; /* Light grey text color */
+  }
+
+.opt{
+    color: #26262C;
+}

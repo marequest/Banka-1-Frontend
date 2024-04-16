@@ -1,13 +1,13 @@
 <div class="content">
-    <div class="transaction-title">New Exchange</div>
-    <div class="body-content m-auto p-5">
+    <div class="pageTitle">New Exchange</div>
+    <div class="body-content p-5">
         <div class="m-auto">
             <h1 class="text-center" style="color: white; font-size: 30px;">New Exchange</h1>
         </div>
         <hr>
         <div class="form-group mt-5">
             <label for="outflow">Outflow account number:</label>
-            <select [(ngModel)]="transaction.outflow" id="outflow" name="outflow" required (change)="onOutflowChange()" #outflowModel="ngModel" [ngClass]="{ 'invalid-input': outflowModel.invalid && (outflowModel.dirty || outflowModel.touched) }">
+            <select [(ngModel)]="transaction.senderAccountNumber" id="outflow" name="outflow" required (change)="onOutflowChange()" #outflowModel="ngModel" [ngClass]="{ 'invalid-input': outflowModel.invalid && (outflowModel.dirty || outflowModel.touched) }">
                 <option value="" disabled selected>Select Outflow Account</option>
                 <option *ngFor="let account of outflowAccounts" [value]="account.accountNumber">{{ account.accountNumber }}</option>
             </select>
@@ -18,7 +18,7 @@
         
         <div class="form-group mt-4">
             <label for="inflow">Inflow account number:</label>
-            <select [(ngModel)]="transaction.inflow" id="inflow" name="inflow" required #inflowModel="ngModel" [ngClass]="{ 'invalid-input': inflowModel.invalid && (inflowModel.dirty || inflowModel.touched) }">
+            <select [(ngModel)]="transaction.recipientAccountNumber" id="inflow" name="inflow" required #inflowModel="ngModel" [ngClass]="{ 'invalid-input': inflowModel.invalid && (inflowModel.dirty || inflowModel.touched) }">
                 <option value="" disabled selected>Select Inflow Account</option>
                 <option *ngFor="let account of inflowAccounts" [value]="account.accountNumber">{{ account.accountNumber }}</option>
             </select>
@@ -36,8 +36,8 @@
             </div>
         </div>
         
-        <div class="d-flex justify-content-between mt-5">
-            <button class="btn btn-warning btn-sm" (click)="onCancel()" style="width: 45%; font-size: 22px;">Cancel</button>
+        <div class="d-flex  mt-5">
+            <!-- <button class="btn btn-warning btn-sm" (click)="onCancel()" style="width: 45%; font-size: 22px;">Cancel</button> -->
             <button class="btn btn-warning" (click)="onContinue()" style="width: 45%; font-size: 22px;">Continue</button>
         </div>
 

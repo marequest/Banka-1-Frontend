@@ -5,11 +5,14 @@ import { CreateCustomerRequest, EditCustomerRequest } from '../model/model';
 import { CustomerService } from '../service/customer.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PopupService } from '../service/popup.service';
+import {FieldComponentModule} from "../welcome/redesign/FieldCompentn";
+import {OutlineOrangeButtonModule} from "../welcome/redesign/OutlineOrangeButton";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 
 @Component({
   selector: 'app-edit-customer',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, FieldComponentModule, OutlineOrangeButtonModule, OrangeButtonModule],
   templateUrl: './edit-customer.component.html',
   styleUrl: './edit-customer.component.css'
 })
@@ -26,6 +29,7 @@ export class EditCustomerComponent implements OnInit{
     gender: '',
     password: '',
     active:false,
+    dateOfBirth: 0
   };
 
   constructor(
@@ -48,6 +52,7 @@ export class EditCustomerComponent implements OnInit{
       gender: userToEdit?.gender as string ,
       password: '',
       active:userToEdit?.active || false,
+      dateOfBirth: 0
     }
   }
 

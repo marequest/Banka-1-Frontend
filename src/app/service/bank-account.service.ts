@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders   } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BankAccount, Transaction, Exchange, Recipient } from '../model/model';
+import { BankAccount, Exchange, Recipient, Payment, NewLimitDto } from '../model/model';
 import { environment } from '../../../environment';
 
 @Injectable({
@@ -30,33 +30,37 @@ export class BankAccountService {
     return this.httpClient.get<BankAccount[]>(url, options);
   }
 
-  //Get all transactions for bank account MOCKED
-  getTransactionsForAccountMocked(accountNumber: string): Observable<Transaction[]> {
+  //Get all payments for bank account MOCKED
+  getPaymentsForAccountMocked(accountNumber: string): Observable<Payment[]> {
     const url = `/assets/mocked_banking_data/mocked_transactions/transactions${accountNumber}.json`;
-    return this.httpClient.get<Transaction[]>(url);
+    return this.httpClient.get<Payment[]>(url);
   }
 
-  //Get all transactions for bank account REAL_DATA
-  getTransactionsForAccount(accountNumber: string): Observable<Transaction[]> {
+  //Get all payments for bank account REAL_DATA
+  getPaymentsForAccount(accountNumber: string): Observable<Payment[]> {
 
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
-    console.log(headers);
 
     const options = { headers: headers };
     let url = environment.baseUrl + `/payment/getAll/${accountNumber}`;
 
-    return this.httpClient.get<Transaction[]>(url, options); 
+    console.log("getPaymentsForAccount log:");
+    console.log(sessionStorage.getItem('jwt'))
+    console.log(options);
+    console.log(url);
+
+    return this.httpClient.get<Payment[]>(url, options); 
   }
 
-  //Get all transactions for bank account MOCKED
+  //Get all exchanges for bank account MOCKED
   getExchangesForAccountMocked(accountNumber: string): Observable<Exchange[]> {
     const url = `/assets/mocked_banking_data/mocked_exchanges/exchanges${accountNumber}.json`;
     return this.httpClient.get<Exchange[]>(url);
   }
 
-  //Get all transactions for bank account REAL_DATA
+  //Get all exchanges for bank account REAL_DATA
   getExchangesForAccount(accountNumber: string): Observable<Exchange[]> {
 
     const headers = new HttpHeaders({
@@ -65,7 +69,7 @@ export class BankAccountService {
     console.log(headers);
 
     const options = { headers: headers };
-    let url = environment.baseUrl + `/exchange/getAll/${accountNumber}`;
+    let url = environment.baseUrl + `/transfer/getAll/${accountNumber}`;
 
     return this.httpClient.get<Exchange[]>(url, options); 
   }
@@ -111,4 +115,70 @@ export class BankAccountService {
     });
   }
 
+  deleteRecipient(recipient: Recipient): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    return this.httpClient.delete(environment.baseUrl + '/recipients/remove/'+recipient.id,{
+      headers: headers
+    });
+  }
+
+
+
+  addNewLimit(newLimitDto : NewLimitDto): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/employee/limits/newLimit`;
+
+    return this.httpClient.put(url, {
+      userId: newLimitDto.userId,
+      approvalRequired: newLimitDto.approvalRequired,
+      limit: newLimitDto.limit
+    },{
+      headers: headers
+    });
+  }
+
+  resetLimit(userId: number): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/employee/limits/reset/${userId}`;
+
+    return this.httpClient.put(url,null,{
+      headers: headers
+    }
+    );
+  }
+
+  changeBankeAccountName(newName: string, bankAccountNumber: string): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    
+    console.log(headers);
+
+    const options = { headers: headers };
+    let url = environment.baseUrl + `/account`;
+
+    return this.httpClient.put(url, {
+      bankAccountNumber: bankAccountNumber,
+      newName: newName
+    },{
+      headers: headers
+    });
+  }
 }

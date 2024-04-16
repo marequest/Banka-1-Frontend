@@ -9,6 +9,7 @@ import { Component, Input } from '@angular/core';
       <thead>
       <tr>
         <th *ngFor="let header of headersArray">{{ header }}</th>
+        <th *ngIf="showAnotherColumn"></th> <!-- New column header -->
         <th *ngIf="showActions">Actions</th>
       </tr>
       </thead>
@@ -16,6 +17,9 @@ import { Component, Input } from '@angular/core';
       <tr *ngFor="let row of dataArray; let i = index">
         <td *ngFor="let key of objectKeys(row)">
           {{ row[key] }}
+        </td>
+        <td *ngIf="showAnotherColumn">
+          <ng-container *ngTemplateOutlet="anotherColumnTemplate; context: {$implicit: row, index: i}"></ng-container>
         </td>
         <td *ngIf="showActions">
           <ng-container *ngTemplateOutlet="customTemplate; context: {$implicit: row, index: i}"></ng-container>
@@ -26,16 +30,39 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [`
     table {
-      width: 40vw;
+      width: 100%;
       border-collapse: collapse;
       font-family: 'Jura', sans-serif;
       font-size: 1.1em;
       color: var(--banka-white);
       margin: 20px 0;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      /*overflow: hidden;*/
+      border-radius: 30px;
+      text-align: center;
     }
 
+    tr {
+      border-left: 10px solid var(--banka-dark-gray);
+      border-right: 10px solid var(--banka-dark-gray);
+      background-color: var(--banka-very-dark-gray);
+    }
+
+    tr:last-child {
+      border-bottom: 10px solid var(--banka-dark-gray);
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+
+    td {
+      padding-top:20px;
+      padding-bottom:20px;
+      padding-right:20px;
+    }
+
+
     th {
+      border: 10px solid var(--banka-very-dark-gray);
       background-color: var(--banka-very-dark-gray); /* Dark grayish-blue for the header */
       color: var(--banka-white);
       padding: 20px 15px;
@@ -50,18 +77,39 @@ import { Component, Input } from '@angular/core';
     tbody tr:hover td {
       background-color: var(--banka-very-dark-gray); /* Light brown for row hover */
     }
+
+    .wrap {
+      margin-bottom: 200px;
+    }
+
+
+    /*tr:last-child td:first-child {*/
+    /*  border-bottom-left-radius: 30px;*/
+    /*}*/
+
+    /*tr:last-child td:last-child {*/
+    /*  border-bottom-right-radius: 30px;*/
+    /*}*/
   `]
 })
 export class TableComponent {
   @Input() headersArray: string[] = [];
   @Input() dataArray: any[] = [];
+  @Input() showAnotherColumn: boolean = false;
   @Input() showActions: boolean = false;
-  @Output() customButtonClick = new EventEmitter<{ row: any, index: number }>();
 
-  @ContentChild(TemplateRef) customTemplate!: TemplateRef<any>;
+  @ContentChild('actionsColumn', { read: TemplateRef}) customTemplate!: TemplateRef<any>;
+  @ContentChild('anotherColumn', { read: TemplateRef }) anotherColumnTemplate!: TemplateRef<any>; // New template reference for the additional column content
 
   // Helper function to get keys from the row object
-  objectKeys = Object.keys;
+  // objectKeys = Object.keys;
+
+  objectKeys(row: any): string[] {
+    //OBRATITI PAZNJU !!!!!!!!
+    return Object.keys(row).filter(
+      (key) => !key.includes('original')
+    )
+  }
 }
 @NgModule({
   declarations: [TableComponent],

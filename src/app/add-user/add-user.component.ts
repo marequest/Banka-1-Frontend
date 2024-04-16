@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {PopupService} from "../service/popup.service";
 import { UserService } from '../service/employee.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { PermissionService } from '../service/permission.service';
 import { Permissions } from '../model/model';
+import {TransparentTextFieldModule} from "../welcome/redesign/TransparentTextField";
+import {OutlineOrangeButtonModule} from "../welcome/redesign/OutlineOrangeButton";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
+import {FieldComponentModule} from "../welcome/redesign/FieldCompentn";
 
 
 
 @Component({
   selector: 'app-add-user',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, TransparentTextFieldModule, OutlineOrangeButtonModule, OrangeButtonModule, FieldComponentModule],
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.css'
 })
@@ -26,6 +30,8 @@ export class AddUserComponent {
     position: string,
     phoneNumber: string,
     active: boolean,
+    orderLimit: number,
+    requireApproval: boolean
     // permissions: Permissions[]
   } = {
     email: '',
@@ -35,8 +41,12 @@ export class AddUserComponent {
     position: '',
     phoneNumber: '',
     active: true,
+    orderLimit: 0,
+    requireApproval: false
     // permissions: [],
   };
+
+  limit: boolean=false;
 
   // permissions: Permissions[] = [
   //   {
@@ -65,8 +75,9 @@ export class AddUserComponent {
     private popupService: PopupService,
     private userService: UserService,
     // private permissionService: PermissionService,
-    public dialogRef: MatDialogRef<AddUserComponent>
-    ) {    
+    public dialogRef: MatDialogRef<AddUserComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+    ) {
       // TODO: Uncomment this when backend is ready
       // this.permissionService.getAllPermissions().subscribe(
       //   response => {
@@ -90,8 +101,10 @@ export class AddUserComponent {
 
   onCreateAddUserPopup() {
     if (this.validateForm()) {
+      this.addUserData.orderLimit = this.addUserData.orderLimit + 0.0;
       this.userService.addUser(this.addUserData).subscribe(
         response => {
+          this.data.loadEmployeesFromDataBase();
           alert('Successfully created user ' + JSON.stringify(this.addUserData));
           this.dialogRef.close();
           // this.router.navigate(['/user/list']);

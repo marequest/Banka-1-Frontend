@@ -1,152 +1,401 @@
-.content {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    font-family: "Roboto", sans-serif;
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  font-family: "Jura", sans-serif;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+
+.security-title {
+  color: #ffb72b;
+  font-size: xx-large;
+  font-family: 'Jura';
+}
+
+
+.table-content {
+  background-color: var(--banka-dark-gray);
+
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 60vw;
+  border-radius: 15px;
+}
+
+
+.search-icon {
+  cursor: pointer;
+  margin-left: 5%;
+  margin-right: 2%;
+  margin-top: 2%;
+  background-color: var(--banka-orange);
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+}
+
+.filter-row {
+  display: flex;
+
+  /*justify-content: left; /* Center the content */
+  padding: 20px; /* Add some padding for spacing */
+  background-color: #f2f4f6;
+  border-bottom: 2px solid #d1d8e0;
+
+  justify-content: space-between;
+
+
+}
+
+.left-row {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  padding-left: 20px;
+}
+
+
+/* Styling for the filter input */
+.filter-input input.security-filter-input {
+  width: 100%; /* Full width of its container */
+  /* Padding for the input */
+  padding: 10px 15px 10px 15px;
+  border: 2px solid #d1d8e0; /* Border color */
+  border-radius: 20px; /* Rounded corners for the input */
+  outline: none; /* Remove the default focus outline */
+  font-size: 16px; /* Font size */
+  color: #333; /* Text color */
+}
+
+.filter-input input.security-filter-input::placeholder {
+  color: #a6a9ad; /* Placeholder text color */
+}
+.filter-input {
+  margin-left: 16px;
+}
+
+/* Styling for the search button */
+.search-icon .button-image {
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor on hover */
+  /*padding-left: 10px; !* Space between input and button *!*/
+  margin-right: 16px;
+  margin-left: 16px;
+}
+/* .filter-input {
+  margin-left: 100px;
+} */
+/*
+.security-filter-input {
+  border-radius: 5px;
+
+  height: 3vh;
+  border: 1.3px solid #263238;
+  padding: 15px;
+  font-size: 18px;
+
+} */
+
+.security-filter-select {
+  border-radius: 5px;
+
+  height: 4.3vh;
+  border: 1.3px solid #263238;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.right-row {
+  margin-top: 1.3em;
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+
+  text-align: right;
+  padding-right: 20px;
+
+  margin-top: 2%;
+
+}
+
+.add-new-btn {
+  padding: 12px;
+  background-color: var(--banka-orange); /* Initial background color */
+  border: 1px solid var(--banka-orange);
+
+  border-radius: 5px;
+  color: var(--banka-black); /* Text color for contrast against the white background */
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s; /* Updated to include border-color transition */
+}
+
+.add-new-btn:hover {
+  background-color: var(--banka-dark-gray); /* Background color on hover */
+  color: var(--banka-orange); /* Text color on hover */
+}
+
+.security-table-wrapper {
+
+  margin-top: 2rem;
+
+}
+
+.wrapper-header {
+  height: 3rem;
+  display: flex;
+  gap: 10px;
+  padding-left: 3rem;
+  border-bottom: 1px solid var(--banka-white);
+}
+
+.tab {
+  color: var(--banka-gray);
+  font-size: 20px;
+  cursor: pointer;
+  width: fit-content;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  border-bottom: 1px solid var(--banka-white);
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tab-active {
+  background-color: var(--banka-black);
+  color: var(--banka-orange);
+  border-bottom: 3px solid var(--banka-orange);
+
+  font-size: 20px;
+  cursor: pointer;
+  width: fit-content;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tab:hover {
+  border-bottom: 3px solid var(--banka-orange);
+}
+
+.user-table {
+  padding-top: 10px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+thead {
+  color: #406581;
+  font-weight: 400 !important;
+  border-bottom: 1px solid #406581 !important;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.table-head {
+  border-bottom: 1px solid gray;
+  font-weight: 400;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 100px;
+  border-bottom: 1px solid gray;
+  border-right: 1px dotted gray;
+}
+
+.options-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.options-button {
+  background-color: var(--banka-orange);
+  border: none;
+  font-weight: 900;
+  font-size: 20px;
+  border-radius: 30px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.options-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: var(--banka-black);
+  min-width: 120px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.options-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--banka-white);
+}
+.options-menu:hover .options-dropdown {
+  display: block;
+}
+
+.options-dropdown button:hover {
+  background-color: var(--banka-very-dark-gray);
+}
+
+
+.searchTF{
+  margin-left: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.button-image {
+  border: none; /* Removes the border */
+  background-color: transparent; /* Makes the background transparent */
+  /* Removes padding around the image */
+  padding: 30px 0 0;
+  cursor: pointer; /* Changes the cursor to a pointer when hovered over the button */
+  display: inline-block; /* Ensures the button is properly aligned */
+  overflow: hidden; /* Prevents any overflow */
+  transition: opacity 0.3s ease; /* Smooth transition for the whole button */
+}
+
+.button-image img {
+  width: 100%; /* Adjusts the width of the image to fill the button */
+  min-width: 24px;
+  height: auto; /* Adjusts the height to maintain the aspect ratio */
+  display: block; /* Ensures the image fills the button */
+  transition: transform 0.3s ease; /* Adds a transform transition for a subtle effect */
+}
+
+.button-image:hover {
+  opacity: 0.8; /* Changes the opacity of the button on hover */
+}
+
+.button-image:hover img {
+  transform: scale(1.05); /* Slightly scales up the image on hover */
+}
+
+/**
+   Permission table and search filter
+  **/
+.search-container {
+  font-size: 0; /* Remove white space between inline-block elements */
+  margin-top: 1vw;
+}
+
+
+.search-input, .search-icon-div {
+    display: inline-block;
+    width: 20%; /* Adjust width as needed */
+    font-size: 16px; /* Restore font size */
+
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    vertical-align: top; /* Align elements to the top */
+/* =======
+.search-input,
+.search-icon-div {
+  display: inline-block;
+  width: 20%;
+  font-size: 16px;
+  margin-left: 5%;
+  margin-right: 5%;
+  box-sizing: border-box;
+  vertical-align: top;  */
+
+}
+
+/* Optional: Add styling to the divs */
+.search-input {
+  background-color: lightblue;
+}
+
+.search-icon-div {
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: lightgreen;
+}
+
+/** permission element **/
+.permission-element {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  background-color: #19b5c7;
+  border-radius: 10px;
+  margin-bottom: 4px; /* Spacing between permission elements */
+}
+
+.close-icon {
+  margin-left: 8px;
+  cursor: pointer;
+  user-select: none; /* Prevents selecting the 'x' on double click */
+}
+
+#helperDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.rounded-box {
+  width: 44vw;
+  border-radius: 10px;
+  background-color: var(--banka-dark-gray);
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.rounded-box input[type="text"] {
+  padding: 0.5em 1em;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+}
+
+.rounded-box input[type="text"], .rounded-box img {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
+@media (max-width: 600px) {
+  .rounded-box {
+    justify-content: space-around;
   }
-  
-  .security-title {
-    color: #263238;
-    font-size: 35px;
-    font-weight: 700;
-  
-    margin-bottom: 3rem;
+
+  .rounded-box input[type="text"], .rounded-box img {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
-  
-  
-  
-  .table-content {
-    background-color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-  
-    padding-top: 30px;
-    padding-bottom: 30px;
-    width: 60vw;
-  }
-  
-  .search-icon {
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .filter-row {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .left-row {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  }
-  
-  .filter-input {
-    margin-left: 10px;
-  }
-  
-  .security-filter-input {
-    /* border-color: #263238; */
-    border-radius: 5px;
-  
-    height: 3vh;
-    border: 1.3px solid #263238;
-    padding: 5px;
-    font-size: 18px;
-  }
-  
-  .security-filter-select {
-    border-radius: 5px;
-  
-    height: 4.3vh;
-    border: 1.3px solid #263238;
-    padding: 5px;
-    font-size: 18px;
-  }
-  
-  .right-row {
-    display: flex;
-    align-items: center;
-  }
-  
-  .add-new-btn {
-    padding: 12px;
-    background-color: #19b5c7;
-    border-radius: 5px;
-    color: white;
-    font-weight: 400;
-    cursor: pointer;
-  }
-  
-  .security-table-wrapper {
-    border: 1px solid #406581;
-    margin-top: 2rem;
-    border-radius: 5px;
-  
-  }
-  
-  .wrapper-header {
-    height: 3rem;
-    background-color: #dbe2e7;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  
-    padding: 10px;
-  
-    display: flex;
-    align-items: center;
-    color: #406581;
-    font-size: 18px;
-  }
-  
-  .user-table {
-    padding-top: 10px;
-    width: 100%;
-    padding-bottom: 10px;
-  }
-  
-  thead {
-    color: #406581;
-    font-weight: 400 !important;
-    border-bottom: 1px solid #406581 !important;
-    margin-bottom: 5px;
-    text-align: center;
-  
-  }
-  
-  .table-head {
-    border-bottom: 1px solid gray;
-    font-weight: 400;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  
-  
-  table {
-    border-collapse: collapse;
-  
-  }
-  
-  td {
-    padding: 10px;
-    border-bottom: 1px solid gray;
-    border-right: 1px dotted gray;
-  }
-  
-  .option-td {
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .tab-active {
-    background-color: white;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  
-  
-  
+}

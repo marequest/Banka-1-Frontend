@@ -1,32 +1,32 @@
 [
   {
-    "recepientBankAccount": "987654321",
-    "date": 1687603200000,
-    "status": "Denied",
+    "recipientAccountNumber": "9988776655",
+    "dateOfPayment": 1751312000000,
+    "status": "COMPLETE",
     "amount": 2000
   },
   {
-    "recepientBankAccount": "123456789",
-    "date": 1687689600000,
-    "status": "Processing",
-    "amount": 1250
+    "recipientAccountNumber": "1122334455",
+    "dateOfPayment": 1751398400000,
+    "status": "PROCESSING",
+    "amount": 1800
   },
   {
-    "recepientBankAccount": "112233445",
-    "date": 1687776000000,
-    "status": "Denied",
-    "amount": 300
+    "recipientAccountNumber": "5544332211",
+    "dateOfPayment": 1751484800000,
+    "status": "DENIED",
+    "amount": 1600
   },
   {
-    "recepientBankAccount": "998877665",
-    "date": 1687862400000,
-    "status": "Done",
-    "amount": 1500
+    "recipientAccountNumber": "2233445566",
+    "dateOfPayment": 1751571200000,
+    "status": "COMPLETE",
+    "amount": 2200
   },
   {
-    "recepientBankAccount": "556677889",
-    "date": 1687948800000,
-    "status": "Done",
-    "amount": 750
+    "recipientAccountNumber": "7766554433",
+    "dateOfPayment": 1751657600000,
+    "status": "PROCESSING",
+    "amount": 1900
   }
 ]

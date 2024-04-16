@@ -38,7 +38,7 @@
                                 <tbody>
                                     <tr *ngFor="let recipient of allUserRecipients; let idx = index">
                                         <td>{{ recipient.firstName }} {{ recipient.lastName }}</td>
-                                        <td>{{ recipient.accountNumber }}</td>
+                                        <td>{{ recipient.bankAccountNumber}}</td>
                                         <td class="buttonsTD">
                                             <button class="tdBtn" (click) = "editRecipient(recipient, idx)">Edit</button>
                                             <button class="tdBtn" (click) = "deleteRecipient(recipient, idx)">Delete</button>

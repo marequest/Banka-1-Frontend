@@ -5,11 +5,14 @@ import { CustomerService } from '../service/customer.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PopupService } from '../service/popup.service';
 import { CreateCustomerRequest, Customer } from '../model/model';
+import {FieldComponentModule} from "../welcome/redesign/FieldCompentn";
+import {OutlineOrangeButtonModule} from "../welcome/redesign/OutlineOrangeButton";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 
 @Component({
   selector: 'app-add-customer',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, FieldComponentModule, OutlineOrangeButtonModule, OrangeButtonModule],
   templateUrl: './add-customer.component.html',
   styleUrl: './add-customer.component.css'
 })
@@ -22,7 +25,7 @@ export class AddCustomerComponent {
     phoneNumber: '',
     address: '',
     gender: '',
-    active:false,
+    dateOfBirth: 0
     // permissions: [],
   };
 
@@ -85,5 +88,5 @@ export class AddCustomerComponent {
   private isValidPhoneNumber(phone: string): boolean {
     return /^\d+$/.test(phone);
   }
-  
+
 }

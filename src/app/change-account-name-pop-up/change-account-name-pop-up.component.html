@@ -2,14 +2,14 @@
     <div class="row myMargin title d-flex justify-content-center align-items-center">Account name</div>
     <div class="row myMargin instructions d-flex justify-content-center align-items-center">Write you new name here:</div>
     <div class="row myMargin newNameDiv" placeholder>
-        <input type="text" class="fname" name="fname" placeholder="NewName"><br><br>
+        <input type="text" [(ngModel)]="inputValue" class="fname" name="fname" placeholder="NewName"><br><br>
     </div>
     <div class="row btnDiv ">
         <div class="col-lg-6 col-lmd-6 col-sm-6 col-6 d-flex justify-content-center align-items-center">
-            <button class="btn">Cancel</button>
+            <button class="btn" (click)="exit()">Cancel</button>
         </div>
         <div class="col-lg-6 col-lmd-6 col-sm-6 col-6 d-flex justify-content-center align-items-center">
-            <button class="btn">Apply</button>
+            <button class="btn" (click)="submitValue(inputValue)">Apply</button>
         </div>
     </div>
 </div>

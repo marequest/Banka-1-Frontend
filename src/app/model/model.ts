@@ -1,5 +1,3 @@
-import { number } from "zod";
-
 export interface User{
     userId: number;
     username:string;
@@ -11,12 +9,42 @@ export interface User{
     position: string;
     phoneNumber: string;
     active: boolean;
+
+    limitNow: number;
+    orderlimit: number;
+    requireApproval: boolean;
+
     permissions:Permissions[]
 }
+
+
+export enum StatusRequest{
+  APPROVED="APPROVED",
+  DENIED="DENIED"
+}
+
+export interface DecideOrderResponse{
+  success:boolean,
+  message:string
+}
+
 export interface Permissions{
     permission_id?:number;
     name:string;
     description?:string;
+}
+export interface Limit{
+  userId: number;
+  email: string;
+  limit?: number;
+  usedLimit?: number;
+  needApprove?: boolean;
+}
+
+export interface Permissions {
+  permission_id?: number;
+  name: string;
+  description?: string;
 }
 
 export interface BankAccount {
@@ -27,8 +55,8 @@ export interface BankAccount {
   balance?: number;
   availableBalance?: number;
   reservedResources?: number;
-  accountOwner?: string
-  accountName?: string
+  accountOwner?: string;
+  accountName?: string;
 }
 
 export interface Account {
@@ -46,17 +74,66 @@ export interface Transaction {
   amount: number;
 }
 
-export interface Exchange {
-  recepientBankAccount: string;
-  date: Date;
-  status: string;
-  amount: number;
+export enum TransactionStatus {
+  PROCESSING = 'PROCESSING',
+  COMPLETE = 'COMPLETE',
+  DENIED = 'DENIED'
 }
 
-export interface Recipient{
+export interface Payment {
+  id: number;
+  senderAccountOwnerName?: string;
+  senderAccountNumber?: string;
+  recipientAccountOwnerName?: string;
+  recipientAccountNumber?: string;
+  amount?: number;
+  paymentCode?: string;
+  model?: string;
+  referenceNumber?: string
+  status?: TransactionStatus;
+  commissionFee?: number;
+  dateOfPayment?: number;
+  channel?: string;
+}
+
+// export interface Exchange {
+//   recepientBankAccount: string;
+//   date: Date;
+//   status: string;
+//   amount: number;
+// }
+
+export interface Exchange {
+  id: number;
+  senderName?: string;
+  senderAccountNumber?: string;
+  recipientAccountOwnerName?: string;
+  recipientAccountNumber?: string;
+  amount?: number;
+  paymentCode?: string;
+  model?: string;
+  referenceNumber?: string
+  status?: TransactionStatus;
+  commissionFee?: number;
+  dateOfPayment?: number;
+  channel?: string;
+  convertedAmount?: number;
+  exchangeRate?: number;
+  commision?: number;
+  transferDate?: number;
+}
+
+export interface NewLimitDto{
+  userId: number;
+  approvalRequired: boolean;
+  limit: number;
+}
+
+export interface Recipient {
+  id?: number;
   firstName?: string;
   lastName?: string;
-  accountNumber?: string;
+  bankAccountNumber?: string;
 }
 
 export interface Card {
@@ -72,21 +149,20 @@ export interface Card {
   isActivated?: boolean;
 }
 
-export interface CreateUserRequest{
+export interface CreateUserRequest {
   email: string;
-  firstName:string;
-  lastName:string;
-  jmbg:string;
-  position:string;
-  phoneNumber:string;
-  active:boolean;
+  firstName: string;
+  lastName: string;
+  jmbg: string;
+  position: string;
+  phoneNumber: string;
+  active: boolean;
 }
-export interface TransactionBasics{
-  outflow:string;
-  inflow:string;
-  amount:string;
+export interface TransactionBasics {
+  senderAccountNumber: string;
+  recipientAccountNumber: string;
+  amount: string;
 }
-
 
 export interface TransactionDto {
   amount: number;
@@ -95,42 +171,58 @@ export interface TransactionDto {
   status: string;
 }
 
-export interface TransactionDetails{
-  recipientName:String;
-  amount:number;
-  referenceNumber:String;
-  paymentCode:number;
-  purposeOfPayment:String;
-  transactionDate:number;
-  senderName:String;
-  recipientAccountNumber:String;
-  commission:number;
-  senderAccountNumber:String;
-  channel:String;
-  status:String;
-  currency:String;
+export interface TransactionDetails {
+  recipientName: String;
+  amount: number;
+  referenceNumber: String;
+  paymentCode: number;
+  purposeOfPayment: String;
+  transactionDate: number;
+  senderName: String;
+  recipientAccountNumber: String;
+  commission: number;
+  senderAccountNumber: String;
+  channel: String;
+  status: String;
+  currency: String;
 }
 
-export interface UserToEdit{
-    id: number;
-    first_name: string;
-    last_name: string;
-    email: string;
-    password: string;
-    position: string;
-    status: string;
-    jmbg: string;
-    brlk: string;
-    phone: string;
-    active: boolean;
-    birth_date: string;
+export interface UserToEdit {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  position: string;
+  status: string;
+  jmbg: string;
+  brlk: string;
+  phone: string;
+  birth_date: string;
 }
-export interface Forex {
+
+export interface StockListing {
   listingId: number;
-  listingType: "Forex";
+  listingType: 'stock';
   ticker: string;
   name: string;
-  exchangeName : string;
+  exchangeName: string;
+  lastRefresh: number; // UNIX timestamp
+  price: number;
+  high: number;
+  low: number;
+  priceChange: number;
+  volume: number;
+  outstandingShares: number;
+  dividendYield: number;
+}
+
+export interface Forex {
+  listingId: number;
+  listingType: 'Forex';
+  ticker: string;
+  name: string;
+  exchangeName: string;
   lastRefresh: number;
   price: number;
   high: number;
@@ -141,18 +233,31 @@ export interface Forex {
   quoteCurrency: string;
 }
 
+export interface ExchangeRate {
+  baseCurrency: string;
+  quoteCurrency: string;
+  rate: number;
+}
+
+export interface TransformedExchangeRate {
+  baseCurrency: string;
+  quoteCurrency: string;
+  buyingPrice: number;
+  sellingPrice: number;
+}
+
 export interface Future {
   listingId: number;
   listingType: string;
   ticker: string;
   name: string;
   exchangeName: string;
-  lastRefresh : number;
+  lastRefresh: number;
   price: number;
   high: number;
   low: number;
   priceChange: number;
-  volume : number;
+  volume: number;
   contractSize: number;
   contractUnit: string;
   openInterest: number;
@@ -169,7 +274,6 @@ export interface ListingHistory {
   volume: number;
 }
 
-
 export interface Account {
   accountNumber: string;
   accountType: AccountType;
@@ -178,8 +282,7 @@ export interface Account {
   balance: number;
 }
 
-
-export interface BankAccountDto{
+export interface BankAccountDto {
   accountType: string;
   accountNumber: string;
   accountName: string;
@@ -190,13 +293,12 @@ export interface BankAccountDto{
 }
 
 export enum AccountType {
-  FOREIGN_CURRENCY = "FOREIGN_CURRENCY",
-  CURRENT = "CURRENT",
-  BUSINESS = "BUSINESS"
+  FOREIGN_CURRENCY = 'FOREIGN_CURRENCY',
+  CURRENT = 'CURRENT',
+  BUSINESS = 'BUSINESS',
 }
 
-
-export interface Customer{
+export interface Customer {
   userId: number;
   firstName: string;
   lastName: string;
@@ -207,7 +309,16 @@ export interface Customer{
   address: string;
 }
 
-export interface CreateCustomerRequest{
+export interface CustomerTable {
+  name: string;
+  email: string;
+  jmbg: string;
+  phoneNumber: string;
+  gender: string;
+  address: string;
+}
+
+export interface CreateCustomerRequest {
   firstName: string;
   lastName: string;
   email: string;
@@ -215,10 +326,10 @@ export interface CreateCustomerRequest{
   phoneNumber: string;
   gender: string;
   address: string;
-  active:boolean;
+  dateOfBirth: number;
 }
 
-export interface EditCustomerRequest{
+export interface EditCustomerRequest {
   id: number;
   firstName: string;
   lastName: string;
@@ -228,18 +339,20 @@ export interface EditCustomerRequest{
   gender: string;
   address: string;
   password: string;
-  active:boolean
+  active: boolean;
+  dateOfBirth:number;
 }
 
-export interface CreateBankAccountRequest{
+export interface CreateBankAccountRequest {
   status: boolean;
-  currencyName: string;
+  currencyCode: string;
   accountType: string;
   maintenanceCost: number;
+  accountName: string;
 }
 
-
 export interface Order {
+  listingId:number,
   security: string,
   transaction: string,
   symbol: string,
@@ -249,11 +362,92 @@ export interface Order {
   lastModified: number
 }
 
+
+// export interface OrderDto{
+//   orderId:number,
+//   listingType:string,
+//   orderType:OrderType,
+//   symbol:string,
+//   amount:number,
+//   price: number,
+//   status: string,
+//   lastModified: number
+// }
+
+export interface OrderDto{
+  orderId:number,
+  listingId:number,
+  listingType:ListingType,
+  // owner: EmployeeDto,
+  orderType:OrderType,
+  status:OrderStatus,
+  contractSize:number,
+  processedNumber: number,
+  limitValue: number,
+  stopValue: number,
+  fee: number,
+  price: number,
+  allOrNone: boolean,
+  updatedAt: number,
+  // approvedBy: EmployeeDto
+}
+
+export interface SellingRequest{
+  amount:number,
+  limitValue:number,
+  stopValue:number,
+  allOrNone:boolean,
+  margin:boolean
+}
+
+export enum OrderType{
+  BUY="BUY",
+  SELL="SELL"
+}
+
+export interface CapitalProfitDto {
+  totalPrice: number;
+  bankAccountNumber: string;
+  currencyName: string;
+  listingType: ListingType;
+  listingId: number;
+  total: number;
+  reserved: number;
+}
+
+
+export interface CreateOrderRequest {
+  orderType: OrderType;
+  listingId: string;
+  listingType: ListingType;
+  contractSize: number;
+  limitValue: number;
+  stopValue: number;
+  allOrNone: boolean;
+}
+
+
+
+export enum ListingType {
+  STOCK = "STOCK",
+  FUTURE = "FUTURE",
+  FOREX = "FOREX"
+}
+
+
 export enum LoanType {
-  PERSONAL = "PERSONAL",
-  MORTGAGE = "MORTGAGE",
-  REFINANCING = "REFINANCING",
-  AUTO = "AUTO"
+  PERSONAL = 'PERSONAL',
+  MORTGAGE = 'MORTGAGE',
+  REFINANCING = 'REFINANCING',
+  AUTO = 'AUTO',
+}
+
+export enum OrderStatus {
+  APPROVED = 'APPROVED',
+  PROCESSING = 'PROCESSING',
+  DONE = 'DONE',
+  DENIED = 'DENIED',
+  CANCELED = 'CANCELED'
 }
 
 export interface Loan {
@@ -272,17 +466,14 @@ export interface Loan {
   currency: string;
 }
 
-
-export interface CreatePaymentRequest{
-  recipientName: string;
-  recipientAccountNumber: string;
-  amount: number;
-  referenceNumber: string;
-  paymentCode: number;
-  purposeOfPayment: string;
-  senderAccountNumber: string;
-  activationCode: string;
+export interface CreatePaymentRequest {
+    singleUseCode?: string; //verifikacija
+    senderAccountNumber?: string;
+    recipientName?: string;
+    recipientAccountNumber?: string;
+    amount?: number
+    paymentCode?: string;
+    model?: string;
+    referenceNumber?: string;
+    paymentPurpose?: string;
 }
-
-
-

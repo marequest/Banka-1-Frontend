@@ -35,26 +35,30 @@ import { RecipientsComponent } from './recipients/recipients.component';
 import { AdminAndEmployeeGuard } from './guards/admin-and-employee.guard';
 import { AgentAndSupervizorGuard } from './guards/agent-and-supervizor.guard';
 import { AgentAndSupervizorAndAdminGuard } from './guards/agent-and-supervizor-and-admin.guard';
+import { supportsPassiveEventListeners } from '@angular/cdk/platform';
 
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, //this will make the first page that is loaded a login page
   { path: 'login', component: LoginPageComponent, canActivate: [loginGuard] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [welcomeGuard] },
   {
     path: 'user',
-    canActivate: [AdminGuard],
+    canActivate: [AgentAndSupervizorAndAdminGuard],
     children: [
       { path: 'add', component: AddUserComponent },
       { path: 'update', component: UpdateUserComponent },
       { path: 'list', component: ListUserComponent },
     ]
   },
-  {path:'user/set-password/:token', component: SetPasswordComponent},
-  {path:'reset-password', component: ResetPasswordComponent, canActivate: [resetPasswordGuard]},
-  {path:'user/reset-password/:token', component: UserResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'customer/set-password/:token', component: SetPasswordComponent},
+  {path:'employee/set-password/:token', component: SetPasswordComponent},
+  {path:'reset-password/:position', component: ResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'customer/reset-password/:token', component: UserResetPasswordComponent, canActivate: [resetPasswordGuard]},
+  {path:'employee/reset-password/:token', component: UserResetPasswordComponent, canActivate: [resetPasswordGuard]},
   {
     path: 'security',
-    canActivate: [AdminAndEmployeeGuard],
+    // canActivate: [AdminAndEmployeeGuard],
     children: [
       { path: 'all', component: SecurityListComponent },
       { path: "stock/:ticker", component: StockViewComponent },
@@ -91,7 +95,7 @@ export const routes: Routes = [
 
   { path: 'bank-accounts', component: BankAccountsComponent, canActivate: [CustomerGuard]},
   { path: 'recipients', component: RecipientsComponent, canActivate: [CustomerGuard]},
-  { path: 'cards', component: CardTransactionsComponent,canActivate: [CustomerGuard]},
+  { path: 'cards', component: CardsComponent,canActivate: [CustomerGuard]},
   { path: 'loans', component: LoanTableComponent, canActivate: [CustomerGuard]},
   { path: 'new-loan', component: NewLoanComponent, canActivate: [CustomerGuard]},
 

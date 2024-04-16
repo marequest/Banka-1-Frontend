@@ -162,7 +162,12 @@ export class LoginPageComponent {
 
 
   navigateToResetPassword() {
-    this.router.navigate(['/reset-password']);
+    var pom = "";
+    if(this.isEmployee)
+      pom="employee"
+    else
+      pom="customer"
+    this.router.navigate(['/reset-password/'+pom]);
   }
   //activate-account
 

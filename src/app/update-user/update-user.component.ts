@@ -1,16 +1,19 @@
-import { Component, OnInit  } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { User, UserToEdit } from '../model/model';
+import { User } from '../model/model';
 import { UserService } from '../service/employee.service';
 import { PopupService } from '../service/popup.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {FieldComponentModule} from "../welcome/redesign/FieldCompentn";
+import {OutlineOrangeButtonModule} from "../welcome/redesign/OutlineOrangeButton";
+import {OrangeButtonModule} from "../welcome/redesign/OrangeButton";
 
 @Component({
   selector: 'app-update-user',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, FieldComponentModule, OutlineOrangeButtonModule, OrangeButtonModule],
   templateUrl: './update-user.component.html',
   styleUrl: './update-user.component.css'
 })
@@ -24,7 +27,6 @@ export class UpdateUserComponent implements OnInit {
     password: string;
     phoneNumber: string;
     jmbg: string;
-    active: boolean;
     position: string;
     userId: number;
     email: string
@@ -38,7 +40,8 @@ export class UpdateUserComponent implements OnInit {
 
   constructor(private userService: UserService,private router: Router,
               private popupService: PopupService,
-              private dialogRef: MatDialogRef<UpdateUserComponent>
+              private dialogRef: MatDialogRef<UpdateUserComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any
               ) {
     this.userToEdit = {
       userId: 0,
@@ -49,7 +52,6 @@ export class UpdateUserComponent implements OnInit {
       jmbg: '',
       phoneNumber: '',
       password: '',
-      active: false,
     };
     this.password = '';
   }
@@ -70,7 +72,6 @@ export class UpdateUserComponent implements OnInit {
         jmbg: string;
         position: string;
         phoneNumber: string;
-        isActive: boolean;
       } = {
         userId: this.userToEdit.userId,
         firstName: this.userToEdit.firstName,
@@ -80,11 +81,11 @@ export class UpdateUserComponent implements OnInit {
         position: this.userToEdit.position,
         jmbg: this.userToEdit.jmbg,
         phoneNumber: this.userToEdit.phoneNumber,
-        isActive: this.userToEdit.active,
       };
 
       this.userService.updateUser(updatedUserRequest).subscribe({
         next: (user: User) => {
+          this.data.loadEmployeesFromDataBase();
           alert('Successfully modified user!');
           this.dialogRef.close();
         },
@@ -139,11 +140,6 @@ export class UpdateUserComponent implements OnInit {
 
     if (!this.userToEdit.lastName) {
       this.popupService.openPopup("Error", "Surname nije validan.");
-      return false;
-    }
-
-    if (!this.userToEdit.jmbg || !this.isValidJMBG(this.userToEdit.jmbg)) {
-      this.popupService.openPopup("Error", "JMBG nije validan.");
       return false;
     }
 

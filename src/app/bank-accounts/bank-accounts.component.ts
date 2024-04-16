@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User, BankAccount, Transaction, Exchange } from '../model/model';
+import { User, BankAccount, Exchange, Payment } from '../model/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,6 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AccountDetailsPopUpComponent } from '../account-details-pop-up/account-details-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentService } from '../service/payment.service';
+import { PaymentDetailsPopUpComponent } from '../payment-details-pop-up/payment-details-pop-up.component';
+import { ExchangeDetailsPopUpComponent } from '../exchange-details-pop-up/exchange-details-pop-up.component';
 
 @Component({
   selector: 'app-bank-accounts',
@@ -19,13 +21,13 @@ import { PaymentService } from '../service/payment.service';
 export class BankAccountsComponent {
   
   // Initially set the first tab as active
-  activeTab: string = 'transactionsTab';
+  activeTab: string = 'paymentsTab';
 
   //Index of bank account that is displayed in slider
   //If userBankAcc is empty, index will be -1
   displayedBankAccIdx: number = -1;
   displayedBankAcc: BankAccount = {}
-  displayedBankAccTransactions: Transaction[] = [];
+  displayedBankAccPayments: Payment[] = [];
   displayedBankAccExchanges:Exchange[] = [];
 
   public userBankAccounts: BankAccount[] = [];
@@ -51,7 +53,7 @@ export class BankAccountsComponent {
     this.loadUsersBankAccounts();
   }
 
-  // REPLACE MOCKED WITH getUsersBankAccounts - see the function it is in same file as getUsersBankAccountsMocked
+  // TODO: REPLACE MOCKED WITH getUsersBankAccounts - see the function it is in same file as getUsersBankAccountsMocked
   loadUsersBankAccounts() {
     this.bankAccountService.getUsersBankAccounts(this.loggedUserId).subscribe(
       (usersBankAccountsFromDB: BankAccount[]) => {
@@ -62,11 +64,11 @@ export class BankAccountsComponent {
         {
           this.displayedBankAccIdx = 0;
           this.displayedBankAcc = usersBankAccountsFromDB[this.displayedBankAccIdx];
-          this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+          this.loadPaymentsForBankAcount(this.displayedBankAcc.accountNumber!);
           this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
         }
 
-        console.log('User bank acc from db mocked');
+        console.log('User bank acc from db');
         console.log(this.userBankAccounts);
       },
       (error: HttpErrorResponse) => {
@@ -75,26 +77,28 @@ export class BankAccountsComponent {
     );
   }
 
-  loadTransactionsForBankAcount(accountNumber: string) {
-    this.bankAccountService.getTransactionsForAccount(accountNumber).subscribe(
-      (bankAccountTransactionsFromDB: Transaction[]) => {
-        this.displayedBankAccTransactions = bankAccountTransactionsFromDB;
+  // TODO: REPLACE MOCKED WITH getPaymentsForAccount - see the function it is in same file as getPaymentsForAccountMocked
+  loadPaymentsForBankAcount(accountNumber: string) {
+    this.bankAccountService.getPaymentsForAccount(accountNumber).subscribe(
+      (bankAccountTransactionsFromDB: Payment[]) => {
+        this.displayedBankAccPayments = bankAccountTransactionsFromDB;
 
-        console.log('Bank acc transactions from db mocked');
-        console.log(this.displayedBankAccTransactions);
+        console.log('Bank acc payments from db');
+        console.log(this.displayedBankAccPayments);
       },
       (error: HttpErrorResponse) => {
-        console.error('Error loading users:', error);
+        console.error('Error loading payments:', error);
       }
     );
   }
 
+  // TODO: REPLACE MOCKED WITH getExchangesForAccount - see the function it is in same file as getExchangesForAccountMocked
   loadExchangesForBankAcount(accountNumber: string) {
     this.bankAccountService.getExchangesForAccount(accountNumber).subscribe(
       (bankAccountExchangesFromDB: Exchange[]) => {
         this.displayedBankAccExchanges = bankAccountExchangesFromDB;
 
-        console.log('Bank acc exchanges from db mocked');
+        console.log('Bank acc exchanges from db');
         console.log(this.displayedBankAccExchanges);
       },
       (error: HttpErrorResponse) => {
@@ -110,7 +114,7 @@ export class BankAccountsComponent {
     {
       this.displayedBankAccIdx++;
       this.displayedBankAcc = this.userBankAccounts[this.displayedBankAccIdx];
-      this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+      this.loadPaymentsForBankAcount(this.displayedBankAcc.accountNumber!);
       this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
     }
   }
@@ -122,7 +126,7 @@ export class BankAccountsComponent {
     {
       this.displayedBankAccIdx--;
       this.displayedBankAcc = this.userBankAccounts[this.displayedBankAccIdx];
-      this.loadTransactionsForBankAcount(this.displayedBankAcc.accountNumber!);
+      this.loadPaymentsForBankAcount(this.displayedBankAcc.accountNumber!);
       this.loadExchangesForBankAcount(this.displayedBankAcc.accountNumber!);
     }
   }
@@ -141,6 +145,34 @@ export class BankAccountsComponent {
       width: '40vw',
       height: 'auto',
       data: this.displayedBankAcc, // Passing the displayed bank account
+      disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('The dialog was closed');
+    });
+  }
+
+  paymentInfoPopUp(idx: number){
+    const dialogRef = this.dialog.open(PaymentDetailsPopUpComponent, {
+      width: '50vw',
+      height: 'auto',
+      data: this.displayedBankAccPayments[idx], // Passing the displayed bank account
+      disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('The dialog was closed');
+    });
+  }
+
+  exchangeInfoPopUp(idx: number){
+    const dialogRef = this.dialog.open(ExchangeDetailsPopUpComponent, {
+      width: '50vw',
+      height: 'auto',
+      data: this.displayedBankAccExchanges[idx], // Passing the displayed bank account
       disableClose: false // Prevents closing the dialog by clicking outside or pressing ESC
     });
 

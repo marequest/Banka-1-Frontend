@@ -7,13 +7,15 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="text-field-container">
       <label for="name" class="field-label">{{ fieldName }}</label>
-      <input [type]="p?'text':'password'" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
+      <input [type]="p?'password':'text'" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
     </div>
   `,
   styles: [`
     .text-field-container {
       display: flex;
       flex-direction: column;
+      margin-left: 8%;
+      margin-right: 8%;
     }
 
     .field-label {
@@ -31,7 +33,8 @@ import { FormsModule } from '@angular/forms';
       box-shadow: none;
       border-radius: 5px; /* Rounded corners, adjust as needed */
       color: #FFFFFF; /* Text color */
-      padding: 10px; /* Adjust padding to your preference */
+      /* Adjust padding to your preference */
+
     }
 
     input[type="text"]:focus,

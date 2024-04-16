@@ -13,22 +13,25 @@
     </div>
     <div class="add-save-perm-div">
         <div class="left">
-            <div class="filter-input">
+            <div class="filter-input filter-dropdown">
                 <!-- <input
                   class="security-filter-input"
                   placeholder="Add permission"
                   [(ngModel)]="addedPermission"
                 /> -->
-                <select [(ngModel)]="addedPermission" (change)="onSelectPermission()">
+                <select class="security-filter-select" [(ngModel)]="addedPermission" (change)="onSelectPermission()">
                     <option *ngFor="let permission of availablePermissions" value="{{permission.name}}">{{permission.description}}</option>
                 </select>
             </div>
             <img (click)="addPermission()" src="assets/ButtonMedium.png" alt="+">
         </div>
-        
+
         <div class="right">
-            <div (click)="cancel()" class="cancelBtn">Cancel</div>
-            <div (click)="save()" class="saveBtn">Save</div>
+          <outline-orange-button [buttonName]="'Cancel'" (click)="cancel()"></outline-orange-button>
+          <orange-button [buttonName]="'Save'" (click)="save()"></orange-button>
+
+          <!--            <div (click)="cancel()" class="cancelBtn">Cancel</div>-->
+<!--            <div (click)="save()" class="saveBtn">Save</div>-->
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="text-field-container">
       <label for="name" class="field-label">{{ fieldName }}</label>
-      <input type="text" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
+      <input type="isText?'text':'number'" name="name" class="form-control" id="name" [(ngModel)]="text" (ngModelChange)="onTextChange($event)">
     </div>
   `,
   styles: [`
@@ -18,14 +18,14 @@ import { FormsModule } from '@angular/forms';
 
     .field-label {
       margin-bottom: 2px; /* Adjust based on your design */
-      color: #FFFFFF; /* Label color */
+      background: var(--banka-white);
       font-family: 'Jura', sans-serif;
     }
 
     input[type="text"],
     .form-control {
       font-family: 'Jura', sans-serif;
-      background: lightgray;
+      background: var(--banka-white);
       border: 2px solid var(--banka-dark-gray); /* White border */
       -webkit-box-shadow: none;
       box-shadow: none;
@@ -43,7 +43,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class WhiteTextField {
   @Input() text: String = "";
-  @Input() fieldName: String = "No name"; // This is the input for the field label
+  @Input() fieldName: String = ""; // This is the input for the field label
+  @Input() isText: boolean = true;
   @Output() textChange = new EventEmitter<string>();
 
   onTextChange(value: string) {

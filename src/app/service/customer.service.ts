@@ -90,7 +90,8 @@ export class CustomerService {
     });
     return this.http.post<any>(`${this.apiUrl}/createNewCustomer`, {
       customer: customer,
-      account: bankAcc
+      account: bankAcc,
+      name: 1
     }, { headers });
   }
   public addCustomerBankAccount(customerId: number, bankAcc: CreateBankAccountRequest): Observable<boolean> {

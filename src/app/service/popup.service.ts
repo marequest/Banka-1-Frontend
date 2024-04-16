@@ -1,7 +1,7 @@
 // popup.service.ts
 import { Injectable } from '@angular/core';
 import {PopupComponent} from "../popup/popup.component";
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { TransactionPopupComponent } from '../transaction-popup/transaction-popup.component';
@@ -9,10 +9,13 @@ import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { AddBankAccountComponent } from '../add-bank-account/add-bank-account.component';
 import { EditCustomerComponent } from '../edit-customer/edit-customer.component';
 import { VerificationPaymentPopupComponent } from '../verification-payment-popup/verification-payment-popup.component';
-import { CreatePaymentRequest, Recipient } from '../model/model';
+import {CreatePaymentRequest, Forex, Future, Recipient} from '../model/model';
 import { TransactionsDetailsPopupComponent } from '../transactions-details-popup/transactions-details-popup.component';
 import { NewRecipientComponent } from '../new-recipient/new-recipient.component';
 import { EditRecipientComponent } from '../edit-recipient/edit-recipient.component';
+import {BuyPopupComponent} from "../buy-popup/buy-popup.component";
+import {SellPopupComponent} from "../sell-popup/sell-popup.component";
+import { DeleteRecipientConfirmationComponent } from '../delete-recipient-confirmation/delete-recipient-confirmation.component';
 
 
 @Injectable({
@@ -36,13 +39,15 @@ export class PopupService {
     });
   }
 
-  openAddUserPopup(): void {
+  openAddUserPopup(args: any): void {
     this.dialog.open(AddUserComponent, {
+      data: args
     });
   }
 
-  openUpdateUserPopup(): void {
+  openUpdateUserPopup(args: any): void {
     this.dialog.open(UpdateUserComponent, {
+      data:args
     });
   }
 
@@ -76,14 +81,29 @@ export class PopupService {
     });
   }
 
-  openAddRecipientPopup(): void {
-    this.dialog.open(NewRecipientComponent, {
+  openDeleteConfirmation():MatDialogRef<DeleteRecipientConfirmationComponent>{
+    return this.dialog.open(DeleteRecipientConfirmationComponent, {});
+  }
+
+  openAddRecipientPopup(): MatDialogRef<NewRecipientComponent> {
+    return this.dialog.open(NewRecipientComponent, {});
+  }
+
+  openBuyPopup(future: any, forex: any, stock: any): void {
+    this.dialog.open(BuyPopupComponent, {
+      data: { future: future, forex: forex, stock: stock }  // Pass the future object to the dialog
     });
   }
 
-  openEditRecipientPopup(recipient: Recipient): void {
-    this.dialog.open(EditRecipientComponent, {
-      data: {recipient}
+  openSellPopup(listingId: number, future: boolean, forex: boolean, stock: boolean): void {
+    this.dialog.open(SellPopupComponent, {
+      data: { listingId: listingId, future: future, forex: forex, stock: stock }  // Pass the future object to the dialog
+    });
+  }
+
+  openEditRecipientPopup(recipient: Recipient): MatDialogRef<EditRecipientComponent> {
+    return this.dialog.open(EditRecipientComponent, {
+      data: { recipient }
     });
   }
 }
