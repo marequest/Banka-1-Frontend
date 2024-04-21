@@ -86,6 +86,9 @@ export class OrdersComponent {
         console.error('Error fetching securities', error);
       }
     });
+
+    console.log(this.securities);
+
   }
 
 

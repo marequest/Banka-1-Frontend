@@ -123,14 +123,17 @@
 <!--                </custom-field>-->
 <!--              </div>-->
 
-            <div class="form-group filter-dropdown">
+              <div class="form-group filter-dropdown-add-customer" >
                 <label for="gender">Gender:</label>
                 <select id="gender" class="security-filter-select" [(ngModel)]="addCustomerData.gender">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="NonBinary">Non-binary</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="NonBinary">Non-binary</option>
+                  <option value="They/them">They/them</option>
+                  <option value="Krastavac">Krastavac</option>
+                  <option value="Helikopter">Helikopter</option>
                 </select>
-            </div>
+              </div>
               <div class="bottom-buttons">
               <outline-orange-button [buttonName]="'Cancel'" (click)="cancel()"></outline-orange-button>
               <orange-button [buttonName]="'Create'" (click)="submit()"></orange-button>
