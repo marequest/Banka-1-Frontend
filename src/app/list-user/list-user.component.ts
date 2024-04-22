@@ -40,8 +40,8 @@ export class ListUserComponent implements OnInit{
   hasPermission?: boolean = false;
   public p:string | null='';
 
-  headersLimits = ['Id','Email', 'Limit', 'Used Limit', 'Needs Approve'];
-  headersUsers = ['NAME', 'EMAIL', 'JMBG', 'POSITION', 'PHONE NUMBER', 'ACTIVITY'];
+  headersLimits = ['Email','Id', 'Limit', 'Used Limit', 'Needs Approve'];
+  headersUsers = ['NAME', 'EMAIL', 'JMBG', 'POSITION', 'PHONE NUMBER'];
   rowsUsers = [
     { 'Header 1': 'Row 1', 'Header 2': 'Row 1', 'Header 3': 'Row 1', 'Header 4': 'Row 1', 'Header 5': 'Row 1','Header 6': 'Row 1', },
     { 'Header 1': 'Row 1', 'Header 2': 'Row 1', 'Header 3': 'Row 1', 'Header 4': 'Row 1', 'Header 5': 'Row 1','Header 6': 'Row 1', },

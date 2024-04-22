@@ -12,6 +12,8 @@
   margin-right: 16px;
 }
 
+
+
 .logo {
   margin-top: 10px;
   /*flex-grow: 1;*/
@@ -46,6 +48,19 @@
 .sidenav-container {
   flex-grow: 1;
 }
+
+.sidebar-item.active {
+ 
+  cursor: pointer;
+  border-bottom: 5px solid var(--banka-orange);
+}
+
+.sidebar-subitem.active {
+
+  cursor: pointer;
+  border-bottom: 5px solid var(--banka-orange);
+}
+ 
 
 .sidenav {
   width: 35vw;
