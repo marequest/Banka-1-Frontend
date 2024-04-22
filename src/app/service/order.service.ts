@@ -103,7 +103,7 @@ export class OrderService {
         //this.http.get(environmentMarket.baseUrl + "api", {headers})
         this.http.get(environment.baseUrl + "/orders/getAll", {headers})
 
-      // this.http.get("/assets/orderHistory.json")
+        // this.http.get("/assets/orderHistory.json")
       )) as OrderDto[];
     } catch (e) {
       return [];
@@ -169,12 +169,12 @@ export class OrderService {
     }
   }
 
-   async denyOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse>{
-     const headers = new HttpHeaders({
-       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
-     });
+  async denyOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
 
-     try {
+    try {
       return await firstValueFrom(
         this.http.put<DecideOrderResponse>(environment.baseUrl + '/orders/decideOrder/' + orderId, {"status": "DENIED"}, { headers })
       );

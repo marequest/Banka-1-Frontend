@@ -5,7 +5,7 @@
     </div>
     <hr style="background-color: black; margin-top: 0; height: 1px;">
 
-    <div class="popup-body">
+    <div class="popup-body ">
         <div class="form-container">
             <div class="left-section">
 <!--              <div class="form-group">-->
@@ -16,7 +16,7 @@
 <!--                  <div *ngIf="emailModel.hasError('pattern')" style="color: red;">Invalid email format.</div>-->
 <!--                   </div>-->
 <!--              </div>-->
-              <div class="form-group">
+              <div class="form-group px-2">
                 <custom-field
                   [labelText]="'Email'"
                   [(ngModel)]="editCustomerData.email"
@@ -33,7 +33,7 @@
 <!--                    <div *ngIf="nameModel.hasError('pattern')" style="color: red;">Name must contain only letters.</div>-->
 <!--                  </div>-->
 <!--                </div>-->
-              <div class="form-group">
+              <div class="form-group px-2">
                 <custom-field
                   [labelText]="'Name'"
                   [(ngModel)]="editCustomerData.firstName"
@@ -51,7 +51,7 @@
 <!--                    <div *ngIf="surnameModel.hasError('pattern')" style="color: red;">Last name must contain only letters.</div>-->
 <!--                  </div>-->
 <!--                </div>-->
-              <div class="form-group">
+              <div class="form-group px-2">
                 <custom-field
                   [labelText]="'LastName'"
                   [(ngModel)]="editCustomerData.lastName"
@@ -67,7 +67,7 @@
 <!--                        <div *ngIf="addressModel.hasError('required')" style="color: red;">Address is required.</div>-->
 <!--                    </div>-->
 <!--                </div>-->
-              <div class="form-group">
+              <div class="form-group px-2">
                 <custom-field
                   [labelText]="'Address'"
                   [(ngModel)]="editCustomerData.address"
@@ -85,7 +85,7 @@
 <!--                    <div *ngIf="phoneModel.hasError('pattern')" style="color: red;">Invalid Phone Number format (must contain only digits).</div>-->
 <!--                  </div>-->
 <!--                </div>-->
-              <div class="form-group">
+              <div class="form-group px-2">
                 <custom-field
                   [labelText]="'Phone Number'"
                   [(ngModel)]="editCustomerData.phoneNumber"
@@ -103,7 +103,7 @@
 <!--                    <div *ngIf="jmbgModel.hasError('pattern')" style="color: red;">Invalid JMBG format (must be 13 digits).</div>-->
 <!--                </div>-->
 <!--            </div>-->
-              <div class="form-group">
+              <div class="form-group px-2">
                 <custom-field
                   [labelText]="'JMBG'"
                   [(ngModel)]="editCustomerData.jmbg"
@@ -124,28 +124,31 @@
 
 <!--                </div>-->
 <!--              </div>-->
-          <div class="form-group">
-            <custom-field
-              [labelText]="'Password'"
-              [(ngModel)]="editCustomerData.password"
-              [isPassword]="true"
-              [requiredErrorText]="'Password is required.'"
-              [patternErrorText]="'Must have at least 1 digit, uppercase and lowercase letter.'">
-            </custom-field>
-          </div>
+            <div class="form-group px-2">
+              <custom-field
+                [labelText]="'Password'"
+                [(ngModel)]="editCustomerData.password"
+                [isPassword]="true"
+                [requiredErrorText]="'Password is required.'"
+                [patternErrorText]="'Must have at least 1 digit, uppercase and lowercase letter.'">
+              </custom-field>
+            </div>
 <!--              [pattern]="'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$'"-->
 
-            <div class="form-group filter-dropdown" >
+            <div class="form-group px-2 filter-dropdown" >
                 <label for="gender">Gender:</label>
                 <select id="gender" class="security-filter-select" [(ngModel)]="editCustomerData.gender">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="NonBinary">Non-binary</option>
+                    <option value="They/them">They/them</option>
+                    <option value="Krastavac">Krastavac</option>
+                    <option value="Helikopter">Helikopter</option>
                 </select>
             </div>
 
             <div class="form-group buttonSl">
-              <outline-orange-button [buttonName]="'Cancel'" (click)="cancel()"></outline-orange-button>
+              <outline-orange-button  [buttonName]="'Cancel'" (click)="cancel()"></outline-orange-button>
               <orange-button [buttonName]="'Confirm'" (click)="submit()"></orange-button>
 
 <!--              <button (click)="cancel()">Cancel</button>-->

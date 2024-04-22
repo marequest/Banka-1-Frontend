@@ -12,10 +12,10 @@ import {TransformSecuritiesPipeModule} from "./TransformSecuritiesPipe";
 import {FilterByStatusPipeModule} from "./FilterByStatusPipe";
 
 @Component({
-    selector: 'app-orders',
-    standalone: true,
-    templateUrl: './orders.component.html',
-    styleUrl: './orders.component.css',
+  selector: 'app-orders',
+  standalone: true,
+  templateUrl: './orders.component.html',
+  styleUrl: './orders.component.css',
   imports: [
     NgIf,
     NgForOf,
@@ -69,7 +69,7 @@ export class OrdersComponent {
     margin: z.boolean()
   })
 
-  headersSecurities = ['Total Price', 'Account Number', 'Currency', 'Listing Type', 'Total', 'Reserved'];
+  headersSecurities = ['Total Price', 'Account Number', 'Currency', 'Listing Type', 'Ticker', 'Total', 'Reserved'];
   securities: CapitalProfitDto[] = [];
 
   constructor(private orderService: OrderService, private popupService: PopupService) {
@@ -86,6 +86,9 @@ export class OrdersComponent {
         console.error('Error fetching securities', error);
       }
     });
+
+    console.log(this.securities);
+
   }
 
 
@@ -116,7 +119,7 @@ export class OrdersComponent {
 
 
     if(this.isSupervizor || this.isAdmin){
-    this.orderHistory = await this.orderService.getAllOrdersHistory();
+      this.orderHistory = await this.orderService.getAllOrdersHistory();
       console.log("order history")
       console.log(this.orderHistory);
 
@@ -144,17 +147,17 @@ export class OrdersComponent {
       const response = await this.orderService.approveOrder(order.orderId, StatusRequest.APPROVED);
       console.log('Response from approveOrder:', response.success);
 
-       // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
+      // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
       if(response.success){
         const index = this.orderRequests.findIndex(order => order.orderId === order.orderId);
         if (index !== -1) {
           this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
         }
       }
-    //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
-    //   if (index !== -1) {
-    //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
-    //   }
+      //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
+      //   if (index !== -1) {
+      //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
+      //   }
     } catch (error) {
       console.error('Error while approving order:', error);
     }
@@ -162,20 +165,20 @@ export class OrdersComponent {
 
   async denyOrder(orderr: OrderDto) {
     try{
-    const response = await this.orderService.denyOrder(orderr.orderId,StatusRequest.DENIED);
-    console.log('Response from denyOrder:', response.success);
+      const response = await this.orderService.denyOrder(orderr.orderId,StatusRequest.DENIED);
+      console.log('Response from denyOrder:', response.success);
 
-    if(response.success){
-      const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
-      if (index !== -1) {
-        this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
+      if(response.success){
+        const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
+        if (index !== -1) {
+          this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
+        }
       }
-    }
-    // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
-    //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
-    //   if (index !== -1) {
-    //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
-    //   }
+      // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
+      //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
+      //   if (index !== -1) {
+      //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
+      //   }
 
 
     }catch (error) {

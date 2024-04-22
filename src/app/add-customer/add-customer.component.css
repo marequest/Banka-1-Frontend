@@ -146,13 +146,9 @@
 }
 
 /* Custom arrow using a pseudo-element */
-.filter-dropdown::after {
+.filter-dropdown-add-customer::after {
   content: ''; /* Required for pseudo-elements */
   position: absolute; /* Position relative to the filter-dropdown container */
-  top: 50%; /* Center vertically */
-  right: 10px; /* Position from the right */
-  width: 0;
-  height: 0;
   border: 5px solid transparent; /* Create a triangle using borders */
   border-top-color: var(--banka-white); /* Top border as the arrow */
   transform: translateY(-50%); /* Ensure it's perfectly centered */
@@ -166,4 +162,5 @@
   justify-content: flex-end;
   gap: 16px;
 }
+
 
