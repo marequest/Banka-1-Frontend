@@ -1,6 +1,12 @@
 import {Component} from '@angular/core';
 import {DatePipe, DecimalPipe, NgForOf, NgIf} from "@angular/common";
-import {CapitalProfitDto, OrderDto, OrderStatus, SellingRequest, StatusRequest} from "../model/model";
+import {
+  CapitalProfitDto,
+  OrderDto,
+  OrderStatus,
+  SellingRequest,
+  StatusRequest
+} from "../model/model";
 import {OrderService} from "../service/order.service";
 import {FormsModule} from "@angular/forms";
 import {z} from "zod";
@@ -33,7 +39,7 @@ export class OrdersComponent {
   public OrderStatus = OrderStatus;
   selectedTab: "order-history" | "requests" | "securities" = "order-history"
   orderHistory: OrderDto[] = [];
-  orderRequests: OrderDto[] = [];
+  // orderRequests: OrderDto[] = [];
   orderSecurities: OrderDto[] = [];
   isAdmin: boolean = sessionStorage.getItem('role') === "admin";
   isEmployee: boolean = sessionStorage.getItem('role') === "employee";
@@ -41,6 +47,7 @@ export class OrdersComponent {
   isSupervizor = sessionStorage.getItem('role') === 'supervizor';
   popupOpen: boolean = false;
   sellingOrder: OrderDto | null = null;
+  customerId: string | null = null;
 
   sellingReq : SellingRequest= {
     amount: 0,
@@ -69,17 +76,17 @@ export class OrdersComponent {
     margin: z.boolean()
   })
 
-  headersSecurities = ['Total Price', 'Account Number', 'Currency', 'Listing Type', 'Total', 'Reserved'];
+  headersSecurities = ['Security', 'Symbol', 'Total Price', 'Total'];
   securities: CapitalProfitDto[] = [];
 
   constructor(private orderService: OrderService, private popupService: PopupService) {
-    this.getSecurityOrders();
 
   }
 
   private getSecurityOrders() {
     this.orderService.getSecurityOrders().subscribe(orders => {
       this.securities = orders;
+      console.log("security");
       console.log(this.securities)
     });
   }
@@ -94,25 +101,32 @@ export class OrdersComponent {
     // this.orderRequests = await this.orderService.getOrderRequests();
     // this.orderSecurities = await this.orderService.getOrderSecurities();
 
-    var customerId = sessionStorage.getItem('loggedUserID');
-    if(customerId) {
+    this.customerId = sessionStorage.getItem('loggedUserID');
+    if(this.customerId) {
       // this.orderService.fetchAccountData(customerId).subscribe(total => {
       //   this.totalAvailableBalance = total;
       // });
-      this.orderService.fetchUserForLimit(customerId).subscribe(user => {
+      this.loadLimit()
+    }
+    this.loadOrders()
+    this.getSecurityOrders();
+
+  }
+
+  loadLimit() {
+    if (this.customerId){
+      this.orderService.fetchUserForLimit(this.customerId).subscribe(user => {
         this.orderLimitBalance = user.orderlimit;
         // TODO pretpostavka da je available = limitNow
         this.totalAvailableBalance = user.limitNow;
-        console.log(this.orderLimitBalance);
       }, error => {
-        console.error('Failed to fetch user order limit:', error);
       });
     }
+  }
 
-
-
+  async loadOrders(){
     if(this.isSupervizor || this.isAdmin){
-    this.orderHistory = await this.orderService.getAllOrdersHistory();
+      this.orderHistory = await this.orderService.getAllOrdersHistory();
       console.log("order history")
       console.log(this.orderHistory);
 
@@ -124,7 +138,7 @@ export class OrdersComponent {
     }
 
     //Da li zapravo ovde uzimam isti ovaj orderHistory samo filtriram gde je order.status processing
-    this.orderRequests = this.orderHistory.filter(order => order.status == OrderStatus.PROCESSING);
+    // this.orderRequests = this.orderHistory.filter(order => order.status == OrderStatus.PROCESSING);
     //ili poseban poziv
     //this.orderRequests=await this.orderService.getOrderRequests();
 
@@ -136,37 +150,47 @@ export class OrdersComponent {
   }
 
   async approveOrder(order: OrderDto) {
-    try {
-      const response = await this.orderService.approveOrder(order.orderId, StatusRequest.APPROVED);
-      console.log('Response from approveOrder:', response.success);
+      this.orderService.decideOrder(order.orderId, StatusRequest.APPROVED).subscribe( async response => {
+        this.orderHistory = await this.orderService.getAllOrdersHistory();
+      })
+    // try {
+      // const response = await this.orderService.approveOrder(order.orderId, StatusRequest.APPROVED);
+      // console.log('Response from approveOrder:', response.success);
 
        // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
-      if(response.success){
-        const index = this.orderRequests.findIndex(order => order.orderId === order.orderId);
-        if (index !== -1) {
-          this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
-        }
-      }
+      // if(response.success){
+      //   const index = this.orderRequests.findIndex(order => order.orderId === order.orderId);
+      //   if (index !== -1) {
+      //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
+      //   }
+      // }
     //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
     //   if (index !== -1) {
     //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
     //   }
-    } catch (error) {
-      console.error('Error while approving order:', error);
-    }
+    // } catch (error) {
+    //   console.error('Error while approving order:', error);
+    // }
   }
 
-  async denyOrder(orderr: OrderDto) {
-    try{
-    const response = await this.orderService.denyOrder(orderr.orderId,StatusRequest.DENIED);
-    console.log('Response from denyOrder:', response.success);
+  async denyOrder(order: OrderDto) {
+    this.orderService.decideOrder(order.orderId, StatusRequest.DENIED).subscribe( async response => {
+      this.orderHistory = await this.orderService.getAllOrdersHistory();
+    })
 
-    if(response.success){
-      const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
-      if (index !== -1) {
-        this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
-      }
-    }
+
+    // try{
+    // const response = await this.orderService.denyOrder(orderr.orderId,StatusRequest.DENIED);
+    // console.log('Response from denyOrder:', response.success);
+
+
+
+    // if(response.success){
+    //   const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
+    //   if (index !== -1) {
+    //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
+    //   }
+    // }
     // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
     //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
     //   if (index !== -1) {
@@ -174,18 +198,30 @@ export class OrdersComponent {
     //   }
 
 
-    }catch (error) {
-      console.error('Error while denying order:', error);
-    }
+    // }catch (error) {
+    //   console.error('Error while denying order:', error);
+    // }
   }
 
   sellOrder(original: any) {
     if(original.listingType === 'STOCK') {
-      this.popupService.openSellPopup(original.listingId, false, false, true);
+      this.popupService.openSellPopup(original.listingId, false, false, true).afterClosed().subscribe(() =>{
+        this.loadLimit()
+        this.loadOrders()
+        this.getSecurityOrders()
+      });
     } else if(original.listingType === 'FOREX') {
-      this.popupService.openSellPopup(original.listingId, false, true, false);
+      this.popupService.openSellPopup(original.listingId, false, true, false).afterClosed().subscribe(() =>{
+        this.loadLimit()
+        this.loadOrders()
+        this.getSecurityOrders()
+      });
     } else if(original.listingType === 'FUTURE') {
-      this.popupService.openSellPopup(original.listingId, true, false, false);
+      this.popupService.openSellPopup(original.listingId, true, false, false).afterClosed().subscribe(() =>{
+        this.loadLimit()
+        this.loadOrders()
+        this.getSecurityOrders()
+      });
     }
   }
 
@@ -197,6 +233,14 @@ export class OrdersComponent {
   closeSellingMenu() {
     this.sellingOrder = null;
     this.popupOpen = false;
+  }
+
+  getAvailable(): number{
+    let available = this.orderLimitBalance - this.totalAvailableBalance;
+    if(available < 0)
+      return 0;
+    else
+      return available;
   }
 
 }

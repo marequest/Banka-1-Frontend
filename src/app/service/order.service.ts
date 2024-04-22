@@ -4,7 +4,13 @@ import {firstValueFrom, Observable} from "rxjs";
 import {environment, environmentMarket} from "../../../environment";
 import {StockListing} from "./stock.service";
 
-import {CapitalProfitDto, DecideOrderResponse, OrderDto, SellingRequest, StatusRequest} from "../model/model";
+import {
+  CapitalProfitDto,
+  DecideOrderResponse,
+  OrderDto,
+  SellingRequest,
+  StatusRequest
+} from "../model/model";
 
 import {BankAccountDto, CreateOrderRequest, ListingType, Order, OrderType, User} from "../model/model";
 import {map} from "rxjs/operators";
@@ -159,6 +165,7 @@ export class OrderService {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
+
     try {
       return await firstValueFrom(
         this.http.put<DecideOrderResponse>(environment.baseUrl + '/orders/decideOrder/' + orderId, {"status": "APPROVED"}, { headers })
@@ -169,10 +176,12 @@ export class OrderService {
     }
   }
 
-   async denyOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse>{
+  async denyOrder(orderId: number, request: StatusRequest): Promise<DecideOrderResponse>{
      const headers = new HttpHeaders({
        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
      });
+
+
 
      try {
       return await firstValueFrom(
@@ -184,6 +193,15 @@ export class OrderService {
     }
 
   }
+
+  decideOrder(orderId: number, request: StatusRequest){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+
+    return this.http.put<DecideOrderResponse>(environment.baseUrl + '/orders/decideOrder/' + orderId, {"status": request}, {headers});
+  }
+
   async buyOrder(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: number, limitValue: number, stopValue: number, allOrNone: boolean) {
     const jwt = sessionStorage.getItem("jwt");
 
@@ -244,7 +262,7 @@ export class OrderService {
     }
   }
 
-  getSecurityOrders(): Observable<CapitalProfitDto[]> {
+  getSecurityOrdersMock(): Observable<CapitalProfitDto[]> {
     return this.http.get<CapitalProfitDto[]>('assets/mocked_banking_data/orders-security-mocked.json')
       .pipe(
         map((data: CapitalProfitDto[]) => data.map(item => ({
@@ -254,7 +272,7 @@ export class OrderService {
       );
   }
 
-  getSecurityOrdersMocked(): Observable<CapitalProfitDto[]> {
+  getSecurityOrders(): Observable<CapitalProfitDto[]> {
     const jwt = sessionStorage.getItem("jwt");
 
     const httpOptions = {
@@ -263,7 +281,7 @@ export class OrderService {
       })
     };
 
-    return this.http.get<CapitalProfitDto[]>(environment.baseUrl + 'capitals/listings', httpOptions)
+    return this.http.get<CapitalProfitDto[]>(environment.baseUrl + '/account/capitals/listings', httpOptions)
       .pipe(
         map((data: CapitalProfitDto[]) => data.map(item => ({
           ...item,
