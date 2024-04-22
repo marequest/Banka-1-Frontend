@@ -78,9 +78,13 @@ export class OrdersComponent {
   }
 
   private getSecurityOrders() {
-    this.orderService.getSecurityOrders().subscribe(orders => {
-      this.securities = orders;
-      console.log(this.securities)
+    this.orderService.getSecurityOrders().subscribe({
+      next: (securities: CapitalProfitDto[]) => {
+        this.securities = securities;
+      },
+      error: (error) => {
+        console.error('Error fetching securities', error);
+      }
     });
   }
 
