@@ -414,6 +414,7 @@ export interface CapitalProfitDto {
   total: number;
   ticker: string;
   reserved: number;
+  ticker: string;
 }
 
 

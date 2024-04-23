@@ -29,18 +29,6 @@ export class CustomerService {
 
   getCustomer(jwt: string): Observable<Customer> {
     const url = `${this.apiUrl}/getCustomer`;
-
-  //getUser(jwt: string | null): Observable<{name: string, lastName: string}> {
-   // let url = `${this.apiUrl}/user/getUser`;
-
-    //ToDo: Da li treba autorizacija
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${sessionStorage.getItem("jwt")}`
-    // });
-
-//     if (!jwt) {
-//       this.router.navigate(['/login']);
-//     }
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${jwt}`
