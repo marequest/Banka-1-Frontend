@@ -4,7 +4,13 @@ import {firstValueFrom, Observable} from "rxjs";
 import {environment, environmentMarket} from "../../../environment";
 import {StockListing} from "./stock.service";
 
-import {CapitalProfitDto, DecideOrderResponse, OrderDto, SellingRequest, StatusRequest} from "../model/model";
+import {
+  CapitalProfitDto,
+  DecideOrderResponse,
+  OrderDto,
+  SellingRequest,
+  StatusRequest
+} from "../model/model";
 
 import {BankAccountDto, CreateOrderRequest, ListingType, Order, OrderType, User} from "../model/model";
 import {map} from "rxjs/operators";
@@ -159,6 +165,7 @@ export class OrderService {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
+
     try {
       return await firstValueFrom(
         this.http.put<DecideOrderResponse>(environment.baseUrl + '/orders/decideOrder/' + orderId, {"status": "APPROVED"}, { headers })
@@ -184,6 +191,15 @@ export class OrderService {
     }
 
   }
+
+  decideOrder(orderId: number, request: StatusRequest){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+
+    return this.http.put<DecideOrderResponse>(environment.baseUrl + '/orders/decideOrder/' + orderId, {"status": request}, {headers});
+  }
+
   async buyOrder(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: number, limitValue: number, stopValue: number, allOrNone: boolean) {
     const jwt = sessionStorage.getItem("jwt");
 
@@ -243,6 +259,7 @@ export class OrderService {
       return false;
     }
   }
+
 
   // getSecurityOrders(): Observable<CapitalProfitDto[]> {
   //   const jwt = sessionStorage.getItem("jwt");

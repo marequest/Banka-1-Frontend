@@ -406,12 +406,13 @@ export enum OrderType{
 }
 
 export interface CapitalProfitDto {
-  totalPrice: number;
   bankAccountNumber: string;
   currencyName: string;
   listingType: ListingType;
   listingId: number;
+  totalPrice: number;
   total: number;
+  ticker: string;
   reserved: number;
   ticker: string;
 }
