@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^17.2.0",
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
+    "@babel/core": "^7.24.4",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.2",
     "ng2-charts": "^6.0.0",

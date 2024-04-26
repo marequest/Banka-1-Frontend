@@ -160,47 +160,54 @@ export class OrdersComponent {
         this.orderHistory = await this.orderService.getAllOrdersHistory();
       })
     // try {
-      // const response = await this.orderService.approveOrder(order.orderId, StatusRequest.APPROVED);
+    //   const response = await this.orderService.approveOrder(order.orderId, StatusRequest.APPROVED);
       // console.log('Response from approveOrder:', response.success);
-    
+
       // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
-      if(response.success){
-        const index = this.orderRequests.findIndex(order => order.orderId === order.orderId);
-        if (index !== -1) {
-          this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
-        }
-      }
+      // if(response.success){
+      //   const index = this.orderSecurities.findIndex(order => order.orderId === order.orderId);
+      //   if (index !== -1) {
+      //     this.orderSecurities = this.orderSecurities.filter((order, idx) => idx !== index);
+      //   }
+      // }
       //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
       //   if (index !== -1) {
       //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
       //   }
-    } catch (error) {
-      console.error('Error while approving order:', error);
-    }
-  }
-
-  async denyOrder(orderr: OrderDto) {
-    try{
-      const response = await this.orderService.denyOrder(orderr.orderId,StatusRequest.DENIED);
-      console.log('Response from denyOrder:', response.success);
-
-      if(response.success){
-        const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
-        if (index !== -1) {
-          this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
-        }
-      }
-      // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
-      //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
-      //   if (index !== -1) {
-      //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
-      //   }
-      
-    // }catch (error) {
-    //   console.error('Error while denying order:', error);
+    // } catch (error) {
+    //   console.error('Error while approving order:', error);
     // }
   }
 
+  async denyOrder(order: OrderDto) {
+    // try {
+      this.orderService.decideOrder(order.orderId, StatusRequest.DENIED).subscribe( async response => {
+        this.orderHistory = await this.orderService.getAllOrdersHistory();
+      })
+
+      // const response = await this.orderService.denyOrder(orderr.orderId, StatusRequest.DENIED);
+      // console.log('Response from denyOrder:', response.success);
+      //
+      // if (response.success) {
+      //   const index = this.orderSecurities.findIndex(order => order.orderId === orderr.orderId);
+      //   if (index !== -1) {
+      //     this.orderSecurities = this.orderSecurities.filter((order, idx) => idx !== index);
+      //   }
+      // }
+      // Brisem ovaj orderr iz niza i tabele (ako treba, a mislim da treba):
+      //  const index = this.orderRequests.findIndex(order => order.orderId === orderr.orderId);
+      //   if (index !== -1) {
+      //     this.orderRequests = this.orderRequests.filter((order, idx) => idx !== index);
+      //   }
+
+      // }catch (error) {
+      //   console.error('Error while denying order:', error);
+      // }
+    // }
+    // catch (error) {
+    //   console.error('Error while denying order:', error);
+    // }
+}
   sellOrder(original: any) {
     if(original.listingType === 'STOCK') {
       this.popupService.openSellPopup(original.listingId, false, false, true).afterClosed().subscribe(() =>{

@@ -278,7 +278,7 @@ export class OrderService {
   //     );
   // }
 
-  getSecurityOrdersMocked(): Observable<CapitalProfitDto[]> {
+  getSecurityOrdersMock(): Observable<CapitalProfitDto[]> {
     return this.http.get<CapitalProfitDto[]>('assets/mocked_banking_data/orders-security-mocked.json')
       .pipe(
         map((data: CapitalProfitDto[]) => data.map(item => ({
@@ -289,15 +289,33 @@ export class OrderService {
   }
 
   getSecurityOrders(): Observable<CapitalProfitDto[]> {
-    const url = `${environment.baseUrl}/account/capitals/listings`;
-    const token = sessionStorage.getItem("jwt");
+    const jwt = sessionStorage.getItem("jwt");
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
 
-    return this.http.get<CapitalProfitDto[]>(url, { headers });
+    return this.http.get<CapitalProfitDto[]>(environment.baseUrl + '/account/capitals/listings', httpOptions)
+      .pipe(
+        map((data: CapitalProfitDto[]) => data.map(item => ({
+          ...item,
+          listingType: ListingType[item.listingType as keyof typeof ListingType] // Assuming listingType in JSON is a string that matches enum keys
+        })))
+      );
   }
+
+  // getSecurityOrders(): Observable<CapitalProfitDto[]> {
+  //   const url = `${environment.baseUrl}/account/capitals/listings`;
+  //   const token = sessionStorage.getItem("jwt");
+  //
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${token}`
+  //   });
+  //
+  //   return this.http.get<CapitalProfitDto[]>(url, { headers });
+  // }
   //
   // async sellOrder(orderId:number,sellingReq:SellingRequest): Promise<DecideOrderResponse> {
   //   const jwt = sessionStorage.getItem("jwt");
