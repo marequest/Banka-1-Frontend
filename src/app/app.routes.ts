@@ -58,16 +58,24 @@ export const routes: Routes = [
   { path:'employee/reset-password/:token', component: UserResetPasswordComponent, canActivate: [loginGuard]},
   {
     path: 'security',
-    // canActivate: [AdminAndEmployeeGuard],
     children: [
       { path: 'all', component: SecurityListComponent },
       { path: "stock/:ticker", component: StockViewComponent },
-      {path: 'forex/:ticker', component: ForexViewComponent},
-      {path: 'future/:ticker', component: FutureViewComponent},],
+      { path: 'forex/:ticker', component: ForexViewComponent},
+      { path: 'future/:ticker', component: FutureViewComponent},
+    ],
+    canActivate: [PositionsGuard],
+    data: { roles: ['employee', 'admin'] } // Moci ce svi kad se aktivira prosirenje
   },
 
-  { path:'exchange', component: TransactionComponent},
-  { path:'payment', component: NewPaymentComponent},
+  {
+    path:'exchange', component: TransactionComponent, canActivate: [PositionsGuard],
+    data: { roles: ['customer'] }
+  },
+  {
+    path:'payment', component: NewPaymentComponent, canActivate: [PositionsGuard],
+    data: { roles: ['customer'] }
+  },
 
   // {path:'exchange-rate', component: ExchangeRateComponent,canActivate:[ExchangeRateGuard]},
 
@@ -76,7 +84,9 @@ export const routes: Routes = [
     children: [
       {path: 'all', component: CustomerComponent},
       {path: 'view', component: UserDetailComponent}
-    ]
+    ],
+    canActivate: [PositionsGuard],
+    data: { roles: ['admin'] } // Moci ce svi kad se aktivira prosirenje
   },
   {
     path: 'payment/overview',component: TransactionsOverviewComponent, canActivate: [PositionsGuard],
