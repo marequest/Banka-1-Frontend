@@ -28,6 +28,8 @@ import {NewLoanComponent} from "./loans/new-loan/new-loan.component";
 import { NewPaymentComponent } from './new-payment/new-payment.component';
 import { TransactionsOverviewComponent } from './transactions-overview/transactions-overview.component';
 import { RecipientsComponent } from './recipients/recipients.component';
+import { supportsPassiveEventListeners } from '@angular/cdk/platform';
+import { BankAccountsAndCardsComponent } from "./bank-accounts-and-cards/bank-accounts-and-cards.component";
 import { PositionsGuard } from './guards/positions.guard';
 
 
@@ -101,16 +103,16 @@ export const routes: Routes = [
     data: { roles: ['customer'] }
   },
   {
-    path: 'bank-accounts', component: BankAccountsComponent, canActivate: [PositionsGuard],
-    data: { roles: ['customer'] }
+    path: 'bank-accounts', component: BankAccountsAndCardsComponent, canActivate: [PositionsGuard],
+    data: { roles: ['customer'], type: 'bankAccount' }
   },
   {
     path: 'recipients', component: RecipientsComponent, canActivate: [PositionsGuard],
     data: { roles: ['customer'] }
   },
   {
-    path: 'cards', component: CardsComponent,canActivate: [PositionsGuard],
-    data: { roles: ['customer'] }
+    path: 'cards', component: BankAccountsAndCardsComponent,canActivate: [PositionsGuard],
+    data: { roles: ['customer'], type: 'card' }
   },
   {
     path: 'loans', component: LoanTableComponent, canActivate: [PositionsGuard],
