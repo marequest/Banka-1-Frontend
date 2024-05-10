@@ -68,6 +68,7 @@ export const routes: Routes = [
     // data: { roles: ['employee', 'admin'] } // Moci ce svi kad se aktivira prosirenje
   },
 
+
   {
     path:'exchange', component: TransactionComponent, canActivate: [PositionsGuard],
     data: { roles: ['customer'] }
