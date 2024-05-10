@@ -64,8 +64,8 @@ export const routes: Routes = [
       { path: 'forex/:ticker', component: ForexViewComponent},
       { path: 'future/:ticker', component: FutureViewComponent},
     ],
-    canActivate: [PositionsGuard],
-    data: { roles: ['employee', 'admin'] } // Moci ce svi kad se aktivira prosirenje
+    // canActivate: [PositionsGuard],
+    // data: { roles: ['employee', 'admin'] } // Moci ce svi kad se aktivira prosirenje
   },
 
   {
