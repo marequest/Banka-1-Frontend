@@ -96,12 +96,7 @@ export interface Payment {
   channel?: string;
 }
 
-// export interface Exchange {
-//   recepientBankAccount: string;
-//   date: Date;
-//   status: string;
-//   amount: number;
-// }
+
 
 export interface Exchange {
   id: number;
@@ -363,16 +358,6 @@ export interface Order {
 }
 
 
-// export interface OrderDto{
-//   orderId:number,
-//   listingType:string,
-//   orderType:OrderType,
-//   symbol:string,
-//   amount:number,
-//   price: number,
-//   status: string,
-//   lastModified: number
-// }
 
 export interface OrderDto{
   orderId:number,
@@ -406,12 +391,13 @@ export enum OrderType{
 }
 
 export interface CapitalProfitDto {
-  totalPrice: number;
   bankAccountNumber: string;
   currencyName: string;
   listingType: ListingType;
   listingId: number;
+  totalPrice: number;
   total: number;
+  ticker: string;
   reserved: number;
 }
 
