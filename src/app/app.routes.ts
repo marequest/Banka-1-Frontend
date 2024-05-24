@@ -32,6 +32,7 @@ import { PositionsGuard } from './guards/positions.guard';
 import { BankProfitComponent } from './bank-profit/bank-profit.component';
 import { BankAccountAdminComponent } from './bank-account-admin/bank-account-admin.component';
 import { TransactionDetailsAdminComponent } from './transaction-details-admin/transaction-details-admin.component';
+import {OtcComponent} from "./otc/otc.component";
 
 
 export const routes: Routes = [
@@ -142,6 +143,10 @@ export const routes: Routes = [
   {
     path: 'card-transactions', component: CardTransactionsComponent, canActivate: [PositionsGuard],
     data: { roles: ['customer'] }
+  },
+  {
+    path: 'otc', component: OtcComponent, canActivate: [PositionsGuard],
+    data: { roles: ['admin'] }
   },
 
   // { path: 'customer/:customerId', component: UserDetailComponent},
