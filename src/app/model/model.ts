@@ -174,7 +174,7 @@ export interface TransactionDto {
 }
 
 export interface TransactionDetails {
-  recipientName: String; 
+  recipientName: String;
   amount: number;
   referenceNumber: String;
   paymentCode: number;
@@ -469,4 +469,29 @@ export interface CreatePaymentRequest {
     model?: string;
     referenceNumber?: string;
     paymentPurpose?: string;
+}
+
+export interface OTC {
+  owner: string;
+  stock: string;
+  outstandingShares: string;
+  exchangeName: string;
+  dividendYield: string;
+  status: string;
+}
+
+export interface Contract {
+  contractId: number;
+  buyerAccountNumber: string;
+  sellerAccountNumber: string;
+  bankApproval: boolean;
+  sellerApproval: boolean;
+  comment: string;
+  creationDate: number;
+  realizationDate: number;
+  referenceNumber: string;
+  ticker: string;
+  amount: number;
+  price: number;
+  listingId: number;
 }
