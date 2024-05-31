@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders   } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer, LegalPerson} from '../model/model';
-import { environment } from '../../../environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class LegalPersonService {
     console.log(headers);
 
     const options = { headers: headers };
-    let url = environment.baseUrl + `/legalPersons/getAll`;
+    let url = environment.userService + `/legalPersons/getAll`;
 
     return this.httpClient.get<LegalPerson[]>(url, options); 
   }
@@ -49,7 +49,7 @@ export class LegalPersonService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
-    return this.httpClient.post(environment.baseUrl + '/legalPersons/save', {
+    return this.httpClient.post(environment.userService + '/legalPersons/save', {
       companyName: newLegalPerson.companyName,
       jmbg: newLegalPerson.jmbg,
       pib: newLegalPerson.pib,
@@ -69,6 +69,6 @@ export class LegalPersonService {
     const body = {legalPerson, customer};
     console.log(body);
 
-    return this.httpClient.post(environment.baseUrl + '/legalPersons/join', body, {headers: headers});
+    return this.httpClient.post(environment.userService + '/legalPersons/join', body, {headers: headers});
   }
 }
