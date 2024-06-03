@@ -218,6 +218,7 @@ export class OtcCustomerComponent {
     //     });
     // }
   }
+
   togglePopupOffer(row: any) {
     this.popup.openPublicSecuritiesPopup(row);
   }
