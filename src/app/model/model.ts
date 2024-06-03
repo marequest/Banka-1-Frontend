@@ -499,10 +499,8 @@ export interface CreatePaymentRequest {
 }
 
 export interface LegalPerson {
-  firstName?: string;
-  lastName?: string;
   companyName?: string;
-  jmbg?: string;
+  idNumber?: string;
   pib?: string;
   cba?: string;
   address?: string;
