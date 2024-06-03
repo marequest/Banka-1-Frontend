@@ -37,7 +37,6 @@ export class PublicSecurityOfferPopupComponent {
       @Inject(MAT_DIALOG_DATA) public data: any
     ) {
       this.security = data;
-      console.log(this.security);
       // console.log(this.security.publicOffers.id.amount);
 
     }

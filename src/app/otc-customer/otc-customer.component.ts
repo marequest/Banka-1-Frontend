@@ -68,6 +68,7 @@ export class OtcCustomerComponent {
   stocks: StockListing[] = [];
   otcs: OTC[] = [];
   publicOffers: PublicOffer[] = [];
+
   publicSecurities: PublicCapitalDto[] = [];
   orders: Order[] = []; // Assuming you have a list of orders
 
@@ -91,7 +92,6 @@ export class OtcCustomerComponent {
     // this.loadPublicOffers();
     // this.loadActiveBuy();
     // this.loadActiveSell();
-    this.getPublicSecurities();
   }
 
   private initializeCustomer(): void {
@@ -151,6 +151,7 @@ export class OtcCustomerComponent {
 
   }
 
+
   // async loadPublicOffers() {
   //   this.http
   //     .get<PublicOffer[]>('/assets/mocked_banking_data/public-offers.json')
@@ -188,6 +189,7 @@ export class OtcCustomerComponent {
       }
     });
   }
+
   // async loadActiveSell() {
   //   // Customer->accountIds->accountNumber
   //   // I onda upored accountNumber sa svim contractima i ako se poklapa

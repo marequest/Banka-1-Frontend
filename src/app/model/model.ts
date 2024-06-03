@@ -317,6 +317,7 @@ export interface Customer {
   address: string;
 }
 
+
 export interface PublicCapitalDto {
   publicTotal: number;
   isIndividual: boolean;
