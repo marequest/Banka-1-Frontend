@@ -317,6 +317,14 @@ export interface Customer {
   address: string;
 }
 
+export interface PublicCapitalDto {
+  publicTotal: number;
+  isIndividual: boolean;
+  bankAccountNumber: string;
+  listingType: ListingType;
+  listingId: number;
+}
+
 export interface CustomerWithAccounts {
   userId: number;
   firstName: string;
@@ -525,6 +533,7 @@ export interface Contract {
 }
 
 export interface PublicOffer {
+  listingId: number;
   security: string;
   symbol: string;
   amount: number;
