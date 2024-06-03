@@ -162,11 +162,12 @@ export class OtcCustomerComponent {
   //       this.publicOffers = offers;
   //     });
   // }
+
   getPublicSecurities(){
     this.orderService.getPublicSecurities().subscribe(res =>{
       this.publicSecurities = res;
     })
-
+  }
 
 
   // async getPublicSecurities() {
