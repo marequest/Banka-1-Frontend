@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders   } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {BankAccount, Exchange, Recipient, Payment, NewLimitDto, User} from '../model/model';
+// import { environment } from '../../../environment';
+// import { BankAccount, Exchange, Recipient, Payment, NewLimitDto } from '../model/model';
+import {BankAccount, Exchange, Recipient, Payment, NewLimitDto, User, ContractCreateDto} from '../model/model';
 import { environment } from '../../environments/environment';
 import {map} from "rxjs/operators";
 
@@ -31,7 +33,7 @@ export class BankAccountService {
     return this.httpClient.get<BankAccount[]>(url, options);
   }
 
-  getAdminsBankAccounts(userId: number): Observable<BankAccount[]> {
+  getAdminBankAccounts(companyId: number): Observable<BankAccount[]> {
 
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
@@ -39,7 +41,7 @@ export class BankAccountService {
     console.log(headers);
 
     const options = { headers: headers };
-    let url = environment.userService + `/account/getAdminAccounts/${userId}`;
+    let url = environment.userService + `/account/getCompany/${companyId}`;
 
     return this.httpClient.get<BankAccount[]>(url, options);
   }
@@ -196,6 +198,39 @@ export class BankAccountService {
     });
   }
 
+  makeAnOfferCustomer(security: any, volume: number, offer: number){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    const options = { headers: headers };
+    const body: ContractCreateDto = {
+      amountToBuy: volume,
+      offerPrice: offer,
+      bankAccountNumber: security.bankAccount,
+      listingId: security.listingId,
+      listingType: security.listingType,
+      ticker: security.ticker
+    }
+    return this.httpClient.post("/contract/customer",null,options);
+  }
+
+
+  makeAnOfferEmployee(security: any, volume: number, offer: number) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+    });
+    const options = {headers: headers};
+    const body: ContractCreateDto = {
+      amountToBuy: volume,
+      offerPrice: offer,
+      bankAccountNumber: security.bankAccount,
+      listingId: security.listingId,
+      listingType: security.listingType,
+      ticker: security.ticker
+    }
+
+    return this.httpClient.post("/contract/employee", body, options);
+  }
 
   makeAnOffer(security: any, volume: number, offer: number) {
     const jwt = sessionStorage.getItem('jwtToken');
