@@ -19,6 +19,8 @@ import { TableComponentStatusModule } from '../welcome/redesign/TableComponentSt
 import { PopupService } from '../service/popup.service';
 import {CustomerService} from "../service/customer.service";
 import {environment} from "../../environments/environment";
+import {OrderService} from "../service/order.service";
+import {TransformPublicSecuritiesPipeModule} from "../orders/TransformPublicSecuritiesPipe";
 
 @Component({
   selector: 'app-otc',
@@ -33,6 +35,7 @@ import {environment} from "../../environments/environment";
     TableComponentModule,
     TransformSecuritiesPipeModule,
     TableComponentStatusModule,
+    TransformPublicSecuritiesPipeModule,
   ],
   templateUrl: './otc-customer.component.html',
   styleUrl: './otc-customer.component.css',
@@ -68,8 +71,7 @@ export class OtcCustomerComponent {
   stocks: StockListing[] = [];
   otcs: OTC[] = [];
   publicOffers: PublicOffer[] = [];
-
-  publicSecurities: PublicCapitalDto[] = [];
+  publicSecurities: any[] = [];
   orders: Order[] = []; // Assuming you have a list of orders
 
   activeSell: OTC[] = [];
@@ -83,7 +85,8 @@ export class OtcCustomerComponent {
     private customerService: CustomerService,
     private stockService: StockService,
     private http: HttpClient,
-    private popup: PopupService
+    private popup: PopupService,
+    private orderService: OrderService
   ) {}
 
   async ngOnInit() {
@@ -92,6 +95,7 @@ export class OtcCustomerComponent {
     // this.loadPublicOffers();
     // this.loadActiveBuy();
     // this.loadActiveSell();
+    this.getPublicSecurities();
   }
 
   private initializeCustomer(): void {
@@ -151,7 +155,6 @@ export class OtcCustomerComponent {
 
   }
 
-
   // async loadPublicOffers() {
   //   this.http
   //     .get<PublicOffer[]>('/assets/mocked_banking_data/public-offers.json')
@@ -159,37 +162,42 @@ export class OtcCustomerComponent {
   //       this.publicOffers = offers;
   //     });
   // }
+  getPublicSecurities(){
+    this.orderService.getPublicSecurities().subscribe(res =>{
+      this.publicSecurities = res;
+    })
 
-  async getPublicSecurities() {
-    const jwt = sessionStorage.getItem("jwt");
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
-    this.http.get<PublicCapitalDto[]>(`${environment.userService}/capital/public/listing/all`, httpOptions)
-      .subscribe({
-        next: (offers) => {
-          this.publicSecurities = offers;
-          this.matchPublicSecuritiesWithOrders();
-          console.log(this.orders);
-        },
-        error: (error) => {
-          console.error('Error fetching public securities:', error);
-        }
-      });
 
-  }
-  private matchPublicSecuritiesWithOrders(): void {
-    this.publicSecurities.forEach(security => {
-      const matchingOrders = this.orders.filter(order => order.listingId === security.listingId);
-      if (matchingOrders.length > 0) {
-        // Handle the matched orders as needed
-      }
-    });
-  }
-
+  // async getPublicSecurities() {
+  //   const jwt = sessionStorage.getItem("jwt");
+  //
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Authorization': `Bearer ${jwt}`
+  //     })
+  //   };
+  //   this.http.get<PublicCapitalDto[]>(`${environment.userService}/capital/public/listing/all`, httpOptions)
+  //     .subscribe({
+  //       next: (offers) => {
+  //         this.publicSecurities = offers;
+  //         this.matchPublicSecuritiesWithOrders();
+  //         console.log(this.orders);
+  //       },
+  //       error: (error) => {
+  //         console.error('Error fetching public securities:', error);
+  //       }
+  //     });
+  //
+  // }
+  // private matchPublicSecuritiesWithOrders(): void {
+  //   this.publicSecurities.forEach(security => {
+  //     const matchingOrders = this.orders.filter(order => order.listingId === security.listingId);
+  //     if (matchingOrders.length > 0) {
+  //       // Handle the matched orders as needed
+  //     }
+  //   });
+  // }
   // async loadActiveSell() {
   //   // Customer->accountIds->accountNumber
   //   // I onda upored accountNumber sa svim contractima i ako se poklapa
