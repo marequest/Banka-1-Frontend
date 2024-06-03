@@ -5,19 +5,20 @@ import { OrangeButtonModule } from '../welcome/redesign/OrangeButton';
 import { TableComponentModule } from '../welcome/redesign/TableComponent';
 import { TransformSecuritiesPipeModule } from '../orders/TransformSecuritiesPipe';
 import {
-  Contract, Customer, CustomerWithAccounts,
+  Contract, Customer, CustomerWithAccounts, Order,
   OTC,
-  OTCTab,
+  OTCTab, PublicCapitalDto,
   PublicOffer,
-  StockListing,
+  StockListing, User,
 } from '../model/model';
 import { OtcService } from '../service/otc.service';
 import { StockService } from '../service/stock.service';
-import { forkJoin } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {forkJoin, Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { TableComponentStatusModule } from '../welcome/redesign/TableComponentStatus';
 import { PopupService } from '../service/popup.service';
 import {CustomerService} from "../service/customer.service";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-otc',
@@ -67,6 +68,10 @@ export class OtcCustomerComponent {
   stocks: StockListing[] = [];
   otcs: OTC[] = [];
   publicOffers: PublicOffer[] = [];
+
+  publicSecurities: PublicCapitalDto[] = [];
+  orders: Order[] = []; // Assuming you have a list of orders
+
   activeSell: OTC[] = [];
   activeBuy: OTC[] = []
 
@@ -84,7 +89,7 @@ export class OtcCustomerComponent {
   async ngOnInit() {
     this.initializeCustomer();
     this.loadOTCs();
-    this.loadPublicOffers();
+    // this.loadPublicOffers();
     // this.loadActiveBuy();
     // this.loadActiveSell();
   }
@@ -146,12 +151,43 @@ export class OtcCustomerComponent {
 
   }
 
-  async loadPublicOffers() {
-    this.http
-      .get<PublicOffer[]>('/assets/mocked_banking_data/public-offers.json')
-      .subscribe((offers) => {
-        this.publicOffers = offers;
+
+  // async loadPublicOffers() {
+  //   this.http
+  //     .get<PublicOffer[]>('/assets/mocked_banking_data/public-offers.json')
+  //     .subscribe((offers) => {
+  //       this.publicOffers = offers;
+  //     });
+  // }
+
+  async getPublicSecurities() {
+    const jwt = sessionStorage.getItem("jwt");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+    this.http.get<PublicCapitalDto[]>(`${environment.userService}/capital/public/listing/all`, httpOptions)
+      .subscribe({
+        next: (offers) => {
+          this.publicSecurities = offers;
+          this.matchPublicSecuritiesWithOrders();
+          console.log(this.orders);
+        },
+        error: (error) => {
+          console.error('Error fetching public securities:', error);
+        }
       });
+
+  }
+  private matchPublicSecuritiesWithOrders(): void {
+    this.publicSecurities.forEach(security => {
+      const matchingOrders = this.orders.filter(order => order.listingId === security.listingId);
+      if (matchingOrders.length > 0) {
+        // Handle the matched orders as needed
+      }
+    });
   }
 
   // async loadActiveSell() {
