@@ -217,7 +217,7 @@ export class BankAccountService {
       offerPrice: offer,
       bankAccountNumber: security.owner,
       listingId: security.listingId,
-      listingType: 'STOCK',
+      listingType: security.listingType,
       ticker: security.symbol
     };
 
