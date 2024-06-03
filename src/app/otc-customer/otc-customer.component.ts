@@ -166,7 +166,8 @@ export class OtcCustomerComponent {
     this.orderService.getPublicSecurities().subscribe(res =>{
       this.publicSecurities = res;
     })
-  }
+
+
 
   // async getPublicSecurities() {
   //   const jwt = sessionStorage.getItem("jwt");
