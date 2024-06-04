@@ -216,7 +216,7 @@ export class OtcCustomerComponent {
     //       this.activeBuy = offers;
     //     });
     // }
-  }
+
 
   togglePopupOffer(row: any) {
     this.popup.openPublicSecuritiesPopup(row);
@@ -275,7 +275,6 @@ export class OtcCustomerComponent {
     });
 
     const result: OTC[] = [];
-    console.log("AAAAAAAAAAAAAAAA");
 
     contracts.forEach((contract) => {
       const stock = stockMap.get(contract.listingId);
