@@ -23,6 +23,7 @@ import {OrderService} from "../service/order.service";
 import {TransformPublicSecuritiesPipeModule} from "../orders/TransformPublicSecuritiesPipe";
 import {TransformContractsPipeModule} from "./TransformContractsPipe";
 import {TransformStatusPipeModule} from "./TransformStatusPipe";
+import {any, string} from "zod";
 
 @Component({
   selector: 'app-otc',
@@ -215,13 +216,13 @@ export class OtcCustomerComponent {
   mergeLists(contracts: Contract[], stocks: StockListing[]): OTC[] {
     const stockMap = new Map<number, StockListing>();
 
-    stocks.forEach((stock) => {
+    this.stocks.forEach((stock) => {
       stockMap.set(stock.listingId, stock);
     });
 
     const result: OTC[] = [];
 
-    contracts.forEach((contract) => {
+    this.contracts.forEach((contract) => {
       const stock = stockMap.get(contract.listingId);
       if (stock) {
         const otc: OTC = {
@@ -241,3 +242,4 @@ export class OtcCustomerComponent {
     return result;
   }
 }
+
