@@ -32,6 +32,7 @@ export class OtcService {
       })
     };
     return this.http.get<Contract[]>(environment.userService + "/contract/supervisor/getAllContracts", httpOptions);
+
   }
 
   public denyOTC(contractId: number): Observable<boolean> {
@@ -44,6 +45,7 @@ export class OtcService {
     };
 
     return this.http.put<boolean>(`${this.apiUrl}/contract/deny/${contractId}`, jsonData, {headers});
+
   }
 
   public approveOTC(contractId: number): Observable<boolean> {
