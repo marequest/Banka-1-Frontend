@@ -32,6 +32,7 @@ export class OtcService {
       })
     };
     return this.http.get<Contract[]>(environment.userService + "/contract/supervisor/getAllContracts", httpOptions);
+
   }
 
   public denyOTC(contractId: number): Observable<boolean> {
@@ -40,10 +41,11 @@ export class OtcService {
     });
 
     const jsonData = {
-      message: "Admin denied this contract."
+      message: "Denied this contract."
     };
 
     return this.http.put<boolean>(`${this.apiUrl}/contract/deny/${contractId}`, jsonData, {headers});
+
   }
 
   public approveOTC(contractId: number): Observable<boolean> {
@@ -51,7 +53,11 @@ export class OtcService {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
-    return this.http.put<boolean>(`${this.apiUrl}/contract/approve/${contractId}`, {headers});
+    const jsonData = {
+      message: "Admin approved this contract."
+    };
+
+    return this.http.put<boolean>(`${this.apiUrl}/contract/approve/${contractId}`, jsonData, {headers});
   }
 
 
@@ -60,6 +66,10 @@ export class OtcService {
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
     });
 
-    return this.http.put<boolean>(`${this.apiUrl}/contract/accept/${contractId}`, {headers});
+    const jsonData = {
+      message: "Customer accepted this contract."
+    };
+
+    return this.http.put<boolean>(`${this.apiUrl}/contract/accept/${contractId}`, jsonData,{headers});
   }
 }
