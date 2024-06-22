@@ -111,17 +111,6 @@ export class OtcComponent {
       console.log("BBSD");
       console.log(this.contracts);
     });
-    // forkJoin({
-    //   contracts: this.otcService.getAllSupervisorContracts(),
-    //   stocks: this.stockService.getStocks()
-    // }).subscribe(({ contracts, stocks }) => {
-    //   this.contracts = contracts;
-    //   this.stocks = stocks;
-    //   this.otcs = this.mergeLists(contracts, stocks);
-    //   console.log('Contracts:', contracts);
-    //   console.log('Stocks:', stocks);
-    //   console.log('OTCs:', this.otcs);
-    // });
   }
 
   async loadPublicOffers() {
@@ -169,19 +158,21 @@ export class OtcComponent {
       if (newStatus === 'Approved')
         this.otcService.acceptOTC(contractId).subscribe(
           (response) => {
-            console.log('Response to successfully changing status:' + response);
+            console.log('Response to successfully changing status to approved with acceptOTC():' + response);
+            location.reload();
           },
           (error) => {
-            console.error('Error updating status, this is response: ' + error);
+            console.error('Error updating status to approved, this is response: ' + error);
           }
         );
       else
         this.otcService.denyOTC(contractId).subscribe(
           (response) => {
-            console.log('Response to successfully changing status:' + response);
+            console.log('Response to successfully changing status to denied is with denyOTC():' + response);
+            location.reload();
           },
           (error) => {
-            console.error('Error updating status, this is response: ' + error);
+            console.error('Error updating status to denied, this is response: ' + error);
           }
         );
     } else {
