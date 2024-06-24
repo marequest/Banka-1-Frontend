@@ -50,31 +50,11 @@ export class OtcComponent {
     'Amount',
     'Price',
   ];
-  headersPublic = [
-    'Security',
-    'Symbol',
-    'Amount',
-    'Price',
-    'Profit',
-    'Last Modified',
-    'Owner',
-  ];
-  headersShares = [
-    'Owner',
-    'Stock',
-    'Outstanding Shares',
-    'Exchange Name',
-    'Last Divided Yield',
-  ];
+
 
   selectedTab: string = 'overview';
-  otcToContractIdMap: Map<OTC, number> = new Map();
   contracts: Contract[] = [];
   stocks: StockListing[] = [];
-  otcs: OTC[] = [];
-  publicOffers: PublicOffer[] = [];
-  activeSell: OTC[] = [];
-  activeBuy: OTC[] = []
 
   constructor(
     private otcService: OtcService,
@@ -84,7 +64,7 @@ export class OtcComponent {
   ) {}
 
   async ngOnInit() {
-    this.loadOTCs();
+    await this.loadOTCs();
     // this.loadPublicOffers();
     // this.loadActiveBuy();
     // this.loadActiveSell();
@@ -113,46 +93,13 @@ export class OtcComponent {
     });
   }
 
-  async loadPublicOffers() {
-    this.http
-      .get<PublicOffer[]>('/assets/mocked_banking_data/public-offers.json')
-      .subscribe((offers) => {
-        this.publicOffers = offers;
-      });
-  }
-
-  async loadActiveSell() {
-    this.http
-      .get<OTC[]>('/assets/mocked_banking_data/otc-mocked.json')
-      .subscribe((offers) => {
-        this.activeSell = offers;
-      });
-  }
-
-  async loadActiveBuy() {
-    this.http
-      .get<OTC[]>('/assets/mocked_banking_data/otc-mocked.json')
-      .subscribe((offers) => {
-        this.activeBuy = offers;
-      });
-  }
-
-  togglePopupOffer() {
-    this.popup.openPublicSecuritiesPopup(this);
-  }
 
   setTab(tabName: string) {
     this.selectedTab = tabName;
   }
 
   updateOTCStatus(contract: any, newStatus: 'Approved' | 'Denied') {
-    // if (contract.status === newStatus) return;
-
-    // const contractId = this.otcToContractIdMap.get(contract);
     var contractId = contract.contractId;
-    // console.log(contract);
-    //
-    // console.log('Contract ID:', contractId);
 
     if (contractId) {
       if (newStatus === 'Approved')
@@ -178,33 +125,5 @@ export class OtcComponent {
     } else {
       console.error('Contract ID not found for OTC', contract);
     }
-  }
-
-  mergeLists(contracts: Contract[], stocks: StockListing[]): OTC[] {
-    const stockMap = new Map<number, StockListing>();
-
-    stocks.forEach((stock) => {
-      stockMap.set(stock.listingId, stock);
-    });
-
-    const result: OTC[] = [];
-
-    contracts.forEach((contract) => {
-      const stock = stockMap.get(contract.listingId);
-      if (stock) {
-        const otc: OTC = {
-          owner: contract.buyerAccountNumber,
-          stock: stock.name,
-          outstandingShares: stock.outstandingShares.toString(),
-          exchangeName: stock.exchangeName,
-          dividendYield: stock.dividendYield.toString(),
-          status: contract.bankApproval ? 'Approved' : 'Pending',
-        };
-        result.push(otc);
-        this.otcToContractIdMap.set(otc, contract.contractId);
-      }
-    });
-
-    return result;
   }
 }
