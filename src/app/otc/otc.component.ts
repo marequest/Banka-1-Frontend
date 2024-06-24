@@ -51,6 +51,7 @@ export class OtcComponent {
     'Price',
   ];
 
+
   selectedTab: string = 'overview';
   contracts: Contract[] = [];
   stocks: StockListing[] = [];
@@ -70,6 +71,21 @@ export class OtcComponent {
   }
 
   async loadOTCs() {
+    // forkJoin({
+    //   contracts: this.http.get<Contract[]>(
+    //     '/assets/mocked_banking_data/contracts-mocked.json'
+    //   ),
+    //   stocks: this.http.get<StockListing[]>(
+    //     '/assets/mocked_banking_data/stocks-mocked.json'
+    //   ),
+    // }).subscribe(({ contracts, stocks }) => {
+    //   console.log('Contracts:', contracts);
+    //   console.log('Stocks:', stocks);
+    //   this.contracts = contracts;
+    //   this.stocks = stocks;
+    //   this.otcs = this.mergeLists(contracts, stocks);
+    //   console.log('OTCs:', this.otcs);
+    // });
     this.otcService.getAllSupervisorContracts().subscribe((contracts) => {
       this.contracts = contracts;
       console.log("BBSD");
