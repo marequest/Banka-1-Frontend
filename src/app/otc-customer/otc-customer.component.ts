@@ -154,7 +154,7 @@ export class OtcCustomerComponent {
   // }
 
   getPublicSecurities() {
-    this.orderService.getPublicStocks().subscribe(res => {
+    this.orderService.getPublicStocksOTC().subscribe(res => {
       this.publicSecurities = res.filter(publicSecurity => {
         if (this.customer.isLegalEntity) {
           return !publicSecurity.isIndividual;
