@@ -347,6 +347,7 @@ export interface CustomerWithAccounts {
   lastName: string;
   email: string;
   jmbg: string;
+  isLegalEntity: boolean;
   phoneNumber: string;
   gender: string;
   address: string;
