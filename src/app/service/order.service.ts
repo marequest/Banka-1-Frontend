@@ -294,8 +294,7 @@ export class OrderService {
       contractSize: contractSize,
       limitValue: limitValue,
       stopValue: stopValue,
-      allOrNone: allOrNone,
-      // isMargin:
+      allOrNone: allOrNone
     };
     console.log("sell order")
     console.log(orderRequest)
@@ -303,40 +302,6 @@ export class OrderService {
     try {
       const response = await this.http.post<boolean>(
         environment.userService + '/orders', orderRequest, httpOptions).toPromise();
-      return response;
-    } catch (error) {
-      // @ts-ignore
-      this.popUpService.openPopup("Error", error.error);
-      // console.error(error);
-      return false;
-    }
-  }
-
-  async sellOrderForLegal(orderType: OrderType, listingId: string, listingType: ListingType, contractSize: number, limitValue: number, stopValue: number, allOrNone: boolean) {
-    const jwt = sessionStorage.getItem("jwt");
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
-
-    const orderRequest: CreateOrderRequest = {
-      orderType: orderType,
-      listingId: listingId,
-      listingType: listingType,
-      contractSize: contractSize,
-      limitValue: limitValue,
-      stopValue: stopValue,
-      allOrNone: allOrNone,
-      // isMargin:
-    };
-    console.log("sell order")
-    console.log(orderRequest)
-
-    try {
-      const response = await this.http.post<boolean>(
-        environment.userService + '/orders/legal', orderRequest, httpOptions).toPromise();
       return response;
     } catch (error) {
       // @ts-ignore
