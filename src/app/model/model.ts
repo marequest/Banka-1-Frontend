@@ -193,7 +193,7 @@ export interface NewTransactionDto {
 }
 
 export interface TransactionDetails {
-  recipientName: String;
+  recipientName: String; 
   amount: number;
   referenceNumber: String;
   paymentCode: number;
@@ -329,9 +329,9 @@ export interface Customer {
   gender: string;
   address: string;
   company?: string;
-
   isLegalEntity: boolean;
 }
+
 
 
 export interface PublicCapitalDto {
