@@ -36,7 +36,9 @@ import {TransformPublicSecuritiesPipeModule} from "./TransformPublicSecuritiesPi
 })
 export class OrdersComponent {
   public OrderStatus = OrderStatus;
-  selectedTab: "order-history" | "requests" | "securities" | "all-securities";
+
+  selectedTab: "order-history" | "requests" | "public-securities" | "all-securities";
+
   orderHistory: OrderDto[] = [];
   orderSecurities: OrderDto[] = [];
   isAdmin: boolean = sessionStorage.getItem('role') === "admin";
@@ -68,6 +70,9 @@ export class OrdersComponent {
   changedPublicValue: number = -1;
 
 
+  headersPublicSecurities = ['Security', 'Symbol', 'Amount', 'Last Modified', 'Owner'];
+  publicSecurities: AllPublicCapitalsDto[] = [];
+
 
 
   sellScheme = z.object({
@@ -89,8 +94,21 @@ export class OrdersComponent {
     this.selectedTab = "order-history";
     this.getAllSecurityOrders();
     this.getSecurityOrders();
+
+    this.getPublicSecurities();
     console.log("BBBB")
   }
+
+  getPublicSecurities(){
+    this.orderService.getPublicStocks().subscribe( res =>{
+      this.publicSecurities = res
+    })
+  }
+
+
+    console.log("BBBB")
+  }
+
 
   private getAllSecurityOrders() {
     this.orderService.getSecurityOrders().subscribe({
@@ -133,7 +151,8 @@ export class OrdersComponent {
     // })
   }
 
-  setSelectedTab(tab: "order-history" | "requests" | "securities" | "all-securities") {
+
+  setSelectedTab(tab: "order-history" | "requests" | "public-securities" | "all-securities") {
     this.selectedTab = tab;
 
     //to refresh table after switching tabs
@@ -144,6 +163,7 @@ export class OrdersComponent {
     this.loadOrders()
     this.getSecurityOrders();
     this.getPublicSecurities();
+
   }
 
   async ngOnInit() {
@@ -254,6 +274,21 @@ export class OrdersComponent {
     security.showPopup = true;
   }
 
+  changePublicValue(security: any){
+    if(sessionStorage.getItem("loginUserRole") == "customer") {
+      this.orderService.changePublicValueCustomer(security.security.listingType, security.security.listingId, this.changedPublicValue).subscribe(res => {
+        if (res)
+          this.getSecurityOrders();
+      })
+    } else {
+      this.orderService.changePublicValueEmployee(security.security.listingType, security.security.listingId, this.changedPublicValue).subscribe(res => {
+        if (res)
+          this.getSecurityOrders();
+      })
+    }
+    security.security.showPopup = false;
+  }
+
   changePublicValueButton(security: any): boolean{
     if (this.changedPublicValue > 0) {
       if (security.security.total > this.changedPublicValue)
@@ -263,17 +298,13 @@ export class OrdersComponent {
     return false;
   }
 
-  changePublicValue(security: any){
-    this.orderService.changePublicValue(security.security.listingType, security.security.listingId, this.changedPublicValue).subscribe(res => {
-      if(res)
-        this.getSecurityOrders();
-    })
-    security.security.showPopup = false;
-  }
-
   cancelChangePublic(security: any){
     security.showPopup = false;
     this.changedPublicValue = -1;
+  }
+
+  offerSecurity(security: PublicStock){
+    this.popupService.openPublicSecuritiesPopup(security);
   }
 
 }
