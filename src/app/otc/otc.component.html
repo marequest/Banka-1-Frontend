@@ -22,7 +22,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 [class.disabled-button]="row.original.comment !== null || (row.original.bankApproval && row.original.sellerApproval)"
-                [attr.title]="row.original.comment !== null ? 'Cannot change status because comment is present' : ''"
+                [attr.title]="row.original.comment !== null ? 'Cannot change status' : ''"
 
               >
                 {{ row.original | transformStatus }}
