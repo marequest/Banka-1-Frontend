@@ -328,9 +328,10 @@ export interface Customer {
   phoneNumber: string;
   gender: string;
   address: string;
-
+  company?: string;
   isLegalEntity: boolean;
 }
+
 
 
 export interface PublicCapitalDto {
@@ -668,4 +669,75 @@ export interface ExchangeTransactionReport {
   previousCurrency: string;
   exchangedTo: string;
   profit: number;
+}
+
+export interface MyStockDto{
+  amount? : number;
+  ticker? : string;
+  publicAmount? : number;
+}
+
+export interface MakeOfferDto{
+  amount? : number;
+  price? : number;
+  ticker? : string;
+}
+
+export interface EditMyPublicStock{
+  ticker?: string,
+  publicAmount?: number,
+  price?: number
+}
+
+export interface OtherBankStocks{
+  amount? : number;
+  ticker? : string;
+}
+
+export enum OfferStatus {
+  PROCESSING = 'PROCESSING',
+  ACCEPTED = 'ACCEPTED',
+  DECLINED = 'DECLINED',
+  FINISHED_ACCEPTED = 'FINISHED_ACCEPTED',
+  FINISHED_DECLINED = 'FINISHED_DECLINED'
+}
+
+export interface ReceivedOffersDto{
+  amount? : number;
+  price? : number;
+  offerStatus? : OfferStatus;
+}
+
+export interface SendOffersDto{
+  ticker? : string;
+  amount? : number;
+  price? : number;
+  offerStatus? : OfferStatus;
+}
+export interface TransfersReportDto {
+  profit: number;
+  transfers: TransferDto[];
+}
+
+export interface TransferDto {
+  id?: number;
+  senderName?: string;
+  senderAccountNumber?: string;
+  recipientAccountOwnerName?: string;
+  recipientAccountNumber?: string;
+  amount?: number;
+  paymentCode?: string;
+  model?: string;
+  referenceNumber?: string;
+  status?: TransactionStatus;
+  commissionFee?: number;
+  dateOfPayment?: number;
+  channel?: string;
+  convertedAmount?: number;
+  exchangeRate?: number;
+  commission?: number;
+  transferDate?: number;
+  previousCurrency?: string;
+  exchangeTo?: string;
+  profit?: number;
 }

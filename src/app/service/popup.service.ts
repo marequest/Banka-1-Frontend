@@ -25,6 +25,7 @@ import {CustomPopupComponent} from "../custom-popup/custom-popup.component";
 import {MarginCallPopUpComponent} from "../margin-call-pop-up/margin-call-pop-up.component";
 import {PopUpWithRefreshComponent} from "../pop-up-with-refresh/pop-up-with-refresh.component";
 import { SuccessfullyCreatedUserComponent } from '../successfully-created-user/successfully-created-user.component';
+import { SellMultiOtcPopUpComponent } from '../sell-multi-otc-pop-up/sell-multi-otc-pop-up.component';
 
 
 @Injectable({
@@ -135,9 +136,10 @@ export class PopupService {
     });
   }
 
-  openSellPopup(listingId: number, legal: boolean, amount: number, future: boolean, forex: boolean, stock: boolean) {
+  openSellPopup(listingId: number, isCustomer: boolean, amount: number, future: boolean, forex: boolean, stock: boolean) {
+    console.log()
     return this.dialog.open(SellPopupComponent, {
-      data: { listingId: listingId, isLegal: legal, amount: amount, future: future, forex: forex, stock: stock }  // Pass the future object to the dialog
+      data: { listingId: listingId, amount: amount, future: future, forex: forex, stock: stock, isCustomer: isCustomer}  // Pass the future object to the dialog
     });
   }
 
@@ -151,6 +153,12 @@ export class PopupService {
     this.dialog.open(PublicSecurityOfferPopupComponent, {
       data: args
     });
+  }
+
+  openSellMultiOtcPopup(args: any): void {
+    this.dialog.open(SellMultiOtcPopUpComponent,{
+      data: args
+    })
   }
 
   openCustomMessage(args: {title: string, header: string, message: string}): void {
